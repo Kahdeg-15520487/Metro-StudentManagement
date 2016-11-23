@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="StudentManagement.View.AcademicView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StudentManagement.View"
+             xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
+             xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ViewModel:AcademicViewModel x:Key="key1">
+            
+        </ViewModel:AcademicViewModel>
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                    <ComboBox Margin="0,30,0,30"
+                          BorderBrush="Green"
+                          BorderThickness="2"
+                          Metro:TextBoxHelper.Watermark="Choose Module">
+                        <ComboBoxItem Content="Module 1">
+
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Module 2">
+
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Summer Module">
+
+                        </ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox
+                          Margin="20,30,30,30"
+                          BorderBrush="Green"
+                          BorderThickness="2"
+                          Metro:TextBoxHelper.Watermark="Choose Year">
+                        <ComboBoxItem Content="Year 1">
+
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Year 2">
+
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Year 3">
+
+                        </ComboBoxItem>
+
+                        <ComboBoxItem Content="Year 4">
+
+                        </ComboBoxItem>
+                    </ComboBox>
+
+                </StackPanel>
+                <GroupBox Name="grbAcademic" Header="Mark" Grid.Row="1" Grid.Column="1" DataContext="{StaticResource key1}">
+                    <DataGrid 
+                        
+                    Name="dtgAcademic"
+                    Style="{DynamicResource AzureDataGrid}"
+                    ItemsSource="{Binding AcademicList}" AutoGenerateColumns="False"
+                    >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Header="Subject Name " Width="150" Binding="{Binding SubjectName}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn IsReadOnly="True" Header="Process Mark " Width="150" Binding="{Binding Process}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn IsReadOnly="True" Header="Midterm Mark " Width="150" Binding="{Binding Midterm}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn IsReadOnly="True" Header="Finalterm Mark " Width="150" Binding="{Binding FinalTerm}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn IsReadOnly="True" Header="Average " Width="150" Binding="{Binding Average}">
+
+                            </DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding DetailCommand}" CommandParameter="{Binding ElementName=dtgAcademic}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </DataGrid>
+                </GroupBox>
+
+                <GroupBox DataContext="{StaticResource key1}" Header="Subject Detail"  Grid.Column="2" Grid.Row="1">
+
+                    <ListBox ItemsSource="{Binding SubjectDetail}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" Width="100" Text="{Binding TeacherName}"></TextBlock>
+                                    <TextBlock Margin="5" Width="150" Text="{Binding NumberOfCredit}"></TextBlock>
+                                    <TextBlock Margin="5" Text="{Binding FacultyName}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Label Content="Summary"></Label>
+                    <Label Name="lblSum" Content="This Sum"></Label>
+                </StackPanel>
+
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
