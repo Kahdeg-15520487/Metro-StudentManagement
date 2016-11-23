@@ -11,52 +11,25 @@
         ResizeMode="CanResizeWithGrip" 
         GlowBrush="{DynamicResource AccentColorBrush}"     
         NonActiveBorderBrush="Black"  
-        WindowState="Maximized">
+        WindowState="Maximized"
+        Icon="/StudentManagement;component/Resources/Icons/App_icon.png"
+                  >
+    <Metro:MetroWindow.Background>
+        <ImageBrush/>
+    </Metro:MetroWindow.Background>
+
+
+
+    <Metro:MetroWindow.RightWindowCommands>
+        <Metro:WindowCommands>
+            <Button>Login</Button>
+        </Metro:WindowCommands>
+    </Metro:MetroWindow.RightWindowCommands>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/Backgrounds/Background.png"/>
+        </Grid.Background>
 
-        <!--Tab-->
-
-        <Metro:MetroAnimatedSingleRowTabControl 
-            Metro:TabControlHelper.IsUnderlined="True"
-            >
-            <TabItem Header="Mark " 
-                     Metro:ControlsHelper.HeaderFontWeight="Bold"
-                     Metro:ControlsHelper.HeaderFontSize="35"
-                     FontFamily="Calibri">
-                <Metro:MetroAnimatedTabControl>
-                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
-                             Header="Academic"
-                             FontFamily="Verdana">
-                        <View:AcademicView></View:AcademicView>
-
-
-                    </TabItem>
-
-                    <TabItem Header="Curriculum"
-                             Metro:ControlsHelper.HeaderFontSize="25" 
-                             FontFamily="Verdana">
-                      
-                    </TabItem>
-                    <TabItem Header="Diploma Project"
-                             Metro:ControlsHelper.HeaderFontSize="25"                          
-                             FontFamily="Verdana">
-                    </TabItem>
-                </Metro:MetroAnimatedTabControl>
-
-            </TabItem>
-
-
-
-        </Metro:MetroAnimatedSingleRowTabControl>
-
-        <StatusBar Grid.Row="1" VerticalAlignment="Bottom">
-            <StatusBarItem>Info</StatusBarItem>
-            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
-            <StatusBarItem>501 C1</StatusBarItem>
-        </StatusBar>
     </Grid>
 </Metro:MetroWindow>
