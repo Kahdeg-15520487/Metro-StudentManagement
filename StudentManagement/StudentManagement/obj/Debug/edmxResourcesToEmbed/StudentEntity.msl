@@ -279,5 +279,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentUser" FunctionName="StudentDBModel.Store.GetStudentUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentUser_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Pasworkd" ColumnName="Pasworkd" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

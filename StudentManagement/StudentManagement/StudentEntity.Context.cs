@@ -12,6 +12,8 @@ namespace StudentManagement
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class StudentDBEntities : DbContext
     {
@@ -49,5 +51,18 @@ namespace StudentManagement
         public virtual DbSet<StudyFee> StudyFee { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
         public virtual DbSet<TeacherUser> TeacherUser { get; set; }
+    
+        public virtual ObjectResult<GetStudentUser_Result> GetStudentUser(string iD, string passWord)
+        {
+            var iDParameter = iD != null ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(string));
+    
+            var passWordParameter = passWord != null ?
+                new ObjectParameter("PassWord", passWord) :
+                new ObjectParameter("PassWord", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentUser_Result>("GetStudentUser", iDParameter, passWordParameter);
+        }
     }
 }

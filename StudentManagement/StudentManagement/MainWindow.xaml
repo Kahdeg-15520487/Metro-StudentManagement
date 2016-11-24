@@ -7,22 +7,23 @@
         xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:View="clr-namespace:StudentManagement.View"
         mc:Ignorable="d"
+        xmlns:Viewmodle="clr-namespace:StudentManagement.ViewModel"
         Title="" Height="350" Width="525"
         ResizeMode="CanResizeWithGrip" 
         GlowBrush="{DynamicResource AccentColorBrush}"     
         NonActiveBorderBrush="Black"  
         WindowState="Maximized"
         Icon="/StudentManagement;component/Resources/Icons/App_icon.png"
-                  >
+         Name="MetroWindow"       >
+    <Metro:MetroWindow.DataContext>
+        <Viewmodle:DialogVIewModle></Viewmodle:DialogVIewModle>
+    </Metro:MetroWindow.DataContext>
     <Metro:MetroWindow.Background>
         <ImageBrush/>
     </Metro:MetroWindow.Background>
-
-
-
     <Metro:MetroWindow.RightWindowCommands>
         <Metro:WindowCommands>
-            <Button>Login</Button>
+            <Button Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=MetroWindow}">Login</Button>
         </Metro:WindowCommands>
     </Metro:MetroWindow.RightWindowCommands>
 
@@ -30,6 +31,6 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/Backgrounds/Background.png"/>
         </Grid.Background>
-
+      
     </Grid>
 </Metro:MetroWindow>

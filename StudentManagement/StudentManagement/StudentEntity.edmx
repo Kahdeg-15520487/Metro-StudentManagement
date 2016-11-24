@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicMark">
           <Key>
             <PropertyRef Name="StudentID" />
@@ -493,6 +493,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_StudentID_BehaviorMark">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="BehaviorMark" Type="Self.BehaviorMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="BehaviorMark">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Fk_StudentID_parent">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="Parents" Type="Self.Parents" Multiplicity="0..1" />
@@ -565,6 +577,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetStudentUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
@@ -666,6 +682,10 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="AcademicMark" EntitySet="AcademicMark" />
           </AssociationSet>
+          <AssociationSet Name="fk_StudentID_BehaviorMark" Association="Self.fk_StudentID_BehaviorMark">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="BehaviorMark" EntitySet="BehaviorMark" />
+          </AssociationSet>
           <AssociationSet Name="Fk_StudentID_parent" Association="Self.Fk_StudentID_parent">
             <End Role="Student" EntitySet="Student" />
             <End Role="Parents" EntitySet="Parents" />
@@ -691,8 +711,7 @@
             <End Role="TeacherUser" EntitySet="TeacherUser" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -746,6 +765,7 @@
           <Property Name="ActivityGroupID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ActivityGroup" Relationship="Self.Fk_ActivityGroupID" FromRole="BehaviorMark" ToRole="ActivityGroup" />
+          <NavigationProperty Name="Student" Relationship="StudentDBModel.fk_StudentID_BehaviorMark" FromRole="BehaviorMark" ToRole="Student" />
         </EntityType>
         <EntityType Name="Candre">
           <Key>
@@ -954,6 +974,7 @@
           <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_StudentID_RegisterStudyUnit" FromRole="Student" ToRole="RegisterStudyUnit" />
           <NavigationProperty Name="StudyFee" Relationship="Self.Fk_StudentID_Studyfee" FromRole="Student" ToRole="StudyFee" />
           <NavigationProperty Name="StudentUser" Relationship="Self.Fk_StudentUser" FromRole="Student" ToRole="StudentUser" />
+          <NavigationProperty Name="BehaviorMark" Relationship="StudentDBModel.fk_StudentID_BehaviorMark" FromRole="Student" ToRole="BehaviorMark" />
         </EntityType>
         <EntityType Name="StudentUser">
           <Key>
@@ -1431,7 +1452,31 @@
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="TeacherUser" EntitySet="TeacherUser" />
           </AssociationSet>
+          <AssociationSet Name="fk_StudentID_BehaviorMark" Association="StudentDBModel.fk_StudentID_BehaviorMark">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="BehaviorMark" EntitySet="BehaviorMark" />
+          </AssociationSet>
+          <FunctionImport Name="GetStudentUser" ReturnType="Collection(StudentDBModel.GetStudentUser_Result)">
+            <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="PassWord" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <Association Name="fk_StudentID_BehaviorMark">
+          <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="StudentDBModel.BehaviorMark" Role="BehaviorMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="BehaviorMark">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetStudentUser_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Pasworkd" Nullable="false" MaxLength="30" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1716,6 +1761,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetStudentUser" FunctionName="StudentDBModel.Store.GetStudentUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetStudentUser_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Pasworkd" ColumnName="Pasworkd" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
