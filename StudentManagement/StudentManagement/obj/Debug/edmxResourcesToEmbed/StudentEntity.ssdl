@@ -488,6 +488,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_StudentID_BehaviorMark">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="BehaviorMark" Type="Self.BehaviorMark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="BehaviorMark">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Fk_StudentID_parent">
     <End Role="Student" Type="Self.Student" Multiplicity="1" />
     <End Role="Parents" Type="Self.Parents" Multiplicity="0..1" />
@@ -560,6 +572,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="GetStudentUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="nvarchar" Mode="In" />
+    <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="StudentDBModelStoreContainer">
     <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
@@ -660,6 +676,10 @@
     <AssociationSet Name="Fk_StudentID" Association="Self.Fk_StudentID">
       <End Role="Student" EntitySet="Student" />
       <End Role="AcademicMark" EntitySet="AcademicMark" />
+    </AssociationSet>
+    <AssociationSet Name="fk_StudentID_BehaviorMark" Association="Self.fk_StudentID_BehaviorMark">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="BehaviorMark" EntitySet="BehaviorMark" />
     </AssociationSet>
     <AssociationSet Name="Fk_StudentID_parent" Association="Self.Fk_StudentID_parent">
       <End Role="Student" EntitySet="Student" />

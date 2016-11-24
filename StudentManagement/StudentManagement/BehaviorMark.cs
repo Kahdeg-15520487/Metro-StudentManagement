@@ -26,5 +26,6 @@ namespace StudentManagement
         public string Organization { get; set; }
     
         public virtual ActivityGroup ActivityGroup { get; set; }
+        public virtual Student Student { get; set; }
     }
 }
