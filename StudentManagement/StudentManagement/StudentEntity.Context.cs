@@ -51,6 +51,7 @@ namespace StudentManagement
         public virtual DbSet<StudyFee> StudyFee { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
         public virtual DbSet<TeacherUser> TeacherUser { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     
         public virtual ObjectResult<GetStudentUser_Result> GetStudentUser(string iD, string passWord)
         {

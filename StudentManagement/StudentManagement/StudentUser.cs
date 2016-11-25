@@ -17,6 +17,7 @@ namespace StudentManagement
         public string ID { get; set; }
         public string Pasworkd { get; set; }
         public string StudentID { get; set; }
+        public Nullable<int> Roll { get; set; }
     
         public virtual Student Student { get; set; }
     }
