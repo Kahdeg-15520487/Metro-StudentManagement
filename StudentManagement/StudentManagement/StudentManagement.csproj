@@ -122,6 +122,9 @@
     <Compile Include="Faculty.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetStudentUser_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Parents.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -177,6 +180,7 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcademicViewModel.cs" />
+    <Compile Include="ViewModel\DialogLogginViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AcademicView.xaml.cs">

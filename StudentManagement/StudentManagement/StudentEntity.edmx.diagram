@@ -54,6 +54,7 @@
         <AssociationConnector Association="StudentDBModel.Fk_StudentID_Studyfee" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_StudentUser" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_TeacherUser" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentDBModel.fk_StudentID_BehaviorMark" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

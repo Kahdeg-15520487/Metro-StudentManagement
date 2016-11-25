@@ -50,6 +50,7 @@
     <Property Name="ActivityGroupID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ActivityGroup" Relationship="Self.Fk_ActivityGroupID" FromRole="BehaviorMark" ToRole="ActivityGroup" />
+    <NavigationProperty Name="Student" Relationship="StudentDBModel.fk_StudentID_BehaviorMark" FromRole="BehaviorMark" ToRole="Student" />
   </EntityType>
   <EntityType Name="Candre">
     <Key>
@@ -258,6 +259,7 @@
     <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_StudentID_RegisterStudyUnit" FromRole="Student" ToRole="RegisterStudyUnit" />
     <NavigationProperty Name="StudyFee" Relationship="Self.Fk_StudentID_Studyfee" FromRole="Student" ToRole="StudyFee" />
     <NavigationProperty Name="StudentUser" Relationship="Self.Fk_StudentUser" FromRole="Student" ToRole="StudentUser" />
+    <NavigationProperty Name="BehaviorMark" Relationship="StudentDBModel.fk_StudentID_BehaviorMark" FromRole="Student" ToRole="BehaviorMark" />
   </EntityType>
   <EntityType Name="StudentUser">
     <Key>
@@ -735,5 +737,29 @@
       <End Role="Teacher" EntitySet="Teacher" />
       <End Role="TeacherUser" EntitySet="TeacherUser" />
     </AssociationSet>
+    <AssociationSet Name="fk_StudentID_BehaviorMark" Association="StudentDBModel.fk_StudentID_BehaviorMark">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="BehaviorMark" EntitySet="BehaviorMark" />
+    </AssociationSet>
+    <FunctionImport Name="GetStudentUser" ReturnType="Collection(StudentDBModel.GetStudentUser_Result)">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="PassWord" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <Association Name="fk_StudentID_BehaviorMark">
+    <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="StudentDBModel.BehaviorMark" Role="BehaviorMark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="BehaviorMark">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetStudentUser_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Pasworkd" Nullable="false" MaxLength="30" />
+  </ComplexType>
 </Schema>

@@ -22,6 +22,7 @@ namespace StudentManagement
             this.RegisterStudyUnit = new HashSet<RegisterStudyUnit>();
             this.StudyFee = new HashSet<StudyFee>();
             this.StudentUser = new HashSet<StudentUser>();
+            this.BehaviorMark = new HashSet<BehaviorMark>();
         }
     
         public string StudentID { get; set; }
@@ -56,5 +57,7 @@ namespace StudentManagement
         public virtual ICollection<StudyFee> StudyFee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentUser> StudentUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BehaviorMark> BehaviorMark { get; set; }
     }
 }
