@@ -12,13 +12,11 @@ namespace StudentManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class TeacherUser
+    public partial class Users
     {
-        public string ID { get; set; }
-        public string Passwork { get; set; }
-        public string TeacherID { get; set; }
+        public string UserName { get; set; }
+        public string Passwords { get; set; }
         public Nullable<int> Roll { get; set; }
-    
-        public virtual Teacher Teacher { get; set; }
+        public string ID { get; set; }
     }
 }

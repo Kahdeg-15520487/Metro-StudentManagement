@@ -55,6 +55,7 @@
         <AssociationConnector Association="StudentDBModel.Fk_StudentUser" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_TeacherUser" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.fk_StudentID_BehaviorMark" />
+        <EntityTypeShape EntityType="StudentDBModel.Users" Width="1.5" PointX="4.75" PointY="1.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
