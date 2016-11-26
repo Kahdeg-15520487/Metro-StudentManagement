@@ -236,6 +236,7 @@
     <EntitySetMapping Name="StudentUser">
       <EntityTypeMapping TypeName="StudentDBModel.StudentUser">
         <MappingFragment StoreEntitySet="StudentUser">
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Pasworkd" ColumnName="Pasworkd" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -273,6 +274,7 @@
     <EntitySetMapping Name="TeacherUser">
       <EntityTypeMapping TypeName="StudentDBModel.TeacherUser">
         <MappingFragment StoreEntitySet="TeacherUser">
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Passwork" ColumnName="Passwork" />
           <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
@@ -287,5 +289,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="StudentDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

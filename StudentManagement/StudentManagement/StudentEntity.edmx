@@ -229,6 +229,7 @@
           <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Pasworkd" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="StudentID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Roll" Type="int" />
         </EntityType>
         <EntityType Name="StudyFee">
           <Key>
@@ -264,6 +265,16 @@
           <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Passwork" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Roll" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Passwords" Type="nvarchar" MaxLength="30" />
+          <Property Name="Roll" Type="int" />
+          <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <Association Name="Fk_ActivityGroupID">
           <End Role="ActivityGroup" Type="Self.ActivityGroup" Multiplicity="0..1" />
@@ -606,6 +617,7 @@
           <EntitySet Name="StudyFee" EntityType="Self.StudyFee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeacherUser" EntityType="Self.TeacherUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="Fk_ActivityGroupID" Association="Self.Fk_ActivityGroupID">
             <End Role="ActivityGroup" EntitySet="ActivityGroup" />
             <End Role="BehaviorMark" EntitySet="BehaviorMark" />
@@ -984,6 +996,7 @@
           <Property Name="Pasworkd" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StudentID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Student" Relationship="Self.Fk_StudentUser" FromRole="StudentUser" ToRole="Student" />
+          <Property Name="Roll" Type="Int32" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="StudyFee">
           <Key>
@@ -1026,6 +1039,7 @@
           <Property Name="Passwork" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeacherID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Teacher" Relationship="Self.Fk_TeacherUser" FromRole="TeacherUser" ToRole="Teacher" />
+          <Property Name="Roll" Type="Int32" ConcurrencyMode="Fixed" />
         </EntityType>
         <Association Name="Fk_Discipline">
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
@@ -1460,6 +1474,7 @@
             <Parameter Name="ID" Mode="In" Type="String" />
             <Parameter Name="PassWord" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Users" EntityType="StudentDBModel.Users" />
         </EntityContainer>
         <Association Name="fk_StudentID_BehaviorMark">
           <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -1477,6 +1492,15 @@
           <Property Type="String" Name="ID" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Pasworkd" Nullable="false" MaxLength="30" />
         </ComplexType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Passwords" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Roll" Type="Int32" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1718,6 +1742,7 @@
           <EntitySetMapping Name="StudentUser">
             <EntityTypeMapping TypeName="StudentDBModel.StudentUser">
               <MappingFragment StoreEntitySet="StudentUser">
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Pasworkd" ColumnName="Pasworkd" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -1755,6 +1780,7 @@
           <EntitySetMapping Name="TeacherUser">
             <EntityTypeMapping TypeName="StudentDBModel.TeacherUser">
               <MappingFragment StoreEntitySet="TeacherUser">
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Passwork" ColumnName="Passwork" />
                 <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
@@ -1769,6 +1795,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StudentDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -179,6 +179,9 @@
     <Compile Include="TeacherUser.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AcademicViewModel.cs" />
     <Compile Include="ViewModel\DialogLogginViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
