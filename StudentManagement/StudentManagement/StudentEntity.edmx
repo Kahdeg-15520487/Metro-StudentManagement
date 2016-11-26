@@ -588,10 +588,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="GetStudentUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ID" Type="nvarchar" Mode="In" />
-          <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
-        </Function>
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
