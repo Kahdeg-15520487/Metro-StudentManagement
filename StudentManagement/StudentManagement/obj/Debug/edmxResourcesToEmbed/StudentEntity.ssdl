@@ -224,6 +224,7 @@
     <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Pasworkd" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="StudentID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Roll" Type="int" />
   </EntityType>
   <EntityType Name="StudyFee">
     <Key>
@@ -259,6 +260,16 @@
     <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Passwork" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Roll" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Passwords" Type="nvarchar" MaxLength="30" />
+    <Property Name="Roll" Type="int" />
+    <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <Association Name="Fk_ActivityGroupID">
     <End Role="ActivityGroup" Type="Self.ActivityGroup" Multiplicity="0..1" />
@@ -601,6 +612,7 @@
     <EntitySet Name="StudyFee" EntityType="Self.StudyFee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeacherUser" EntityType="Self.TeacherUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="Fk_ActivityGroupID" Association="Self.Fk_ActivityGroupID">
       <End Role="ActivityGroup" EntitySet="ActivityGroup" />
       <End Role="BehaviorMark" EntitySet="BehaviorMark" />
