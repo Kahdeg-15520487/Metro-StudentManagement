@@ -73,6 +73,7 @@
     <EntitySetMapping Name="Department">
       <EntityTypeMapping TypeName="StudentDBModel.Department">
         <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="Detail" ColumnName="Detail" />
           <ScalarProperty Name="DepartmentHeader" ColumnName="DepartmentHeader" />

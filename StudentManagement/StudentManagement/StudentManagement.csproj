@@ -122,6 +122,9 @@
     <Compile Include="Faculty.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetUser_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Parents.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>

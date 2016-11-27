@@ -74,6 +74,7 @@
     <Property Name="DepartmentHeader" Type="nvarchar" MaxLength="10" />
     <Property Name="SchoolID" Type="nvarchar" MaxLength="10" />
     <Property Name="Credits" Type="int" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="300" />
   </EntityType>
   <EntityType Name="DiplomaProject">
     <Key>

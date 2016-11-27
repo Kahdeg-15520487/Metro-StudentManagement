@@ -79,6 +79,7 @@
           <Property Name="DepartmentHeader" Type="nvarchar" MaxLength="10" />
           <Property Name="SchoolID" Type="nvarchar" MaxLength="10" />
           <Property Name="Credits" Type="int" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="DiplomaProject">
           <Key>
@@ -811,6 +812,7 @@
           <Property Name="SchoolID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Credits" Type="Int32" />
           <NavigationProperty Name="School" Relationship="Self.Fk_SchoolID" FromRole="Department" ToRole="School" />
+          <Property Name="DepartmentName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="DiplomaProject">
           <Key>
@@ -1583,6 +1585,7 @@
           <EntitySetMapping Name="Department">
             <EntityTypeMapping TypeName="StudentDBModel.Department">
               <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="Detail" ColumnName="Detail" />
                 <ScalarProperty Name="DepartmentHeader" ColumnName="DepartmentHeader" />

@@ -84,6 +84,7 @@
     <Property Name="SchoolID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Credits" Type="Int32" />
     <NavigationProperty Name="School" Relationship="Self.Fk_SchoolID" FromRole="Department" ToRole="School" />
+    <Property Name="DepartmentName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" ConcurrencyMode="Fixed" />
   </EntityType>
   <EntityType Name="DiplomaProject">
     <Key>
