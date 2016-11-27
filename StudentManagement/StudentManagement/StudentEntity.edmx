@@ -588,6 +588,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
@@ -1466,11 +1470,12 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="BehaviorMark" EntitySet="BehaviorMark" />
           </AssociationSet>
-          <FunctionImport Name="GetStudentUser" ReturnType="Collection(StudentDBModel.GetStudentUser_Result)">
+   
+          <EntitySet Name="Users" EntityType="StudentDBModel.Users" />
+          <FunctionImport Name="GetUser" ReturnType="Collection(StudentDBModel.GetUser_Result)">
             <Parameter Name="ID" Mode="In" Type="String" />
             <Parameter Name="PassWord" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="Users" EntityType="StudentDBModel.Users" />
         </EntityContainer>
         <Association Name="fk_StudentID_BehaviorMark">
           <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -1484,10 +1489,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="GetStudentUser_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Pasworkd" Nullable="false" MaxLength="30" />
-        </ComplexType>
+      
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -1497,6 +1499,12 @@
           <Property Name="Roll" Type="Int32" />
           <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="GetUser_Result">
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Roll" Nullable="true" />
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1783,14 +1791,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetStudentUser" FunctionName="StudentDBModel.Store.GetStudentUser">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="StudentDBModel.GetStudentUser_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Pasworkd" ColumnName="Pasworkd" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+        
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="StudentDBModel.Users">
               <MappingFragment StoreEntitySet="Users">
@@ -1801,6 +1802,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetUser" FunctionName="StudentDBModel.Store.GetUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetUser_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

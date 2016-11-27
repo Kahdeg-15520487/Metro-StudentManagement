@@ -53,7 +53,17 @@ namespace StudentManagement
         public virtual DbSet<TeacherUser> TeacherUser { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     
-      
-       
+        public virtual ObjectResult<GetUser_Result> GetUser(string iD, string passWord)
+        {
+            var iDParameter = iD != null ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(string));
+    
+            var passWordParameter = passWord != null ?
+                new ObjectParameter("PassWord", passWord) :
+                new ObjectParameter("PassWord", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", iDParameter, passWordParameter);
+        }
     }
 }
