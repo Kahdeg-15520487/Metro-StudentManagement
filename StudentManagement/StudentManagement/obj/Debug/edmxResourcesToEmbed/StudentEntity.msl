@@ -302,5 +302,26 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAcademicByID" FunctionName="StudentDBModel.Store.GetAcademicByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetAcademicByID_Result">
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="ProcessMark" ColumnName="ProcessMark" />
+          <ScalarProperty Name="MidtermMark" ColumnName="MidtermMark" />
+          <ScalarProperty Name="FinaltermMark" ColumnName="FinaltermMark" />
+          <ScalarProperty Name="AvarageMark" ColumnName="AvarageMark" />
+          <ScalarProperty Name="DisciplineStatus" ColumnName="DisciplineStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDetailDisciplineByID" FunctionName="StudentDBModel.Store.GetDetailDisciplineByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetDetailDisciplineByID_Result">
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

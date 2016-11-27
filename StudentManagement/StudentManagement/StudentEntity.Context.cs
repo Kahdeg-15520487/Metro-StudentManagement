@@ -65,5 +65,23 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", iDParameter, passWordParameter);
         }
+    
+        public virtual ObjectResult<GetAcademicByID_Result> GetAcademicByID(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAcademicByID_Result>("GetAcademicByID", studentIDParameter);
+        }
+    
+        public virtual ObjectResult<GetDetailDisciplineByID_Result> GetDetailDisciplineByID(string disciplineID)
+        {
+            var disciplineIDParameter = disciplineID != null ?
+                new ObjectParameter("DisciplineID", disciplineID) :
+                new ObjectParameter("DisciplineID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailDisciplineByID_Result>("GetDetailDisciplineByID", disciplineIDParameter);
+        }
     }
 }

@@ -16,11 +16,11 @@ namespace StudentManagement.ViewModel
     {
 
         StudentDBEntities St = new StudentDBEntities();
-        private ObservableCollection<GetUser_Result> _Users;
+        private static ObservableCollection<GetUser_Result> _Users;
         MetroWindow metroWindow = (MetroWindow)Application.Current.MainWindow;
         public ICommand LoginCommand { get; set; }
 
-        public ObservableCollection<GetUser_Result> Users
+        public static ObservableCollection<GetUser_Result> Users
         {
             get
             {

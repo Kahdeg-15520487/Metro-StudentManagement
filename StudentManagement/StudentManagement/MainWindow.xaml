@@ -19,29 +19,6 @@
     <Metro:MetroWindow.DataContext>
         <ViewModel:DialogLogginViewModel></ViewModel:DialogLogginViewModel>
     </Metro:MetroWindow.DataContext>
-    <Metro:MetroWindow.Background>
-        <ImageBrush/>
-    </Metro:MetroWindow.Background>
-    <Metro:MetroWindow.RightWindowCommands>
-        <Metro:WindowCommands>
-            <Button Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=MetroWindow}">Login</Button>
-        </Metro:WindowCommands>
-    </Metro:MetroWindow.RightWindowCommands>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="Resources/Backgrounds/Background.png"/>
-        </Grid.Background>
-        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Jokerman" FontSize="19" >
-            <Hyperlink Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=MetroWindow}">
-                <TextBlock Text="Log in"></TextBlock>
-            </Hyperlink>
-            <TextBlock Text=" to continue.."></TextBlock>
-        </TextBlock>
-    </Grid>
+    <View:IntroWindowView></View:IntroWindowView>
 </Metro:MetroWindow>

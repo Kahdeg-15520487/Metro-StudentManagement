@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="StudentManagement.View.IntroWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StudentManagement.View"
+             xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+      
+
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/StudentManagement;component/Resources/Backgrounds/Background.png"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+          
+            <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Jokerman" FontSize="19" >
+            <Hyperlink Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=MetroWindow}">
+                <TextBlock Text="Log in"></TextBlock>
+            </Hyperlink>
+            <TextBlock Text=" to continue.."></TextBlock>
+        </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>
