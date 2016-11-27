@@ -583,7 +583,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="GetStudentUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
     <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
   </Function>

@@ -281,14 +281,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetStudentUser" FunctionName="StudentDBModel.Store.GetStudentUser">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentUser_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Pasworkd" ColumnName="Pasworkd" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="StudentDBModel.Users">
         <MappingFragment StoreEntitySet="Users">
@@ -299,5 +291,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetUser" FunctionName="StudentDBModel.Store.GetUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetUser_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
