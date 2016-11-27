@@ -20,5 +20,5 @@
         <ViewModel:DialogLogginViewModel></ViewModel:DialogLogginViewModel>
     </Metro:MetroWindow.DataContext>
 
-    <View:IntroWindowView></View:IntroWindowView>
+    <View:IntroWindowView x:Name="IntroView"></View:IntroWindowView>
 </Metro:MetroWindow>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
+using StudentManagement.View;
 namespace StudentManagement.ViewModel
 {
     class DialogLogginViewModel
@@ -59,7 +59,10 @@ namespace StudentManagement.ViewModel
                 Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
                 if (Users.Count()!=0)
                 {
-                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));    
+                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
+       
+                    MainMenu menu = new MainMenu();
+                    menu.Visibility = System.Windows.Visibility.Visible;
                 }
                 else
                 {
