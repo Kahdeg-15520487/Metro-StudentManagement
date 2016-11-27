@@ -84,6 +84,7 @@
     <Property Name="SchoolID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Credits" Type="Int32" />
     <NavigationProperty Name="School" Relationship="Self.Fk_SchoolID" FromRole="Department" ToRole="School" />
+    <Property Name="DepartmentName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" ConcurrencyMode="Fixed" />
   </EntityType>
   <EntityType Name="DiplomaProject">
     <Key>
@@ -743,11 +744,11 @@
       <End Role="Student" EntitySet="Student" />
       <End Role="BehaviorMark" EntitySet="BehaviorMark" />
     </AssociationSet>
-    <FunctionImport Name="GetStudentUser" ReturnType="Collection(StudentDBModel.GetStudentUser_Result)">
+    <EntitySet Name="Users" EntityType="StudentDBModel.Users" />
+    <FunctionImport Name="GetUser" ReturnType="Collection(StudentDBModel.GetUser_Result)">
       <Parameter Name="ID" Mode="In" Type="String" />
       <Parameter Name="PassWord" Mode="In" Type="String" />
     </FunctionImport>
-    <EntitySet Name="Users" EntityType="StudentDBModel.Users" />
   </EntityContainer>
   <Association Name="fk_StudentID_BehaviorMark">
     <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -761,10 +762,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="GetStudentUser_Result">
-    <Property Type="String" Name="ID" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Pasworkd" Nullable="false" MaxLength="30" />
-  </ComplexType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="ID" />
@@ -774,4 +771,10 @@
     <Property Name="Roll" Type="Int32" />
     <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
+  <ComplexType Name="GetUser_Result">
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Roll" Nullable="true" />
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+  </ComplexType>
 </Schema>

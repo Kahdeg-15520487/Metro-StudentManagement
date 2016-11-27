@@ -19,6 +19,7 @@ namespace StudentManagement
         public string DepartmentHeader { get; set; }
         public string SchoolID { get; set; }
         public Nullable<int> Credits { get; set; }
+        public string DepartmentName { get; set; }
     
         public virtual School School { get; set; }
     }
