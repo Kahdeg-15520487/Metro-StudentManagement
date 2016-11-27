@@ -16,20 +16,20 @@ namespace StudentManagement.ViewModel
     {
 
         StudentDBEntities St = new StudentDBEntities();
-        private ObservableCollection<GetStudentUser_Result> _StudentUsers;
+        private ObservableCollection<GetUser_Result> _Users;
         MetroWindow metroWindow = (MetroWindow)Application.Current.MainWindow;
         public ICommand LoginCommand { get; set; }
 
-        public ObservableCollection<GetStudentUser_Result> StudentUsers
+        public ObservableCollection<GetUser_Result> Users
         {
             get
             {
-                return _StudentUsers;
+                return _Users;
             }
 
             set
             {
-                _StudentUsers = value;
+                _Users = value;
             }
         }
 
@@ -56,13 +56,10 @@ namespace StudentManagement.ViewModel
             }
             else
             {
-                StudentUsers =new ObservableCollection<GetStudentUser_Result>(St.GetStudentUser(result.Username, result.Password).ToList());
-                if (StudentUsers.Count()!=0)
+                Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
+                if (Users.Count()!=0)
                 {
-                    var x = StudentUsers.ElementAt(0).ID;
-                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
-                    
-                  
+                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));    
                 }
                 else
                 {
