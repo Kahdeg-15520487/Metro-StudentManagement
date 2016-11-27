@@ -75,23 +75,23 @@
                     ItemsSource="{Binding AcademicList}" AutoGenerateColumns="False"
                     >
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Header="Subject Name " Width="150" Binding="{Binding SubjectName}">
+                            <DataGridTextColumn IsReadOnly="True" Header="Subject " Width="150" Binding="{Binding DisciplineID}">
 
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn IsReadOnly="True" Header="Process Mark " Width="150" Binding="{Binding Process}">
+                            <DataGridTextColumn IsReadOnly="True" Header="Process Mark " Width="150" Binding="{Binding ProcessMark}">
 
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn IsReadOnly="True" Header="Midterm Mark " Width="150" Binding="{Binding Midterm}">
+                            <DataGridTextColumn IsReadOnly="True" Header="Midterm Mark " Width="150" Binding="{Binding MidtermMark}">
 
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn IsReadOnly="True" Header="Finalterm Mark " Width="150" Binding="{Binding FinalTerm}">
+                            <DataGridTextColumn IsReadOnly="True" Header="Finalterm Mark " Width="150" Binding="{Binding FinalTermMark}">
 
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn IsReadOnly="True" Header="Average " Width="150" Binding="{Binding Average}">
+                            <DataGridTextColumn IsReadOnly="True" Header="Average " Width="150" Binding="{Binding AverageMark}">
 
                             </DataGridTextColumn>
 

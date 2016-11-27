@@ -122,6 +122,12 @@
     <Compile Include="Faculty.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetAcademicByID_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetDetailDisciplineByID_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetUser_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -189,6 +195,9 @@
     <Compile Include="View\AcademicView.xaml.cs">
       <DependentUpon>AcademicView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\IntroWindowView.xaml.cs">
+      <DependentUpon>IntroWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -205,6 +214,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AcademicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IntroWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

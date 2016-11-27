@@ -749,6 +749,12 @@
       <Parameter Name="ID" Mode="In" Type="String" />
       <Parameter Name="PassWord" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetAcademicByID" ReturnType="Collection(StudentDBModel.GetAcademicByID_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDetailDisciplineByID" ReturnType="Collection(StudentDBModel.GetDetailDisciplineByID_Result)">
+      <Parameter Name="DisciplineID" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <Association Name="fk_StudentID_BehaviorMark">
     <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -776,5 +782,18 @@
     <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
     <Property Type="Int32" Name="Roll" Nullable="true" />
     <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="GetAcademicByID_Result">
+    <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
+    <Property Type="Double" Name="ProcessMark" Nullable="true" />
+    <Property Type="Double" Name="MidtermMark" Nullable="true" />
+    <Property Type="Double" Name="FinaltermMark" Nullable="true" />
+    <Property Type="Double" Name="AvarageMark" Nullable="true" />
+    <Property Type="Boolean" Name="DisciplineStatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetDetailDisciplineByID_Result">
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SchoolName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>

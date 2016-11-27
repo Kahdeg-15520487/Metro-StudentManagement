@@ -589,6 +589,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetDetailDisciplineByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="nvarchar" Mode="In" />
           <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
@@ -1478,6 +1484,12 @@
             <Parameter Name="ID" Mode="In" Type="String" />
             <Parameter Name="PassWord" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetAcademicByID" ReturnType="Collection(StudentDBModel.GetAcademicByID_Result)">
+          <Parameter Name="StudentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDetailDisciplineByID" ReturnType="Collection(StudentDBModel.GetDetailDisciplineByID_Result)">
+            <Parameter Name="DisciplineID" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="fk_StudentID_BehaviorMark">
           <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -1506,6 +1518,19 @@
           <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="Roll" Nullable="true" />
           <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetAcademicByID_Result">
+          <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
+          <Property Type="Double" Name="ProcessMark" Nullable="true" />
+          <Property Type="Double" Name="MidtermMark" Nullable="true" />
+          <Property Type="Double" Name="FinaltermMark" Nullable="true" />
+          <Property Type="Double" Name="AvarageMark" Nullable="true" />
+          <Property Type="Boolean" Name="DisciplineStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetDetailDisciplineByID_Result">
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="SchoolName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1812,6 +1837,27 @@
                 <ScalarProperty Name="Passwords" ColumnName="Passwords" />
                 <ScalarProperty Name="Roll" ColumnName="Roll" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAcademicByID" FunctionName="StudentDBModel.Store.GetAcademicByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetAcademicByID_Result">
+                <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+                <ScalarProperty Name="ProcessMark" ColumnName="ProcessMark" />
+                <ScalarProperty Name="MidtermMark" ColumnName="MidtermMark" />
+                <ScalarProperty Name="FinaltermMark" ColumnName="FinaltermMark" />
+                <ScalarProperty Name="AvarageMark" ColumnName="AvarageMark" />
+                <ScalarProperty Name="DisciplineStatus" ColumnName="DisciplineStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDetailDisciplineByID" FunctionName="StudentDBModel.Store.GetDetailDisciplineByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetDetailDisciplineByID_Result">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
