@@ -323,5 +323,51 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetActivities" FunctionName="StudentDBModel.Store.GetActivities">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetActivities_Result">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="isHappen" ColumnName="isHappen" />
+          <ScalarProperty Name="MaxParticipation" ColumnName="MaxParticipation" />
+          <ScalarProperty Name="RegisteredParticipation" ColumnName="RegisteredParticipation" />
+          <ScalarProperty Name="ActivityGroupID" ColumnName="ActivityGroupID" />
+          <ScalarProperty Name="Organization" ColumnName="Organization" />
+          <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Goal" ColumnName="Goal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetActivityGroup" FunctionName="StudentDBModel.Store.GetActivityGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetActivityGroup_Result">
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Goal" ColumnName="Goal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDetailActivity" FunctionName="StudentDBModel.Store.GetDetailActivity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetDetailActivity_Result">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="isHappen" ColumnName="isHappen" />
+          <ScalarProperty Name="MaxParticipation" ColumnName="MaxParticipation" />
+          <ScalarProperty Name="RegisteredParticipation" ColumnName="RegisteredParticipation" />
+          <ScalarProperty Name="ActivityGroupID" ColumnName="ActivityGroupID" />
+          <ScalarProperty Name="Organization" ColumnName="Organization" />
+          <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Goal" ColumnName="Goal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -125,6 +125,15 @@
     <Compile Include="GetAcademicByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetActivities_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetActivityGroup_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetDetailActivity_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetDetailDisciplineByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -189,11 +198,15 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcademicViewModel.cs" />
+    <Compile Include="ViewModel\BehaviorViewModel.cs" />
     <Compile Include="ViewModel\DialogLogginViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AcademicView.xaml.cs">
       <DependentUpon>AcademicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BehaviorView.xaml.cs">
+      <DependentUpon>BehaviorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\IntroWindowView.xaml.cs">
       <DependentUpon>IntroWindowView.xaml</DependentUpon>
@@ -214,6 +227,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AcademicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BehaviorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
