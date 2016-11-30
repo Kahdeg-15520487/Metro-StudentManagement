@@ -8,25 +8,26 @@
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-      
+    <UserControl.DataContext>
+        <ViewModel:DialogLogginViewModel></ViewModel:DialogLogginViewModel>
+    </UserControl.DataContext>
 
-        <Grid>
-            <Grid.Background>
-                <ImageBrush ImageSource="/StudentManagement;component/Resources/Backgrounds/Background.png"/>
-            </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-          
-            <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Jokerman" FontSize="19" >
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/StudentManagement;component/Resources/Backgrounds/Background.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Jokerman" FontSize="19" >
             <Hyperlink Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=MetroWindow}">
                 <TextBlock Text="Log in"></TextBlock>
             </Hyperlink>
             <TextBlock Text=" to continue.."></TextBlock>
         </TextBlock>
-        </Grid>
     </Grid>
+
 </UserControl>
