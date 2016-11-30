@@ -8,6 +8,7 @@
         xmlns:View="clr-namespace:StudentManagement.View"
         mc:Ignorable="d"
         xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="" Height="700" Width="950"
         ResizeMode="CanResizeWithGrip" 
         GlowBrush="{DynamicResource AccentColorBrush}"     
@@ -16,9 +17,29 @@
         Icon="/StudentManagement;component/Resources/Icons/App_icon.png"
         Name="MetroWindow"       
         WindowStartupLocation="CenterScreen"           >
-    <Metro:MetroWindow.DataContext>
-        <ViewModel:DialogLogginViewModel></ViewModel:DialogLogginViewModel>
-    </Metro:MetroWindow.DataContext>
 
-    <View:IntroWindowView x:Name="IntroView"></View:IntroWindowView>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type ViewModel:IntroWindowViewModel}">
+            <View:IntroWindowView></View:IntroWindowView>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModel:MainMenuViewModel}">
+            <View:MainMenu></View:MainMenu>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModel:AcademicViewModel}">
+            <View:MainMenu></View:MainMenu>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModel:BehaviorViewModel}">
+            <View:MainMenu></View:MainMenu>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Grid>
+        <ContentControl Content="{Binding CurrentUserControl}"></ContentControl>
+    </Grid>
+
+
 </Metro:MetroWindow>

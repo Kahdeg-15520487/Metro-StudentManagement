@@ -59,10 +59,7 @@ namespace StudentManagement.ViewModel
                 Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
                 if (Users.Count()!=0)
                 {
-                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
-       
-                    MainMenu menu = new MainMenu();
-                    menu.Visibility = System.Windows.Visibility.Visible;
+                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));               
                 }
                 else
                 {
