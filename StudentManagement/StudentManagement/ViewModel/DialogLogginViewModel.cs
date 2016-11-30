@@ -1,15 +1,10 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using StudentManagement.View;
 namespace StudentManagement.ViewModel
 {
     class DialogLogginViewModel
@@ -17,7 +12,7 @@ namespace StudentManagement.ViewModel
 
         StudentDBEntities St = new StudentDBEntities();
         private static ObservableCollection<GetUser_Result> _Users;
-        MetroWindow metroWindow = (MetroWindow)Application.Current.MainWindow;
+        MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
         public ICommand LoginCommand { get; set; }
 
         public static ObservableCollection<GetUser_Result> Users
@@ -36,8 +31,6 @@ namespace StudentManagement.ViewModel
         public DialogLogginViewModel()
         {
             LoginCommand = new RelayCommand<MetroWindow>((p) => true, ShowLoginDialogWithRememberCheckBox);
-
-
         }
 
         public async void ShowLoginDialogWithRememberCheckBox(object obj)
@@ -57,9 +50,10 @@ namespace StudentManagement.ViewModel
             else
             {
                 Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
-                if (Users.Count()!=0)
+                if (Users.Count() != 0)
                 {
-                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));               
+                    MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
+                    
                 }
                 else
                 {

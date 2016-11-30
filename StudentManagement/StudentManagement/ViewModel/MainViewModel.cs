@@ -1,5 +1,7 @@
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace StudentManagement.ViewModel
 {
     public class MainViewModel : ViewModelBase
@@ -42,9 +44,10 @@ namespace StudentManagement.ViewModel
             }
         }
 
+      
         private int _selectedUCIndex;
 
-       
+
 
         public MainViewModel()
         {
@@ -53,8 +56,7 @@ namespace StudentManagement.ViewModel
             {
                 new IntroWindowViewModel(),
                 new MainMenuViewModel(),
-                new AcademicViewModel(),
-                new BehaviorViewModel()
+
             };
 
             CurrentUserControl = _ViewModelList[0];

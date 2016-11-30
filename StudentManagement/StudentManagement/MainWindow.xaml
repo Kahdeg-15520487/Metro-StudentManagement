@@ -16,10 +16,10 @@
         WindowState="Normal"
         Icon="/StudentManagement;component/Resources/Icons/App_icon.png"
         Name="MetroWindow"       
-        WindowStartupLocation="CenterScreen"           >
+        WindowStartupLocation="CenterScreen">
 
 
-    <Window.Resources>
+    <Metro:MetroWindow.Resources>
         <DataTemplate DataType="{x:Type ViewModel:IntroWindowViewModel}">
             <View:IntroWindowView></View:IntroWindowView>
         </DataTemplate>
@@ -36,9 +36,10 @@
             <View:MainMenu></View:MainMenu>
         </DataTemplate>
 
-    </Window.Resources>
+    </Metro:MetroWindow.Resources>
     <Grid>
         <ContentControl Content="{Binding CurrentUserControl}"></ContentControl>
+      
     </Grid>
 
 

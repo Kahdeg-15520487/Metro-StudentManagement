@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -12,7 +7,6 @@ namespace StudentManagement.ViewModel
 {
     public class BehaviorViewModel : ViewModelBase
     {
-
         public string GroupName = string.Empty;
         public string Activities_ = string.Empty;
         public BehaviorViewModel()
