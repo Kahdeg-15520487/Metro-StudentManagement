@@ -83,5 +83,28 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailDisciplineByID_Result>("GetDetailDisciplineByID", disciplineIDParameter);
         }
+    
+        public virtual ObjectResult<GetActivities_Result> GetActivities(string activities)
+        {
+            var activitiesParameter = activities != null ?
+                new ObjectParameter("Activities", activities) :
+                new ObjectParameter("Activities", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActivities_Result>("GetActivities", activitiesParameter);
+        }
+    
+        public virtual ObjectResult<GetActivityGroup_Result> GetActivityGroup()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActivityGroup_Result>("GetActivityGroup");
+        }
+    
+        public virtual ObjectResult<GetDetailActivity_Result> GetDetailActivity(string activitie)
+        {
+            var activitieParameter = activitie != null ?
+                new ObjectParameter("Activitie", activitie) :
+                new ObjectParameter("Activitie", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailActivity_Result>("GetDetailActivity", activitieParameter);
+        }
     }
 }
