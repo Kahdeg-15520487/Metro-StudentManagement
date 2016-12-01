@@ -39,8 +39,10 @@
     </Metro:MetroWindow.Resources>
     <Grid>
         <ContentControl Content="{Binding CurrentUserControl}"></ContentControl>
-      
+        <ComboBox Name="cmbChangeUC"
+                  Visibility="Hidden"
+              SelectedIndex="{Binding SelectedUCIndex}" />
     </Grid>
-
+            
 
 </Metro:MetroWindow>

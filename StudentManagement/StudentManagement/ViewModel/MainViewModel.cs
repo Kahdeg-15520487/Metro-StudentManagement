@@ -6,6 +6,7 @@ namespace StudentManagement.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        public ObservableCollection<string> PageNames { get; set; }
         private readonly List<ViewModelBase> _ViewModelList;
         //This hold the current Page, which will be displayed
         private ViewModelBase _currentUserControl;
@@ -58,6 +59,10 @@ namespace StudentManagement.ViewModel
                 new MainMenuViewModel(),
 
             };
+
+            PageNames = new ObservableCollection<string>();
+            foreach (ViewModelBase baseVM in _ViewModelList)
+                PageNames.Add(baseVM.GetType().Name);
 
             CurrentUserControl = _ViewModelList[0];
         }

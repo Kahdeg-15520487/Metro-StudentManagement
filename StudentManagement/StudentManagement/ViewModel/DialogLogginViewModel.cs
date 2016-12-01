@@ -53,7 +53,13 @@ namespace StudentManagement.ViewModel
                 if (Users.Count() != 0)
                 {
                     MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
-                    
+                    foreach (Window window in Application.Current.Windows)
+                    {
+                        if (window.GetType() == typeof(MainWindow))
+                        {
+                            (window as MainWindow).cmbChangeUC.SelectedIndex = 1;
+                        }
+                    }
                 }
                 else
                 {
