@@ -32,9 +32,10 @@
 
                     </TabItem>
 
-                    <TabItem Header="Curriculum"
+                    <TabItem Header="Behavior"
                              Metro:ControlsHelper.HeaderFontSize="25" 
                              FontFamily="Verdana">
+                        <local:BehaviorView></local:BehaviorView>
 
                     </TabItem>
                     <TabItem Header="Diploma Project"

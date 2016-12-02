@@ -58,6 +58,8 @@ namespace StudentManagement.ViewModel
                         if (window.GetType() == typeof(MainWindow))
                         {
                             (window as MainWindow).cmbChangeUC.SelectedIndex = 1;
+                            (window as MainWindow).WindowState = System.Windows.WindowState.Maximized;
+                            (window as MainWindow).Account.Visibility = System.Windows.Visibility.Visible;
                         }
                     }
                 }

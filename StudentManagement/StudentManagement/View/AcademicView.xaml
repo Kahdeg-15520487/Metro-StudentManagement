@@ -8,28 +8,39 @@
              xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <ViewModel:AcademicViewModel x:Key="key1">
-            
+
         </ViewModel:AcademicViewModel>
     </UserControl.Resources>
+
     <Grid>
+        <Grid Margin="0,-35,0,0">
+            <Grid.Background>
+                <ImageBrush 
+                ImageSource="/Resources/Backgrounds/MainBackground.png">
+                </ImageBrush>
+
+            </Grid.Background>
+        </Grid>
         <ScrollViewer>
             <Grid>
                 <Grid.RowDefinitions>
+
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
                 </Grid.RowDefinitions>
 
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+
                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                     <ComboBox Margin="0,30,0,30"
                           BorderBrush="Green"
@@ -67,13 +78,10 @@
                     </ComboBox>
 
                 </StackPanel>
-                <GroupBox Name="grbAcademic" Header="Mark" Grid.Row="1" Grid.Column="1" DataContext="{StaticResource key1}">
-                    <DataGrid 
-                        
-                    Name="dtgAcademic"
+                <GroupBox Margin="0" Name="grbAcademic" Header="Mark" Grid.Row="1" Grid.Column="1" DataContext="{StaticResource key1}">
+                    <DataGrid Name="dtgAcademic"
                     Style="{DynamicResource AzureDataGrid}"
-                    ItemsSource="{Binding AcademicList}" AutoGenerateColumns="False"
-                    >
+                    ItemsSource="{Binding AcademicList}" AutoGenerateColumns="False" Width="765">
                         <DataGrid.Columns>
                             <DataGridTextColumn IsReadOnly="True" Header="Subject " Width="150" Binding="{Binding DisciplineID}">
 
@@ -87,11 +95,11 @@
 
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn IsReadOnly="True" Header="Finalterm Mark " Width="150" Binding="{Binding FinalTermMark}">
+                            <DataGridTextColumn IsReadOnly="True" Header="Finalterm Mark " Width="150" Binding="{Binding FinaltermMark}">
 
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn IsReadOnly="True" Header="Average " Width="150" Binding="{Binding AverageMark}">
+                            <DataGridTextColumn IsReadOnly="True" Header="Average " Width="150" Binding="{Binding AvarageMark}">
 
                             </DataGridTextColumn>
 
@@ -104,24 +112,35 @@
                     </DataGrid>
                 </GroupBox>
 
-                <GroupBox DataContext="{StaticResource key1}" Header="Subject Detail"  Grid.Column="2" Grid.Row="1">
+                <GroupBox DataContext="{StaticResource key1}" Header="Subject Detail"  Grid.Column="3" Grid.Row="1">
 
-                    <ListBox ItemsSource="{Binding SubjectDetail}">
+                    <ListBox ItemsSource="{Binding SubjectDetail}" Name="lstDetail" Width="275">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="5" Width="100" Text="{Binding TeacherName}"></TextBlock>
-                                    <TextBlock Margin="5" Width="150" Text="{Binding NumberOfCredit}"></TextBlock>
-                                    <TextBlock Margin="5" Text="{Binding FacultyName}"></TextBlock>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontWeight="Bold" Margin="5" Text="Teacher:" Width="120"></TextBlock>
+                                        <TextBlock Margin="5" Width="120" Text="{Binding TeacherName}" ></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontWeight="Bold" Margin="5" Text="Department:" Width="120"></TextBlock>
+                                        <TextBlock Margin="5" Width="120" Text="{Binding DepartmentName}"></TextBlock>
+
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontWeight="Bold" Margin="5" Text="School:" Width="120"></TextBlock>
+                                        <TextBlock Margin="5" Text="{Binding SchoolName}" Width="120"></TextBlock>
+                                    </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
 
                 </GroupBox>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="Summary"></Label>
-                    <Label Name="lblSum" Content="This Sum"></Label>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock FontWeight="Bold" Text="Average: "></TextBlock>
+                    <TextBlock Name="lblSum" Text="This Sum"></TextBlock>
                 </StackPanel>
 
 
