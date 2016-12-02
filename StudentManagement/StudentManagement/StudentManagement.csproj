@@ -301,6 +301,7 @@
   <ItemGroup>
     <Resource Include="Resources\Backgrounds\Background.png" />
     <Resource Include="Resources\Icons\App_icon.png" />
+    <Resource Include="Resources\Backgrounds\MainBackGround.png" />
     <Content Include="StudentDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -21,12 +21,9 @@ namespace StudentManagement.ViewModel
             {
 
                 GetAcademicByID_Result data = (GetAcademicByID_Result)p.SelectedItem;
-                selectedSubjectID = data.DisciplineID;
-                SubjectDetail = new ObservableCollection<object>(ST.GetDetailDisciplineByID(selectedSubjectID).ToList());
-                SubjectDetail.FirstOrDefault();
-
-
-
+                    selectedSubjectID = data.DisciplineID;
+                    SubjectDetail = new ObservableCollection<GetDetailDisciplineByID_Result>(ST.GetDetailDisciplineByID(selectedSubjectID).ToList());
+               
             });
         }
         private ObservableCollection<object> _AcademicList;
@@ -55,14 +52,14 @@ namespace StudentManagement.ViewModel
         }
 
 
-        private ObservableCollection<object> _SubjectDetail;
-        public ObservableCollection<object> SubjectDetail
+        private ObservableCollection<GetDetailDisciplineByID_Result> _SubjectDetail;
+        public ObservableCollection<GetDetailDisciplineByID_Result> SubjectDetail
         {
             get
             {
                 if (_SubjectDetail == null)
                 {
-                    _SubjectDetail = new ObservableCollection<object>();
+                    _SubjectDetail = new ObservableCollection<GetDetailDisciplineByID_Result>();
                 }
                 return _SubjectDetail;
             }

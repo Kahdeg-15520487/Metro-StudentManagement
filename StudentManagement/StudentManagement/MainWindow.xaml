@@ -17,7 +17,11 @@
         Icon="/StudentManagement;component/Resources/Icons/App_icon.png"
         Name="MetroWindow"       
         WindowStartupLocation="CenterScreen">
-
+    <Metro:MetroWindow.RightWindowCommands>
+        <Metro:WindowCommands Name="Account" Visibility="Hidden">
+            <Button Command="{Binding My Account}">Settings</Button>
+        </Metro:WindowCommands>
+    </Metro:MetroWindow.RightWindowCommands>
 
     <Metro:MetroWindow.Resources>
         <DataTemplate DataType="{x:Type ViewModel:IntroWindowViewModel}">
