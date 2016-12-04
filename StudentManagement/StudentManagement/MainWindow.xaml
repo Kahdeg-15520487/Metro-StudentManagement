@@ -16,10 +16,26 @@
         WindowState="Normal"
         Icon="/StudentManagement;component/Resources/Icons/App_icon.png"
         Name="MetroWindow"       
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        RightWindowCommandsOverlayBehavior="Never">
+   
+    <Metro:MetroWindow.Flyouts>
+        <Metro:FlyoutsControl>
+            <Metro:Flyout
+                Position="Right"
+                AreAnimationsEnabled="True"
+                Header="Account Settings"
+                IsOpen="{Binding IsSettingsFlyoutOpen, Mode=TwoWay}"
+                Theme="Inverse">
+                <View:AccountView>
+                    
+                </View:AccountView>
+            </Metro:Flyout>
+        </Metro:FlyoutsControl>
+    </Metro:MetroWindow.Flyouts>
     <Metro:MetroWindow.RightWindowCommands>
         <Metro:WindowCommands Name="Account" Visibility="Hidden">
-            <Button Command="{Binding My Account}">Settings</Button>
+            <Button Command="{Binding Settings}">Settings</Button>
         </Metro:WindowCommands>
     </Metro:MetroWindow.RightWindowCommands>
 
