@@ -1,12 +1,13 @@
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public ObservableCollection<string> PageNames { get; set; }
         private readonly List<ViewModelBase> _ViewModelList;
         //This hold the current Page, which will be displayed
         private ViewModelBase _currentUserControl;
@@ -59,15 +60,38 @@ namespace StudentManagement.ViewModel
                 new MainMenuViewModel(),
 
             };
+            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
 
-            PageNames = new ObservableCollection<string>();
-            foreach (ViewModelBase baseVM in _ViewModelList)
-                PageNames.Add(baseVM.GetType().Name);
+
 
             CurrentUserControl = _ViewModelList[0];
         }
+        public ICommand Settings { get; set; }
 
-     
+        private bool isSettingsFlyoutOpen;
+
+        public bool IsSettingsFlyoutOpen
+        {
+            get
+            {
+                return isSettingsFlyoutOpen;
+            }
+
+            set
+            {
+                if (value.Equals(isSettingsFlyoutOpen))
+                    return;
+                isSettingsFlyoutOpen = value;
+                OnPropertyChanged("IsSettingsFlyoutOpen");
+            }
+        }
+        private void OnSettingsCommand(object obj)
+        {
+            IsSettingsFlyoutOpen = true;
+ 
+        }
+
+
 
     }
 }
