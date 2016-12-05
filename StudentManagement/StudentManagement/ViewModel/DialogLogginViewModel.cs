@@ -9,7 +9,7 @@ namespace StudentManagement.ViewModel
 {
     class DialogLogginViewModel
     {
-
+        public static bool isLoggedIn = false; //This will show if user logged in or not
         StudentDBEntities St = new StudentDBEntities();
         private static ObservableCollection<GetUser_Result> _Users;
         MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
@@ -52,6 +52,7 @@ namespace StudentManagement.ViewModel
                 Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
                 if (Users.Count() != 0)
                 {
+                    isLoggedIn = true;
                     MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
                     foreach (Window window in Application.Current.Windows)
                     {
@@ -60,6 +61,7 @@ namespace StudentManagement.ViewModel
                             (window as MainWindow).cmbChangeUC.SelectedIndex = 1;
                             (window as MainWindow).WindowState = System.Windows.WindowState.Maximized;
                             (window as MainWindow).Account.Visibility = System.Windows.Visibility.Visible;
+                         
                         }
                     }
                 }

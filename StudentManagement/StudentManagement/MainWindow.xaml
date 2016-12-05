@@ -14,28 +14,30 @@
         GlowBrush="{DynamicResource AccentColorBrush}"     
         NonActiveBorderBrush="Black"  
         WindowState="Normal"
-        Icon="/StudentManagement;component/Resources/Icons/App_icon.png"
+        Icon="./Resources/Backgrounds/Icons/App_icon.png"
         Name="MetroWindow"       
         WindowStartupLocation="CenterScreen"
         RightWindowCommandsOverlayBehavior="Never">
    
     <Metro:MetroWindow.Flyouts>
         <Metro:FlyoutsControl>
-            <Metro:Flyout
+            <Metro:Flyout Name="AccountFlyout"
+                Width="300"
                 Position="Right"
+    
                 AreAnimationsEnabled="True"
                 Header="Account Settings"
                 IsOpen="{Binding IsSettingsFlyoutOpen, Mode=TwoWay}"
                 Theme="Inverse">
                 <View:AccountView>
-                    
+
                 </View:AccountView>
             </Metro:Flyout>
         </Metro:FlyoutsControl>
     </Metro:MetroWindow.Flyouts>
     <Metro:MetroWindow.RightWindowCommands>
-        <Metro:WindowCommands Name="Account" Visibility="Hidden">
-            <Button Command="{Binding Settings}">Settings</Button>
+        <Metro:WindowCommands Name="Account" Visibility="Hidden"> 
+            <Button Command="{Binding Settings}">My Account</Button>
         </Metro:WindowCommands>
     </Metro:MetroWindow.RightWindowCommands>
 

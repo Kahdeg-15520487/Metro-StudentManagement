@@ -41,6 +41,7 @@ namespace StudentManagement
         public string CurrentAddress { get; set; }
         public string CandreID { get; set; }
         public string ProfilePicture { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicMark> AcademicMark { get; set; }

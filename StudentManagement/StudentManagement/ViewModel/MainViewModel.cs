@@ -8,6 +8,76 @@ namespace StudentManagement.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+
+        StudentDBEntities ST = new StudentDBEntities();
+
+        private ObservableCollection<GetStudentInfoByID_Result> _Students; //This hold all Students's Infomation
+
+        public ObservableCollection<GetStudentInfoByID_Result> Students
+        {
+            get
+            {
+                if (_Students == null)
+                {
+                    _Students = new ObservableCollection<GetStudentInfoByID_Result>();
+                }
+                return _Students;
+            }
+
+            set
+            {
+                if (_Students != value)
+                {
+                    _Students = value;
+                    OnPropertyChanged("Students");
+                }
+            }
+        }
+
+        private string _Name;
+        public string Name
+        {
+            get
+            {
+                return _Name;
+            }
+
+            set
+            {
+                _Name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        private string _Email;
+        public string Email
+        {
+            get
+            {
+                return _Email;
+            }
+
+            set
+            {
+                _Email = value;
+                OnPropertyChanged("Email");
+            }
+        }
+        private string _PicturePath;
+        public string PicturePath
+        {
+            get
+            {
+                return _PicturePath;
+            }
+
+            set
+            {
+                _PicturePath = value;
+                OnPropertyChanged("PicturePath");
+            }
+        }
+
         private readonly List<ViewModelBase> _ViewModelList;
         //This hold the current Page, which will be displayed
         private ViewModelBase _currentUserControl;
@@ -60,7 +130,16 @@ namespace StudentManagement.ViewModel
                 new MainMenuViewModel(),
 
             };
-            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
+            Settings = new RelayCommand<object>((p) => true, (p) =>
+            {
+                IsSettingsFlyoutOpen = true;
+                string ID = DialogLogginViewModel.Users[0].ID;
+                Students = new ObservableCollection<GetStudentInfoByID_Result>(ST.GetStudentInfoByID(ID));
+                Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
+                Email = Students[0].Email;
+                PicturePath = Students[0].ProfilePicture;
+      
+            });
 
 
 
@@ -68,7 +147,7 @@ namespace StudentManagement.ViewModel
         }
         public ICommand Settings { get; set; }
 
-        private bool isSettingsFlyoutOpen;
+        private bool isSettingsFlyoutOpen; //This will decide if Account Settings open or not
 
         public bool IsSettingsFlyoutOpen
         {
@@ -85,13 +164,7 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("IsSettingsFlyoutOpen");
             }
         }
-        private void OnSettingsCommand(object obj)
-        {
-            IsSettingsFlyoutOpen = true;
- 
-        }
 
-
-
+     
     }
 }

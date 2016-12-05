@@ -112,7 +112,7 @@
                     </DataGrid>
                 </GroupBox>
 
-                <GroupBox DataContext="{StaticResource key1}" Header="Subject Detail"  Grid.Column="3" Grid.Row="1">
+                <GroupBox Margin="0" DataContext="{StaticResource key1}" Header="Subject Detail"  Grid.Column="3" Grid.Row="1">
 
                     <ListBox ItemsSource="{Binding SubjectDetail}" Name="lstDetail" Width="275">
                         <ListBox.ItemTemplate>
