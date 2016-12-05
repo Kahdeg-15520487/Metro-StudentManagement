@@ -153,6 +153,9 @@
     <Compile Include="GetDetailDisciplineByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetStudentInfoByID_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetUser_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -308,8 +311,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Backgrounds\Background.png" />
-    <Resource Include="Resources\Icons\App_icon.png" />
+    <Resource Include="Resources\Backgrounds\Icons\App_icon.png" />
     <Resource Include="Resources\Backgrounds\MainBackGround.png" />
+    <Resource Include="Resources\Photos\UserTesting.png" />
+    <Resource Include="Resources\Photos\download.png" />
     <Content Include="StudentDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

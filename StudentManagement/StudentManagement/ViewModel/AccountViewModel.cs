@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,35 +9,41 @@ using System.Windows.Input;
 
 namespace StudentManagement.ViewModel
 {
-    class AccountViewModel:ViewModelBase
+    class AccountViewModel : ViewModelBase
     {
+
+        StudentDBEntities ST = new StudentDBEntities();
+
+        private ObservableCollection<GetStudentInfoByID_Result> _Students;
         public AccountViewModel()
         {
-            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
+            if (DialogLogginViewModel.isLoggedIn == true)
+            {
+                string ID = DialogLogginViewModel.Users[0].ID;
+                Students = new ObservableCollection<GetStudentInfoByID_Result>(ST.GetStudentInfoByID(ID).ToList());
+         
+            }
+            else
+                return;
         }
-        public ICommand Settings { get; set; }
-        
-        private bool isSettingsFlyoutOpen;
 
-        public bool IsSettingsFlyoutOpen
+        public ObservableCollection<GetStudentInfoByID_Result> Students
         {
             get
             {
-                return isSettingsFlyoutOpen;
+                if (_Students == null)
+                {
+                    _Students = new ObservableCollection<GetStudentInfoByID_Result>();
+                }
+                return _Students;
             }
 
             set
             {
-                if (value.Equals(isSettingsFlyoutOpen))
-                    return;
-                isSettingsFlyoutOpen = value;
-                OnPropertyChanged("IsSettingsFlyoutOpen");
+                _Students = value;
+                OnPropertyChanged("Students");
+
             }
-        }
-        private void OnSettingsCommand(object obj)
-        {
-            IsSettingsFlyoutOpen = true;
-            MessageBox.Show("Command");
         }
     }
 }

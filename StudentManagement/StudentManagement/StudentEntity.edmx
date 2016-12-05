@@ -222,6 +222,7 @@
           <Property Name="CurrentAddress" Type="nvarchar" MaxLength="300" />
           <Property Name="CandreID" Type="nvarchar" MaxLength="10" />
           <Property Name="ProfilePicture" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="StudentUser">
           <Key>
@@ -601,6 +602,9 @@
         </Function>
         <Function Name="GetDetailDisciplineByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetStudentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="nvarchar" Mode="In" />
@@ -1002,6 +1006,7 @@
           <NavigationProperty Name="StudyFee" Relationship="Self.Fk_StudentID_Studyfee" FromRole="Student" ToRole="StudyFee" />
           <NavigationProperty Name="StudentUser" Relationship="Self.Fk_StudentUser" FromRole="Student" ToRole="StudentUser" />
           <NavigationProperty Name="BehaviorMark" Relationship="StudentDBModel.fk_StudentID_BehaviorMark" FromRole="Student" ToRole="BehaviorMark" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StudentUser">
           <Key>
@@ -1498,12 +1503,16 @@
           <Parameter Name="DisciplineID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetActivities" ReturnType="Collection(StudentDBModel.GetActivities_Result)">
-            <Parameter Name="Activities" Mode="In" Type="String" />
+          <Parameter Name="Activities" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetActivityGroup" ReturnType="Collection(StudentDBModel.GetActivityGroup_Result)" />
           <FunctionImport Name="GetDetailActivity" ReturnType="Collection(StudentDBModel.GetDetailActivity_Result)">
-            <Parameter Name="Activitie" Mode="In" Type="String" />
+          <Parameter Name="Activitie" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
+            <Parameter Name="StudentID" Mode="In" Type="String" />
+          </FunctionImport>
+      
         </EntityContainer>
         <Association Name="fk_StudentID_BehaviorMark">
           <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -1580,6 +1589,26 @@
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="300" />
           <Property Type="String" Name="Goal" Nullable="true" MaxLength="10" />
         </ComplexType>
+        <ComplexType Name="GetStudentInfoByID_Result">
+          <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="16" />
+          <Property Type="Boolean" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="IDNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClassID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FacultyID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Hometown" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="AcademicYear" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Policy" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="CurrentAddress" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ProfilePicture" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+        </ComplexType>
+      
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1800,6 +1829,7 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="StudentDBModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
@@ -1955,6 +1985,31 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetStudentInfoByID" FunctionName="StudentDBModel.Store.GetStudentInfoByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetStudentInfoByID_Result">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Policy" ColumnName="Policy" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="CandreID" ColumnName="CandreID" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+      
+          
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
