@@ -153,7 +153,7 @@
     <Compile Include="GetDetailDisciplineByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetStudentInfoByID_Result.cs">
+    <Compile Include="GetStudentsInfoByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUser_Result.cs">
@@ -213,11 +213,13 @@
     <Compile Include="TeacherUser.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserImage.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcademicViewModel.cs" />
-    <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BehaviorViewModel.cs" />
     <Compile Include="ViewModel\DialogLogginViewModel.cs" />
     <Compile Include="ViewModel\IntroWindowViewModel.cs" />

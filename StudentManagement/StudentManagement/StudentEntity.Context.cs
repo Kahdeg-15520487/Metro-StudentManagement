@@ -52,6 +52,7 @@ namespace StudentManagement
         public virtual DbSet<Teacher> Teacher { get; set; }
         public virtual DbSet<TeacherUser> TeacherUser { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UserImage> UserImage { get; set; }
     
         public virtual ObjectResult<GetUser_Result> GetUser(string iD, string passWord)
         {
@@ -107,13 +108,15 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailActivity_Result>("GetDetailActivity", activitieParameter);
         }
     
-        public virtual ObjectResult<GetStudentInfoByID_Result> GetStudentInfoByID(string studentID)
+    
+    
+        public virtual ObjectResult<GetStudentsInfoByID_Result> GetStudentsInfoByID(string studentID)
         {
             var studentIDParameter = studentID != null ?
                 new ObjectParameter("StudentID", studentID) :
                 new ObjectParameter("StudentID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentInfoByID_Result>("GetStudentInfoByID", studentIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentsInfoByID_Result>("GetStudentsInfoByID", studentIDParameter);
         }
     }
 }

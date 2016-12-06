@@ -18,7 +18,7 @@
             <StackPanel Orientation="Horizontal">
                 <Image Width="150" Height="150">
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="500" UriSource="{Binding PicturePath}"/>
+                        <BitmapImage DecodePixelWidth="500" UriSource="./Resourses/Photos/download.png"/>
                     </Image.Source>
                 </Image>
                 <StackPanel Orientation="Vertical">
@@ -27,7 +27,7 @@
                 </StackPanel>
 
             </StackPanel>
-            <Button BorderThickness="0" Style="{StaticResource SquareButtonStyle}" Metro:ButtonHelper.PreserveTextCase="True" Margin="0,5,0,0" Content="Change Picture"></Button>
+            <Button BorderThickness="0" Metro:ButtonHelper.PreserveTextCase="True" Margin="0,5,0,0" Content="Change Picture"></Button>
             <Button BorderThickness="0" Style="{StaticResource SquareButtonStyle}" Metro:ButtonHelper.PreserveTextCase="True"  Margin="0,5,0,0" Content="Account Settings"></Button>
             <Button BorderThickness="0" Style="{StaticResource SquareButtonStyle}" Metro:ButtonHelper.PreserveTextCase="True"  Margin="0,5,0,0" Content="Sign Out"></Button>
         </StackPanel>

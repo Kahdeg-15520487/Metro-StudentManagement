@@ -11,15 +11,15 @@ namespace StudentManagement.ViewModel
 
         StudentDBEntities ST = new StudentDBEntities();
 
-        private ObservableCollection<GetStudentInfoByID_Result> _Students; //This hold all Students's Infomation
+        private ObservableCollection<GetStudentsInfoByID_Result> _Students; //This hold all Students's Infomation
 
-        public ObservableCollection<GetStudentInfoByID_Result> Students
+        public ObservableCollection<GetStudentsInfoByID_Result> Students
         {
             get
             {
                 if (_Students == null)
                 {
-                    _Students = new ObservableCollection<GetStudentInfoByID_Result>();
+                    _Students = new ObservableCollection<GetStudentsInfoByID_Result>();
                 }
                 return _Students;
             }
@@ -134,10 +134,10 @@ namespace StudentManagement.ViewModel
             {
                 IsSettingsFlyoutOpen = true;
                 string ID = DialogLogginViewModel.Users[0].ID;
-                Students = new ObservableCollection<GetStudentInfoByID_Result>(ST.GetStudentInfoByID(ID));
+                Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
                 Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
                 Email = Students[0].Email;
-                PicturePath = Students[0].ProfilePicture;
+ 
       
             });
 

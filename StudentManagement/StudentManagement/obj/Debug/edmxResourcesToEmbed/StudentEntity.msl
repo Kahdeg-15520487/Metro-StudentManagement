@@ -215,6 +215,7 @@
     <EntitySetMapping Name="Student">
       <EntityTypeMapping TypeName="StudentDBModel.Student">
         <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -231,7 +232,6 @@
           <ScalarProperty Name="Policy" ColumnName="Policy" />
           <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
           <ScalarProperty Name="CandreID" ColumnName="CandreID" />
-          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -370,9 +370,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetStudentInfoByID" FunctionName="StudentDBModel.Store.GetStudentInfoByID">
+    <EntitySetMapping Name="UserImage">
+      <EntityTypeMapping TypeName="StudentDBModel.UserImage">
+        <MappingFragment StoreEntitySet="UserImage">
+          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentsInfoByID" FunctionName="StudentDBModel.Store.GetStudentsInfoByID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentInfoByID_Result">
+        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentsInfoByID_Result">
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
@@ -388,8 +397,11 @@
           <ScalarProperty Name="Policy" ColumnName="Policy" />
           <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
           <ScalarProperty Name="CandreID" ColumnName="CandreID" />
-          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
