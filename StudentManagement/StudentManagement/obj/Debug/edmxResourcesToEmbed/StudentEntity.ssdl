@@ -216,8 +216,8 @@
     <Property Name="Policy" Type="nvarchar" MaxLength="10" />
     <Property Name="CurrentAddress" Type="nvarchar" MaxLength="300" />
     <Property Name="CandreID" Type="nvarchar" MaxLength="10" />
-    <Property Name="ProfilePicture" Type="nvarchar" MaxLength="50" />
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="IDImage" Type="int" />
   </EntityType>
   <EntityType Name="StudentUser">
     <Key>
@@ -263,6 +263,14 @@
     <Property Name="Passwork" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Roll" Type="int" />
+  </EntityType>
+  <EntityType Name="UserImage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="400" />
+    <Property Name="ImageToByte" Type="image" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -585,6 +593,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FkImage">
+    <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserImage">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IDImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
@@ -598,7 +618,7 @@
   <Function Name="GetDetailDisciplineByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="GetStudentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="GetStudentsInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -630,6 +650,7 @@
     <EntitySet Name="StudyFee" EntityType="Self.StudyFee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeacherUser" EntityType="Self.TeacherUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="Fk_ActivityGroupID" Association="Self.Fk_ActivityGroupID">
       <End Role="ActivityGroup" EntitySet="ActivityGroup" />
@@ -734,6 +755,10 @@
     <AssociationSet Name="Fk_TeacherUser" Association="Self.Fk_TeacherUser">
       <End Role="Teacher" EntitySet="Teacher" />
       <End Role="TeacherUser" EntitySet="TeacherUser" />
+    </AssociationSet>
+    <AssociationSet Name="FkImage" Association="Self.FkImage">
+      <End Role="UserImage" EntitySet="UserImage" />
+      <End Role="Student" EntitySet="Student" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

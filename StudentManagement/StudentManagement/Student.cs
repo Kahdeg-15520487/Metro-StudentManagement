@@ -40,8 +40,8 @@ namespace StudentManagement
         public string Policy { get; set; }
         public string CurrentAddress { get; set; }
         public string CandreID { get; set; }
-        public string ProfilePicture { get; set; }
         public string Email { get; set; }
+        public Nullable<int> IDImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicMark> AcademicMark { get; set; }
@@ -60,5 +60,6 @@ namespace StudentManagement
         public virtual ICollection<StudentUser> StudentUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BehaviorMark> BehaviorMark { get; set; }
+        public virtual UserImage UserImage { get; set; }
     }
 }
