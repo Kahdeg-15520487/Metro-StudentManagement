@@ -760,7 +760,9 @@
     <FunctionImport Name="GetActivities" ReturnType="Collection(StudentDBModel.GetActivities_Result)">
       <Parameter Name="Activities" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetActivityGroup" ReturnType="Collection(StudentDBModel.GetActivityGroup_Result)" />
+    <FunctionImport Name="GetActivityGroup" ReturnType="Collection(StudentDBModel.GetActivityGroup_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="GetDetailActivity" ReturnType="Collection(StudentDBModel.GetDetailActivity_Result)">
       <Parameter Name="Activitie" Mode="In" Type="String" />
     </FunctionImport>
@@ -770,6 +772,9 @@
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>
     <FunctionImport Name="GetStudentsInfoByID" ReturnType="Collection(StudentDBModel.GetStudentsInfoByID_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
@@ -889,5 +894,24 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="400" />
     <Property Type="Binary" Name="ImageToByte" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="GetStudentInfoByID_Result">
+    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="16" />
+    <Property Type="Boolean" Name="Gender" Nullable="true" />
+    <Property Type="String" Name="IDNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ClassID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="FacultyID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Hometown" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="AcademicYear" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Policy" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CurrentAddress" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IDImage" Nullable="true" />
   </ComplexType>
 </Schema>
