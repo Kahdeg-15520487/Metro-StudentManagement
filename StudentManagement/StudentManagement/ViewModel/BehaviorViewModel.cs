@@ -46,9 +46,10 @@ namespace StudentManagement.ViewModel
         {
             get
             {
+                var thisUser = DialogLogginViewModel.Users[0];
                 if (_ActiveGroup == null)
                 {
-                    _ActiveGroup = new ObservableCollection<object>(ST.GetActivityGroup().ToList());
+                    _ActiveGroup = new ObservableCollection<object>(ST.GetActivityGroup(thisUser.ID).ToList());
                 }
                 return _ActiveGroup;
             }

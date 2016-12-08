@@ -16,11 +16,11 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Image Width="150" Height="150">
+                <!--<Image Width="150" Height="150">
                     <Image.Source>
                         <BitmapImage DecodePixelWidth="500" UriSource="./Resourses/Photos/download.png"/>
                     </Image.Source>
-                </Image>
+                </Image>-->
                 <StackPanel Orientation="Vertical">
                     <TextBlock Margin="0,5,0,0" FontFamily="Ubuntu" FontSize="13" Text="{Binding Name}"></TextBlock>
                     <TextBlock Margin="0,5,0,0" Text="{Binding Email}"></TextBlock>

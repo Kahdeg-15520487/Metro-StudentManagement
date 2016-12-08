@@ -134,9 +134,9 @@ namespace StudentManagement.ViewModel
             {
                 IsSettingsFlyoutOpen = true;
                 string ID = DialogLogginViewModel.Users[0].ID;
-                Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
-                Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
-                Email = Students[0].Email;
+                //Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
+                //Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
+                //Email = Students[0].Email;
  
       
             });

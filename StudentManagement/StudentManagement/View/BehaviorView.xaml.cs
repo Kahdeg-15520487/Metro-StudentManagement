@@ -23,6 +23,7 @@ namespace StudentManagement.View
         public BehaviorView()
         {
             InitializeComponent();
+         
         }
     }
 }

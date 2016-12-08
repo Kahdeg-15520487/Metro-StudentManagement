@@ -35,12 +35,14 @@ namespace StudentManagement.ViewModel
 
         public async void ShowLoginDialogWithRememberCheckBox(object obj)
         {
-            
+
             LoginDialogSettings settings = new LoginDialogSettings
             {
                 ColorScheme = metroWindow.MetroDialogOptions.ColorScheme,
                 RememberCheckBoxVisibility = System.Windows.Visibility.Visible,
-                NegativeButtonVisibility = System.Windows.Visibility.Visible
+                NegativeButtonVisibility = System.Windows.Visibility.Visible,
+                InitialPassword = "6",
+                InitialUsername="63500"
             };
             LoginDialogData result = await metroWindow.ShowLoginAsync("Authentication", "Enter your password", settings);
             if (result==null)
