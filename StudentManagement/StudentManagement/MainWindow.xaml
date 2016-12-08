@@ -35,6 +35,8 @@
             </Metro:Flyout>
         </Metro:FlyoutsControl>
     </Metro:MetroWindow.Flyouts>
+    
+    
     <Metro:MetroWindow.RightWindowCommands>
         <Metro:WindowCommands Name="Account" Visibility="Hidden"> 
             <Button Command="{Binding Settings}">My Account</Button>

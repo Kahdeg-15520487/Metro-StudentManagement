@@ -234,6 +234,9 @@
     <Compile Include="View\AcademicView.xaml.cs">
       <DependentUpon>AcademicView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AccountSettingsView.xaml.cs">
+      <DependentUpon>AccountSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
@@ -259,6 +262,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AcademicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AccountSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
