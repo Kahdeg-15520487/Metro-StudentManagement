@@ -777,6 +777,9 @@
     <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
+      <Parameter Name="StudenID" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <Association Name="fk_StudentID_BehaviorMark">
     <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -913,5 +916,13 @@
     <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="IDImage" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetDiplomaProject_Result">
+    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Instructor" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="Result" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="KindOfResearch" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

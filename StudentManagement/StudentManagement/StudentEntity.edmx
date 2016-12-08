@@ -625,6 +625,9 @@
         <Function Name="GetDetailDisciplineByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetStudentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
@@ -1537,7 +1540,7 @@
           <Parameter Name="Activities" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetActivityGroup" ReturnType="Collection(StudentDBModel.GetActivityGroup_Result)" >
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDetailActivity" ReturnType="Collection(StudentDBModel.GetDetailActivity_Result)">
           <Parameter Name="Activitie" Mode="In" Type="String" />
@@ -1552,7 +1555,10 @@
           <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
+            <Parameter Name="StudenID" Mode="In" Type="String" />
           </FunctionImport>
       
         </EntityContainer>
@@ -1693,6 +1699,14 @@
           <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="IDImage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetDiplomaProject_Result">
+          <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Instructor" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Result" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="KindOfResearch" Nullable="true" MaxLength="50" />
         </ComplexType>
       
       </Schema>
@@ -2127,6 +2141,18 @@
                 <ScalarProperty Name="CandreID" ColumnName="CandreID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="IDImage" ColumnName="IDImage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDiplomaProject" FunctionName="StudentDBModel.Store.GetDiplomaProject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetDiplomaProject_Result">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="Instructor" ColumnName="Instructor" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

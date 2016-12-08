@@ -428,5 +428,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDiplomaProject" FunctionName="StudentDBModel.Store.GetDiplomaProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetDiplomaProject_Result">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Instructor" ColumnName="Instructor" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

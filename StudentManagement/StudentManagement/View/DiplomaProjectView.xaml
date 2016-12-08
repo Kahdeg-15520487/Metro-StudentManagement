@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="StudentManagement.View.DiplomaProjectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StudentManagement.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel">
+    <UserControl.Resources>
+        <ViewModel:DiplomaProjectView x:Key="Key1" ></ViewModel:DiplomaProjectView>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource Key1}">
+        <GroupBox Margin="50" DataContext="{Binding DiplomaProject}" >
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="20"  FontWeight="Bold" FontFamily="Ubuntu" TextAlignment="Center" HorizontalAlignment="Center" Text="{Binding ProjectName}" ></TextBlock>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+            <StackPanel>
+                
+            </StackPanel>
+        </GroupBox>   
+    </Grid>
+</UserControl>

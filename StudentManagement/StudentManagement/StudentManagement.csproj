@@ -153,6 +153,9 @@
     <Compile Include="GetDetailDisciplineByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetDiplomaProject_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetStudentInfoByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -225,6 +228,7 @@
     <Compile Include="ViewModel\AcademicViewModel.cs" />
     <Compile Include="ViewModel\BehaviorViewModel.cs" />
     <Compile Include="ViewModel\DialogLogginViewModel.cs" />
+    <Compile Include="ViewModel\DiplomaProjectView.cs" />
     <Compile Include="ViewModel\IntroWindowViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -242,6 +246,9 @@
     </Compile>
     <Compile Include="View\BehaviorView.xaml.cs">
       <DependentUpon>BehaviorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiplomaProjectView.xaml.cs">
+      <DependentUpon>DiplomaProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\IntroWindowView.xaml.cs">
       <DependentUpon>IntroWindowView.xaml</DependentUpon>
@@ -274,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BehaviorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DiplomaProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -98,3 +98,5 @@ C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountView.baml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.g.cs
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DiplomaProjectView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DiplomaProjectView.baml

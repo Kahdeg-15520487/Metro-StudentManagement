@@ -129,5 +129,14 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentInfoByID_Result>("GetStudentInfoByID", studentIDParameter);
         }
+    
+        public virtual ObjectResult<GetDiplomaProject_Result> GetDiplomaProject(string studenID)
+        {
+            var studenIDParameter = studenID != null ?
+                new ObjectParameter("StudenID", studenID) :
+                new ObjectParameter("StudenID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDiplomaProject_Result>("GetDiplomaProject", studenIDParameter);
+        }
     }
 }
