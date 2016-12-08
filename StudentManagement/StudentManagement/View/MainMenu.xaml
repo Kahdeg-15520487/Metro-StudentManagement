@@ -42,6 +42,7 @@
                     <TabItem Header="Diploma Project"
                              Metro:ControlsHelper.HeaderFontSize="25"                          
                              FontFamily="Verdana">
+                        <local:DiplomaProjectView></local:DiplomaProjectView>
                     </TabItem>
                 </Metro:MetroAnimatedTabControl>
 
