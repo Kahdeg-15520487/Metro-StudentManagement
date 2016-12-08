@@ -94,9 +94,13 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActivities_Result>("GetActivities", activitiesParameter);
         }
     
-        public virtual ObjectResult<GetActivityGroup_Result> GetActivityGroup()
+        public virtual ObjectResult<GetActivityGroup_Result> GetActivityGroup(string studentID)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActivityGroup_Result>("GetActivityGroup");
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActivityGroup_Result>("GetActivityGroup", studentIDParameter);
         }
     
         public virtual ObjectResult<GetDetailActivity_Result> GetDetailActivity(string activitie)
@@ -108,8 +112,6 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailActivity_Result>("GetDetailActivity", activitieParameter);
         }
     
-    
-    
         public virtual ObjectResult<GetStudentsInfoByID_Result> GetStudentsInfoByID(string studentID)
         {
             var studentIDParameter = studentID != null ?
@@ -117,6 +119,15 @@ namespace StudentManagement
                 new ObjectParameter("StudentID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentsInfoByID_Result>("GetStudentsInfoByID", studentIDParameter);
+        }
+    
+        public virtual ObjectResult<GetStudentInfoByID_Result> GetStudentInfoByID(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentInfoByID_Result>("GetStudentInfoByID", studentIDParameter);
         }
     }
 }

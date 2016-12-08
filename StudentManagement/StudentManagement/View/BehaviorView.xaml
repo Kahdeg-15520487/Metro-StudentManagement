@@ -71,7 +71,7 @@
 
             </Grid.ColumnDefinitions>
             <Expander DataContext="{StaticResource key1}" Header="Activity Group " Grid.Column="0" IsExpanded="True">
-                <ListBox Name="LsvGroup" ItemsSource="{Binding ActiveGroup }" DisplayMemberPath="GroupName" >
+                <ListBox Name="LsvGroup"  ItemsSource="{Binding ActiveGroup }" DisplayMemberPath="GroupName" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction Command="{Binding ActivitiesCommand }" CommandParameter="{Binding ElementName=LsvGroup}" />
@@ -88,10 +88,43 @@
                     </i:Interaction.Triggers>
                 </ListBox>
             </Expander>
-            <Expander DataContext="{StaticResource key1}" Header="Activity Detail " Grid.Column="2" IsExpanded="True">
-                <DataGrid ItemsSource="{Binding DetailActivity}"></DataGrid>
-            </Expander>
-        </Grid >
+                    <Expander DataContext="{StaticResource key1}" Header="Activity Detail " Grid.Column="2" IsExpanded="True">
+                        <ListBox ItemsSource="{Binding DetailActivity}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding ActivityName}" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" TextAlignment="Center" FontFamily="Consolas" FontWeight="Bold" ></TextBlock>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <TextBlock FontSize="15" Text="Organization   :  " FontFamily="consolas" Padding="10,30,1,0"></TextBlock>
+                                            <TextBlock FontSize="15" Text="{Binding Organization}" FontFamily="consolas" Padding="10,30,1,0"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock HorizontalAlignment="Right" FontSize="15" Text="Max Participation   |" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding MaxParticipation}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock HorizontalAlignment="Left" FontSize="15" Text="  Registered Participation" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding RegisteredParticipation}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock HorizontalAlignment="Right" FontSize="15" Text=" Start Day   |" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding StartDay}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock HorizontalAlignment="Left" FontSize="15" Text="  FinishDay              " FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding FinishDay}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                    </Expander>
+                </Grid >
         <StackPanel  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <Label  Content="Summary"></Label>
             <Label Name="lblSum" Content="This Sum"></Label>
