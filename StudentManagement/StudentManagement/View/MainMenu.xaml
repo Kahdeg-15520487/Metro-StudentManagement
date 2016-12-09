@@ -52,10 +52,5 @@
 
         </Metro:MetroAnimatedSingleRowTabControl>
 
-        <StatusBar Grid.Row="1" VerticalAlignment="Bottom">
-            <StatusBarItem>Info</StatusBarItem>
-            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
-            <StatusBarItem>501 C1</StatusBarItem>
-        </StatusBar>
     </Grid>
 </UserControl>

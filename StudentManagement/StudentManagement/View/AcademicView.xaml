@@ -14,7 +14,6 @@
 
         </ViewModel:AcademicViewModel>
     </UserControl.Resources>
-
     <Grid>
         <Grid Margin="0,-35,0,0">
             <Grid.Background>
@@ -24,6 +23,8 @@
 
             </Grid.Background>
         </Grid>
+        
+
         <ScrollViewer>
             <Grid>
                 <Grid.RowDefinitions>
@@ -77,6 +78,7 @@
                         </ComboBoxItem>
                     </ComboBox>
 
+                    
                 </StackPanel>
                 <GroupBox Margin="0" Name="grbAcademic" Header="Mark" Grid.Row="1" Grid.Column="1" DataContext="{StaticResource key1}">
                     <DataGrid Name="dtgAcademic"
@@ -112,7 +114,7 @@
                     </DataGrid>
                 </GroupBox>
 
-                <GroupBox Background="AntiqueWhite" Margin="0" DataContext="{StaticResource key1}" Header="Subject Detail"  Grid.Column="3" Grid.Row="1">
+                <GroupBox Margin="0" DataContext="{StaticResource key1}" Header="Subject Detail"  Grid.Column="3" Grid.Row="1">
 
                     <ListBox ItemsSource="{Binding SubjectDetail}" Name="lstDetail" Width="275">
                         <ListBox.ItemTemplate>

@@ -9,6 +9,7 @@ namespace StudentManagement.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        #region event PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -17,5 +18,6 @@ namespace StudentManagement.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
     }
 }
