@@ -263,6 +263,7 @@
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="IDImage" Type="Int32" />
     <NavigationProperty Name="UserImage" Relationship="StudentDBModel.FkImage" FromRole="Student" ToRole="UserImage" />
+    <NavigationProperty Name="DiplomaProject1" Relationship="StudentDBModel.Fk_DiplomaProject1" FromRole="Student" ToRole="DiplomaProject1" />
   </EntityType>
   <EntityType Name="StudentUser">
     <Key>
@@ -780,6 +781,14 @@
     <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
       <Parameter Name="StudenID" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="DiplomaProject1Set" EntityType="StudentDBModel.DiplomaProject1" />
+    <AssociationSet Name="Fk_DiplomaProject1" Association="StudentDBModel.Fk_DiplomaProject1">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="DiplomaProject1" EntitySet="DiplomaProject1Set" />
+    </AssociationSet>
+    <FunctionImport Name="GetDiplomaProject1" ReturnType="Collection(StudentDBModel.GetDiplomaProject1_Result)">
+      <Parameter Name="StudenID" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <Association Name="fk_StudentID_BehaviorMark">
     <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
@@ -924,5 +933,41 @@
     <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
     <Property Type="String" Name="Result" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="KindOfResearch" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="DiplomaProject1">
+    <Key>
+      <PropertyRef Name="StudentID" />
+      <PropertyRef Name="ProjectName" />
+    </Key>
+    <Property Name="StudentID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Instructor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Result" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="KindOfResearch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Student" Relationship="StudentDBModel.Fk_DiplomaProject1" FromRole="DiplomaProject1" ToRole="Student" />
+  </EntityType>
+  <Association Name="Fk_DiplomaProject1">
+    <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="StudentDBModel.DiplomaProject1" Role="DiplomaProject1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="DiplomaProject1">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetDiplomaProject1_Result">
+    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Instructor" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="Result" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="KindOfResearch" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
   </ComplexType>
 </Schema>

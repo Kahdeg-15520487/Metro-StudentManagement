@@ -19,7 +19,7 @@ namespace StudentManagement.ViewModel
                 var thisUser = DialogLogginViewModel.Users[0];
                 if (_DiplomaProject == null)
                 {
-                    _DiplomaProject = new ObservableCollection<object>(ST.GetDiplomaProject(thisUser.ID).ToList());
+                    _DiplomaProject = new ObservableCollection<object>(ST.GetDiplomaProject1(thisUser.ID).ToList());
                 }
                 return _DiplomaProject;
             }

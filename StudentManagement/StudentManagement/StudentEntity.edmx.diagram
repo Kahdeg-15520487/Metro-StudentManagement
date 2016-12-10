@@ -58,6 +58,8 @@
         <EntityTypeShape EntityType="StudentDBModel.Users" Width="1.5" PointX="4.75" PointY="1.25" />
         <EntityTypeShape EntityType="StudentDBModel.UserImage" Width="1.5" PointX="0.75" PointY="0.875" />
         <AssociationConnector Association="StudentDBModel.FkImage" />
+        <EntityTypeShape EntityType="StudentDBModel.DiplomaProject1" Width="1.5" PointX="7.5" PointY="1.25" />
+        <AssociationConnector Association="StudentDBModel.Fk_DiplomaProject1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

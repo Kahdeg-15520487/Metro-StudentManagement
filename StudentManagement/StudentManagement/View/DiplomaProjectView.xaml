@@ -12,15 +12,53 @@
         <ViewModel:DiplomaProjectView x:Key="Key1" ></ViewModel:DiplomaProjectView>
     </UserControl.Resources>
     <Grid DataContext="{StaticResource Key1}">
-        <GroupBox Margin="50" DataContext="{Binding DiplomaProject}" >
-            <GroupBox.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock FontSize="20"  FontWeight="Bold" FontFamily="Ubuntu" TextAlignment="Center" HorizontalAlignment="Center" Text="{Binding ProjectName}" ></TextBlock>
-                </DataTemplate>
-            </GroupBox.HeaderTemplate>
-            <StackPanel>
-                
-            </StackPanel>
-        </GroupBox>   
+        <Grid Margin="0,-35,0,0">
+            <Grid.Background>
+                <ImageBrush 
+                ImageSource="/Resources/Backgrounds/MainBackground.png">
+                </ImageBrush>
+
+            </Grid.Background>
+        </Grid>
+        <GroupBox  Margin="50,50,50,20" DataContext="{Binding DiplomaProject}" >
+            
+            <GroupBox.Header>
+                <TextBlock FontSize="20"  FontWeight="Bold" FontFamily="Ubuntu" TextAlignment="Center" HorizontalAlignment="Center" Text="{Binding ProjectName}" ></TextBlock>
+            </GroupBox.Header>
+            <Grid Background="White">
+                <ScrollViewer>
+                <StackPanel>
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock Margin="450,50,10,10" Text="Name : " FontSize="15" FontWeight="Bold"></TextBlock>
+                        <TextBlock Margin="10,50,3,5" Text="{Binding LastName}" ></TextBlock>
+                        <TextBlock Margin="10,50,3,5" Text="{Binding MiddleName}" ></TextBlock>
+                        <TextBlock Margin="10,50,3,5" Text="{Binding Name}" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock Margin="450,5,10,10" Text="Student ID : " FontSize="15" FontWeight="Bold"></TextBlock>
+                        <TextBlock Margin="10,5,3,5" Text="{Binding StudentID}" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock Margin="450,5,10,10" Text="Kind Of Research : " FontSize="15" FontWeight="Bold"></TextBlock>
+                        <TextBlock Margin="10,5,3,5" Text="{Binding KindOfResearch}" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock Margin="450,5,10,10" Text="Instructor : " FontSize="15" FontWeight="Bold"></TextBlock>
+                        <TextBlock Margin="10,5,3,5" Text="{Binding Instructor}" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock Margin="450,5,10,10" Text="Result : " FontSize="15" FontWeight="Bold"></TextBlock>
+                        <TextBlock Margin="10,5,3,5" Text="{Binding Result}" ></TextBlock>
+                    </StackPanel>
+                    <GroupBox Margin="30">
+                        <GroupBox.Header>
+                            <TextBlock Text="Content" FontSize="18" FontWeight="Bold"></TextBlock>
+                        </GroupBox.Header>
+                        <TextBlock TextWrapping="Wrap" FontFamily="consolas" FontSize="15" Text="{Binding Detail}"></TextBlock>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+            </Grid>
+        </GroupBox>
     </Grid>
 </UserControl>
