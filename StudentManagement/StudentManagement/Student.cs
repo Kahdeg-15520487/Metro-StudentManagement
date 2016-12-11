@@ -23,6 +23,7 @@ namespace StudentManagement
             this.StudyFee = new HashSet<StudyFee>();
             this.StudentUser = new HashSet<StudentUser>();
             this.BehaviorMark = new HashSet<BehaviorMark>();
+            this.DiplomaProject1 = new HashSet<DiplomaProject1>();
         }
     
         public string StudentID { get; set; }
@@ -61,5 +62,7 @@ namespace StudentManagement
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BehaviorMark> BehaviorMark { get; set; }
         public virtual UserImage UserImage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DiplomaProject1> DiplomaProject1 { get; set; }
     }
 }

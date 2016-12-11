@@ -129,6 +129,9 @@
     <Compile Include="DiplomaProject.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DiplomaProject1.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Discipline.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -153,7 +156,7 @@
     <Compile Include="GetDetailDisciplineByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetDiplomaProject_Result.cs">
+    <Compile Include="GetDiplomaProject1_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetStudentInfoByID_Result.cs">
