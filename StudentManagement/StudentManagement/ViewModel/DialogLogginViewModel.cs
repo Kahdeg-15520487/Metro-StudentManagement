@@ -9,12 +9,10 @@ namespace StudentManagement.ViewModel
 {
     class DialogLogginViewModel
     {
-        public static bool isLoggedIn = false; //This will show if user logged in or not
         StudentDBEntities St = new StudentDBEntities();
-        private static ObservableCollection<GetUser_Result> _Users;
-        MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
-        public ICommand LoginCommand { get; set; }
 
+        #region User, which holds all the infomation abount User account
+        private static ObservableCollection<GetUser_Result> _Users;
         public static ObservableCollection<GetUser_Result> Users
         {
             get
@@ -27,15 +25,24 @@ namespace StudentManagement.ViewModel
                 _Users = value;
             }
         }
+        #endregion
 
-        public DialogLogginViewModel()
+        MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow); 
+
+        #region LoginCommand, which displays the login form and do some stuffs 
+        public ICommand LoginCommand { get; set; }
+        
+        private void OnLoginCommand()
         {
             LoginCommand = new RelayCommand<MetroWindow>((p) => true, ShowLoginDialogWithRememberCheckBox);
         }
 
+        #endregion
+
+        #region LogginDialog with Remember Check Box
+
         public async void ShowLoginDialogWithRememberCheckBox(object obj)
         {
-
             LoginDialogSettings settings = new LoginDialogSettings
             {
                 ColorScheme = metroWindow.MetroDialogOptions.ColorScheme,
@@ -44,7 +51,9 @@ namespace StudentManagement.ViewModel
                 InitialPassword = "6",
                 InitialUsername="63500"
             };
+
             LoginDialogData result = await metroWindow.ShowLoginAsync("Authentication", "Enter your password", settings);
+
             if (result==null)
             {
                 MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("You have canceled"));
@@ -54,7 +63,6 @@ namespace StudentManagement.ViewModel
                 Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
                 if (Users.Count() != 0)
                 {
-                    isLoggedIn = true;
                     MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
                     foreach (Window window in Application.Current.Windows)
                     {
@@ -73,6 +81,12 @@ namespace StudentManagement.ViewModel
                 }
             }
           
+        }
+        #endregion
+
+        public DialogLogginViewModel()
+        {
+            OnLoginCommand();
         }
 
     }

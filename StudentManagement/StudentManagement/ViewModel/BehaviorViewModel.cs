@@ -7,40 +7,11 @@ namespace StudentManagement.ViewModel
 {
     public class BehaviorViewModel : ViewModelBase
     {
+        StudentDBEntities ST = new StudentDBEntities();
         public string GroupName = string.Empty;
         public string Activities_ = string.Empty;
-        public BehaviorViewModel()
-        {
-            //Command Selection change  activity group
-            ActivitiesCommand = new RelayCommand<ListBox>((p) => true, (p) =>
-            {
-                GetActivityGroup_Result data = (GetActivityGroup_Result)p.SelectedItem;
-                GroupName = data.GroupName;
-                Activities = new ObservableCollection<object>(ST.GetActivities(GroupName).ToList());
-            });
 
-            //Command selection change activies
-
-            DetailCommand = new RelayCommand<ListBox>((p) => true, (p) =>
-            {
-
-                if (p.Items.Count <= 0) Activities_ = string.Empty;
-                else
-                {
-                    try
-                    {
-                        GetActivities_Result data = (GetActivities_Result)p.SelectedItem;
-                        Activities_ = data.ActivityName;
-                    }
-                    catch { }
-                }
-                if (p.SelectedIndex < 0) p.SelectedIndex = 0;
-                DetailActivity = new ObservableCollection<object>(ST.GetDetailActivity(Activities_).ToList());
-            });
-        }
-
-        //List Activivy Group
-        StudentDBEntities ST = new StudentDBEntities();
+        #region Activity Group, which hold all activity groups of current User
         private ObservableCollection<object> _ActiveGroup;
         public ObservableCollection<object> ActiveGroup
         {
@@ -61,7 +32,11 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-        //List Activities
+        #endregion
+
+
+        #region Activities List, which hold all the activities of one Group
+        public ICommand ActivitiesCommand { get; set; }
         private ObservableCollection<object> _Activities;
         public ObservableCollection<object> Activities
         {
@@ -81,7 +56,21 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-        //List DetailActivity
+
+        void OnActivitiesCommand()
+        {
+            ActivitiesCommand = new RelayCommand<ListBox>((p) => true, (p) =>
+            {
+                GetActivityGroup_Result data = (GetActivityGroup_Result)p.SelectedItem;
+                GroupName = data.GroupName;
+                Activities = new ObservableCollection<object>(ST.GetActivities(GroupName).ToList());
+            });
+        }
+        #endregion
+ 
+
+        #region Detail Activities, which show detail about one Activity
+        public ICommand DetailCommand { get; set; }
         private ObservableCollection<object> _DetailActivity;
         public ObservableCollection<object> DetailActivity
         {
@@ -101,7 +90,34 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-        public ICommand ActivitiesCommand { get; set; }
-        public ICommand DetailCommand { get; set; }
+
+        private void OnDetailCommand()
+        {
+            DetailCommand = new RelayCommand<ListBox>((p) => true, (p) =>
+            {
+
+                if (p.Items.Count <= 0) Activities_ = string.Empty;
+                else
+                {
+                    try
+                    {
+                        GetActivities_Result data = (GetActivities_Result)p.SelectedItem;
+                        Activities_ = data.ActivityName;
+                    }
+                    catch { }
+                }
+                if (p.SelectedIndex < 0) p.SelectedIndex = 0;
+                DetailActivity = new ObservableCollection<object>(ST.GetDetailActivity(Activities_).ToList());
+            });
+        }
+
+        #endregion
+
+        public BehaviorViewModel()
+        {
+            OnActivitiesCommand();
+            OnDetailCommand();
+        }
+
     }
 }

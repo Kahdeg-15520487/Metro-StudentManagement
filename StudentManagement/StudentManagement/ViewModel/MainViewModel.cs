@@ -11,6 +11,8 @@ namespace StudentManagement.ViewModel
 
         StudentDBEntities ST = new StudentDBEntities();
 
+        #region For Account View
+        public ICommand Settings { get; set; }
         private ObservableCollection<GetStudentsInfoByID_Result> _Students; //This hold all Students's Infomation
 
         public ObservableCollection<GetStudentsInfoByID_Result> Students
@@ -77,8 +79,42 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("PicturePath");
             }
         }
+        private bool isSettingsFlyoutOpen; //This will decide if Account Settings open or not
 
-        private readonly List<ViewModelBase> _ViewModelList;
+        public bool IsSettingsFlyoutOpen
+        {
+            get
+            {
+                return isSettingsFlyoutOpen;
+            }
+
+            set
+            {
+                if (value.Equals(isSettingsFlyoutOpen))
+                    return;
+                isSettingsFlyoutOpen = value;
+                OnPropertyChanged("IsSettingsFlyoutOpen");
+            }
+        }
+
+        private void OnSettingsCommand(object obj)
+        {
+            IsSettingsFlyoutOpen = true;
+            string ID = DialogLogginViewModel.Users[0].ID;
+            //Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
+            //Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
+            //Email = Students[0].Email;
+        }
+
+        private void InitAccountView()
+        {
+            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
+        }
+
+        #endregion
+
+        #region Replace UserControl
+        private List<ViewModelBase> _ViewModelList;
         //This hold the current Page, which will be displayed
         private ViewModelBase _currentUserControl;
 
@@ -98,7 +134,9 @@ namespace StudentManagement.ViewModel
             }
         }
 
-       //Hold the Selected UserControl index
+        //Hold the Selected UserControl index
+
+        private int _selectedUCIndex;
         public int SelectedUCIndex
         {
             get
@@ -116,12 +154,7 @@ namespace StudentManagement.ViewModel
             }
         }
 
-      
-        private int _selectedUCIndex;
-
-
-
-        public MainViewModel()
+        private void InitViewModelList()
         {
             // Create a list to hold all the UserControl ViewModel Class
             _ViewModelList = new List<ViewModelBase>()
@@ -130,41 +163,15 @@ namespace StudentManagement.ViewModel
                 new MainMenuViewModel(),
 
             };
-            Settings = new RelayCommand<object>((p) => true, (p) =>
-            {
-                IsSettingsFlyoutOpen = true;
-                string ID = DialogLogginViewModel.Users[0].ID;
-                //Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
-                //Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
-                //Email = Students[0].Email;
- 
-      
-            });
-
-
-
             CurrentUserControl = _ViewModelList[0];
         }
-        public ICommand Settings { get; set; }
 
-        private bool isSettingsFlyoutOpen; //This will decide if Account Settings open or not
+        #endregion
 
-        public bool IsSettingsFlyoutOpen
+        public MainViewModel()
         {
-            get
-            {
-                return isSettingsFlyoutOpen;
-            }
-
-            set
-            {
-                if (value.Equals(isSettingsFlyoutOpen))
-                    return;
-                isSettingsFlyoutOpen = value;
-                OnPropertyChanged("IsSettingsFlyoutOpen");
-            }
-        }
-
-     
+            InitViewModelList();
+            InitAccountView();
+        }  
     }
 }
