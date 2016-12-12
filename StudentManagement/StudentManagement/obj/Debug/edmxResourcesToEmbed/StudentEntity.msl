@@ -82,18 +82,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DiplomaProject">
-      <EntityTypeMapping TypeName="StudentDBModel.DiplomaProject">
-        <MappingFragment StoreEntitySet="DiplomaProject">
-          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-          <ScalarProperty Name="Instructor" ColumnName="Instructor" />
-          <ScalarProperty Name="Detail" ColumnName="Detail" />
-          <ScalarProperty Name="Result" ColumnName="Result" />
-          <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Discipline">
       <EntityTypeMapping TypeName="StudentDBModel.Discipline">
         <MappingFragment StoreEntitySet="Discipline">
@@ -428,15 +416,30 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetDiplomaProject" FunctionName="StudentDBModel.Store.GetDiplomaProject">
+    <EntitySetMapping Name="DiplomaProject1Set">
+      <EntityTypeMapping TypeName="StudentDBModel.DiplomaProject1">
+        <MappingFragment StoreEntitySet="DiplomaProject">
+          <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Instructor" ColumnName="Instructor" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetDiplomaProject1" FunctionName="StudentDBModel.Store.GetDiplomaProject">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetDiplomaProject_Result">
+        <ComplexTypeMapping TypeName="StudentDBModel.GetDiplomaProject1_Result">
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
           <ScalarProperty Name="Instructor" ColumnName="Instructor" />
           <ScalarProperty Name="Detail" ColumnName="Detail" />
           <ScalarProperty Name="Result" ColumnName="Result" />
           <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
