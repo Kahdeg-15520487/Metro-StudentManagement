@@ -4,81 +4,121 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentManagement.View"
+             xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="220" d:DesignWidth="500">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+             d:DesignHeight="500" d:DesignWidth="1535">
+    <UserControl.Resources>
+        <ViewModel:MainViewModel x:Key="MainViewModel">
+            
+        </ViewModel:MainViewModel>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <GroupBox  Header="ACCOUNT SETTINGS" FontFamily="30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Column="0">
-            <TextBlock HorizontalAlignment="Center" Text="ACCOUNT"></TextBlock>
-            <TextBlock HorizontalAlignment="Center" Text="User Infomation"></TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <Image Width="125" Height="125" HorizontalAlignment="Left">
+                <GroupBox Header="User Infomation"
+                       FontSize="25"
+                          DataContext="{StaticResource MainViewModel}">
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0">
+                            <Image Width="375" Height="375" HorizontalAlignment="Left"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontSize="20" 
+                                           Text="{Binding Name}">
+                                    
+                                </TextBlock>
+                                <TextBlock FontSize="20" 
+                                           Text="{Binding Email}">
+                                    
+                                </TextBlock>
+                              
+                            </StackPanel>
 
-                </Image>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Name here"></TextBlock>
-                    <TextBlock Text="Email here"></TextBlock>
-                </StackPanel>
-
-            </StackPanel>
-            <TextBlock>
+                        </StackPanel>
+                        <TextBlock FontSize="20" >
             <Hyperlink>
-                <TextBlock Text="Change Profile Picture" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="Change Profile Picture">
+                    
+                </TextBlock>
             </Hyperlink>
         </TextBlock>
-            <TextBlock>
+                        <TextBlock FontSize="20" >
             <Hyperlink>
-                <TextBlock Text="Change Passwork" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="Change Passwork" >
+                    
+                </TextBlock>
             </Hyperlink>
         </TextBlock>
-            <TextBlock>
+                        <TextBlock FontSize="20">
             <Hyperlink>
-                <TextBlock Text="Sign Out" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="Sign Out"></TextBlock>
             </Hyperlink>
         </TextBlock>
-        </StackPanel>
+                    </StackPanel>
+
+                </GroupBox>
+                <GroupBox Grid.Column="1" Visibility="Visible" Name="grbChangePicture" Header="Tasks" FontSize="25">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="500" FontSize="20" Name="txtPicturePath" Text="Picture Path here"></TextBox>
+                            <Button FontSize="20" Width="100" Content="Browse" Margin="15,0,0,0" Click="Button_Click_2"/>
+                            <Button Click="Button_Click_1" Width="100"></Button>
+                        </StackPanel>
+
+                        <Image Name="image1" Margin="20" Width="500" Height="500" >
+
+                        </Image>
+
+                        <Button FontSize="20" Width="100"   HorizontalAlignment="Right" Content="OK"></Button>
+                        
+                    </StackPanel>
 
 
-        <StackPanel Grid.Column="1" Visibility="Hidden" Name="stpChangeImage"  Orientation="Vertical">
-            <TextBlock Text="TASKS" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="Task name" HorizontalAlignment="Center"></TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Width="200" FontSize="8" Name="txtPicturePath" Text="Picture Path here"></TextBox>
-                <Button FontSize="8" Width="40" Content="Browse" Margin="13,0,0,0"/>
-            </StackPanel>
 
-            <Image Margin="0,5,0,0" Width="150" Height="150" >
+                </GroupBox>
 
-            </Image>
+                <GroupBox Header="Tasks" FontSize="25" Grid.Column="1" Name="grbChangePasswork" Visibility="Hidden">
+                    <StackPanel  Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="20,0,0,0" Width="175" 
+                                       Text="Passwork: "
+                                       FontSize="20">
 
-            <Button Width="50" Height="20" HorizontalAlignment="Center" Content="OK"></Button>
+                            </TextBlock>
+                            <TextBox FontSize="20" Width="520">
 
-        </StackPanel>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <TextBlock Width="175" 
+                                       Text="New Passwork: "
+                                       FontSize="20"
+                                       Margin="20,0,0,0">
 
+                            </TextBlock>
+                            <TextBox FontSize="20" Width="520"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <TextBlock Width="175" 
+                                       Text="Retype: "
+                                       FontSize="20"
+                                       Margin="20,0,0,0">
 
-        <StackPanel Grid.Column="1" Name="stpChangePass" Visibility="Visible" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="85" Text="Passwork: "></TextBlock>
-                <TextBox Width="165"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <TextBlock Width="85" Text="New Passwork: "></TextBlock>
-                <TextBox Width="165"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <TextBlock Width="85" Text="Retype: "></TextBlock>
-                <TextBox Width="165"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-                <Button Margin="5" Content="OK" Width="50"></Button>
-                <Button Margin="5"  Content="Reset" Width="50"></Button>
-            </StackPanel>
-        </StackPanel>
+                            </TextBlock>
+                            <TextBox FontSize="20" Width="520"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Margin="5" Content="OK" Width="100"></Button>
+                            <Button Margin="5,5,30,5"  Content="Reset" Width="100"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
 
-
-    </Grid>
+            </Grid>
+        </GroupBox>
+    </ScrollViewer>
 </UserControl>

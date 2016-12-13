@@ -12,6 +12,7 @@ namespace StudentManagement.ViewModel
         StudentDBEntities ST = new StudentDBEntities();
 
         #region For Account View
+        public ICommand Accounts { get; set; }
         public ICommand Settings { get; set; }
         private ObservableCollection<GetStudentsInfoByID_Result> _Students; //This hold all Students's Infomation
 
@@ -79,7 +80,24 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("PicturePath");
             }
         }
-        private bool isSettingsFlyoutOpen; //This will decide if Account Settings open or not
+        private bool isAccountFlyoutOpen; //This will decide if Account Settings open or not
+
+        public bool IsAccountFlyoutOpen
+        {
+            get
+            {
+                return isAccountFlyoutOpen;
+            }
+
+            set
+            {
+                if (value.Equals(isAccountFlyoutOpen))
+                    return;
+                isAccountFlyoutOpen = value;
+                OnPropertyChanged("IsAccountFlyoutOpen");
+            }
+        }
+        private bool isSettingsFlyoutOpen;
 
         public bool IsSettingsFlyoutOpen
         {
@@ -97,17 +115,25 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        private void OnSettingsCommand(object obj)
+        private void OnAccountCommand(object obj)
         {
-            IsSettingsFlyoutOpen = true;
+            IsAccountFlyoutOpen = true;
             string ID = DialogLogginViewModel.Users[0].ID;
             //Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
             //Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
             //Email = Students[0].Email;
         }
 
+        void OnSettingsCommand( object obj)
+        {
+            IsAccountFlyoutOpen = false;
+            IsSettingsFlyoutOpen = true;
+            
+        }
+
         private void InitAccountView()
         {
+            Accounts = new RelayCommand<object>((p) => true, OnAccountCommand);
             Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
         }
 
@@ -153,6 +179,8 @@ namespace StudentManagement.ViewModel
                 CurrentUserControl = _ViewModelList[_selectedUCIndex];
             }
         }
+
+       
 
         private void InitViewModelList()
         {
