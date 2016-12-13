@@ -27,19 +27,33 @@
     
                 AreAnimationsEnabled="True"
                 Header="Account Settings"
-                IsOpen="{Binding IsSettingsFlyoutOpen, Mode=TwoWay}"
+                IsOpen="{Binding IsAccountFlyoutOpen, Mode=TwoWay}"
                 Theme="Inverse">
                 <View:AccountView>
 
                 </View:AccountView>
             </Metro:Flyout>
+
+            <Metro:Flyout Name="AccountSettingsFlyout"
+                Width="1535"
+                Position="Left"
+                AreAnimationsEnabled="True"
+
+              
+                IsOpen="{Binding IsSettingsFlyoutOpen, Mode=TwoWay}"
+                Theme="Light">
+                <View:AccountSettingsView>
+
+                </View:AccountSettingsView>
+            </Metro:Flyout>
         </Metro:FlyoutsControl>
     </Metro:MetroWindow.Flyouts>
     
     
+    
     <Metro:MetroWindow.RightWindowCommands>
-        <Metro:WindowCommands Name="Account" Visibility="Hidden"> 
-            <Button Command="{Binding Settings}">My Account</Button>
+        <Metro:WindowCommands Name="Account" Visibility="Hidden">
+            <Button Command="{Binding Accounts}">My Account</Button>
         </Metro:WindowCommands>
     </Metro:MetroWindow.RightWindowCommands>
 

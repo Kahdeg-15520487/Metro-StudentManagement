@@ -8,11 +8,7 @@
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <ViewModel:MainMenuViewModel x:Key="key1">
-            
-        </ViewModel:MainMenuViewModel>
-    </UserControl.Resources>
+   
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
@@ -27,9 +23,25 @@
                 </StackPanel>
 
             </StackPanel>
-            <Button BorderThickness="0" Metro:ButtonHelper.PreserveTextCase="True" Margin="0,5,0,0" Content="Change Picture"></Button>
-            <Button BorderThickness="0" Style="{StaticResource SquareButtonStyle}" Metro:ButtonHelper.PreserveTextCase="True"  Margin="0,5,0,0" Content="Account Settings"></Button>
-            <Button BorderThickness="0" Style="{StaticResource SquareButtonStyle}" Metro:ButtonHelper.PreserveTextCase="True"  Margin="0,5,0,0" Content="Sign Out"></Button>
+            <Button BorderThickness="0" 
+                    Metro:ButtonHelper.PreserveTextCase="True" 
+                    Margin="0,5,0,0" 
+                    Content="Change Picture">
+                
+            </Button>
+            <Button Command="{Binding Settings}" 
+                    BorderThickness="0" 
+                    Style="{StaticResource SquareButtonStyle}" 
+                    Metro:ButtonHelper.PreserveTextCase="True"
+                    Margin="0,5,0,0" Content="Account Settings">
+                
+            </Button>
+            <Button BorderThickness="0" 
+                    Style="{StaticResource SquareButtonStyle}" 
+                    Metro:ButtonHelper.PreserveTextCase="True"  
+                    Margin="0,5,0,0" Content="Sign Out">
+                
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +24,48 @@ namespace StudentManagement.View
     /// </summary>
     public partial class AccountSettingsView : UserControl
     {
+  
         public AccountSettingsView()
         {
+            AppDomain.CurrentDomain.SetData("DataDirectory", System.Environment.CurrentDirectory.Replace("\\bin\\Debug", ""));
             InitializeComponent();
+
+        }
+
+
+
+
+
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            using (StudentDBEntities DB = new StudentDBEntities())
+            {
+                UserImage data = new UserImage();
+
+                data.ImagePath = txtPicturePath.Text;
+                data.ImageToByte = File.ReadAllBytes(txtPicturePath.Text);
+                DB.UserImage.Add(data);
+                DB.SaveChanges();
+              
+
+
+
+            }
+            MessageBox.Show("You have save!");
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            StudentDBEntities DB = new StudentDBEntities();
+            UserImage image = new UserImage();
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.ShowDialog();
+            openFileDialog1.Filter = "Image files (*.bmp, *.jpg)|*.bmp;*.jpg|All files (*.*)|*.*";
+            openFileDialog1.DefaultExt = ".jpeg";
+            txtPicturePath.Text = openFileDialog1.FileName;
+            ImageSource imageSource = new BitmapImage(new Uri(txtPicturePath.Text));
+            image1.Source = imageSource;
         }
     }
 }

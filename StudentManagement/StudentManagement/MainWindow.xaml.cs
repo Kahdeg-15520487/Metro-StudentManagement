@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using System;
 
 namespace StudentManagement
 {
@@ -9,6 +10,7 @@ namespace StudentManagement
     {
         public MainWindow()
         {
+            AppDomain.CurrentDomain.SetData("DataDirectory", System.Environment.CurrentDirectory.Replace("\\bin\\Debug", ""));
             InitializeComponent(); 
         }    
     }
