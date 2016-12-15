@@ -50,7 +50,7 @@
     <Property Name="ActivityGroupID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ActivityGroup" Relationship="Self.Fk_ActivityGroupID" FromRole="BehaviorMark" ToRole="ActivityGroup" />
-    <NavigationProperty Name="Student" Relationship="StudentDBModel.fk_StudentID_BehaviorMark" FromRole="BehaviorMark" ToRole="Student" />
+    <NavigationProperty Name="Student" Relationship="Self.fk_StudentID_BehaviorMark" FromRole="BehaviorMark" ToRole="Student" />
   </EntityType>
   <EntityType Name="Candre">
     <Key>
@@ -83,8 +83,8 @@
     <Property Name="DepartmentHeader" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="SchoolID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Credits" Type="Int32" />
+    <Property Name="DepartmentName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="School" Relationship="Self.Fk_SchoolID" FromRole="Department" ToRole="School" />
-    <Property Name="DepartmentName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" ConcurrencyMode="Fixed" />
   </EntityType>
   <EntityType Name="DiplomaProject">
     <Key>
@@ -249,7 +249,10 @@
     <Property Name="Policy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="CurrentAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="CandreID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IDImage" Type="Int32" />
     <NavigationProperty Name="AcademicMark" Relationship="Self.Fk_StudentID" FromRole="Student" ToRole="AcademicMark" />
+    <NavigationProperty Name="BehaviorMark" Relationship="Self.fk_StudentID_BehaviorMark" FromRole="Student" ToRole="BehaviorMark" />
     <NavigationProperty Name="Candre" Relationship="Self.Fk_CandreID" FromRole="Student" ToRole="Candre" />
     <NavigationProperty Name="Class" Relationship="Self.Fk_ClassID" FromRole="Student" ToRole="Class" />
     <NavigationProperty Name="DiplomaProject" Relationship="Self.Fk_DiplomaProject" FromRole="Student" ToRole="DiplomaProject" />
@@ -259,11 +262,7 @@
     <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_StudentID_RegisterStudyUnit" FromRole="Student" ToRole="RegisterStudyUnit" />
     <NavigationProperty Name="StudyFee" Relationship="Self.Fk_StudentID_Studyfee" FromRole="Student" ToRole="StudyFee" />
     <NavigationProperty Name="StudentUser" Relationship="Self.Fk_StudentUser" FromRole="Student" ToRole="StudentUser" />
-    <NavigationProperty Name="BehaviorMark" Relationship="StudentDBModel.fk_StudentID_BehaviorMark" FromRole="Student" ToRole="BehaviorMark" />
-    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="IDImage" Type="Int32" />
-    <NavigationProperty Name="UserImage" Relationship="StudentDBModel.FkImage" FromRole="Student" ToRole="UserImage" />
-    <NavigationProperty Name="DiplomaProject1" Relationship="StudentDBModel.Fk_DiplomaProject1" FromRole="Student" ToRole="DiplomaProject1" />
+    <NavigationProperty Name="UserImage" Relationship="Self.FkImage" FromRole="Student" ToRole="UserImage" />
   </EntityType>
   <EntityType Name="StudentUser">
     <Key>
@@ -272,8 +271,8 @@
     <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Pasworkd" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StudentID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Roll" Type="Int32" />
     <NavigationProperty Name="Student" Relationship="Self.Fk_StudentUser" FromRole="StudentUser" ToRole="Student" />
-    <Property Name="Roll" Type="Int32" ConcurrencyMode="Fixed" />
   </EntityType>
   <EntityType Name="StudyFee">
     <Key>
@@ -315,8 +314,26 @@
     <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Passwork" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="TeacherID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Roll" Type="Int32" />
     <NavigationProperty Name="Teacher" Relationship="Self.Fk_TeacherUser" FromRole="TeacherUser" ToRole="Teacher" />
-    <Property Name="Roll" Type="Int32" ConcurrencyMode="Fixed" />
+  </EntityType>
+  <EntityType Name="UserImage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagePath" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="ImageToByte" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Student" Relationship="Self.FkImage" FromRole="UserImage" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Passwords" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Roll" Type="Int32" />
+    <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <Association Name="Fk_Discipline">
     <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
@@ -363,6 +380,18 @@
       </Principal>
       <Dependent Role="Discipline">
         <PropertyRef Name="AnouncementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_StudentID_BehaviorMark">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="BehaviorMark" Type="Self.BehaviorMark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="BehaviorMark">
+        <PropertyRef Name="StudentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -606,6 +635,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FkImage">
+    <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserImage">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IDImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Fk_TeacherUser">
     <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
     <End Role="TeacherUser" Type="Self.TeacherUser" Multiplicity="*" />
@@ -643,6 +684,8 @@
     <EntitySet Name="StudyFee" EntityType="Self.StudyFee" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" />
     <EntitySet Name="TeacherUser" EntityType="Self.TeacherUser" />
+    <EntitySet Name="UserImage" EntityType="Self.UserImage" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
     <AssociationSet Name="Fk_Discipline" Association="Self.Fk_Discipline">
       <End Role="Discipline" EntitySet="Discipline" />
       <End Role="AcademicMark" EntitySet="AcademicMark" />
@@ -658,6 +701,10 @@
     <AssociationSet Name="Fk_AnouncementID" Association="Self.Fk_AnouncementID">
       <End Role="Anouncement" EntitySet="Anouncement" />
       <End Role="Discipline" EntitySet="Discipline" />
+    </AssociationSet>
+    <AssociationSet Name="fk_StudentID_BehaviorMark" Association="Self.fk_StudentID_BehaviorMark">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="BehaviorMark" EntitySet="BehaviorMark" />
     </AssociationSet>
     <AssociationSet Name="Fk_CandreID" Association="Self.Fk_CandreID">
       <End Role="Candre" EntitySet="Candre" />
@@ -739,24 +786,16 @@
       <End Role="Student" EntitySet="Student" />
       <End Role="StudentUser" EntitySet="StudentUser" />
     </AssociationSet>
+    <AssociationSet Name="FkImage" Association="Self.FkImage">
+      <End Role="UserImage" EntitySet="UserImage" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
     <AssociationSet Name="Fk_TeacherUser" Association="Self.Fk_TeacherUser">
       <End Role="Teacher" EntitySet="Teacher" />
       <End Role="TeacherUser" EntitySet="TeacherUser" />
     </AssociationSet>
-    <AssociationSet Name="fk_StudentID_BehaviorMark" Association="StudentDBModel.fk_StudentID_BehaviorMark">
-      <End Role="Student" EntitySet="Student" />
-      <End Role="BehaviorMark" EntitySet="BehaviorMark" />
-    </AssociationSet>
-    <EntitySet Name="Users" EntityType="StudentDBModel.Users" />
-    <FunctionImport Name="GetUser" ReturnType="Collection(StudentDBModel.GetUser_Result)">
-      <Parameter Name="ID" Mode="In" Type="String" />
-      <Parameter Name="PassWord" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="GetAcademicByID" ReturnType="Collection(StudentDBModel.GetAcademicByID_Result)">
       <Parameter Name="StudentID" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="GetDetailDisciplineByID" ReturnType="Collection(StudentDBModel.GetDetailDisciplineByID_Result)">
-      <Parameter Name="DisciplineID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="GetActivities" ReturnType="Collection(StudentDBModel.GetActivities_Result)">
       <Parameter Name="Activities" Mode="In" Type="String" />
@@ -767,56 +806,23 @@
     <FunctionImport Name="GetDetailActivity" ReturnType="Collection(StudentDBModel.GetDetailActivity_Result)">
       <Parameter Name="Activitie" Mode="In" Type="String" />
     </FunctionImport>
-    <EntitySet Name="UserImage" EntityType="StudentDBModel.UserImage" />
-    <AssociationSet Name="FkImage" Association="StudentDBModel.FkImage">
-      <End Role="UserImage" EntitySet="UserImage" />
-      <End Role="Student" EntitySet="Student" />
-    </AssociationSet>
-    <FunctionImport Name="GetStudentsInfoByID" ReturnType="Collection(StudentDBModel.GetStudentsInfoByID_Result)">
-      <Parameter Name="StudentID" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
-      <Parameter Name="StudentID" Mode="In" Type="String" />
+    <FunctionImport Name="GetDetailDisciplineByID" ReturnType="Collection(StudentDBModel.GetDetailDisciplineByID_Result)">
+      <Parameter Name="DisciplineID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
       <Parameter Name="StudenID" Mode="In" Type="String" />
     </FunctionImport>
-    <EntitySet Name="DiplomaProject1Set" EntityType="StudentDBModel.DiplomaProject1" />
-    <AssociationSet Name="Fk_DiplomaProject1" Association="StudentDBModel.Fk_DiplomaProject1">
-      <End Role="Student" EntitySet="Student" />
-      <End Role="DiplomaProject1" EntitySet="DiplomaProject1Set" />
-    </AssociationSet>
-    <FunctionImport Name="GetDiplomaProject1" ReturnType="Collection(StudentDBModel.GetDiplomaProject1_Result)">
-      <Parameter Name="StudenID" Mode="In" Type="String" />
+    <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentsInfoByID" ReturnType="Collection(StudentDBModel.GetStudentsInfoByID_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUser" ReturnType="Collection(StudentDBModel.GetUser_Result)">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="PassWord" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
-  <Association Name="fk_StudentID_BehaviorMark">
-    <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
-    <End Type="StudentDBModel.BehaviorMark" Role="BehaviorMark" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Student">
-        <PropertyRef Name="StudentID" />
-      </Principal>
-      <Dependent Role="BehaviorMark">
-        <PropertyRef Name="StudentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Passwords" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Roll" Type="Int32" />
-    <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <ComplexType Name="GetUser_Result">
-    <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
-    <Property Type="Int32" Name="Roll" Nullable="true" />
-    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
-  </ComplexType>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
     <Property Type="Double" Name="ProcessMark" Nullable="true" />
@@ -824,11 +830,6 @@
     <Property Type="Double" Name="FinaltermMark" Nullable="true" />
     <Property Type="Double" Name="AvarageMark" Nullable="true" />
     <Property Type="Boolean" Name="DisciplineStatus" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetDetailDisciplineByID_Result">
-    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="SchoolName" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="100" />
   </ComplexType>
   <ComplexType Name="GetActivities_Result">
     <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
@@ -864,27 +865,41 @@
     <Property Type="String" Name="GroupName" Nullable="true" MaxLength="300" />
     <Property Type="String" Name="Goal" Nullable="true" MaxLength="10" />
   </ComplexType>
-  <EntityType Name="UserImage">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ImagePath" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-    <Property Name="ImageToByte" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="Student" Relationship="StudentDBModel.FkImage" FromRole="UserImage" ToRole="Student" />
-  </EntityType>
-  <Association Name="FkImage">
-    <End Type="StudentDBModel.UserImage" Role="UserImage" Multiplicity="0..1" />
-    <End Type="StudentDBModel.Student" Role="Student" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserImage">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Student">
-        <PropertyRef Name="IDImage" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <ComplexType Name="GetDetailDisciplineByID_Result">
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SchoolName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetDiplomaProject_Result">
+    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Instructor" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="Result" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="KindOfResearch" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetStudentInfoByID_Result">
+    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="16" />
+    <Property Type="Boolean" Name="Gender" Nullable="true" />
+    <Property Type="String" Name="IDNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ClassID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="FacultyID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Hometown" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="AcademicYear" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Policy" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CurrentAddress" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IDImage" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="GetStudentsInfoByID_Result">
     <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
@@ -907,67 +922,10 @@
     <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="400" />
     <Property Type="Binary" Name="ImageToByte" Nullable="true" MaxLength="Max" />
   </ComplexType>
-  <ComplexType Name="GetStudentInfoByID_Result">
-    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
-    <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="16" />
-    <Property Type="Boolean" Name="Gender" Nullable="true" />
-    <Property Type="String" Name="IDNumber" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="ClassID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="FacultyID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Hometown" Nullable="true" MaxLength="200" />
-    <Property Type="Int32" Name="AcademicYear" Nullable="true" />
-    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Policy" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="CurrentAddress" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="IDImage" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetDiplomaProject_Result">
-    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Instructor" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="Result" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="KindOfResearch" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <EntityType Name="DiplomaProject1">
-    <Key>
-      <PropertyRef Name="StudentID" />
-      <PropertyRef Name="ProjectName" />
-    </Key>
-    <Property Name="StudentID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Instructor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="Detail" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="Result" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="KindOfResearch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Student" Relationship="StudentDBModel.Fk_DiplomaProject1" FromRole="DiplomaProject1" ToRole="Student" />
-  </EntityType>
-  <Association Name="Fk_DiplomaProject1">
-    <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
-    <End Type="StudentDBModel.DiplomaProject1" Role="DiplomaProject1" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Student">
-        <PropertyRef Name="StudentID" />
-      </Principal>
-      <Dependent Role="DiplomaProject1">
-        <PropertyRef Name="StudentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <ComplexType Name="GetDiplomaProject1_Result">
-    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Instructor" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="Result" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="KindOfResearch" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+  <ComplexType Name="GetUser_Result">
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Roll" Nullable="true" />
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
   </ComplexType>
 </Schema>

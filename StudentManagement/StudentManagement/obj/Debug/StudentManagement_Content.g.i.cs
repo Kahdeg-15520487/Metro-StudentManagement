@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("studentdb.mdf")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("studentdb_log.ldf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("studententity.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("studententity.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("studentdb.mdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("studentdb_log.ldf")]
 
 

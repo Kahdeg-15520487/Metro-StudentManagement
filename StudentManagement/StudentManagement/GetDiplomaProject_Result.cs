@@ -11,7 +11,7 @@ namespace StudentManagement
 {
     using System;
     
-    public partial class GetDiplomaProject1_Result
+    public partial class GetDiplomaProject_Result
     {
         public string StudentID { get; set; }
         public string ProjectName { get; set; }
