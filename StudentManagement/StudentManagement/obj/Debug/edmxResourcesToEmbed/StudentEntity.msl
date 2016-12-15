@@ -73,12 +73,24 @@
     <EntitySetMapping Name="Department">
       <EntityTypeMapping TypeName="StudentDBModel.Department">
         <MappingFragment StoreEntitySet="Department">
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="Detail" ColumnName="Detail" />
           <ScalarProperty Name="DepartmentHeader" ColumnName="DepartmentHeader" />
           <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
           <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiplomaProject">
+      <EntityTypeMapping TypeName="StudentDBModel.DiplomaProject">
+        <MappingFragment StoreEntitySet="DiplomaProject">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Instructor" ColumnName="Instructor" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -203,8 +215,6 @@
     <EntitySetMapping Name="Student">
       <EntityTypeMapping TypeName="StudentDBModel.Student">
         <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
@@ -220,16 +230,18 @@
           <ScalarProperty Name="Policy" ColumnName="Policy" />
           <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
           <ScalarProperty Name="CandreID" ColumnName="CandreID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="StudentUser">
       <EntityTypeMapping TypeName="StudentDBModel.StudentUser">
         <MappingFragment StoreEntitySet="StudentUser">
-          <ScalarProperty Name="Roll" ColumnName="Roll" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Pasworkd" ColumnName="Pasworkd" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -264,33 +276,32 @@
     <EntitySetMapping Name="TeacherUser">
       <EntityTypeMapping TypeName="StudentDBModel.TeacherUser">
         <MappingFragment StoreEntitySet="TeacherUser">
-          <ScalarProperty Name="Roll" ColumnName="Roll" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Passwork" ColumnName="Passwork" />
           <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserImage">
+      <EntityTypeMapping TypeName="StudentDBModel.UserImage">
+        <MappingFragment StoreEntitySet="UserImage">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="StudentDBModel.Users">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Roll" ColumnName="Roll" />
-          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetUser" FunctionName="StudentDBModel.Store.GetUser">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetUser_Result">
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
-          <ScalarProperty Name="Roll" ColumnName="Roll" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetAcademicByID" FunctionName="StudentDBModel.Store.GetAcademicByID">
       <ResultMapping>
         <ComplexTypeMapping TypeName="StudentDBModel.GetAcademicByID_Result">
@@ -300,15 +311,6 @@
           <ScalarProperty Name="FinaltermMark" ColumnName="FinaltermMark" />
           <ScalarProperty Name="AvarageMark" ColumnName="AvarageMark" />
           <ScalarProperty Name="DisciplineStatus" ColumnName="DisciplineStatus" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetDetailDisciplineByID" FunctionName="StudentDBModel.Store.GetDetailDisciplineByID">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetDetailDisciplineByID_Result">
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
-          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -358,38 +360,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="UserImage">
-      <EntityTypeMapping TypeName="StudentDBModel.UserImage">
-        <MappingFragment StoreEntitySet="UserImage">
-          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetStudentsInfoByID" FunctionName="StudentDBModel.Store.GetStudentsInfoByID">
+    <FunctionImportMapping FunctionImportName="GetDetailDisciplineByID" FunctionName="StudentDBModel.Store.GetDetailDisciplineByID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentsInfoByID_Result">
+        <ComplexTypeMapping TypeName="StudentDBModel.GetDetailDisciplineByID_Result">
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDiplomaProject" FunctionName="StudentDBModel.Store.GetDiplomaProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetDiplomaProject_Result">
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Instructor" ColumnName="Instructor" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
-          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
-          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
-          <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="Policy" ColumnName="Policy" />
-          <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
-          <ScalarProperty Name="CandreID" ColumnName="CandreID" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -416,30 +407,39 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="DiplomaProject1Set">
-      <EntityTypeMapping TypeName="StudentDBModel.DiplomaProject1">
-        <MappingFragment StoreEntitySet="DiplomaProject">
-          <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
-          <ScalarProperty Name="Result" ColumnName="Result" />
-          <ScalarProperty Name="Detail" ColumnName="Detail" />
-          <ScalarProperty Name="Instructor" ColumnName="Instructor" />
-          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetDiplomaProject1" FunctionName="StudentDBModel.Store.GetDiplomaProject">
+    <FunctionImportMapping FunctionImportName="GetStudentsInfoByID" FunctionName="StudentDBModel.Store.GetStudentsInfoByID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetDiplomaProject1_Result">
+        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentsInfoByID_Result">
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-          <ScalarProperty Name="Instructor" ColumnName="Instructor" />
-          <ScalarProperty Name="Detail" ColumnName="Detail" />
-          <ScalarProperty Name="Result" ColumnName="Result" />
-          <ScalarProperty Name="KindOfResearch" ColumnName="KindOfResearch" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+          <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Policy" ColumnName="Policy" />
+          <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+          <ScalarProperty Name="CandreID" ColumnName="CandreID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUser" FunctionName="StudentDBModel.Store.GetUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetUser_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

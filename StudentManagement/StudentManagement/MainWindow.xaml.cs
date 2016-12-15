@@ -12,6 +12,8 @@ namespace StudentManagement
         {
             AppDomain.CurrentDomain.SetData("DataDirectory", System.Environment.CurrentDirectory.Replace("\\bin\\Debug", ""));
             InitializeComponent(); 
+
         }    
+
     }
 }

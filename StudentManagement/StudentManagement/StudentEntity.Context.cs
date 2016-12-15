@@ -51,22 +51,8 @@ namespace StudentManagement
         public virtual DbSet<StudyFee> StudyFee { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
         public virtual DbSet<TeacherUser> TeacherUser { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserImage> UserImage { get; set; }
-        public virtual DbSet<DiplomaProject1> DiplomaProject1Set { get; set; }
-    
-        public virtual ObjectResult<GetUser_Result> GetUser(string iD, string passWord)
-        {
-            var iDParameter = iD != null ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(string));
-    
-            var passWordParameter = passWord != null ?
-                new ObjectParameter("PassWord", passWord) :
-                new ObjectParameter("PassWord", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", iDParameter, passWordParameter);
-        }
+        public virtual DbSet<Users> Users { get; set; }
     
         public virtual ObjectResult<GetAcademicByID_Result> GetAcademicByID(string studentID)
         {
@@ -75,15 +61,6 @@ namespace StudentManagement
                 new ObjectParameter("StudentID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAcademicByID_Result>("GetAcademicByID", studentIDParameter);
-        }
-    
-        public virtual ObjectResult<GetDetailDisciplineByID_Result> GetDetailDisciplineByID(string disciplineID)
-        {
-            var disciplineIDParameter = disciplineID != null ?
-                new ObjectParameter("DisciplineID", disciplineID) :
-                new ObjectParameter("DisciplineID", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailDisciplineByID_Result>("GetDetailDisciplineByID", disciplineIDParameter);
         }
     
         public virtual ObjectResult<GetActivities_Result> GetActivities(string activities)
@@ -113,13 +90,22 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailActivity_Result>("GetDetailActivity", activitieParameter);
         }
     
-        public virtual ObjectResult<GetStudentsInfoByID_Result> GetStudentsInfoByID(string studentID)
+        public virtual ObjectResult<GetDetailDisciplineByID_Result> GetDetailDisciplineByID(string disciplineID)
         {
-            var studentIDParameter = studentID != null ?
-                new ObjectParameter("StudentID", studentID) :
-                new ObjectParameter("StudentID", typeof(string));
+            var disciplineIDParameter = disciplineID != null ?
+                new ObjectParameter("DisciplineID", disciplineID) :
+                new ObjectParameter("DisciplineID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentsInfoByID_Result>("GetStudentsInfoByID", studentIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDetailDisciplineByID_Result>("GetDetailDisciplineByID", disciplineIDParameter);
+        }
+    
+        public virtual ObjectResult<GetDiplomaProject_Result> GetDiplomaProject(string studenID)
+        {
+            var studenIDParameter = studenID != null ?
+                new ObjectParameter("StudenID", studenID) :
+                new ObjectParameter("StudenID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDiplomaProject_Result>("GetDiplomaProject", studenIDParameter);
         }
     
         public virtual ObjectResult<GetStudentInfoByID_Result> GetStudentInfoByID(string studentID)
@@ -131,15 +117,26 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentInfoByID_Result>("GetStudentInfoByID", studentIDParameter);
         }
     
-      
-    
-        public virtual ObjectResult<GetDiplomaProject1_Result> GetDiplomaProject1(string studenID)
+        public virtual ObjectResult<GetStudentsInfoByID_Result> GetStudentsInfoByID(string studentID)
         {
-            var studenIDParameter = studenID != null ?
-                new ObjectParameter("StudenID", studenID) :
-                new ObjectParameter("StudenID", typeof(string));
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDiplomaProject1_Result>("GetDiplomaProject1", studenIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentsInfoByID_Result>("GetStudentsInfoByID", studentIDParameter);
+        }
+    
+        public virtual ObjectResult<GetUser_Result> GetUser(string iD, string passWord)
+        {
+            var iDParameter = iD != null ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(string));
+    
+            var passWordParameter = passWord != null ?
+                new ObjectParameter("PassWord", passWord) :
+                new ObjectParameter("PassWord", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", iDParameter, passWordParameter);
         }
     }
 }

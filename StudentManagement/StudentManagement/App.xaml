@@ -5,7 +5,8 @@
              StartupUri="MainWindow.xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              d1p1:Ignorable="d" 
-             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:vm="clr-namespace:StudentManagement.ViewModel">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,7 +29,7 @@
 
                 </ResourceDictionary>
                 <ResourceDictionary>
-                    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:StudentManagement.ViewModel" />
+                    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
