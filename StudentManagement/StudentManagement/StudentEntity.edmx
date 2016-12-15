@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicMark">
           <Key>
             <PropertyRef Name="StudentID" />
@@ -222,7 +222,7 @@
           <Property Name="CurrentAddress" Type="nvarchar" MaxLength="300" />
           <Property Name="CandreID" Type="nvarchar" MaxLength="10" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
-          <Property Name="IDImage" Type="int" />
+          <Property Name="ImageID" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="StudentUser">
           <Key>
@@ -273,7 +273,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="400" />
           <Property Name="ImageToByte" Type="image" />
         </EntityType>
@@ -502,6 +502,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fk_student_Image">
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserImage">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Fk_StudentID">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="AcademicMark" Type="Self.AcademicMark" Multiplicity="*" />
@@ -595,18 +607,6 @@
             </Principal>
             <Dependent Role="TeacherUser">
               <PropertyRef Name="TeacherID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FkImage">
-          <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserImage">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="IDImage" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -737,6 +737,10 @@
             <End Role="Semester" EntitySet="Semester" />
             <End Role="StudyFee" EntitySet="StudyFee" />
           </AssociationSet>
+          <AssociationSet Name="Fk_student_Image" Association="Self.Fk_student_Image">
+            <End Role="UserImage" EntitySet="UserImage" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
           <AssociationSet Name="Fk_StudentID" Association="Self.Fk_StudentID">
             <End Role="Student" EntitySet="Student" />
             <End Role="AcademicMark" EntitySet="AcademicMark" />
@@ -769,13 +773,8 @@
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="TeacherUser" EntitySet="TeacherUser" />
           </AssociationSet>
-          <AssociationSet Name="FkImage" Association="Self.FkImage">
-            <End Role="UserImage" EntitySet="UserImage" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1029,7 +1028,6 @@
           <Property Name="CurrentAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="CandreID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IDImage" Type="Int32" />
           <NavigationProperty Name="AcademicMark" Relationship="Self.Fk_StudentID" FromRole="Student" ToRole="AcademicMark" />
           <NavigationProperty Name="BehaviorMark" Relationship="Self.fk_StudentID_BehaviorMark" FromRole="Student" ToRole="BehaviorMark" />
           <NavigationProperty Name="Candre" Relationship="Self.Fk_CandreID" FromRole="Student" ToRole="Candre" />
@@ -1041,7 +1039,9 @@
           <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_StudentID_RegisterStudyUnit" FromRole="Student" ToRole="RegisterStudyUnit" />
           <NavigationProperty Name="StudyFee" Relationship="Self.Fk_StudentID_Studyfee" FromRole="Student" ToRole="StudyFee" />
           <NavigationProperty Name="StudentUser" Relationship="Self.Fk_StudentUser" FromRole="Student" ToRole="StudentUser" />
-          <NavigationProperty Name="UserImage" Relationship="Self.FkImage" FromRole="Student" ToRole="UserImage" />
+          <Property Name="ImageID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserImage" Relationship="StudentDBModel.Fk_student_Image" FromRole="Student" ToRole="UserImage" />
+         
         </EntityType>
         <EntityType Name="StudentUser">
           <Key>
@@ -1096,15 +1096,7 @@
           <Property Name="Roll" Type="Int32" />
           <NavigationProperty Name="Teacher" Relationship="Self.Fk_TeacherUser" FromRole="TeacherUser" ToRole="Teacher" />
         </EntityType>
-        <EntityType Name="UserImage">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImagePath" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="ImageToByte" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Student" Relationship="Self.FkImage" FromRole="UserImage" ToRole="Student" />
-        </EntityType>
+       
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -1414,18 +1406,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FkImage">
-          <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserImage">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="IDImage" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+       
         <Association Name="Fk_TeacherUser">
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
           <End Role="TeacherUser" Type="Self.TeacherUser" Multiplicity="*" />
@@ -1463,7 +1444,7 @@
           <EntitySet Name="StudyFee" EntityType="Self.StudyFee" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" />
           <EntitySet Name="TeacherUser" EntityType="Self.TeacherUser" />
-          <EntitySet Name="UserImage" EntityType="Self.UserImage" />
+         
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="Fk_Discipline" Association="Self.Fk_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
@@ -1565,42 +1546,44 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="StudentUser" EntitySet="StudentUser" />
           </AssociationSet>
-          <AssociationSet Name="FkImage" Association="Self.FkImage">
-            <End Role="UserImage" EntitySet="UserImage" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
+         
           <AssociationSet Name="Fk_TeacherUser" Association="Self.Fk_TeacherUser">
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="TeacherUser" EntitySet="TeacherUser" />
           </AssociationSet>
           <FunctionImport Name="GetAcademicByID" ReturnType="Collection(StudentDBModel.GetAcademicByID_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetActivities" ReturnType="Collection(StudentDBModel.GetActivities_Result)">
-            <Parameter Name="Activities" Mode="In" Type="String" />
+          <Parameter Name="Activities" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetActivityGroup" ReturnType="Collection(StudentDBModel.GetActivityGroup_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDetailActivity" ReturnType="Collection(StudentDBModel.GetDetailActivity_Result)">
-            <Parameter Name="Activitie" Mode="In" Type="String" />
+          <Parameter Name="Activitie" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDetailDisciplineByID" ReturnType="Collection(StudentDBModel.GetDetailDisciplineByID_Result)">
-            <Parameter Name="DisciplineID" Mode="In" Type="String" />
+          <Parameter Name="DisciplineID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
-            <Parameter Name="StudenID" Mode="In" Type="String" />
+          <Parameter Name="StudenID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetStudentsInfoByID" ReturnType="Collection(StudentDBModel.GetStudentsInfoByID_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUser" ReturnType="Collection(StudentDBModel.GetUser_Result)">
             <Parameter Name="ID" Mode="In" Type="String" />
             <Parameter Name="PassWord" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="UserImage" EntityType="StudentDBModel.UserImage" />
+          <AssociationSet Name="Fk_student_Image" Association="StudentDBModel.Fk_student_Image">
+            <End Role="UserImage" EntitySet="UserImage" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GetAcademicByID_Result">
           <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -1707,6 +1690,27 @@
           <Property Type="Int32" Name="Roll" Nullable="true" />
           <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
         </ComplexType>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="ImageToByte" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Student" Relationship="StudentDBModel.Fk_student_Image" FromRole="UserImage" ToRole="Student" />
+        </EntityType>
+        <Association Name="Fk_student_Image">
+          <End Type="StudentDBModel.UserImage" Role="UserImage" Multiplicity="0..1" />
+          <End Type="StudentDBModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserImage">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1927,6 +1931,7 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="StudentDBModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
@@ -1943,7 +1948,6 @@
                 <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
                 <ScalarProperty Name="CandreID" ColumnName="CandreID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="IDImage" ColumnName="IDImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1992,15 +1996,6 @@
                 <ScalarProperty Name="Passwork" ColumnName="Passwork" />
                 <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
                 <ScalarProperty Name="Roll" ColumnName="Roll" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserImage">
-            <EntityTypeMapping TypeName="StudentDBModel.UserImage">
-              <MappingFragment StoreEntitySet="UserImage">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2155,6 +2150,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="UserImage">
+            <EntityTypeMapping TypeName="StudentDBModel.UserImage">
+              <MappingFragment StoreEntitySet="UserImage">
+                <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -20,7 +20,7 @@ namespace StudentManagement
             this.Student = new HashSet<Student>();
         }
     
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string ImagePath { get; set; }
         public byte[] ImageToByte { get; set; }
     
