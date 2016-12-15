@@ -58,6 +58,7 @@
         <AssociationConnector Association="StudentDBModel.Fk_StudentUser" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.FkImage" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_TeacherUser" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentDBModel.Fk_student_Image" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
