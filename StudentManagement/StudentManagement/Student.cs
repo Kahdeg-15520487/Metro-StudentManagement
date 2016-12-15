@@ -18,12 +18,11 @@ namespace StudentManagement
         public Student()
         {
             this.AcademicMark = new HashSet<AcademicMark>();
+            this.BehaviorMark = new HashSet<BehaviorMark>();
             this.DiplomaProject = new HashSet<DiplomaProject>();
             this.RegisterStudyUnit = new HashSet<RegisterStudyUnit>();
             this.StudyFee = new HashSet<StudyFee>();
             this.StudentUser = new HashSet<StudentUser>();
-            this.BehaviorMark = new HashSet<BehaviorMark>();
-            this.DiplomaProject1 = new HashSet<DiplomaProject1>();
         }
     
         public string StudentID { get; set; }
@@ -42,10 +41,12 @@ namespace StudentManagement
         public string CurrentAddress { get; set; }
         public string CandreID { get; set; }
         public string Email { get; set; }
-        public Nullable<int> IDImage { get; set; }
+        public string ImageID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicMark> AcademicMark { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BehaviorMark> BehaviorMark { get; set; }
         public virtual Candre Candre { get; set; }
         public virtual Class Class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -59,10 +60,6 @@ namespace StudentManagement
         public virtual ICollection<StudyFee> StudyFee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentUser> StudentUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BehaviorMark> BehaviorMark { get; set; }
         public virtual UserImage UserImage { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DiplomaProject1> DiplomaProject1 { get; set; }
     }
 }

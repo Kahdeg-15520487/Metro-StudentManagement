@@ -217,7 +217,7 @@
     <Property Name="CurrentAddress" Type="nvarchar" MaxLength="300" />
     <Property Name="CandreID" Type="nvarchar" MaxLength="10" />
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
-    <Property Name="IDImage" Type="int" />
+    <Property Name="ImageID" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="StudentUser">
     <Key>
@@ -268,7 +268,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar" MaxLength="400" />
     <Property Name="ImageToByte" Type="image" />
   </EntityType>
@@ -497,6 +497,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Fk_student_Image">
+    <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserImage">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="ImageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Fk_StudentID">
     <End Role="Student" Type="Self.Student" Multiplicity="1" />
     <End Role="AcademicMark" Type="Self.AcademicMark" Multiplicity="*" />
@@ -590,18 +602,6 @@
       </Principal>
       <Dependent Role="TeacherUser">
         <PropertyRef Name="TeacherID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FkImage">
-    <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
-    <End Role="Student" Type="Self.Student" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserImage">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Student">
-        <PropertyRef Name="IDImage" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -732,6 +732,10 @@
       <End Role="Semester" EntitySet="Semester" />
       <End Role="StudyFee" EntitySet="StudyFee" />
     </AssociationSet>
+    <AssociationSet Name="Fk_student_Image" Association="Self.Fk_student_Image">
+      <End Role="UserImage" EntitySet="UserImage" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
     <AssociationSet Name="Fk_StudentID" Association="Self.Fk_StudentID">
       <End Role="Student" EntitySet="Student" />
       <End Role="AcademicMark" EntitySet="AcademicMark" />
@@ -763,10 +767,6 @@
     <AssociationSet Name="Fk_TeacherUser" Association="Self.Fk_TeacherUser">
       <End Role="Teacher" EntitySet="Teacher" />
       <End Role="TeacherUser" EntitySet="TeacherUser" />
-    </AssociationSet>
-    <AssociationSet Name="FkImage" Association="Self.FkImage">
-      <End Role="UserImage" EntitySet="UserImage" />
-      <End Role="Student" EntitySet="Student" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
