@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6c47c8967e04e948ee10d0ae4144f3c" Name="Diagram1">
+      <Diagram DiagramId="075a5cdcbeed44f39a401a145607841e" Name="Diagram1">
         <EntityTypeShape EntityType="StudentDBModel.AcademicMark" Width="1.5" PointX="10.25" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.ActivityGroup" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.Anouncement" Width="1.5" PointX="5.75" PointY="6.625" IsExpanded="true" />
@@ -54,12 +54,10 @@
         <AssociationConnector Association="StudentDBModel.Fk_StudentID_RegisterStudyUnit" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_ConditionID" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_SemesterID_Study" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentDBModel.Fk_student_image" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_StudentID_Studyfee" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_StudentUser" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentDBModel.FkImage" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_TeacherUser" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentDBModel.Fk_student_Image" />
-        <AssociationConnector Association="StudentDBModel.FK_student_image" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

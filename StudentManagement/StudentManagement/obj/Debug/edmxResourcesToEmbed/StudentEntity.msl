@@ -215,7 +215,6 @@
     <EntitySetMapping Name="Student">
       <EntityTypeMapping TypeName="StudentDBModel.Student">
         <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
@@ -232,6 +231,7 @@
           <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
           <ScalarProperty Name="CandreID" ColumnName="CandreID" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -280,6 +280,15 @@
           <ScalarProperty Name="Passwork" ColumnName="Passwork" />
           <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
           <ScalarProperty Name="Roll" ColumnName="Roll" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserImage">
+      <EntityTypeMapping TypeName="StudentDBModel.UserImage">
+        <MappingFragment StoreEntitySet="UserImage">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -394,7 +403,7 @@
           <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
           <ScalarProperty Name="CandreID" ColumnName="CandreID" />
           <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -417,7 +426,7 @@
           <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
           <ScalarProperty Name="CandreID" ColumnName="CandreID" />
           <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
@@ -434,14 +443,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="UserImage">
-      <EntityTypeMapping TypeName="StudentDBModel.UserImage">
-        <MappingFragment StoreEntitySet="UserImage">
-          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -56,10 +56,10 @@ namespace StudentManagement
         public virtual Policy Policy1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegisterStudyUnit> RegisterStudyUnit { get; set; }
+        public virtual UserImage UserImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudyFee> StudyFee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentUser> StudentUser { get; set; }
-        public virtual UserImage UserImage { get; set; }
     }
 }

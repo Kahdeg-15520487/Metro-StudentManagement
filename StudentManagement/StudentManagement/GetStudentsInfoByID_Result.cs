@@ -29,7 +29,7 @@ namespace StudentManagement
         public string CurrentAddress { get; set; }
         public string CandreID { get; set; }
         public string Email { get; set; }
-        public Nullable<int> IDImage { get; set; }
+        public Nullable<int> ImageID { get; set; }
         public int ID { get; set; }
         public string ImagePath { get; set; }
         public byte[] ImageToByte { get; set; }
