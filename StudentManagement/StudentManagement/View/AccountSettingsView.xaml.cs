@@ -67,5 +67,22 @@ namespace StudentManagement.View
             ImageSource imageSource = new BitmapImage(new Uri(txtPicturePath.Text));
             image1.Source = imageSource;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (StudentDBEntities DB = new StudentDBEntities())
+            {
+                UserImage images = new UserImage();
+                var result = (from t in DB.UserImage
+                              where t.ImagePath == txtPicturePath.Text
+                              select t.ImageToByte).FirstOrDefault();
+                Stream StreamObj = new MemoryStream(result);
+                BitmapImage BitObj = new BitmapImage();
+                BitObj.BeginInit();
+                BitObj.StreamSource = StreamObj;
+                BitObj.EndInit();
+                image2.Source = BitObj;
+            }
+        }
     }
 }
