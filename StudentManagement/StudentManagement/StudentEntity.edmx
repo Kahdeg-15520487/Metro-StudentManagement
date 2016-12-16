@@ -222,7 +222,7 @@
           <Property Name="CurrentAddress" Type="nvarchar" MaxLength="300" />
           <Property Name="CandreID" Type="nvarchar" MaxLength="10" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
-          <Property Name="ImageID" Type="nvarchar" MaxLength="10" />
+          <Property Name="ImageID" Type="int" />
         </EntityType>
         <EntityType Name="StudentUser">
           <Key>
@@ -273,8 +273,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ImagePath" Type="nvarchar" MaxLength="400" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
           <Property Name="ImageToByte" Type="image" />
         </EntityType>
         <EntityType Name="Users">
@@ -502,7 +502,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Fk_student_Image">
+        <Association Name="FK_student_image">
           <End Role="UserImage" Type="Self.UserImage" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -737,7 +737,7 @@
             <End Role="Semester" EntitySet="Semester" />
             <End Role="StudyFee" EntitySet="StudyFee" />
           </AssociationSet>
-          <AssociationSet Name="Fk_student_Image" Association="Self.Fk_student_Image">
+          <AssociationSet Name="FK_student_image" Association="Self.FK_student_image">
             <End Role="UserImage" EntitySet="UserImage" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
@@ -1039,8 +1039,10 @@
           <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_StudentID_RegisterStudyUnit" FromRole="Student" ToRole="RegisterStudyUnit" />
           <NavigationProperty Name="StudyFee" Relationship="Self.Fk_StudentID_Studyfee" FromRole="Student" ToRole="StudyFee" />
           <NavigationProperty Name="StudentUser" Relationship="Self.Fk_StudentUser" FromRole="Student" ToRole="StudentUser" />
-          <Property Name="ImageID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserImage" Relationship="StudentDBModel.Fk_student_Image" FromRole="Student" ToRole="UserImage" />
+          <Property Name="ImageID" Type="Int32" />
+          <NavigationProperty Name="UserImage" Relationship="StudentDBModel.FK_student_image" FromRole="Student" ToRole="UserImage" />
+         
+       
          
         </EntityType>
         <EntityType Name="StudentUser">
@@ -1580,10 +1582,12 @@
             <Parameter Name="PassWord" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="UserImage" EntityType="StudentDBModel.UserImage" />
-          <AssociationSet Name="Fk_student_Image" Association="StudentDBModel.Fk_student_Image">
+          <AssociationSet Name="FK_student_image" Association="StudentDBModel.FK_student_image">
             <End Role="UserImage" EntitySet="UserImage" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
+         
+         
         </EntityContainer>
         <ComplexType Name="GetAcademicByID_Result">
           <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -1694,12 +1698,12 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ImagePath" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="ImageToByte" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Student" Relationship="StudentDBModel.Fk_student_Image" FromRole="UserImage" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="StudentDBModel.FK_student_image" FromRole="UserImage" ToRole="Student" />
         </EntityType>
-        <Association Name="Fk_student_Image">
+        <Association Name="FK_student_image">
           <End Type="StudentDBModel.UserImage" Role="UserImage" Multiplicity="0..1" />
           <End Type="StudentDBModel.Student" Role="Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1711,6 +1715,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+       
+       
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
