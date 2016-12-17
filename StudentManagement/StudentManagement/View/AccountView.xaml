@@ -12,34 +12,26 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <!--<Image Width="150" Height="150">
-                    <Image.Source>
-                        <BitmapImage DecodePixelWidth="500" UriSource="./Resourses/Photos/download.png"/>
-                    </Image.Source>
-                </Image>-->
+                <Image Source="{Binding ImageUrl}" Width="150" Height="150">
+
+                </Image>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Margin="0,5,0,0" FontFamily="Ubuntu" FontSize="13" Text="{Binding Name}"></TextBlock>
                     <TextBlock Margin="0,5,0,0" Text="{Binding Email}"></TextBlock>
                 </StackPanel>
 
             </StackPanel>
-            <Button BorderThickness="0" 
-                    Metro:ButtonHelper.PreserveTextCase="True" 
-                    Margin="0,5,0,0" 
-                    Content="Change Picture">
-                
-            </Button>
             <Button Command="{Binding Settings}" 
                     BorderThickness="0" 
-                    Style="{StaticResource SquareButtonStyle}" 
+                    Style="{StaticResource SquareButtonStyle}"
                     Metro:ButtonHelper.PreserveTextCase="True"
                     Margin="0,5,0,0" Content="Account Settings">
                 
             </Button>
             <Button BorderThickness="0" 
-                    Style="{StaticResource SquareButtonStyle}" 
+                    Style="{StaticResource SquareButtonStyle}"
                     Metro:ButtonHelper.PreserveTextCase="True"  
-                    Margin="0,5,0,0" Content="Sign Out">
+                    Margin="0,5,0,0" Content="Sign Out" Command="{Binding SignOutCommand}">
                 
             </Button>
         </StackPanel>
