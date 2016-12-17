@@ -7,13 +7,12 @@
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1535">
+
     <UserControl.Resources>
-        <ViewModel:MainViewModel x:Key="MainViewModel">
-            
-        </ViewModel:MainViewModel>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
     <ScrollViewer>
-        <GroupBox  Header="ACCOUNT SETTINGS" FontFamily="30">
+        <GroupBox  Header="ACCOUNT SETTINGS" FontFamily="30" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -22,10 +21,13 @@
 
                 <GroupBox Header="User Infomation"
                        FontSize="25"
-                          DataContext="{StaticResource MainViewModel}">
-                    <StackPanel Orientation="Vertical" Grid.Column="0">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0">
-                            <Image Name="image2" Width="375" Height="375" HorizontalAlignment="Left"/>
+                         >
+                    <StackPanel Orientation="Vertical" Grid.Column="0" >
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0" >
+                            <Image Source="{Binding ImageUrl}" Width="375" Height="375" HorizontalAlignment="Left">
+
+                            </Image>
+
                             <StackPanel Orientation="Vertical">
                                 <TextBlock FontSize="20" 
                                            Text="{Binding Name}">
@@ -40,48 +42,47 @@
 
                         </StackPanel>
                         <TextBlock FontSize="20" >
-            <Hyperlink>
-                <TextBlock Text="Change Profile Picture">
+            <Hyperlink Command="{Binding ChangePictureCommand}">
+                <TextBlock Text="Change Profile Picture" >
                     
                 </TextBlock>
             </Hyperlink>
         </TextBlock>
                         <TextBlock FontSize="20" >
-            <Hyperlink>
+            <Hyperlink Command="{Binding ChangePassworkCommand}">
                 <TextBlock Text="Change Passwork" >
                     
                 </TextBlock>
             </Hyperlink>
         </TextBlock>
                         <TextBlock FontSize="20">
-            <Hyperlink>
+            <Hyperlink Command="{Binding SignOutCommand}">
                 <TextBlock Text="Sign Out"></TextBlock>
             </Hyperlink>
         </TextBlock>
                     </StackPanel>
 
                 </GroupBox>
-                <GroupBox Grid.Column="1" Visibility="Visible" Name="grbChangePicture" Header="Tasks" FontSize="25">
+                <GroupBox Grid.Column="1" Visibility="{Binding IsChangeProfilePictureOpen,Converter={StaticResource BoolToVis}}" Header="Change Profile Picture" FontSize="25">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBox Width="500" FontSize="20" Name="txtPicturePath" Text="Picture Path here"></TextBox>
-                            <Button FontSize="20" Width="100" Content="Browse" Margin="15,0,0,0" Click="Button_Click_2"/>
-                            <Button Click="Button_Click_1" Width="100"></Button>
+                            <Button Command="{Binding BrowseCommand}" FontSize="20" Width="100" Content="Browse" Margin="15,0,0,0"/>
                         </StackPanel>
 
                         <Image Name="image1" Margin="20" Width="500" Height="500" >
 
                         </Image>
 
-                        <Button Click="Button_Click" FontSize="20" Width="100"   HorizontalAlignment="Right" Content="OK"></Button>
-                        
+                        <Button Command="{Binding ConfirmCommand}" FontSize="20" Width="100"   HorizontalAlignment="Right" Content="OK"></Button>
+                         
                     </StackPanel>
 
 
 
                 </GroupBox>
 
-                <GroupBox Header="Tasks" FontSize="25" Grid.Column="1" Name="grbChangePasswork" Visibility="Hidden">
+                <GroupBox Header="Change Passwork" FontSize="25" Grid.Column="1" Visibility="{Binding IsChangePassworkOpen,Converter={StaticResource BoolToVis}}">
                     <StackPanel  Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="20,0,0,0" Width="175" 
