@@ -443,5 +443,16 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ChangeUserPasswork" FunctionName="StudentDBModel.Store.ChangeUserPasswork" />
+    <FunctionImportMapping FunctionImportName="GetUsersDetail" FunctionName="StudentDBModel.Store.GetUsersDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetUsersDetail_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

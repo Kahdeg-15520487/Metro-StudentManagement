@@ -162,6 +162,9 @@
     <Compile Include="GetStudentsInfoByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetUsersDetail_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetUser_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>

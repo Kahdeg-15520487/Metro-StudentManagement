@@ -44,6 +44,31 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
+        private ObservableCollection<GetUsersDetail_Result> _User; //This hold all the User's infomation
+
+
+        public ObservableCollection<GetUsersDetail_Result> User
+        {
+            get
+            {
+                if (_User == null)
+                {
+                    _User = new ObservableCollection<GetUsersDetail_Result>();
+                }
+                return _User;
+            }
+
+            set
+            {
+                if (_User != value)
+                {
+                    _User = value;
+                    OnPropertyChanged("User");
+                }
+
+            }
+        }
+
 
         private string _Name;
         public string Name
@@ -128,6 +153,7 @@ namespace StudentManagement.ViewModel
             IsAccountFlyoutOpen = true;
             string ID = DialogLogginViewModel.Users[0].ID;
             Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
+            User = new ObservableCollection<GetUsersDetail_Result>(ST.GetUsersDetail(ID));
             GetImageUrlFromDatabase();
             Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
             Email = Students[0].Email;
@@ -142,7 +168,7 @@ namespace StudentManagement.ViewModel
         private void InitAccountView()
         {
             Accounts = new RelayCommand<object>((p) => true, OnAccountCommand);
-            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);       
+            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
         }
 
         #endregion
@@ -151,9 +177,11 @@ namespace StudentManagement.ViewModel
 
         public ICommand BrowseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
-        public ICommand ChangePictureCommand { get; set; }
-        public ICommand ChangePassworkCommand { get; set; }
+        public ICommand ChangePictureOpenCommand { get; set; }
+        public ICommand ChangePassworkOpenCommand { get; set; }
         public ICommand SignOutCommand { get; set; }
+        public ICommand ChangePassworkCommand { get; set; }
+        public ICommand ComfirmChangePassworkCommand { get; set; }
 
         private bool isChangePassworkOpen; //This hold the visibility of Change Passwork groupbox
         public bool IsChangePassworkOpen
@@ -165,7 +193,7 @@ namespace StudentManagement.ViewModel
 
             set
             {
-                if (isChangePassworkOpen!=value)
+                if (isChangePassworkOpen != value)
                     isChangePassworkOpen = value;
                 OnPropertyChanged("IsChangePassworkOpen");
             }
@@ -187,7 +215,7 @@ namespace StudentManagement.ViewModel
             }
         }
 
- 
+
         private ImageSource _ProfilePictureSourse; //This is the path of Profile Picture
         public ImageSource ProfilePictureSourse
         {
@@ -222,16 +250,23 @@ namespace StudentManagement.ViewModel
         private void OnBrowseButtonCommand(object obj)
         {
             UserImage image = new UserImage();
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.ShowDialog();
-            openFileDialog1.Filter = "Image files (*.bmp, *.jpg)|*.bmp;*.jpg|All files (*.*)|*.*";
-            openFileDialog1.DefaultExt = ".jpeg";
-            PicturePath= openFileDialog1.FileName;
-            ProfilePictureSourse = new BitmapImage(new Uri(PicturePath));         
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Image files (*.png, *.bmp, *.jpg)|*.png;*.bmp;*.jpg|All files (*.*)|*.*";
+            fileDialog.DefaultExt = ".jpeg";
+            var result = fileDialog.ShowDialog();
+            if (result == false)
+                return;
+            PicturePath = fileDialog.FileName;
+            ProfilePictureSourse = new BitmapImage(new Uri(PicturePath));
         }
 
-        private void OnConfirmButtonCommand(object obj)
+        private async void OnConfirmButtonCommand(object obj)
         {
+            if (ProfilePictureSourse == null && PicturePath == null)
+            {
+                var conntroller = await metroWindow.ShowMessageAsync("Information", "You have not selected a picture yet, click BROWSE to select one..");
+                return;
+            }
             UserImage data = new UserImage();
             data.ImagePath = PicturePath;
             data.ImageToByte = File.ReadAllBytes(PicturePath);
@@ -250,17 +285,16 @@ namespace StudentManagement.ViewModel
             BitObj.StreamSource = StreamObj;
             BitObj.EndInit();
             ImageUrl = BitObj;
-
         }
 
-        private void OnChangePassworkCommand(object obj)
+        private void OnChangePassworkOpenCommand(object obj)
         {
             IsChangePassworkOpen = true;
             IsChangeProfilePictureOpen = false;
 
         }
 
-        private void OnChangeProfilePictureCommand(object obj)
+        private void OnChangeProfilePictureOpenCommand(object obj)
         {
             IsChangePassworkOpen = false;
             IsChangeProfilePictureOpen = true;
@@ -274,7 +308,7 @@ namespace StudentManagement.ViewModel
                 {
                     (window as MainWindow).cmbChangeUC.SelectedIndex = 0;
                     (window as MainWindow).WindowState = System.Windows.WindowState.Normal;
-                    (window as MainWindow).Account.Visibility = System.Windows.Visibility.Hidden;                           
+                    (window as MainWindow).Account.Visibility = System.Windows.Visibility.Hidden;
                 }
                 IsAccountFlyoutOpen = false;
                 IsSettingsFlyoutOpen = false;
@@ -284,13 +318,63 @@ namespace StudentManagement.ViewModel
             }
         }
 
+
+        private string _Passwork;
+
+        public string Passwork
+        {
+            get
+            {
+                return _Passwork;
+            }
+
+            set
+            {
+                _Passwork = value;
+                OnPropertyChanged("Passwork");
+            }
+        }
+
+        private bool canChangePasswork = false;
+
+        public bool CanChangePasswork
+        {
+            get
+            {
+                return canChangePasswork;
+            }
+
+            set
+            {
+                if (canChangePasswork == value)
+                    return;
+                canChangePasswork = value;
+                OnPropertyChanged("CanChangePasswork");
+            }
+        }
+
+        private void OnComfirmChangePassworkCommand(object obj)
+        {
+            
+        }
+
+        private void OnChangingPassworkCommand(object obj)
+        {
+            if (Passwork == User[0].Passwords)
+                CanChangePasswork = true;
+            else
+                CanChangePasswork = false;
+
+        }
+
         private void InitUserSettingsView()
         {
             BrowseCommand = new RelayCommand<object>((p) => true, OnBrowseButtonCommand);
             ConfirmCommand = new RelayCommand<object>((p) => true, OnConfirmButtonCommand);
-            ChangePassworkCommand= new RelayCommand<object>((p) => true, OnChangePassworkCommand);
-            ChangePictureCommand = new RelayCommand<object>((p) => true, OnChangeProfilePictureCommand);
-            SignOutCommand= new RelayCommand<object>((p) => true, OnSignOutCommand);
+            ChangePassworkOpenCommand = new RelayCommand<object>((p) => true, OnChangePassworkOpenCommand);
+            ChangePictureOpenCommand = new RelayCommand<object>((p) => true, OnChangeProfilePictureOpenCommand);
+            SignOutCommand = new RelayCommand<object>((p) => true, OnSignOutCommand);
+            ChangePassworkCommand = new RelayCommand<object>((p) => true, OnChangingPassworkCommand);
         }
 
         #endregion
@@ -331,7 +415,7 @@ namespace StudentManagement.ViewModel
                 if (_selectedUCIndex == value)
                     return;
                 _selectedUCIndex = value;
-                OnPropertyChanged("SelectedUCIndex"); 
+                OnPropertyChanged("SelectedUCIndex");
                 CurrentUserControl = _ViewModelList[_selectedUCIndex];
             }
         }
@@ -357,6 +441,6 @@ namespace StudentManagement.ViewModel
             InitViewModelList();
             InitAccountView();
             InitUserSettingsView();
-        }  
+        }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicMark">
           <Key>
             <PropertyRef Name="StudentID" />
@@ -610,6 +610,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ChangeUserPasswork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
@@ -637,6 +641,9 @@
         <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="nvarchar" Mode="In" />
           <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetUsersDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
@@ -774,8 +781,7 @@
             <End Role="TeacherUser" EntitySet="TeacherUser" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1574,32 +1580,39 @@
             <End Role="TeacherUser" EntitySet="TeacherUser" />
           </AssociationSet>
           <FunctionImport Name="GetAcademicByID" ReturnType="Collection(StudentDBModel.GetAcademicByID_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetActivities" ReturnType="Collection(StudentDBModel.GetActivities_Result)">
-            <Parameter Name="Activities" Mode="In" Type="String" />
+          <Parameter Name="Activities" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetActivityGroup" ReturnType="Collection(StudentDBModel.GetActivityGroup_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDetailActivity" ReturnType="Collection(StudentDBModel.GetDetailActivity_Result)">
-            <Parameter Name="Activitie" Mode="In" Type="String" />
+          <Parameter Name="Activitie" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDetailDisciplineByID" ReturnType="Collection(StudentDBModel.GetDetailDisciplineByID_Result)">
-            <Parameter Name="DisciplineID" Mode="In" Type="String" />
+          <Parameter Name="DisciplineID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
-            <Parameter Name="StudenID" Mode="In" Type="String" />
+          <Parameter Name="StudenID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetStudentsInfoByID" ReturnType="Collection(StudentDBModel.GetStudentsInfoByID_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUser" ReturnType="Collection(StudentDBModel.GetUser_Result)">
             <Parameter Name="ID" Mode="In" Type="String" />
             <Parameter Name="PassWord" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ChangeUserPasswork">
+            <Parameter Name="newPasswork" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUsersDetail" ReturnType="Collection(StudentDBModel.GetUsersDetail_Result)">
+            <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetAcademicByID_Result">
@@ -1702,6 +1715,12 @@
           <Property Type="Binary" Name="ImageToByte" Nullable="true" MaxLength="Max" />
         </ComplexType>
         <ComplexType Name="GetUser_Result">
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Roll" Nullable="true" />
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetUsersDetail_Result">
           <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="Roll" Nullable="true" />
@@ -2148,6 +2167,17 @@
           <FunctionImportMapping FunctionImportName="GetUser" FunctionName="StudentDBModel.Store.GetUser">
             <ResultMapping>
               <ComplexTypeMapping TypeName="StudentDBModel.GetUser_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ChangeUserPasswork" FunctionName="StudentDBModel.Store.ChangeUserPasswork" />
+          <FunctionImportMapping FunctionImportName="GetUsersDetail" FunctionName="StudentDBModel.Store.GetUsersDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetUsersDetail_Result">
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Passwords" ColumnName="Passwords" />
                 <ScalarProperty Name="Roll" ColumnName="Roll" />
