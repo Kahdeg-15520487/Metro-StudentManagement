@@ -35,7 +35,7 @@
             </Metro:Flyout>
 
             <Metro:Flyout Name="AccountSettingsFlyout"
-                Width="{Binding Width, ElementName=MetroWindow}"
+                Width="{Binding Width, ElementName=MetroWindow ,UpdateSourceTrigger=PropertyChanged}"
                 Position="Left"
                 AreAnimationsEnabled="True"
 
