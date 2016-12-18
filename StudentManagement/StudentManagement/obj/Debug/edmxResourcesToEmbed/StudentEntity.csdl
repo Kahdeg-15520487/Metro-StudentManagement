@@ -822,6 +822,13 @@
       <Parameter Name="ID" Mode="In" Type="String" />
       <Parameter Name="PassWord" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ChangeUserPasswork">
+      <Parameter Name="newPasswork" Mode="In" Type="String" />
+      <Parameter Name="ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUsersDetail" ReturnType="Collection(StudentDBModel.GetUsersDetail_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -923,6 +930,12 @@
     <Property Type="Binary" Name="ImageToByte" Nullable="true" MaxLength="Max" />
   </ComplexType>
   <ComplexType Name="GetUser_Result">
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Roll" Nullable="true" />
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="GetUsersDetail_Result">
     <Property Type="String" Name="UserName" Nullable="true" MaxLength="30" />
     <Property Type="String" Name="Passwords" Nullable="true" MaxLength="30" />
     <Property Type="Int32" Name="Roll" Nullable="true" />

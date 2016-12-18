@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentManagement.View"
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1535">
 
@@ -42,14 +43,14 @@
 
                         </StackPanel>
                         <TextBlock FontSize="20" >
-            <Hyperlink Command="{Binding ChangePictureCommand}">
+            <Hyperlink Command="{Binding ChangePictureOpenCommand}">
                 <TextBlock Text="Change Profile Picture" >
                     
                 </TextBlock>
             </Hyperlink>
         </TextBlock>
                         <TextBlock FontSize="20" >
-            <Hyperlink Command="{Binding ChangePassworkCommand}">
+            <Hyperlink Command="{Binding ChangePassworkOpenCommand}">
                 <TextBlock Text="Change Passwork" >
                     
                 </TextBlock>
@@ -66,11 +67,11 @@
                 <GroupBox Grid.Column="1" Visibility="{Binding IsChangeProfilePictureOpen,Converter={StaticResource BoolToVis}}" Header="Change Profile Picture" FontSize="25">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <TextBox Width="500" FontSize="20" Name="txtPicturePath" Text="Picture Path here"></TextBox>
+                            <TextBox Width="500" FontSize="20" Text="{Binding PicturePath}"></TextBox>
                             <Button Command="{Binding BrowseCommand}" FontSize="20" Width="100" Content="Browse" Margin="15,0,0,0"/>
                         </StackPanel>
 
-                        <Image Name="image1" Margin="20" Width="500" Height="500" >
+                        <Image Source="{Binding ProfilePictureSourse}" Margin="20" Width="500" Height="500" >
 
                         </Image>
 
@@ -90,8 +91,12 @@
                                        FontSize="20">
 
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520">
-
+                            <TextBox FontSize="20" Width="520" Text="{Binding Passwork,UpdateSourceTrigger=PropertyChanged}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding ChangePassworkCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
@@ -100,8 +105,9 @@
                                        FontSize="20"
                                        Margin="20,0,0,0">
 
+
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520"></TextBox>
+                            <TextBox FontSize="20" Width="520" IsEnabled="{Binding CanChangePasswork,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock Width="175" 
@@ -110,7 +116,7 @@
                                        Margin="20,0,0,0">
 
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520"></TextBox>
+                            <TextBox FontSize="20" Width="520" IsEnabled="{Binding CanChangePasswork,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Margin="5" Content="OK" Width="100"></Button>

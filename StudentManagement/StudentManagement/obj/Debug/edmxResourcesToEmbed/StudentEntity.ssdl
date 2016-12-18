@@ -605,6 +605,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="ChangeUserPasswork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
+    <Parameter Name="ID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
@@ -632,6 +636,9 @@
   <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
     <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetUsersDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
   <EntityContainer Name="StudentDBModelStoreContainer">
     <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />

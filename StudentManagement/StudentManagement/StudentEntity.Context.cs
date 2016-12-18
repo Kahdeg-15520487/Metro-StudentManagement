@@ -138,5 +138,27 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", iDParameter, passWordParameter);
         }
+    
+        public virtual int ChangeUserPasswork(string newPasswork, string iD)
+        {
+            var newPassworkParameter = newPasswork != null ?
+                new ObjectParameter("newPasswork", newPasswork) :
+                new ObjectParameter("newPasswork", typeof(string));
+    
+            var iDParameter = iD != null ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ChangeUserPasswork", newPassworkParameter, iDParameter);
+        }
+    
+        public virtual ObjectResult<GetUsersDetail_Result> GetUsersDetail(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUsersDetail_Result>("GetUsersDetail", studentIDParameter);
+        }
     }
 }
