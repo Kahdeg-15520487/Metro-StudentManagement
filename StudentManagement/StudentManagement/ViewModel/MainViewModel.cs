@@ -182,6 +182,8 @@ namespace StudentManagement.ViewModel
         public ICommand ChangePasswordOpenCommand { get; set; }
         public ICommand SignOutCommand { get; set; }
         public ICommand ComfirmChangePasswordCommand { get; set; }
+        public ICommand NewPasswordGotFocusCommand { get; set; }
+        public ICommand RetypePasswordGotFocusCommand { get; set; }
 
         private bool isChangePasswordOpen; //This hold the visibility of Change Password groupbox
         public bool IsChangePasswordOpen
@@ -413,6 +415,16 @@ namespace StudentManagement.ViewModel
             ST.ChangeUserPasswork(NewPassword, User[0].ID);
         }
 
+        private void OnNewPasswordGotFocusCommand(object obj)
+        {
+            NewPassword = string.Empty;
+        }
+
+        private void OnRetypePasswordGotFocusCommand(object obj)
+        {
+            RetypePasswordProperty = string.Empty;
+        }
+
         public string this[string columnName]
         {
             get
@@ -447,7 +459,9 @@ namespace StudentManagement.ViewModel
             ChangePasswordOpenCommand = new RelayCommand<object>((p) => true, OnChangePasswordOpenCommand);
             ChangePictureOpenCommand = new RelayCommand<object>((p) => true, OnChangeProfilePictureOpenCommand);
             SignOutCommand = new RelayCommand<object>((p) => true, OnSignOutCommand);
-            ConfirmCommand=new RelayCommand< object > ((p) => true, OnComfirmChangePasswordCommand);
+            ConfirmCommand = new RelayCommand<object>((p) => true, OnComfirmChangePasswordCommand);
+            NewPasswordGotFocusCommand = new RelayCommand<object>((p) => true, OnNewPasswordGotFocusCommand);
+            RetypePasswordGotFocusCommand = new RelayCommand<object>((p) => true, OnRetypePasswordGotFocusCommand);
         }
 
         #endregion

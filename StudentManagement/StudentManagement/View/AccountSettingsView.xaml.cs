@@ -9,9 +9,10 @@ namespace StudentManagement.View
   
         public AccountSettingsView()
         {
-
             InitializeComponent();
 
         }
+
+      
     }
 }
