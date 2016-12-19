@@ -12,8 +12,9 @@
     <UserControl.Resources>
         <Viewmodel:BehaviorViewModel x:Key="key1"></Viewmodel:BehaviorViewModel>
     </UserControl.Resources>
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid>
-        <Grid Margin="0,-35,0,0">
+        <Grid Margin="5">
             <Grid.Background>
                 <ImageBrush 
                 ImageSource="/Resources/Backgrounds/MainBackground.png">
@@ -21,7 +22,7 @@
 
             </Grid.Background>
         </Grid>
-        <ScrollViewer>
+        
             <Grid>
       
             <Grid.RowDefinitions>
@@ -130,6 +131,7 @@
             <Label Name="lblSum" Content="This Sum"></Label>
         </StackPanel>
             </Grid>
-        </ScrollViewer>
+        
     </Grid>
+        </ScrollViewer>
 </UserControl>
