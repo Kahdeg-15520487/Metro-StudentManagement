@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:StudentManagement.View"
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
+            
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1535">
 
@@ -92,9 +93,9 @@
                                        FontSize="20">
 
                             </TextBlock>
-                            <TextBox  FontSize="20" Width="520" Text="{Binding CorrectPasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}">
+                            <PasswordBox  FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding CorrectPasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}">
                              
-                            </TextBox>
+                            </PasswordBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock Width="175" 
@@ -102,7 +103,13 @@
                                        FontSize="20"
                                        Margin="20,0,0,0">
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520" Text="{Binding NewPassword, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, Mode=TwoWay}"></TextBox>
+                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding NewPassword, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, Mode=TwoWay}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="GotFocus">
+                                        <i:InvokeCommandAction Command="{Binding NewPasswordGotFocusCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock Width="175" 
@@ -111,7 +118,14 @@
                                        Margin="20,0,0,0">
 
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520" Text="{Binding RetypePasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, Mode=TwoWay}"></TextBox>
+                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True"  ViewModel:PasswordHelper.Password="{Binding RetypePasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged , NotifyOnValidationError=True, Mode=TwoWay}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="GotFocus">
+                                        <i:InvokeCommandAction Command="{Binding RetypePasswordGotFocusCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
+                            
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Command="{Binding ConfirmCommand}" Margin="5" Content="OK" Width="100"></Button>
