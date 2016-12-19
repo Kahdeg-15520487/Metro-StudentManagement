@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:StudentManagement.View"
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1535">
 
@@ -50,7 +51,7 @@
             </Hyperlink>
         </TextBlock>
                         <TextBlock FontSize="20" >
-            <Hyperlink Command="{Binding ChangePassworkOpenCommand}">
+            <Hyperlink Command="{Binding ChangePasswordOpenCommand}">
                 <TextBlock Text="Change Passwork" >
                     
                 </TextBlock>
@@ -83,31 +84,25 @@
 
                 </GroupBox>
 
-                <GroupBox Header="Change Passwork" FontSize="25" Grid.Column="1" Visibility="{Binding IsChangePassworkOpen,Converter={StaticResource BoolToVis}}">
-                    <StackPanel  Orientation="Vertical">
+                <GroupBox Header="Change Password" FontSize="25" Grid.Column="1" Visibility="{Binding IsChangePasswordOpen,Converter={StaticResource BoolToVis}}">
+                    <StackPanel  Orientation="Vertical" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="20,0,0,0" Width="175" 
                                        Text="Passwork: "
                                        FontSize="20">
 
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520" Text="{Binding Passwork,UpdateSourceTrigger=PropertyChanged}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction Command="{Binding ChangePassworkCommand}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
+                            <TextBox  FontSize="20" Width="520" Text="{Binding CorrectPasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}">
+                             
                             </TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock Width="175" 
-                                       Text="New Passwork: "
+                                       Text="New Password: "
                                        FontSize="20"
                                        Margin="20,0,0,0">
-
-
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520" IsEnabled="{Binding CanChangePasswork}"></TextBox>
+                            <TextBox FontSize="20" Width="520" Text="{Binding NewPassword, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock Width="175" 
@@ -116,10 +111,10 @@
                                        Margin="20,0,0,0">
 
                             </TextBlock>
-                            <TextBox FontSize="20" Width="520" IsEnabled="{Binding CanChangePasswork}"></TextBox>
+                            <TextBox FontSize="20" Width="520" Text="{Binding RetypePasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Margin="5" Content="OK" Width="100"></Button>
+                            <Button Command="{Binding ConfirmCommand}" Margin="5" Content="OK" Width="100"></Button>
                             <Button Margin="5,5,30,5"  Content="Reset" Width="100"></Button>
                         </StackPanel>
                     </StackPanel>

@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 
 namespace StudentManagement.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IDataErrorInfo
     {
 
         StudentDBEntities ST = new StudentDBEntities();
@@ -178,24 +179,23 @@ namespace StudentManagement.ViewModel
         public ICommand BrowseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
         public ICommand ChangePictureOpenCommand { get; set; }
-        public ICommand ChangePassworkOpenCommand { get; set; }
+        public ICommand ChangePasswordOpenCommand { get; set; }
         public ICommand SignOutCommand { get; set; }
-        public ICommand ChangePassworkCommand { get; set; }
-        public ICommand ComfirmChangePassworkCommand { get; set; }
+        public ICommand ComfirmChangePasswordCommand { get; set; }
 
-        private bool isChangePassworkOpen; //This hold the visibility of Change Passwork groupbox
-        public bool IsChangePassworkOpen
+        private bool isChangePasswordOpen; //This hold the visibility of Change Password groupbox
+        public bool IsChangePasswordOpen
         {
             get
             {
-                return isChangePassworkOpen;
+                return isChangePasswordOpen;
             }
 
             set
             {
-                if (isChangePassworkOpen != value)
-                    isChangePassworkOpen = value;
-                OnPropertyChanged("IsChangePassworkOpen");
+                if (isChangePasswordOpen != value)
+                    isChangePasswordOpen = value;
+                OnPropertyChanged("IsChangePasswordOpen");
             }
         }
 
@@ -287,16 +287,16 @@ namespace StudentManagement.ViewModel
             ImageUrl = BitObj;
         }
 
-        private void OnChangePassworkOpenCommand(object obj)
+        private void OnChangePasswordOpenCommand(object obj)
         {
-            IsChangePassworkOpen = true;
+            IsChangePasswordOpen = true;
             IsChangeProfilePictureOpen = false;
 
         }
 
         private void OnChangeProfilePictureOpenCommand(object obj)
         {
-            IsChangePassworkOpen = false;
+            IsChangePasswordOpen = false;
             IsChangeProfilePictureOpen = true;
         }
 
@@ -312,69 +312,142 @@ namespace StudentManagement.ViewModel
                 }
                 IsAccountFlyoutOpen = false;
                 IsSettingsFlyoutOpen = false;
-                IsChangePassworkOpen = false;
+                IsChangePasswordOpen = false;
                 IsChangeProfilePictureOpen = false;
                 Students.Clear();
             }
         }
 
 
-        private string _Passwork;
+        private string newPassword = string.Empty;
 
-        public string Passwork
+        public string NewPassword
         {
             get
             {
-                return _Passwork;
+                return newPassword;
             }
 
             set
             {
-                _Passwork = value;
-                OnPropertyChanged("Passwork");
+                newPassword = value;
+                OnPropertyChanged("NewPassword");
             }
         }
 
-        private bool canChangePasswork = false;
+        private bool canChangePassword = false;
 
-        public bool CanChangePasswork
+        public bool CanChangePassword
         {
             get
             {
-                return canChangePasswork;
+                return canChangePassword;
             }
 
             set
             {
-                if (canChangePasswork == value)
+                if (canChangePassword==value)
+                {
                     return;
-                canChangePasswork = value;
-                OnPropertyChanged("CanChangePasswork");
+                }
+                canChangePassword = value;
+                OnPropertyChanged("CanChangePassword");
             }
         }
 
-        private void OnComfirmChangePassworkCommand(object obj)
+        private string correctPasswordProperty = string.Empty;
+
+        public string CorrectPasswordProperty
         {
-            
+            get
+            {
+                return correctPasswordProperty;
+            }
+
+            set
+            {
+                if (correctPasswordProperty == value)
+                    return;
+                correctPasswordProperty = value;
+                OnPropertyChanged("CorrectPasswordProperty");
+            }
         }
 
-        private void OnChangingPassworkCommand(object obj)
+        private string retypePasswordProperty = string.Empty;
+        public string RetypePasswordProperty
         {
-            if (Passwork == User[0].Passwords)
-                CanChangePasswork = true;
-            else
-                CanChangePasswork = false;
+            get
+            {
+                return retypePasswordProperty;
+            }
 
+            set
+            {
+                if (retypePasswordProperty == value)
+                    return;
+                retypePasswordProperty = value;
+                OnPropertyChanged("RetypePasswordProperty");
+            }
         }
+
+        private bool checkError = false;
+
+        public bool CheckError
+        {
+            get
+            {
+                return checkError;
+            }
+
+            set
+            {
+                checkError = value;
+                OnPropertyChanged("CheckError");
+            }
+        }
+
+        private void OnComfirmChangePasswordCommand(object obj)
+        {
+            if (checkError)
+                return;
+            ST.ChangeUserPasswork(NewPassword, User[0].ID);
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "CorrectPasswordProperty" && CorrectPasswordProperty != User[0].Passwords)
+                {
+                    CheckError = true;
+                    return "Incorrect Password..";
+                }
+                else if ((columnName == "RetypePasswordProperty" || columnName == "NewPassword") && RetypePasswordProperty != string.Empty && RetypePasswordProperty != NewPassword) 
+                {
+                    CheckError = true;
+                    return "Password not match..";
+                }
+               
+                else
+                {
+                    checkError = false;
+                    return null;
+                }  
+            }
+        }
+
+
+
+
 
         private void InitUserSettingsView()
         {
             BrowseCommand = new RelayCommand<object>((p) => true, OnBrowseButtonCommand);
             ConfirmCommand = new RelayCommand<object>((p) => true, OnConfirmButtonCommand);
-            ChangePassworkOpenCommand = new RelayCommand<object>((p) => true, OnChangePassworkOpenCommand);
+            ChangePasswordOpenCommand = new RelayCommand<object>((p) => true, OnChangePasswordOpenCommand);
             ChangePictureOpenCommand = new RelayCommand<object>((p) => true, OnChangeProfilePictureOpenCommand);
             SignOutCommand = new RelayCommand<object>((p) => true, OnSignOutCommand);
-            ChangePassworkCommand = new RelayCommand<object>((p) => true, OnChangingPassworkCommand);
+            ConfirmCommand=new RelayCommand< object > ((p) => true, OnComfirmChangePasswordCommand);
         }
 
         #endregion
@@ -417,6 +490,14 @@ namespace StudentManagement.ViewModel
                 _selectedUCIndex = value;
                 OnPropertyChanged("SelectedUCIndex");
                 CurrentUserControl = _ViewModelList[_selectedUCIndex];
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                throw new NotImplementedException();
             }
         }
 
