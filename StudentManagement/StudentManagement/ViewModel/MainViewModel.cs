@@ -69,7 +69,7 @@ namespace StudentManagement.ViewModel
 
             }
         }
-
+        string UserPassword = string.Empty;
 
         private string _Name;
         public string Name
@@ -152,12 +152,14 @@ namespace StudentManagement.ViewModel
         private void OnAccountCommand(object obj)
         {
             IsAccountFlyoutOpen = true;
+            string UserName = DialogLogginViewModel.Users[0].UserName;
             string ID = DialogLogginViewModel.Users[0].ID;
             Students = new ObservableCollection<GetStudentsInfoByID_Result>(ST.GetStudentsInfoByID(ID));
-            User = new ObservableCollection<GetUsersDetail_Result>(ST.GetUsersDetail(ID));
+            User = new ObservableCollection<GetUsersDetail_Result>(ST.GetUsersDetail(UserName));
             GetImageUrlFromDatabase();
             Name = Students[0].Name + " " + Students[0].MiddleName + " " + Students[0].LastName;
             Email = Students[0].Email;
+            UserPassword = User[0].Passwords;
         }
 
         void OnSettingsCommand(object obj)
@@ -348,7 +350,7 @@ namespace StudentManagement.ViewModel
 
             set
             {
-                if (canChangePassword==value)
+                if (canChangePassword == value)
                 {
                     return;
                 }
@@ -412,12 +414,18 @@ namespace StudentManagement.ViewModel
         {
             if (checkError)
                 return;
-            ST.ChangeUserPasswork(NewPassword, User[0].ID);
+            var updateStudent = ST.StudentUser.Find(User[0].UserName);
+            updateStudent.Pasworkd = NewPassword;
+            ST.Entry(updateStudent).State = System.Data.Entity.EntityState.Modified;
+            ST.SaveChanges();
+            
+            MessageBox.Show("OK");
         }
 
         private void OnNewPasswordGotFocusCommand(object obj)
         {
             NewPassword = string.Empty;
+            RetypePasswordProperty = string.Empty;
         }
 
         private void OnRetypePasswordGotFocusCommand(object obj)
@@ -429,22 +437,21 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                if (columnName == "CorrectPasswordProperty" && CorrectPasswordProperty != User[0].Passwords)
+                if (columnName == "CorrectPasswordProperty" && CorrectPasswordProperty != UserPassword)
                 {
                     CheckError = true;
                     return "Incorrect Password..";
                 }
-                else if ((columnName == "RetypePasswordProperty" || columnName == "NewPassword") && RetypePasswordProperty != string.Empty && RetypePasswordProperty != NewPassword) 
+                else if (columnName == "RetypePasswordProperty" && RetypePasswordProperty != string.Empty && RetypePasswordProperty != NewPassword)
                 {
                     CheckError = true;
                     return "Password not match..";
                 }
-               
                 else
                 {
                     checkError = false;
                     return null;
-                }  
+                }
             }
         }
 
