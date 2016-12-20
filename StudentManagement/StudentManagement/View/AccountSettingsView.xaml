@@ -77,7 +77,7 @@
 
                         </Image>
 
-                        <Button Command="{Binding ConfirmCommand}" FontSize="20" Width="100"   HorizontalAlignment="Right" Content="OK"></Button>
+                        <Button Command="{Binding ConfirmChangePictureCommand}" FontSize="20" Width="100"   HorizontalAlignment="Right" Content="OK"></Button>
                          
                     </StackPanel>
 
@@ -120,7 +120,7 @@
                                        Margin="20,0,0,0">
 
                             </TextBlock>
-                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True"  ViewModel:PasswordHelper.Password="{Binding RetypePasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged , NotifyOnValidationError=True, Mode=TwoWay}">
+                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding RetypePasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged , NotifyOnValidationError=True, Mode=TwoWay}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="GotFocus">
                                         <i:InvokeCommandAction Command="{Binding RetypePasswordGotFocusCommand}" />
@@ -130,7 +130,7 @@
                             
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Command="{Binding ConfirmCommand}" Margin="5" Content="OK" Width="100"></Button>
+                            <Button Command="{Binding ConfirmChangePasswordCommand}" Margin="5" Content="OK" Width="100"></Button>
                             <Button Margin="5,5,30,5"  Content="Reset" Width="100"></Button>
                         </StackPanel>
                     </StackPanel>

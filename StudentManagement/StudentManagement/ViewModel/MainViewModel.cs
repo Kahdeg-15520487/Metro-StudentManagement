@@ -19,10 +19,11 @@ namespace StudentManagement.ViewModel
 
         StudentDBEntities ST = new StudentDBEntities();
         MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
+        string UserPassword = string.Empty; //Hold the User current Password
 
         #region For Account View
-        public ICommand Accounts { get; set; }
-        public ICommand Settings { get; set; }
+
+        #region Student Collection and Get-Set Property
         private ObservableCollection<GetStudentsInfoByID_Result> _Students; //This hold all Students's Infomation
 
         public ObservableCollection<GetStudentsInfoByID_Result> Students
@@ -45,6 +46,9 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
+        #endregion
+
+        #region User Collection and Get-Set Property
         private ObservableCollection<GetUsersDetail_Result> _User; //This hold all the User's infomation
 
 
@@ -69,9 +73,12 @@ namespace StudentManagement.ViewModel
 
             }
         }
-        string UserPassword = string.Empty;
 
+        #endregion
+
+        #region Name variable-hold the Name of Student in Student Collection
         private string _Name;
+
         public string Name
         {
             get
@@ -86,6 +93,9 @@ namespace StudentManagement.ViewModel
             }
         }
 
+        #endregion
+
+        #region Email variable-hold the Email of Student in Student Collection
         private string _Email;
         public string Email
         {
@@ -100,6 +110,9 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("Email");
             }
         }
+        #endregion
+
+        #region PicturePath variable-hold the Path of Image of Student in Student Collection
         private string _PicturePath;
         public string PicturePath
         {
@@ -114,6 +127,9 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("PicturePath");
             }
         }
+        #endregion
+
+        #region isAccountFlyoutOpen-decide Account open or not
         private bool isAccountFlyoutOpen; //This will decide if Account Settings open or not
 
         public bool IsAccountFlyoutOpen
@@ -131,6 +147,10 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("IsAccountFlyoutOpen");
             }
         }
+
+        #endregion
+
+        #region isSettingsFlyoutOpen-decide AccountSettings open or not
         private bool isSettingsFlyoutOpen;
 
         public bool IsSettingsFlyoutOpen
@@ -148,7 +168,12 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("IsSettingsFlyoutOpen");
             }
         }
+        #endregion
 
+
+        #region AccountCommand-Open Account Flyout and do some stuffs
+     
+        public ICommand Accounts { get; set; } 
         private void OnAccountCommand(object obj)
         {
             IsAccountFlyoutOpen = true;
@@ -161,33 +186,40 @@ namespace StudentManagement.ViewModel
             Email = Students[0].Email;
             UserPassword = User[0].Passwords;
         }
+        #endregion
 
+        #region SettingsCommand-Open AccountSettings and do some stuffs
+        public ICommand Settings { get; set; } //This command open Settings Flyout and do some stuffs
         void OnSettingsCommand(object obj)
         {
             IsAccountFlyoutOpen = false;
             IsSettingsFlyoutOpen = true;
         }
-
-        private void InitAccountView()
-        {
-            Accounts = new RelayCommand<object>((p) => true, OnAccountCommand);
-            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
-        }
+        #endregion
 
         #endregion
 
+
+      
+
         #region For UserSettings
 
-        public ICommand BrowseCommand { get; set; }
-        public ICommand ConfirmCommand { get; set; }
-        public ICommand ChangePictureOpenCommand { get; set; }
-        public ICommand ChangePasswordOpenCommand { get; set; }
-        public ICommand SignOutCommand { get; set; }
-        public ICommand ComfirmChangePasswordCommand { get; set; }
-        public ICommand NewPasswordGotFocusCommand { get; set; }
-        public ICommand RetypePasswordGotFocusCommand { get; set; }
+        #region GetImageUrlFromDatabase-Get current User Image from Database
+        private void GetImageUrlFromDatabase()
+        {
+            UserImage images = new UserImage();
+            var result = Students[0].ImageToByte;
+            Stream StreamObj = new MemoryStream(result);
+            BitmapImage BitObj = new BitmapImage();
+            BitObj.BeginInit();
+            BitObj.StreamSource = StreamObj;
+            BitObj.EndInit();
+            ImageUrl = BitObj;
+        }
+        #endregion
 
-        private bool isChangePasswordOpen; //This hold the visibility of Change Password groupbox
+        #region IsChangePasswordOpen-hold the visibility of Change Password groupbox
+        private bool isChangePasswordOpen; 
         public bool IsChangePasswordOpen
         {
             get
@@ -202,8 +234,10 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("IsChangePasswordOpen");
             }
         }
+        #endregion
 
-        private bool isChangeProfilePictureOpen;//This hold the visibility of Change ProfilePicture groupbox
+        #region IsChangeProfilePictureOpen-hold the visibility of Change ProfilePicture groupbox
+        private bool isChangeProfilePictureOpen;
         public bool IsChangeProfilePictureOpen
         {
             get
@@ -218,23 +252,44 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("IsChangeProfilePictureOpen");
             }
         }
+        #endregion
 
+        #region ChangePasswordOpenCommand-Set the visibility of ChangePassword Groupbox
+        public ICommand ChangePasswordOpenCommand { get; set; }
+        private void OnChangePasswordOpenCommand(object obj)
+        {
+            IsChangePasswordOpen = true;
+            IsChangeProfilePictureOpen = false;
+        }
+        #endregion
 
-        private ImageSource _ProfilePictureSourse; //This is the path of Profile Picture
-        public ImageSource ProfilePictureSourse
+        #region ChangePictureOpenCommand-Set the visibility of ChangeProfilePicture GroupBox
+        public ICommand ChangePictureOpenCommand { get; set; }
+        private void OnChangeProfilePictureOpenCommand(object obj)
+        {
+            IsChangePasswordOpen = false;
+            IsChangeProfilePictureOpen = true;
+        }
+        #endregion
+
+        #region ProfilePictureSource variable-hold the Source of ProfilePicture
+        private ImageSource _ProfilePictureSource; 
+        public ImageSource ProfilePictureSource
         {
             get
             {
-                return _ProfilePictureSourse;
+                return _ProfilePictureSource;
             }
 
             set
             {
-                _ProfilePictureSourse = value;
-                OnPropertyChanged("ProfilePictureSourse");
+                _ProfilePictureSource = value;
+                OnPropertyChanged("ProfilePictureSource");
             }
         }
+        #endregion
 
+        #region ImageUrl-hold the Image of current User
         private BitmapImage _ImageUrl; //Hold the Url of Picture 
 
         public BitmapImage ImageUrl
@@ -250,7 +305,12 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("ImageUrl");
             }
         }
+        #endregion
 
+
+ 
+        #region BrowseCommand-Click to open a FileOpenDialog and choose profile picture
+        public ICommand BrowseCommand { get; set; }
         private void OnBrowseButtonCommand(object obj)
         {
             UserImage image = new UserImage();
@@ -261,12 +321,15 @@ namespace StudentManagement.ViewModel
             if (result == false)
                 return;
             PicturePath = fileDialog.FileName;
-            ProfilePictureSourse = new BitmapImage(new Uri(PicturePath));
+            ProfilePictureSource = new BitmapImage(new Uri(PicturePath));
         }
+        #endregion
 
-        private async void OnConfirmButtonCommand(object obj)
+        #region ConfirmChangePictureCommand-Confirm the Selected Image and do some stuffs
+        public ICommand ConfirmChangePictureCommand { get; set; }
+        private async void OnConfirmChangePictureCommand(object obj)
         {
-            if (ProfilePictureSourse == null && PicturePath == null)
+            if (ProfilePictureSource == null && PicturePath == null)
             {
                 var conntroller = await metroWindow.ShowMessageAsync("Information", "You have not selected a picture yet, click BROWSE to select one..");
                 return;
@@ -276,34 +339,24 @@ namespace StudentManagement.ViewModel
             data.ImageToByte = File.ReadAllBytes(PicturePath);
             ST.UserImage.Add(data);
             ST.SaveChanges();
-            MessageBox.Show("OK");
         }
+        #endregion
 
-        private void GetImageUrlFromDatabase()
+        #region ConfirmChangePasswordCommand-Confirm the input password
+        public ICommand ConfirmChangePasswordCommand { get; set; }
+        private void OnComfirmChangePasswordCommand(object obj)
         {
-            UserImage images = new UserImage();
-            var result = Students[0].ImageToByte;
-            Stream StreamObj = new MemoryStream(result);
-            BitmapImage BitObj = new BitmapImage();
-            BitObj.BeginInit();
-            BitObj.StreamSource = StreamObj;
-            BitObj.EndInit();
-            ImageUrl = BitObj;
+            if (checkError || correctPasswordProperty == string.Empty)
+                return;
+            var updateStudent = ST.StudentUser.Find(User[0].UserName);
+            updateStudent.Pasworkd = NewPassword;
+            ST.Entry(updateStudent).State = System.Data.Entity.EntityState.Modified;
+            ST.SaveChanges();
         }
+        #endregion
 
-        private void OnChangePasswordOpenCommand(object obj)
-        {
-            IsChangePasswordOpen = true;
-            IsChangeProfilePictureOpen = false;
-
-        }
-
-        private void OnChangeProfilePictureOpenCommand(object obj)
-        {
-            IsChangePasswordOpen = false;
-            IsChangeProfilePictureOpen = true;
-        }
-
+        #region SignOutCommand-for signing out
+        public ICommand SignOutCommand { get; set; }
         private void OnSignOutCommand(object obj)
         {
             foreach (Window window in Application.Current.Windows)
@@ -322,7 +375,9 @@ namespace StudentManagement.ViewModel
             }
         }
 
+        #endregion
 
+        #region NewPassword variable-hold the NewPassword input
         private string newPassword = string.Empty;
 
         public string NewPassword
@@ -338,27 +393,9 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("NewPassword");
             }
         }
+        #endregion
 
-        private bool canChangePassword = false;
-
-        public bool CanChangePassword
-        {
-            get
-            {
-                return canChangePassword;
-            }
-
-            set
-            {
-                if (canChangePassword == value)
-                {
-                    return;
-                }
-                canChangePassword = value;
-                OnPropertyChanged("CanChangePassword");
-            }
-        }
-
+        #region CorrectPasswordProperty-check that User input correct password or not
         private string correctPasswordProperty = string.Empty;
 
         public string CorrectPasswordProperty
@@ -377,6 +414,9 @@ namespace StudentManagement.ViewModel
             }
         }
 
+        #endregion
+
+        #region RetypePasswordProperty-check that RetypePassword correct or not
         private string retypePasswordProperty = string.Empty;
         public string RetypePasswordProperty
         {
@@ -393,7 +433,9 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("RetypePasswordProperty");
             }
         }
+        #endregion
 
+        #region CheckError-check that User can change Password or not
         private bool checkError = false;
 
         public bool CheckError
@@ -410,29 +452,26 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        private void OnComfirmChangePasswordCommand(object obj)
-        {
-            if (checkError)
-                return;
-            var updateStudent = ST.StudentUser.Find(User[0].UserName);
-            updateStudent.Pasworkd = NewPassword;
-            ST.Entry(updateStudent).State = System.Data.Entity.EntityState.Modified;
-            ST.SaveChanges();
-            
-            MessageBox.Show("OK");
-        }
+        #endregion
 
+        #region NewPasswordGotFocusCommand-GetFocus command on NewPassword Text Box
+        public ICommand NewPasswordGotFocusCommand { get; set; }
         private void OnNewPasswordGotFocusCommand(object obj)
         {
             NewPassword = string.Empty;
             RetypePasswordProperty = string.Empty;
         }
+        #endregion
 
+        #region RetypeGotFocusCommand-GetFocus command on RetypePassword Text Box
+        public ICommand RetypePasswordGotFocusCommand { get; set; }
         private void OnRetypePasswordGotFocusCommand(object obj)
         {
             RetypePasswordProperty = string.Empty;
         }
+        #endregion
 
+        #region IDataErrorInfo Interface-check error
         public string this[string columnName]
         {
             get
@@ -454,24 +493,11 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
-
-
-
-
-        private void InitUserSettingsView()
-        {
-            BrowseCommand = new RelayCommand<object>((p) => true, OnBrowseButtonCommand);
-            ConfirmCommand = new RelayCommand<object>((p) => true, OnConfirmButtonCommand);
-            ChangePasswordOpenCommand = new RelayCommand<object>((p) => true, OnChangePasswordOpenCommand);
-            ChangePictureOpenCommand = new RelayCommand<object>((p) => true, OnChangeProfilePictureOpenCommand);
-            SignOutCommand = new RelayCommand<object>((p) => true, OnSignOutCommand);
-            ConfirmCommand = new RelayCommand<object>((p) => true, OnComfirmChangePasswordCommand);
-            NewPasswordGotFocusCommand = new RelayCommand<object>((p) => true, OnNewPasswordGotFocusCommand);
-            RetypePasswordGotFocusCommand = new RelayCommand<object>((p) => true, OnRetypePasswordGotFocusCommand);
-        }
+        #endregion
 
         #endregion
+
+      
 
         #region Replace UserControl
         private List<ViewModelBase> _ViewModelList;
@@ -537,6 +563,25 @@ namespace StudentManagement.ViewModel
         }
 
         #endregion
+
+        private void InitAccountView()
+        {
+            Accounts = new RelayCommand<object>((p) => true, OnAccountCommand);
+            Settings = new RelayCommand<object>((p) => true, OnSettingsCommand);
+        }
+
+
+        private void InitUserSettingsView()
+        {
+            BrowseCommand = new RelayCommand<object>((p) => true, OnBrowseButtonCommand);
+            ConfirmChangePictureCommand = new RelayCommand<object>((p) => true, OnConfirmChangePictureCommand);
+            ChangePasswordOpenCommand = new RelayCommand<object>((p) => true, OnChangePasswordOpenCommand);
+            ChangePictureOpenCommand = new RelayCommand<object>((p) => true, OnChangeProfilePictureOpenCommand);
+            SignOutCommand = new RelayCommand<object>((p) => true, OnSignOutCommand);
+            ConfirmChangePasswordCommand = new RelayCommand<object>((p) => true, OnComfirmChangePasswordCommand);
+            NewPasswordGotFocusCommand = new RelayCommand<object>((p) => true, OnNewPasswordGotFocusCommand);
+            RetypePasswordGotFocusCommand = new RelayCommand<object>((p) => true, OnRetypePasswordGotFocusCommand);
+        }
 
         public MainViewModel()
         {
