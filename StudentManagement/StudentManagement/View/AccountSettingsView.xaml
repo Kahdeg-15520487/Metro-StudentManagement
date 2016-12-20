@@ -93,7 +93,9 @@
                                        FontSize="20">
 
                             </TextBlock>
-                            <PasswordBox  FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding CorrectPasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}">
+                            <PasswordBox  FontSize="20" Width="520" 
+                                          ViewModel:PasswordHelper.Attach="True" 
+                                          ViewModel:PasswordHelper.Password="{Binding CorrectPasswordProperty,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}">
                              
                             </PasswordBox>
                         </StackPanel>
@@ -103,7 +105,7 @@
                                        FontSize="20"
                                        Margin="20,0,0,0">
                             </TextBlock>
-                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding NewPassword, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, Mode=TwoWay}">
+                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding NewPassword,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="GotFocus">
                                         <i:InvokeCommandAction Command="{Binding NewPasswordGotFocusCommand}" />
