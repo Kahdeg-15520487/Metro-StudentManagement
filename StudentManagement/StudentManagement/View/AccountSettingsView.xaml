@@ -73,7 +73,7 @@
                             <Button Command="{Binding BrowseCommand}" FontSize="20" Width="100" Content="Browse" Margin="15,0,0,0"/>
                         </StackPanel>
 
-                        <Image Source="{Binding ProfilePictureSourse}" Margin="20" Width="500" Height="500" >
+                        <Image Source="{Binding ProfilePictureSource}" Margin="20" Width="500" Height="500" >
 
                         </Image>
 
