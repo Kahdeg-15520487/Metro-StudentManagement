@@ -380,6 +380,7 @@ namespace StudentManagement.ViewModel
                     (window as MainWindow).Account.Visibility = System.Windows.Visibility.Hidden;
                 }
             }
+            DialogLogginViewModel.isLoggedIn = false;
             ReInit();
         }
 
