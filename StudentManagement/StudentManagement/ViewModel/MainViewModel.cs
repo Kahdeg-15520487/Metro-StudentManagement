@@ -199,9 +199,6 @@ namespace StudentManagement.ViewModel
 
         #endregion
 
-
-      
-
         #region For UserSettings
 
         #region GetImageUrlFromDatabase-Get current User Image from Database
@@ -356,6 +353,21 @@ namespace StudentManagement.ViewModel
         #endregion
 
         #region SignOutCommand-for signing out
+
+        private void ReInit()
+        {
+            IsAccountFlyoutOpen = false;
+            IsSettingsFlyoutOpen = false;
+            IsChangePasswordOpen = false;
+            IsChangeProfilePictureOpen = false;
+            Students.Clear();
+            NewPassword = string.Empty;
+            RetypePasswordProperty = string.Empty;
+            CorrectPasswordProperty = string.Empty;
+            ProfilePictureSource = null;
+            PicturePath = string.Empty;
+            ImageUrl = null;
+        }
         public ICommand SignOutCommand { get; set; }
         private void OnSignOutCommand(object obj)
         {
@@ -367,12 +379,8 @@ namespace StudentManagement.ViewModel
                     (window as MainWindow).WindowState = System.Windows.WindowState.Normal;
                     (window as MainWindow).Account.Visibility = System.Windows.Visibility.Hidden;
                 }
-                IsAccountFlyoutOpen = false;
-                IsSettingsFlyoutOpen = false;
-                IsChangePasswordOpen = false;
-                IsChangeProfilePictureOpen = false;
-                Students.Clear();
             }
+            ReInit();
         }
 
         #endregion
@@ -476,7 +484,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                if (columnName == "CorrectPasswordProperty" && CorrectPasswordProperty != UserPassword)
+                if (columnName == "CorrectPasswordProperty" && CorrectPasswordProperty != UserPassword && CorrectPasswordProperty!=string.Empty)
                 {
                     CheckError = true;
                     return "Incorrect Password..";
@@ -496,8 +504,6 @@ namespace StudentManagement.ViewModel
         #endregion
 
         #endregion
-
-      
 
         #region Replace UserControl
         private List<ViewModelBase> _ViewModelList;
