@@ -11,7 +11,7 @@ namespace StudentManagement.ViewModel
     {
         StudentDBEntities St = new StudentDBEntities();
 
-        #region User, which holds all the infomation abount User account
+        #region User, which holds all the infomation about User account
         private static ObservableCollection<GetUser_Result> _Users;
         public static ObservableCollection<GetUser_Result> Users
         {
@@ -27,6 +27,7 @@ namespace StudentManagement.ViewModel
         }
         #endregion
 
+        public static bool isLoggedIn = false;
         MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow); 
 
         #region LoginCommand, which displays the login form and do some stuffs 
@@ -61,8 +62,9 @@ namespace StudentManagement.ViewModel
             else
             {
                 Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
-                if (Users.Count() != 0)
+                if (Users.Count() != 0 && isLoggedIn == false)
                 {
+                    isLoggedIn = true;
                     MessageDialogResult messageResult = await metroWindow.ShowMessageAsync("Authentication Information", String.Format("Log in successfully.."));
                     foreach (Window window in Application.Current.Windows)
                     {
