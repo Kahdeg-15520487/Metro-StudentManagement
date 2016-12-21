@@ -196,6 +196,7 @@
     <Property Name="StartDay" Type="smalldatetime" />
     <Property Name="FinishDay" Type="smalldatetime" />
     <Property Name="Note" Type="nvarchar" MaxLength="300" />
+    <Property Name="DateRegister" Type="smalldatetime" />
   </EntityType>
   <EntityType Name="Student">
     <Key>

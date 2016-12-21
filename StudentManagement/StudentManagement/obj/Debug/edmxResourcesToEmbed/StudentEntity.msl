@@ -204,6 +204,7 @@
     <EntitySetMapping Name="Semester">
       <EntityTypeMapping TypeName="StudentDBModel.Semester">
         <MappingFragment StoreEntitySet="Semester">
+          <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
           <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
           <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
           <ScalarProperty Name="StartDay" ColumnName="StartDay" />
