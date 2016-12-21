@@ -201,6 +201,7 @@
           <Property Name="StartDay" Type="smalldatetime" />
           <Property Name="FinishDay" Type="smalldatetime" />
           <Property Name="Note" Type="nvarchar" MaxLength="300" />
+          <Property Name="DateRegister" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -645,6 +646,7 @@
         <Function Name="GetUsersDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
+      
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
@@ -1014,6 +1016,7 @@
           <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_SemesterID" FromRole="Semester" ToRole="RegisterStudyUnit" />
           <NavigationProperty Name="StudyFee" Relationship="Self.Fk_SemesterID_Study" FromRole="Semester" ToRole="StudyFee" />
+          <Property Name="DateRegister" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -1612,8 +1615,9 @@
             <Parameter Name="ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUsersDetail" ReturnType="Collection(StudentDBModel.GetUsersDetail_Result)">
-            <Parameter Name="StudentID" Mode="In" Type="String" />
+          <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="IsDateRegisters" />
         </EntityContainer>
         <ComplexType Name="GetAcademicByID_Result">
           <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -1935,6 +1939,7 @@
           <EntitySetMapping Name="Semester">
             <EntityTypeMapping TypeName="StudentDBModel.Semester">
               <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
                 <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
                 <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
                 <ScalarProperty Name="StartDay" ColumnName="StartDay" />
@@ -2185,6 +2190,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+         
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

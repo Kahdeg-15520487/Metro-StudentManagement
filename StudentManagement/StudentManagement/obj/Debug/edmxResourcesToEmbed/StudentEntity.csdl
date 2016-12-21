@@ -229,6 +229,7 @@
     <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_SemesterID" FromRole="Semester" ToRole="RegisterStudyUnit" />
     <NavigationProperty Name="StudyFee" Relationship="Self.Fk_SemesterID_Study" FromRole="Semester" ToRole="StudyFee" />
+    <Property Name="DateRegister" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -829,6 +830,7 @@
     <FunctionImport Name="GetUsersDetail" ReturnType="Collection(StudentDBModel.GetUsersDetail_Result)">
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="IsDateRegisters" />
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />

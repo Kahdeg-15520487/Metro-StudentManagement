@@ -160,5 +160,7 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUsersDetail_Result>("GetUsersDetail", studentIDParameter);
         }
+    
+       
     }
 }
