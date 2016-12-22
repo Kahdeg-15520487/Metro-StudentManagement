@@ -11,12 +11,13 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Speech.Synthesis;
 
 namespace StudentManagement.ViewModel
 {
     public class MainViewModel : ViewModelBase, IDataErrorInfo
     {
-
+        SpeechSynthesizer warningAudio = new SpeechSynthesizer();
         StudentDBEntities ST = new StudentDBEntities();
         MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
         string UserPassword = string.Empty; //Hold the User current Password
