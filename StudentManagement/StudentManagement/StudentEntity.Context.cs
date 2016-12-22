@@ -161,6 +161,11 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUsersDetail_Result>("GetUsersDetail", studentIDParameter);
         }
     
+        public virtual ObjectResult<IsDateRegister_Result> IsDateRegister()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IsDateRegister_Result>("IsDateRegister");
+        }
+    
        
     }
 }
