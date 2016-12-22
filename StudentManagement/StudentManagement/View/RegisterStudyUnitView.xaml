@@ -22,7 +22,9 @@
                 </ImageBrush>
 
             </Grid.Background>
-            <StackPanel></StackPanel>
+            <StackPanel>
+                
+            </StackPanel>
         </Grid>
         <StackPanel >
 
