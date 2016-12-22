@@ -343,7 +343,7 @@ namespace StudentManagement.ViewModel
         public ICommand ConfirmChangePasswordCommand { get; set; }
         private void OnComfirmChangePasswordCommand(object obj)
         {
-            if (checkError || correctPasswordProperty == string.Empty)
+            if (checkError || correctPasswordProperty == string.Empty || NewPassword==string.Empty)
                 return;
             var updateStudent = ST.StudentUser.Find(User[0].UserName);
             updateStudent.Pasworkd = NewPassword;
@@ -505,7 +505,7 @@ namespace StudentManagement.ViewModel
         #endregion
 
         #endregion
-
+        
         #region Replace UserControl
         private List<ViewModelBase> _ViewModelList;
         //This hold the current Page, which will be displayed

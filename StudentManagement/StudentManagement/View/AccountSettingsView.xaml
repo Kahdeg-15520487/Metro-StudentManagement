@@ -34,13 +34,14 @@
                             <StackPanel Orientation="Vertical">
                                 <TextBlock FontSize="20" 
                                            Text="{Binding Name}">
-                                    
+
                                 </TextBlock>
+                                <TextBlock Height="20"></TextBlock>
                                 <TextBlock FontSize="20" 
                                            Text="{Binding Email}">
-                                    
+
                                 </TextBlock>
-                              
+
                             </StackPanel>
 
                         </StackPanel>
@@ -70,15 +71,25 @@
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBox Width="500" FontSize="20" Text="{Binding PicturePath}"></TextBox>
-                            <Button Command="{Binding BrowseCommand}" FontSize="20" Width="100" Content="Browse" Margin="15,0,0,0"/>
+                            <Button 
+                                Command="{Binding BrowseCommand}" 
+                                FontSize="20" Width="100" Content="Browse" 
+                                Margin="15,0,0,0"
+                                Metro:ButtonHelper.PreserveTextCase="True"
+                                Style="{DynamicResource AccentedSquareButtonStyle}"/>
                         </StackPanel>
 
                         <Image Source="{Binding ProfilePictureSource}" Margin="20" Width="500" Height="500" >
 
                         </Image>
 
-                        <Button Command="{Binding ConfirmChangePictureCommand}" FontSize="20" Width="100"   HorizontalAlignment="Right" Content="OK"></Button>
-                         
+                        <Button 
+                            Command="{Binding ConfirmChangePictureCommand}" 
+                            FontSize="20" Width="100" 
+                            HorizontalAlignment="Right" Content="OK"
+                            Metro:ButtonHelper.PreserveTextCase="True"
+                            Style="{DynamicResource AccentedSquareButtonStyle}"></Button>
+
                     </StackPanel>
 
 
@@ -87,52 +98,82 @@
 
                 <GroupBox Header="Change Password" FontSize="25" Grid.Column="1" Visibility="{Binding IsChangePasswordOpen,Converter={StaticResource BoolToVis}}">
                     <StackPanel  Orientation="Vertical" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="20,0,0,0" Width="175" 
-                                       Text="Passwork: "
-                                       FontSize="20">
+                        <PasswordBox Margin="20"  FontSize="20" Width="550" 
+                                      ViewModel:PasswordHelper.Attach="True" 
+                                      ViewModel:PasswordHelper.Password="{Binding CorrectPasswordProperty,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                                      Style="{StaticResource Win8MetroPasswordBox}"
+                                      Metro:TextBoxHelper.ClearTextButton="True"
+                                      Metro:TextBoxHelper.UseFloatingWatermark="True"
+                                      Metro:TextBoxHelper.Watermark="Enter current Password..">
+                            <Metro:PasswordBoxHelper.CapsLockWarningToolTip>
+                                <TextBlock>
+                            <Run Foreground="Red"
+                                 Text="CAPS LOCK"
+                                 TextDecorations="Underline" />
+                             <Run Text=" is "></Run>
+                            <Run Foreground="Red"
+                                 Text="ON" />
+                                </TextBlock>
+                            </Metro:PasswordBoxHelper.CapsLockWarningToolTip>
+                        </PasswordBox>
 
-                            </TextBlock>
-                            <PasswordBox  FontSize="20" Width="520" 
-                                          ViewModel:PasswordHelper.Attach="True" 
-                                          ViewModel:PasswordHelper.Password="{Binding CorrectPasswordProperty,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}">
-                             
-                            </PasswordBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                            <TextBlock Width="175" 
-                                       Text="New Password: "
-                                       FontSize="20"
-                                       Margin="20,0,0,0">
-                            </TextBlock>
-                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding NewPassword,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="GotFocus">
-                                        <i:InvokeCommandAction Command="{Binding NewPasswordGotFocusCommand}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </PasswordBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                            <TextBlock Width="175" 
-                                       Text="Retype: "
-                                       FontSize="20"
-                                       Margin="20,0,0,0">
+                        <PasswordBox 
+                            Margin="20" FontSize="20" Width="550" 
+                            ViewModel:PasswordHelper.Attach="True" 
+                            ViewModel:PasswordHelper.Password="{Binding NewPassword,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Metro:TextBoxHelper.Watermark="Enter New Password"
+                            Metro:TextBoxHelper.UseFloatingWatermark="True">
+                            <Metro:PasswordBoxHelper.CapsLockWarningToolTip>
+                                <TextBlock>
+                            <Run Foreground="Red"
+                                 Text="CAPS LOCK"
+                                 TextDecorations="Underline" />
+                             <Run Text=" is "></Run>
+                            <Run Foreground="Red"
+                                 Text="ON" />
+                                </TextBlock>
+                            </Metro:PasswordBoxHelper.CapsLockWarningToolTip>
 
-                            </TextBlock>
-                            <PasswordBox FontSize="20" Width="520" ViewModel:PasswordHelper.Attach="True" ViewModel:PasswordHelper.Password="{Binding RetypePasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged , NotifyOnValidationError=True, Mode=TwoWay}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="GotFocus">
-                                        <i:InvokeCommandAction Command="{Binding RetypePasswordGotFocusCommand}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </PasswordBox>
-                            
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Command="{Binding ConfirmChangePasswordCommand}" Margin="5" Content="OK" Width="100"></Button>
-                            <Button Margin="5,5,30,5"  Content="Reset" Width="100"></Button>
-                        </StackPanel>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="GotFocus">
+                                    <i:InvokeCommandAction Command="{Binding NewPasswordGotFocusCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                        <PasswordBox 
+                            Margin="20" FontSize="20" Width="550" 
+                            ViewModel:PasswordHelper.Attach="True" 
+                            ViewModel:PasswordHelper.Password="{Binding RetypePasswordProperty,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged , NotifyOnValidationError=True, Mode=TwoWay}"
+                            Metro:TextBoxHelper.Watermark="Confirm New Password.."
+                            Metro:TextBoxHelper.UseFloatingWatermark="True">
+                            <Metro:PasswordBoxHelper.CapsLockWarningToolTip>
+                                <TextBlock>
+                            <Run Foreground="Red"
+                                 Text="CAPS LOCK"
+                                 TextDecorations="Underline" />
+                             <Run Text=" is "></Run>
+                            <Run Foreground="Red"
+                                 Text="ON" />
+                                </TextBlock>
+                            </Metro:PasswordBoxHelper.CapsLockWarningToolTip>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="GotFocus">
+                                    <i:InvokeCommandAction Command="{Binding RetypePasswordGotFocusCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                        <Button 
+                                Style="{DynamicResource AccentedSquareButtonStyle}"
+                                Metro:ButtonHelper.PreserveTextCase="True"
+                                Command="{Binding ConfirmChangePasswordCommand}" 
+                                Margin="5" 
+                                Content="OK" 
+                                FontSize="20"
+                                Width="100"
+                                HorizontalAlignment="Right">
+
+                        </Button>
+
                     </StackPanel>
                 </GroupBox>
 
