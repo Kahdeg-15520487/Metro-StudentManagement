@@ -20,7 +20,7 @@
 
         <!--Tab-->
 
-        <Metro:MetroAnimatedSingleRowTabControl 
+        <Metro:MetroAnimatedSingleRowTabControl  DataContext="{StaticResource key1}"
             Metro:TabControlHelper.IsUnderlined="True"
             >
             <TabItem Header="Mark " 
@@ -50,7 +50,7 @@
                 </Metro:MetroAnimatedTabControl>
 
             </TabItem>
-            <TabItem Header="Register " DataContext="{StaticResource key1}"
+            <TabItem Header="Register " DataContext="{Binding IsDateRegister}"
                      Metro:ControlsHelper.HeaderFontWeight="Bold"
                      Metro:ControlsHelper.HeaderFontSize="35"
                      FontFamily="Calibri"
