@@ -612,6 +612,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddNewUserImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ImagePath" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImageToByte" Type="image" Mode="In" />
+          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="ChangeUserPasswork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
           <Parameter Name="ID" Type="nvarchar" Mode="In" />
@@ -648,7 +653,7 @@
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-       
+        <Function Name="IsDateRegisters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
@@ -1621,6 +1626,12 @@
           <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="IsDateRegister" ReturnType="Collection(StudentDBModel.IsDateRegister_Result)" />
+          <FunctionImport Name="AddNewUserImage">
+            <Parameter Name="ImagePath" Mode="In" Type="String" />
+            <Parameter Name="ImageToByte" Mode="In" Type="Binary" />
+            <Parameter Name="StudentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="IsDateRegisters" />
          
          
         </EntityContainer>
@@ -2208,6 +2219,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddNewUserImage" FunctionName="StudentDBModel.Store.AddNewUserImage" />
+          <FunctionImportMapping FunctionImportName="IsDateRegisters" FunctionName="StudentDBModel.Store.IsDateRegisters" />
          
          
         </EntityContainerMapping>

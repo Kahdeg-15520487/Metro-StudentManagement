@@ -464,5 +464,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddNewUserImage" FunctionName="StudentDBModel.Store.AddNewUserImage" />
+    <FunctionImportMapping FunctionImportName="IsDateRegisters" FunctionName="StudentDBModel.Store.IsDateRegisters" />
   </EntityContainerMapping>
 </Mapping>

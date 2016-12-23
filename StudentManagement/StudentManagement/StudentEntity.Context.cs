@@ -166,6 +166,26 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IsDateRegister_Result>("IsDateRegister");
         }
     
-       
+        public virtual int AddNewUserImage(string imagePath, byte[] imageToByte, string studentID)
+        {
+            var imagePathParameter = imagePath != null ?
+                new ObjectParameter("ImagePath", imagePath) :
+                new ObjectParameter("ImagePath", typeof(string));
+    
+            var imageToByteParameter = imageToByte != null ?
+                new ObjectParameter("ImageToByte", imageToByte) :
+                new ObjectParameter("ImageToByte", typeof(byte[]));
+    
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewUserImage", imagePathParameter, imageToByteParameter, studentIDParameter);
+        }
+    
+        public virtual int IsDateRegisters()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IsDateRegisters");
+        }
     }
 }

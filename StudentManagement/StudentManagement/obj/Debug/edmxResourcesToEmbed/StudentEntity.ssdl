@@ -607,6 +607,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="AddNewUserImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ImagePath" Type="nvarchar" Mode="In" />
+    <Parameter Name="ImageToByte" Type="image" Mode="In" />
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="ChangeUserPasswork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
@@ -643,6 +648,7 @@
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="IsDateRegisters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="StudentDBModelStoreContainer">
     <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />

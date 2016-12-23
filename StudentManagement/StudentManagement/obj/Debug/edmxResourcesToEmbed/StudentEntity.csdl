@@ -832,6 +832,12 @@
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="IsDateRegister" ReturnType="Collection(StudentDBModel.IsDateRegister_Result)" />
+    <FunctionImport Name="AddNewUserImage">
+      <Parameter Name="ImagePath" Mode="In" Type="String" />
+      <Parameter Name="ImageToByte" Mode="In" Type="Binary" />
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="IsDateRegisters" />
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
