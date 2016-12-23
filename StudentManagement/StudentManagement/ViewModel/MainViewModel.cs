@@ -21,7 +21,20 @@ namespace StudentManagement.ViewModel
         StudentDBEntities ST = new StudentDBEntities();
         MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
         string UserPassword = string.Empty; //Hold the User current Password
-
+        public virtual void SaveChanges()
+        {
+            if (ST!=null)
+            {
+                try
+                {
+                    ST.SaveChanges();
+                }
+                catch (Exception whenILostMyConnection)
+                {
+                    SaveChanges();
+                }
+            }
+        }
         #region For Account View
 
         #region Student Collection and Get-Set Property
@@ -325,18 +338,21 @@ namespace StudentManagement.ViewModel
 
         #region ConfirmChangePictureCommand-Confirm the Selected Image and do some stuffs
         public ICommand ConfirmChangePictureCommand { get; set; }
-        private async void OnConfirmChangePictureCommand(object obj)
+        private void OnConfirmChangePictureCommand(object obj)
         {
             if (ProfilePictureSource == null && PicturePath == null)
             {
-                var conntroller = await metroWindow.ShowMessageAsync("Information", "You have not selected a picture yet, click BROWSE to select one..");
+                warningAudio.SpeakAsync("You have not selected a picture yet. Click browse to select one..");
                 return;
             }
+            
             UserImage data = new UserImage();
             data.ImagePath = PicturePath;
             data.ImageToByte = File.ReadAllBytes(PicturePath);
             ST.UserImage.Add(data);
             ST.SaveChanges();
+            ST.Database.SqlQuery<string>("DBCC CHECKIDENT ('UserImage', RESEED, 0)");
+            warningAudio.SpeakAsync("Change successfully..");
         }
         #endregion
 
@@ -344,13 +360,27 @@ namespace StudentManagement.ViewModel
         public ICommand ConfirmChangePasswordCommand { get; set; }
         private void OnComfirmChangePasswordCommand(object obj)
         {
-            if (checkError || correctPasswordProperty == string.Empty || NewPassword==string.Empty)
-                return;
-            var updateStudent = ST.StudentUser.Find(User[0].UserName);
-            updateStudent.Pasworkd = NewPassword;
-            ST.Entry(updateStudent).State = System.Data.Entity.EntityState.Modified;
-            ST.SaveChanges();
+            if (CheckCorrectPasswordError == true || CorrectPasswordProperty == string.Empty)
+            {
+                warningAudio.SpeakAsync("Incorrect current password. Please try again..");
+            }
+            else
+                if (CheckNewPasswordError == true)
+            {
+                warningAudio.SpeakAsync("New password not match. Please try again..");
+            }
+            else
+            {
+                var updateStudent = ST.StudentUser.Find(User[0].UserName);
+                updateStudent.Pasworkd = NewPassword;
+                ST.Entry(updateStudent).State = System.Data.Entity.EntityState.Modified;
+                ST.UserImage.SqlQuery("DBCC CHECKIDENT('UserImage', RESEED, 0");
+                ST.SaveChanges();
+                warningAudio.SpeakAsync("Change password successfully..");
+            }
         }
+
+
         #endregion
 
         #region SignOutCommand-for signing out
@@ -446,22 +476,37 @@ namespace StudentManagement.ViewModel
         #endregion
 
         #region CheckError-check that User can change Password or not
-        private bool checkError = false;
+        private bool checkCorrectPasswordError = false;
 
-        public bool CheckError
+        public bool CheckCorrectPasswordError
         {
             get
             {
-                return checkError;
+                return checkCorrectPasswordError;
             }
 
             set
             {
-                checkError = value;
-                OnPropertyChanged("CheckError");
+                checkCorrectPasswordError = value;
+                OnPropertyChanged("CheckCorrectPasswordError");
             }
         }
 
+        private bool checkNewPasswordError = false;
+
+        public bool CheckNewPasswordError
+        {
+            get
+            {
+                return checkNewPasswordError;
+            }
+
+            set
+            {
+                checkNewPasswordError = value;
+                OnPropertyChanged("CheckNewPasswordError");
+            }
+        }
         #endregion
 
         #region NewPasswordGotFocusCommand-GetFocus command on NewPassword Text Box
@@ -486,19 +531,20 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                if (columnName == "CorrectPasswordProperty" && CorrectPasswordProperty != UserPassword && CorrectPasswordProperty!=string.Empty)
+                if (columnName == "CorrectPasswordProperty" && (CorrectPasswordProperty != UserPassword && CorrectPasswordProperty == string.Empty))
                 {
-                    CheckError = true;
+                    CheckCorrectPasswordError = true;
                     return "Incorrect Password..";
                 }
                 else if (columnName == "RetypePasswordProperty" && RetypePasswordProperty != string.Empty && RetypePasswordProperty != NewPassword)
                 {
-                    CheckError = true;
+                    CheckNewPasswordError = true;
                     return "Password not match..";
                 }
                 else
                 {
-                    checkError = false;
+                    CheckCorrectPasswordError = false;
+                    CheckNewPasswordError = false;
                     return null;
                 }
             }
@@ -506,7 +552,7 @@ namespace StudentManagement.ViewModel
         #endregion
 
         #endregion
-        
+
         #region Replace UserControl
         private List<ViewModelBase> _ViewModelList;
         //This hold the current Page, which will be displayed
