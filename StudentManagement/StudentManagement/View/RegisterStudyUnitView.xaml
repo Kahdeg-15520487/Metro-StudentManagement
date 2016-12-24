@@ -10,24 +10,65 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <ViewModel:AcademicViewModel x:Key="key1">
+        <ViewModel:RegisterStudyUnitViewModel x:Key="Key_RegisterStudyUnit">
 
-        </ViewModel:AcademicViewModel>
+        </ViewModel:RegisterStudyUnitViewModel>
     </UserControl.Resources>
-    <Grid>
-        <Grid Margin="0,-35,0,0">
-            <Grid.Background>
-                <ImageBrush 
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid Margin="0,0,0,0">
+                <Grid.Background>
+                    <ImageBrush 
                 ImageSource="/Resources/Backgrounds/MainBackground.png">
-                </ImageBrush>
+                    </ImageBrush>
+                </Grid.Background>
+                <StackPanel>
 
-            </Grid.Background>
-            <StackPanel>
-                
-            </StackPanel>
+                </StackPanel>
+
+                <StackPanel >
+                    <GroupBox DataContext="{StaticResource Key_RegisterStudyUnit}">
+                        <GroupBox.Header>
+                            <TextBlock Text="{Binding Header }" FontWeight="Black" FontSize="20" TextAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Info}" Padding="20" FontSize="15" FontWeight="Black" LineHeight="28" ></TextBlock>
+                            <Expander>
+                                <Expander.Header>
+                                    <TextBlock Text="Registered"></TextBlock>
+                                </Expander.Header>
+                                <DataGrid Height="300"></DataGrid>
+                            </Expander>
+
+                            <Expander>
+                                <Expander.Header>
+                                    <TextBlock Text="Quick Register"></TextBlock>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Left" FontSize="15" FontStretch="Expanded"></Button>
+                                    <RichTextBox Height="200" MaxHeight="200" MinHeight="150"></RichTextBox>
+                                </StackPanel>
+                            </Expander>
+                            <Expander>
+                                <Expander.Header>
+                                    <TextBlock Text="Sort For..."></TextBlock>
+                                </Expander.Header>
+                                <ComboBox Height="50"></ComboBox>
+                            </Expander>
+
+                            <Expander>
+                                <Expander.Header>
+                                    <TextBlock Text="List Class Register"></TextBlock>
+                                </Expander.Header>
+                                <DataGrid Height="500" MaxHeight="500"></DataGrid>
+                            </Expander>
+                            <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Right" Margin="50,15,30,70" VerticalAlignment="Top" FontSize="15" FontStretch="Expanded"></Button>
+
+                        </StackPanel>
+                    </GroupBox>
+
+                </StackPanel>
+            </Grid>
         </Grid>
-        <StackPanel >
-
-        </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

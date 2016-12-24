@@ -607,6 +607,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="AddNewUserImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ImagePath" Type="nvarchar" Mode="In" />
+    <Parameter Name="ImageToByte" Type="image" Mode="In" />
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="ChangeUserPasswork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
@@ -628,9 +633,6 @@
   </Function>
   <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="GetStudentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetStudentsInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />

@@ -27,7 +27,7 @@
                          >
                     <StackPanel Orientation="Vertical" Grid.Column="0" >
                         <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0" >
-                            <Image Source="{Binding ImageUrl}" Width="375" Height="375" HorizontalAlignment="Left">
+                            <Image Source="{Binding ImageUrl,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="375" Height="375" HorizontalAlignment="Left">
 
                             </Image>
 

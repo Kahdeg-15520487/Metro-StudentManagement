@@ -347,12 +347,13 @@ namespace StudentManagement.ViewModel
             }
             
             UserImage data = new UserImage();
-            data.ImagePath = PicturePath;
-            data.ImageToByte = File.ReadAllBytes(PicturePath);
-            ST.UserImage.Add(data);
+            var ImagePath = PicturePath;
+            var ImageToByte = File.ReadAllBytes(PicturePath);
+            ST.AddNewUserImage(ImagePath, ImageToByte, Students[0].StudentID);
             ST.SaveChanges();
-            ST.Database.SqlQuery<string>("DBCC CHECKIDENT ('UserImage', RESEED, 0)");
+            
             warningAudio.SpeakAsync("Change successfully..");
+ 
         }
         #endregion
 
@@ -374,7 +375,6 @@ namespace StudentManagement.ViewModel
                 var updateStudent = ST.StudentUser.Find(User[0].UserName);
                 updateStudent.Pasworkd = NewPassword;
                 ST.Entry(updateStudent).State = System.Data.Entity.EntityState.Modified;
-                ST.UserImage.SqlQuery("DBCC CHECKIDENT('UserImage', RESEED, 0");
                 ST.SaveChanges();
                 warningAudio.SpeakAsync("Change password successfully..");
             }
@@ -531,7 +531,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                if (columnName == "CorrectPasswordProperty" && (CorrectPasswordProperty != UserPassword && CorrectPasswordProperty == string.Empty))
+                if (columnName == "CorrectPasswordProperty" && (CorrectPasswordProperty != UserPassword && CorrectPasswordProperty != string.Empty))
                 {
                     CheckCorrectPasswordError = true;
                     return "Incorrect Password..";

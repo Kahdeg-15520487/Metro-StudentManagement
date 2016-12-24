@@ -386,29 +386,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetStudentInfoByID" FunctionName="StudentDBModel.Store.GetStudentInfoByID">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentInfoByID_Result">
-          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
-          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
-          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
-          <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="Policy" ColumnName="Policy" />
-          <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
-          <ScalarProperty Name="CandreID" ColumnName="CandreID" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetStudentsInfoByID" FunctionName="StudentDBModel.Store.GetStudentsInfoByID">
       <ResultMapping>
         <ComplexTypeMapping TypeName="StudentDBModel.GetStudentsInfoByID_Result">
@@ -456,11 +433,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddNewUserImage" FunctionName="StudentDBModel.Store.AddNewUserImage" />
     <FunctionImportMapping FunctionImportName="IsDateRegister" FunctionName="StudentDBModel.Store.IsDateRegister">
       <ResultMapping>
         <ComplexTypeMapping TypeName="StudentDBModel.IsDateRegister_Result">
-          <ScalarProperty Name="IsDateRegister" ColumnName="IsDateRegister" />
           <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+          <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
+          <ScalarProperty Name="IsDateRegister" ColumnName="IsDateRegister" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

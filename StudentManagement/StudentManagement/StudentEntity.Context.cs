@@ -108,15 +108,6 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDiplomaProject_Result>("GetDiplomaProject", studenIDParameter);
         }
     
-        public virtual ObjectResult<GetStudentInfoByID_Result> GetStudentInfoByID(string studentID)
-        {
-            var studentIDParameter = studentID != null ?
-                new ObjectParameter("StudentID", studentID) :
-                new ObjectParameter("StudentID", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentInfoByID_Result>("GetStudentInfoByID", studentIDParameter);
-        }
-    
         public virtual ObjectResult<GetStudentsInfoByID_Result> GetStudentsInfoByID(string studentID)
         {
             var studentIDParameter = studentID != null ?
@@ -161,11 +152,26 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUsersDetail_Result>("GetUsersDetail", studentIDParameter);
         }
     
+        public virtual int AddNewUserImage(string imagePath, byte[] imageToByte, string studentID)
+        {
+            var imagePathParameter = imagePath != null ?
+                new ObjectParameter("ImagePath", imagePath) :
+                new ObjectParameter("ImagePath", typeof(string));
+    
+            var imageToByteParameter = imageToByte != null ?
+                new ObjectParameter("ImageToByte", imageToByte) :
+                new ObjectParameter("ImageToByte", typeof(byte[]));
+    
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewUserImage", imagePathParameter, imageToByteParameter, studentIDParameter);
+        }
+    
         public virtual ObjectResult<IsDateRegister_Result> IsDateRegister()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IsDateRegister_Result>("IsDateRegister");
         }
-    
-       
     }
 }
