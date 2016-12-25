@@ -639,9 +639,6 @@
         <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="GetStudentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="GetStudentsInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
@@ -653,7 +650,6 @@
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="IsDateRegisters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
@@ -1608,9 +1604,7 @@
           <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
           <Parameter Name="StudenID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
-          <Parameter Name="StudentID" Mode="In" Type="String" />
-          </FunctionImport>
+         
           <FunctionImport Name="GetStudentsInfoByID" ReturnType="Collection(StudentDBModel.GetStudentsInfoByID_Result)">
           <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
@@ -1625,13 +1619,14 @@
           <FunctionImport Name="GetUsersDetail" ReturnType="Collection(StudentDBModel.GetUsersDetail_Result)">
           <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="IsDateRegister" ReturnType="Collection(StudentDBModel.IsDateRegister_Result)" />
+         
           <FunctionImport Name="AddNewUserImage">
             <Parameter Name="ImagePath" Mode="In" Type="String" />
             <Parameter Name="ImageToByte" Mode="In" Type="Binary" />
             <Parameter Name="StudentID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="IsDateRegisters" />
+          <FunctionImport Name="IsDateRegister" ReturnType="Collection(StudentDBModel.IsDateRegister_Result)" />
+        
          
          
         </EntityContainer>
@@ -1693,25 +1688,7 @@
           <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="GetStudentInfoByID_Result">
-          <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="16" />
-          <Property Type="Boolean" Name="Gender" Nullable="true" />
-          <Property Type="String" Name="IDNumber" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ClassID" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="FacultyID" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="Hometown" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="AcademicYear" Nullable="true" />
-          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Policy" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="CurrentAddress" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="ImageID" Nullable="true" />
-        </ComplexType>
+      
         <ComplexType Name="GetStudentsInfoByID_Result">
           <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
@@ -1747,9 +1724,15 @@
           <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="IsDateRegister_Result">
-          <Property Type="Boolean" Name="IsDateRegister" Nullable="true" />
           <Property Type="String" Name="SemesterID" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="SemesterName" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="DateRegister" Nullable="true" Precision="16" />
+          <Property Type="Boolean" Name="IsDateRegister" Nullable="true" />
         </ComplexType>
+       
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2141,29 +2124,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetStudentInfoByID" FunctionName="StudentDBModel.Store.GetStudentInfoByID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="StudentDBModel.GetStudentInfoByID_Result">
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
-                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
-                <ScalarProperty Name="Hometown" ColumnName="Hometown" />
-                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Policy" ColumnName="Policy" />
-                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
-                <ScalarProperty Name="CandreID" ColumnName="CandreID" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+         
           <FunctionImportMapping FunctionImportName="GetStudentsInfoByID" FunctionName="StudentDBModel.Store.GetStudentsInfoByID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="StudentDBModel.GetStudentsInfoByID_Result">
@@ -2211,16 +2172,22 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+         
+          <FunctionImportMapping FunctionImportName="AddNewUserImage" FunctionName="StudentDBModel.Store.AddNewUserImage" />
           <FunctionImportMapping FunctionImportName="IsDateRegister" FunctionName="StudentDBModel.Store.IsDateRegister">
             <ResultMapping>
               <ComplexTypeMapping TypeName="StudentDBModel.IsDateRegister_Result">
-                <ScalarProperty Name="IsDateRegister" ColumnName="IsDateRegister" />
                 <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+                <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+                <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
+                <ScalarProperty Name="IsDateRegister" ColumnName="IsDateRegister" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AddNewUserImage" FunctionName="StudentDBModel.Store.AddNewUserImage" />
-          <FunctionImportMapping FunctionImportName="IsDateRegisters" FunctionName="StudentDBModel.Store.IsDateRegisters" />
+         
          
          
         </EntityContainerMapping>

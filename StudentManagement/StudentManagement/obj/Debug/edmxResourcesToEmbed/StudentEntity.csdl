@@ -814,9 +814,6 @@
     <FunctionImport Name="GetDiplomaProject" ReturnType="Collection(StudentDBModel.GetDiplomaProject_Result)">
       <Parameter Name="StudenID" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetStudentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentInfoByID_Result)">
-      <Parameter Name="StudentID" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="GetStudentsInfoByID" ReturnType="Collection(StudentDBModel.GetStudentsInfoByID_Result)">
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
@@ -831,13 +828,12 @@
     <FunctionImport Name="GetUsersDetail" ReturnType="Collection(StudentDBModel.GetUsersDetail_Result)">
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="IsDateRegister" ReturnType="Collection(StudentDBModel.IsDateRegister_Result)" />
     <FunctionImport Name="AddNewUserImage">
       <Parameter Name="ImagePath" Mode="In" Type="String" />
       <Parameter Name="ImageToByte" Mode="In" Type="Binary" />
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="IsDateRegisters" />
+    <FunctionImport Name="IsDateRegister" ReturnType="Collection(StudentDBModel.IsDateRegister_Result)" />
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -897,25 +893,6 @@
     <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
   </ComplexType>
-  <ComplexType Name="GetStudentInfoByID_Result">
-    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
-    <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="16" />
-    <Property Type="Boolean" Name="Gender" Nullable="true" />
-    <Property Type="String" Name="IDNumber" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="ClassID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="FacultyID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Hometown" Nullable="true" MaxLength="200" />
-    <Property Type="Int32" Name="AcademicYear" Nullable="true" />
-    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Policy" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="CurrentAddress" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="CandreID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="ImageID" Nullable="true" />
-  </ComplexType>
   <ComplexType Name="GetStudentsInfoByID_Result">
     <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
@@ -951,7 +928,12 @@
     <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
   </ComplexType>
   <ComplexType Name="IsDateRegister_Result">
-    <Property Type="Boolean" Name="IsDateRegister" Nullable="true" />
     <Property Type="String" Name="SemesterID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="SemesterName" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Note" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="DateRegister" Nullable="true" Precision="16" />
+    <Property Type="Boolean" Name="IsDateRegister" Nullable="true" />
   </ComplexType>
 </Schema>

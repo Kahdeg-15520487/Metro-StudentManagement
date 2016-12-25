@@ -13,7 +13,12 @@ namespace StudentManagement
     
     public partial class IsDateRegister_Result
     {
-        public Nullable<bool> IsDateRegister { get; set; }
         public string SemesterID { get; set; }
+        public string SemesterName { get; set; }
+        public Nullable<System.DateTime> StartDay { get; set; }
+        public Nullable<System.DateTime> FinishDay { get; set; }
+        public string Note { get; set; }
+        public Nullable<System.DateTime> DateRegister { get; set; }
+        public Nullable<bool> IsDateRegister { get; set; }
     }
 }
