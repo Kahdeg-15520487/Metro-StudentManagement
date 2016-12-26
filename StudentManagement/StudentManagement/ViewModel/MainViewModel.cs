@@ -1,6 +1,4 @@
-using GalaSoft.MvvmLight;
 using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -21,20 +19,7 @@ namespace StudentManagement.ViewModel
         StudentDBEntities ST = new StudentDBEntities();
         MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
         string UserPassword = string.Empty; //Hold the User current Password
-        public virtual void SaveChanges()
-        {
-            if (ST!=null)
-            {
-                try
-                {
-                    ST.SaveChanges();
-                }
-                catch (Exception whenILostMyConnection)
-                {
-                    SaveChanges();
-                }
-            }
-        }
+    
         #region For Account View
 
         #region Student Collection and Get-Set Property
