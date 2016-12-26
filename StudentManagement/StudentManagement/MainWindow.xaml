@@ -14,7 +14,7 @@
         GlowBrush="{DynamicResource AccentColorBrush}"     
         NonActiveBorderBrush="Black"  
         WindowState="Normal"
-        Icon="./Resources/Backgrounds/Icons/App_icon.png"
+        Icon="Resources/Icons/App_icon.png"
         Name="MetroWindow"       
         WindowStartupLocation="CenterScreen"
         RightWindowCommandsOverlayBehavior="Never">
@@ -43,7 +43,7 @@
                 IsOpen="{Binding IsSettingsFlyoutOpen, Mode=TwoWay}"
                 Theme="Light">
                 <View:AccountSettingsView>
-
+                    
                 </View:AccountSettingsView>
             </Metro:Flyout>
         </Metro:FlyoutsControl>

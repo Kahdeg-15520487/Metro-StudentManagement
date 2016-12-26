@@ -74,6 +74,34 @@
                 </Metro:MetroAnimatedTabControl>
 
             </TabItem>
+            <TabItem Header="Profile"
+                     Metro:ControlsHelper.HeaderFontWeight="Bold"
+                     Metro:ControlsHelper.HeaderFontSize="35"
+                     FontFamily="Calibri">
+                <Metro:MetroAnimatedTabControl>
+                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
+                             Header="Personal"
+                             FontFamily="Verdana">
+                        <local:PersonalView></local:PersonalView>
+
+
+                    </TabItem>
+                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
+                             Header="Contact"
+                             FontFamily="Verdana">
+                       
+
+                    </TabItem>
+
+                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
+                             Header="Parents"
+                             FontFamily="Verdana">
+
+
+                    </TabItem>
+                </Metro:MetroAnimatedTabControl>
+
+            </TabItem>
 
         </Metro:MetroAnimatedSingleRowTabControl>
 
