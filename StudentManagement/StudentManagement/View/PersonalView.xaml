@@ -21,89 +21,175 @@
                     </ImageBrush>
                 </Grid.Background>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <GroupBox Header="Personal">
 
-                <Grid Grid.Column="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
+                            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
+                                <TextBlock Height="100"></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Full Name"></TextBlock>
+                                    <TextBox TextAlignment="Center" Text="Name here"  Width="150" Height="30">
+
+                                    </TextBox>
+                                    <TextBlock Width="10"></TextBlock>
+
+                                    <TextBox TextAlignment="Center" Text="Middle Name here"  Width="150" Height="30">
+
+                                    </TextBox>
+                                    <TextBlock Width="10"></TextBlock>
+
+                                    <TextBox TextAlignment="Center" Text="Last Name here"  Width="150" Height="30">
+
+                                    </TextBox>
+
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Student ID"></TextBlock>
+                                    <TextBox TextAlignment="Center" Text="StudentID here"  Width="470" Height="30"></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Date of birth"></TextBlock>
+                                    <DatePicker Text="Date of birth here"  Width="470"></DatePicker>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Date of birth"></TextBlock>
+                                    <TextBox TextAlignment="Center" Text="Academic year here"  Width="470"></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Academic year"></TextBlock>
+                                    <TextBox TextAlignment="Center" Text="Academic year here"  Width="470" ></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Faculty"></TextBlock>
+                                    <TextBox TextAlignment="Center" Text="Faculty here"  Width="470"></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Deparment"></TextBlock>
+                                    <TextBox TextAlignment="Center" Text="Department here"  Width="470"></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="School"></TextBlock>
+                                    <TextBox TextAlignment="Center" Text="School here"  Width="470"></TextBox>
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+                        </Grid>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Height="100"></TextBlock>
+                            <Image Width="200" Height="200" Source="/StudentManagement;component/Resources/Icons/download.png">
+
+                            </Image>
+                            <TextBlock Margin="25,10,0,0" Text="Name here"></TextBlock>
+                            <TextBlock Margin="25,10,0,0" Text="Class here"></TextBlock>
+                        </StackPanel>
+
+                    </Grid>
+                </GroupBox>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Contact">
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
                         <TextBlock Height="100"></TextBlock>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="Full Name"></TextBlock>
-                            <TextBox TextAlignment="Center" Text="Name here"  Width="150" Height="30">
-                                
-                            </TextBox>
-                            <TextBlock Width="10"></TextBlock>
-
-                            <TextBox TextAlignment="Center" Text="Middle Name here"  Width="150" Height="30">
-
-                            </TextBox>
-                            <TextBlock Width="10"></TextBlock>
-
-                            <TextBox TextAlignment="Center" Text="Last Name here"  Width="150" Height="30">
-
-                            </TextBox>
-
+                            <TextBlock Width="100" Text="Present Address"></TextBlock>
+                            <TextBox Width="300" Text="Present Address here"></TextBox>
                         </StackPanel>
-
-                        <TextBlock Height="25"></TextBlock>
-
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="Student ID"></TextBlock>
-                            <TextBox TextAlignment="Center" Text="StudentID here"  Width="470" Height="30"></TextBox>
+                            <TextBlock Width="100" Text="Permanent Address"></TextBlock>
+                            <TextBox Width="300" Text="Permanent Address here"></TextBox>
                         </StackPanel>
-
-                        <TextBlock Height="25"></TextBlock>
-
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="Date of birth"></TextBlock>
-                            <DatePicker Text="Date of birth here"  Width="470" Height="30"></DatePicker>
+                            <TextBlock Width="100" Text="Mobile"></TextBlock>
+                            <TextBox Width="300" Text="Mobile here"></TextBox>
                         </StackPanel>
-
-                        <TextBlock Height="25"></TextBlock>
-
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="Date of birth"></TextBlock>
-                            <TextBox TextAlignment="Center" Text="Academic year here"  Width="470" Height="30"></TextBox>
-                        </StackPanel>
-
-                        <TextBlock Height="25"></TextBlock>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="Academic year"></TextBlock>
-                            <TextBox TextAlignment="Center" Text="Academic year here"  Width="470" Height="30"></TextBox>
-                        </StackPanel>
-
-                        <TextBlock Height="25"></TextBlock>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="Faculty"></TextBlock>
-                            <TextBox TextAlignment="Center" Text="Faculty here"  Width="470" Height="30"></TextBox>
-                        </StackPanel>
-
-                        <TextBlock Height="25"></TextBlock>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="Deparment"></TextBlock>
-                            <TextBox TextAlignment="Center" Text="Department here"  Width="470" Height="30"></TextBox>
-                        </StackPanel>
-
-                        <TextBlock Height="25"></TextBlock>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10" Width="125" Text="School"></TextBlock>
-                            <TextBox TextAlignment="Center" Text="School here"  Width="470" Height="30"></TextBox>
+                            <TextBlock Width="100" Text="Email"></TextBlock>
+                            <TextBox Width="300" Text="Email here"></TextBox>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Grid.Column="1">
-                        <Image></Image>
-                        <TextBlock Text="Name here"></TextBlock>
-                        <TextBlock Text="Class here"></TextBlock>
-                    </StackPanel>
+                    
+                    </GroupBox>
+                    <GroupBox Header="Parents">
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Text="Father's Name"></TextBlock>
+                                <TextBox Width="200" Text="Fathere's Name here"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Text="Father's Mobile"></TextBlock>
+                                <TextBox Width="200" Text="Father's Mobile here"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Text="Gender"></TextBlock>
+                                <TextBox Width="200" Text="Gender here"></TextBox>
+ 
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Text="Father's Name"></TextBlock>
+                                <TextBox Width="200" Text="Fathere's Name here"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Text="Father's Mobile"></TextBlock>
+                                <TextBox Width="200" Text="Father's Mobile here"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Text="Gender"></TextBlock>
+                                <TextBox Width="200" Text="Gender here"></TextBox>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    </GroupBox>
                 </Grid>
             </Grid>
         </GroupBox>
