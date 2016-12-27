@@ -46,7 +46,19 @@
                                 </Expander.Header>
                                 <StackPanel>
                                     <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Left" FontSize="15" FontStretch="Expanded"></Button>
-                                    <RichTextBox Height="200" MaxHeight="200" MinHeight="150"></RichTextBox>
+                                    <RichTextBox Name="Rtb"
+                                                 MinWidth="800" 
+                                                 FontSize="16"  
+                                                 MaxHeight="200" 
+                                                 MinHeight="150" Block.LineHeight="14"
+                                                 >
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding RichTextBoxSelectionChangeCommand}"  CommandParameter="{Binding ElementName=Rtb}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        
+                                    </RichTextBox>
                                 </StackPanel>
                             </Expander>
                             <Expander>
