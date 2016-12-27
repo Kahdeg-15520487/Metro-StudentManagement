@@ -66,16 +66,7 @@ C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.Extras.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.Platform.dll
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.pdb
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.xml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.Extras.xml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.g.cs
@@ -112,3 +103,5 @@ C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\Stu
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.g.cs
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\RegisterStudyUnitView.baml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.baml

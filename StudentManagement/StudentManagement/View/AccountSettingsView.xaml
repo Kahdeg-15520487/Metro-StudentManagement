@@ -101,7 +101,7 @@
                         <PasswordBox Margin="20"  FontSize="20" Width="550" 
                                       ViewModel:PasswordHelper.Attach="True" 
                                       ViewModel:PasswordHelper.Password="{Binding CorrectPasswordProperty,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                                      Style="{StaticResource Win8MetroPasswordBox}"
+                                      Style="{DynamicResource Win8MetroPasswordBox}"
                                       Metro:TextBoxHelper.ClearTextButton="True"
                                       Metro:TextBoxHelper.UseFloatingWatermark="True"
                                       Metro:TextBoxHelper.Watermark="Enter current Password..">
