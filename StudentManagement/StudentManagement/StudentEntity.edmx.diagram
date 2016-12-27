@@ -13,8 +13,8 @@
         <EntityTypeShape EntityType="StudentDBModel.Class" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.Department" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.DiplomaProject" Width="1.5" PointX="7.5" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentDBModel.Discipline" Width="1.5" PointX="8" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentDBModel.Exam" Width="1.5" PointX="10.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentDBModel.Discipline" Width="1.5" PointX="7.375" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentDBModel.Exam" Width="1.5" PointX="10.625" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.Faculty" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.Parents" Width="1.5" PointX="7.5" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.PlusFee" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
