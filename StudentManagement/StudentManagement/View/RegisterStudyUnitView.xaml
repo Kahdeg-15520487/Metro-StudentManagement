@@ -45,19 +45,21 @@
                                     <TextBlock Text="Quick Register"></TextBlock>
                                 </Expander.Header>
                                 <StackPanel>
-                                    <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Left" FontSize="15" FontStretch="Expanded"></Button>
+                                    <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Left" FontSize="15" FontFamily="Expanded"></Button>
                                     <RichTextBox Name="Rtb"
                                                  MinWidth="800" 
                                                  FontSize="16"  
                                                  MaxHeight="200" 
                                                  MinHeight="150" Block.LineHeight="14"
-                                                 >
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding RichTextBoxSelectionChangeCommand}"  CommandParameter="{Binding ElementName=Rtb}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                        
+                                                 IsDocumentEnabled="True">
+
+                                        <FlowDocument>
+                                            <Paragraph>
+                                                <TextBox Text="{Binding FuckingTestingString1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                 
+                                                </TextBox>
+                                            </Paragraph>
+                                        </FlowDocument>
                                     </RichTextBox>
                                 </StackPanel>
                             </Expander>

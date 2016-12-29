@@ -1,34 +1,3 @@
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentManagement.exe.config
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.csprojResolveAssemblyReference.cache
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\MainWindow.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AcademicView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\App.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement_Content.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement_MarkupCompile.cache
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement_MarkupCompile.lref
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentDB.mdf
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentDB_log.ldf
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentManagement.exe
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentManagement.pdb
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\MahApps.Metro.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.xml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\MahApps.Metro.pdb
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\MahApps.Metro.xml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MainMenu.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\App.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\MainWindow.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AcademicView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MainMenu.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.g.resources
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.Properties.Resources.resources
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.csproj.GenerateResource.Cache
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.exe
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.pdb
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentDB.mdf
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentDB_log.ldf
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentManagement.exe.config
@@ -60,28 +29,15 @@ C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.csproj.GenerateResource.Cache
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.exe
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.pdb
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DiplomaProjectView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DiplomaProjectView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DiplomaProjectView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.baml
@@ -90,11 +46,55 @@ C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\RegisterStudyUnitView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\RegisterStudyUnitView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\RegisterStudyUnitView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\MainWindow.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AcademicView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DiplomaProjectView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MainMenu.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\RegisterStudyUnitView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\App.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement_Content.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement_MarkupCompile.cache
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement_MarkupCompile.lref
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentManagement.exe.config
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentDB.mdf
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentDB_log.ldf
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentManagement.exe
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\StudentManagement.pdb
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.dll
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\MahApps.Metro.dll
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.xml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\MahApps.Metro.pdb
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\MahApps.Metro.xml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.csprojResolveAssemblyReference.cache
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\App.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\MainWindow.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AcademicView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\BehaviorView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DiplomaProjectView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\IntroWindowView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MainMenu.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\RegisterStudyUnitView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.g.resources
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.Properties.Resources.resources
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.csproj.GenerateResource.Cache
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.exe
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.pdb
