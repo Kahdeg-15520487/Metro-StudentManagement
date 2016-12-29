@@ -55,22 +55,42 @@ namespace StudentManagement.ViewModel
         }
 
 
+        private string FuckingTestingString;
+        public string FuckingTestingString1
+        {
+            get
+            {
+                return FuckingTestingString;
+            }
 
+            set
+            {
+                if (value.Contains(' ') == false)
+                    FuckingTestingString = value;
+                else
+                {
+                    FuckingTestingString = value.Replace(' ', '\n');
+                }
+
+
+
+                OnPropertyChanged("FuckingTestingString1");
+            }
+        }
         private string _Info;
 
         public ICommand RichTextBoxSelectionChangeCommand { get; set; }
-        private void OnRichTextBoxSelectionChangeCommand(RichTextBox Rtb)
+        private void OnRichTextBoxSelectionChangeCommand(object obj)
         {
-            Rtb.Focus();
-            TextRange textRange = new TextRange(Rtb.Document.ContentStart, Rtb.Document.ContentEnd);
-            
-            textRange.Text = textRange.Text.Replace(' ', '\n');
-           
-            
         }
 
 
+
+
         public ICommand RegisterCommand { get; set; }
+
+
+
         private void OnRegisterCommand(RichTextBox Rtb)
         {
             TextRange textRange = new TextRange(Rtb.Document.ContentStart, Rtb.Document.ContentEnd);
@@ -79,7 +99,7 @@ namespace StudentManagement.ViewModel
             string[] ListLine = textRange.Text.Split('\n', ' ', ',', '-', '+', '|');
             foreach (string Line in ListLine)
             {
-              
+
             }
 
 
@@ -90,7 +110,7 @@ namespace StudentManagement.ViewModel
 
 
 
-    private string StandardWord(string data)
+        private string StandardWord(string data)
         {
             if (data.Length > 0)
             {
@@ -106,7 +126,7 @@ namespace StudentManagement.ViewModel
 
         void Command()
         {
-            RichTextBoxSelectionChangeCommand = new RelayCommand<RichTextBox>((p) => true, OnRichTextBoxSelectionChangeCommand);
+            RichTextBoxSelectionChangeCommand = new RelayCommand<object>((p) => true, OnRichTextBoxSelectionChangeCommand);
         }
 
         public RegisterStudyUnitViewModel()
