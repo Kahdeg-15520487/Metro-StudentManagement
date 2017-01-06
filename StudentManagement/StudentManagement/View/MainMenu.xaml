@@ -82,7 +82,7 @@
                     <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
                              Header="Profile"
                              FontFamily="Verdana">
-                        <local:PersonalView></local:PersonalView>
+                        <local:ProfileView></local:ProfileView>
 
 
                     </TabItem>

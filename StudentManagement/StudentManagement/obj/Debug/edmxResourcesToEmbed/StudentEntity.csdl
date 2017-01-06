@@ -834,6 +834,19 @@
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="IsDateRegister" ReturnType="Collection(StudentDBModel.IsDateRegister_Result)" />
+    <FunctionImport Name="GetStudentAndParentInfoByID" ReturnType="Collection(StudentDBModel.GetStudentAndParentInfoByID_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateStudentProfile">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+      <Parameter Name="ParentName" Mode="In" Type="String" />
+      <Parameter Name="ParentMobile" Mode="In" Type="String" />
+      <Parameter Name="ParentGender" Mode="In" Type="Boolean" />
+      <Parameter Name="PresentAddress" Mode="In" Type="String" />
+      <Parameter Name="PermanentAddress" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Gender" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -935,5 +948,25 @@
     <Property Type="String" Name="Note" Nullable="true" MaxLength="300" />
     <Property Type="DateTime" Name="DateRegister" Nullable="true" Precision="16" />
     <Property Type="Boolean" Name="IsDateRegister" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentAndParentInfoByID_Result">
+    <Property Type="String" Name="StudentID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="StudentName" Nullable="true" MaxLength="302" />
+    <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="16" />
+    <Property Type="Boolean" Name="Gender" Nullable="true" />
+    <Property Type="String" Name="IDNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ClassName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="FacultyName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="Hometown" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="AcademicYear" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CurrentAddress" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Binary" Name="ImageToByte" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="ParentName" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="ParentsGender" Nullable="false" />
+    <Property Type="String" Name="ParentPhone" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SchoolName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
   </ComplexType>
 </Schema>

@@ -173,5 +173,51 @@ namespace StudentManagement
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IsDateRegister_Result>("IsDateRegister");
         }
+    
+        public virtual ObjectResult<GetStudentAndParentInfoByID_Result> GetStudentAndParentInfoByID(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentAndParentInfoByID_Result>("GetStudentAndParentInfoByID", studentIDParameter);
+        }
+    
+        public virtual int UpdateStudentProfile(string studentID, string parentName, string parentMobile, Nullable<bool> parentGender, string presentAddress, string permanentAddress, string mobile, Nullable<bool> gender)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            var parentNameParameter = parentName != null ?
+                new ObjectParameter("ParentName", parentName) :
+                new ObjectParameter("ParentName", typeof(string));
+    
+            var parentMobileParameter = parentMobile != null ?
+                new ObjectParameter("ParentMobile", parentMobile) :
+                new ObjectParameter("ParentMobile", typeof(string));
+    
+            var parentGenderParameter = parentGender.HasValue ?
+                new ObjectParameter("ParentGender", parentGender) :
+                new ObjectParameter("ParentGender", typeof(bool));
+    
+            var presentAddressParameter = presentAddress != null ?
+                new ObjectParameter("PresentAddress", presentAddress) :
+                new ObjectParameter("PresentAddress", typeof(string));
+    
+            var permanentAddressParameter = permanentAddress != null ?
+                new ObjectParameter("PermanentAddress", permanentAddress) :
+                new ObjectParameter("PermanentAddress", typeof(string));
+    
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("Mobile", mobile) :
+                new ObjectParameter("Mobile", typeof(string));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStudentProfile", studentIDParameter, parentNameParameter, parentMobileParameter, parentGenderParameter, presentAddressParameter, permanentAddressParameter, mobileParameter, genderParameter);
+        }
     }
 }

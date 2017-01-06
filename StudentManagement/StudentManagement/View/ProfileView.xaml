@@ -1,0 +1,217 @@
+﻿<UserControl x:Class="StudentManagement.View.ProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StudentManagement.View"
+             xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
+             xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ViewModel:ProfileViewModel x:Key="ProfileViewModel">
+
+        </ViewModel:ProfileViewModel>
+    </UserControl.Resources>
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <GroupBox Header="Personal" DataContext="{StaticResource ProfileViewModel}">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush 
+                        ImageSource="/Resources/Backgrounds/MainBackground.png">
+                    </ImageBrush>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Personal" Grid.Column="0">
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
+
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="0.5*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="10" Width="125" Text="Full Name"></TextBlock>
+                                        <TextBox IsReadOnly="True" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  TextAlignment="Center" Text="{Binding StudentInfo[0].StudentName}"  Width="250" Height="35"/>
+
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="2" Margin="10" Width="125" Text="Student ID"></TextBlock>
+                                        <TextBox IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="2" TextAlignment="Center" Text="{Binding StudentInfo[0].StudentID}"  Width="250" Height="35"></TextBox>
+
+                                        <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="3"   Margin="10" Width="125" Text="Date of birth"></TextBlock>
+                                        <DatePicker VerticalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="3"  SelectedDate="{Binding StudentInfo[0].DateOfBirth}"  Width="250" Height="35">
+                                            <DatePicker.Resources>
+                                                <Style TargetType="DatePickerTextBox">
+                                                    <Setter Property="IsReadOnly" Value="True"></Setter>
+                                                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                                                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                                </Style>
+                                            </DatePicker.Resources>
+                                        </DatePicker>
+                                    </Grid>
+                                    <Image Grid.Column="1" HorizontalAlignment="Right" Width="200" Height="200" Source="{Binding StudentInfo[0].ImageToByte}"/>
+                                </Grid>
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Class"></TextBlock>
+                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].ClassName}"  Width="250"></TextBox>
+                                    <Metro:ToggleSwitch VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0"  OnLabel="Male"
+                                                        OffLabel="Female"                                                        
+                                                        Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                                        IsChecked="{Binding StudentInfo[0].Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        OffSwitchBrush="{DynamicResource AccentColorBrush}"
+                                                        OnSwitchBrush="{DynamicResource AccentColorBrush}"
+                                                        Metro:ToggleButtonHelper.ContentDirection="LeftToRight">
+                                                        
+                                    </Metro:ToggleSwitch>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Academic year"></TextBlock>
+                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].AcademicYear}"  Width="470" ></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Faculty"></TextBlock>
+                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].FacultyName}" Width="470"></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="Deparment"></TextBlock>
+                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].DepartmentName}"  Width="470"></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="25"></TextBlock>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Margin="10" Width="125" Text="School"></TextBlock>
+                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].SchoolName}"  Width="470"></TextBox>
+                                </StackPanel>
+
+                                <TextBlock Height="50"></TextBlock>
+
+                                <Button Metro:ButtonHelper.PreserveTextCase="True"
+                                        Style="{DynamicResource SquareButtonStyle}"
+                                        HorizontalAlignment="Right" Height="30" Width="125" Content="Save changes"
+                                        Command="{Binding SaveChangesCommand}">
+                                    
+                                </Button>
+                            </StackPanel>
+
+                        </Grid>
+
+
+                    </Grid>
+                </GroupBox>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Contact" Grid.Row="1">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="0.5*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="120" Text="Present Address"></TextBlock>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding StudentInfo[0].CurrentAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Height="30"></TextBox>
+
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="120" Text="Permanent Address"></TextBlock>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding StudentInfo[0].Hometown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"></TextBox>
+
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="120" Text="Mobile"></TextBlock>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"  Width="300" Text="{Binding StudentInfo[0].PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"></TextBox>
+
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"  Width="120" Text="Email"></TextBlock>
+                            <TextBox IsReadOnly="True" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"  Width="300" Text="{Binding StudentInfo[0].Email}" Height="30"></TextBox>
+
+                        </Grid>
+
+                    </GroupBox>
+                    <GroupBox Header="Parents" Grid.Row="0">
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="150" Text="Representative's Name"></TextBlock>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding StudentInfo[0].ParentName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30"></TextBox>
+
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="150" Text="Representative's Mobile"></TextBlock>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding StudentInfo[0].ParentPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"></TextBox>
+
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="150" Text="Representative's Gender"></TextBlock>
+                            <Metro:ToggleSwitch Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"  OnLabel="Male"
+                                                Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                                        OffLabel="Female"
+                                                        IsChecked="{Binding StudentInfo[0].ParentsGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        OffSwitchBrush="{DynamicResource AccentColorBrush}"
+                                                        OnSwitchBrush="{DynamicResource AccentColorBrush}"
+                                                        Metro:ToggleButtonHelper.ContentDirection="LeftToRight">
+                            </Metro:ToggleSwitch>
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+        </GroupBox>
+    </ScrollViewer>
+</UserControl>
