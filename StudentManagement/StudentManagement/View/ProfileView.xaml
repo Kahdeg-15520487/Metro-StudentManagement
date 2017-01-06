@@ -157,15 +157,15 @@
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="120" Text="Present Address"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding StudentInfo[0].CurrentAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding CurrentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
 
 
                             <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="120" Text="Permanent Address"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding StudentInfo[0].Hometown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding PermanentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
                             <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="120" Text="Mobile"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"  Width="300" Text="{Binding StudentInfo[0].PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"  Width="300" Text="{Binding Mobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
                             <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"  Width="120" Text="Email"></TextBlock>
@@ -191,11 +191,11 @@
 
 
                             <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="150" Text="Representative's Name"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding StudentInfo[0].ParentName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding ParentName,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
 
 
                             <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="150" Text="Representative's Mobile"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding StudentInfo[0].ParentPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding ParentMobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
                             <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="150" Text="Representative's Gender"></TextBlock>

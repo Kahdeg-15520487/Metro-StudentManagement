@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace StudentManagement.ViewModel
 {
-    public class ProfileViewModel : ViewModelBase
+    public class ProfileViewModel : ViewModelBase, IDataErrorInfo
     {
         StudentDBEntities ST = new StudentDBEntities();
         SpeechSynthesizer warningAudio = new SpeechSynthesizer();
@@ -35,18 +35,170 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("StudentInfo");
             }
         }
+        private string parentName = string.Empty;
+
+        public string ParentName
+        {
+            get
+            {
+                return parentName;
+            }
+
+            set
+            {
+                parentName = value;
+                OnPropertyChanged("ParentName");
+            }
+        }
+        private string parentMobile = string.Empty;
+        public string ParentMobile
+        {
+            get
+            {
+                return parentMobile;
+            }
+
+            set
+            {
+                parentMobile = value;
+                OnPropertyChanged("ParentMobile");
+            }
+        }
+        private string currentAddress = string.Empty;
+        public string CurrentAddress
+        {
+            get
+            {
+                return currentAddress;
+            }
+
+            set
+            {
+                currentAddress = value;
+                OnPropertyChanged("CurrentAddress");
+            }
+        }
+        private string permanentAddress = string.Empty;
+
+        public string PermanentAddress
+        {
+            get
+            {
+                return permanentAddress;
+            }
+
+            set
+            {
+                permanentAddress = value;
+                OnPropertyChanged("PermanentAddress");
+            }
+        }
+        private string mobile = string.Empty;
 
         public ICommand SaveChangesCommand { get; set; }
+        public string Mobile
+        {
+            get
+            {
+                return mobile;
+            }
 
+            set
+            {
+                mobile = value;
+                OnPropertyChanged("Mobile");
+            }
+        }
+        private bool canSave = true;
+        public bool CanSave
+        {
+            get
+            {
+                return canSave;
+            }
+
+            set
+            {
+                canSave = value;
+                OnPropertyChanged("CanSave");
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "CurrentAddress" && CurrentAddress == string.Empty)
+                {
+                    CanSave = false;
+                    return "Can not be empty";
+                }
+                else
+                    if (columnName == "ParentName" && ParentName == string.Empty)
+                {
+                    CanSave = false;
+                    return "Can not be empty";
+                }
+                else
+                    if (columnName == "ParentMobile" && ParentMobile == string.Empty)
+                {
+                    CanSave = false;
+                    return "Can not be empty";
+                }
+                else
+                    if (columnName == "PermanentAddress" && PermanentAddress == string.Empty)
+                {
+                    CanSave = false;
+                    return "Can not be empty";
+                }
+                else
+                    if (columnName == "Mobile" && Mobile == string.Empty)
+                {
+                    CanSave = false;
+                    return "Can not be empty";
+                }
+                else
+                {
+                    CanSave = true;
+                    return null;
+                }
+
+            }
+        }
 
         private void OnSaveChangesCommand(object obj)
         {
-            ST.UpdateStudentProfile(StudentInfo[0].StudentID, StudentInfo[0].ParentName, StudentInfo[0].ParentPhone, StudentInfo[0].ParentsGender, StudentInfo[0].CurrentAddress, StudentInfo[0].Hometown, StudentInfo[0].PhoneNumber, StudentInfo[0].Gender);
-            warningAudio.SpeakAsync("Save successfully..");
+            if (CanSave)
+            {
+                ST.UpdateStudentProfile(StudentInfo[0].StudentID, StudentInfo[0].ParentName, StudentInfo[0].ParentPhone, StudentInfo[0].ParentsGender, StudentInfo[0].CurrentAddress, StudentInfo[0].Hometown, StudentInfo[0].PhoneNumber, StudentInfo[0].Gender);
+                warningAudio.SpeakAsync("Save successfully..");
+            }
+            else
+                warningAudio.SpeakAsync("Save failed..");
+        }
+
+        private void GetDataFromServer()
+        {
+            CurrentAddress = StudentInfo[0].CurrentAddress;
+            ParentMobile = StudentInfo[0].ParentPhone;
+            ParentName = StudentInfo[0].ParentName;
+            PermanentAddress = StudentInfo[0].Hometown;
+            Mobile = StudentInfo[0].PhoneNumber;
         }
 
         private void InitProfile()
         {
+            GetDataFromServer();
             SaveChangesCommand = new RelayCommand<object>((p) => true, OnSaveChangesCommand);
         }
         public ProfileViewModel()
