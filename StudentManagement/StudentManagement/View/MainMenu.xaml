@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ViewModel:MainMenuViewModel x:Key="key1"></ViewModel:MainMenuViewModel>
+        <ViewModel:MainMenuViewModel x:Key="MainMenuViewModel"></ViewModel:MainMenuViewModel>
     </UserControl.Resources>
 
     <Grid>
@@ -20,9 +20,41 @@
 
         <!--Tab-->
 
-        <Metro:MetroAnimatedSingleRowTabControl  DataContext="{StaticResource key1}"
-            Metro:TabControlHelper.IsUnderlined="True"
-            >
+        <Metro:MetroAnimatedSingleRowTabControl  DataContext="{StaticResource MainMenuViewModel}"
+            Metro:TabControlHelper.IsUnderlined="True">
+            <TabItem Header="Profile"
+                     Metro:ControlsHelper.HeaderFontWeight="Bold"
+                     Metro:ControlsHelper.HeaderFontSize="35"
+                     FontFamily="Calibri">
+                <Metro:MetroAnimatedTabControl>
+                    <local:ProfileView></local:ProfileView>
+                </Metro:MetroAnimatedTabControl>
+            </TabItem>
+
+            <TabItem Header="Register " DataContext="{Binding IsDateRegister}"
+                     Metro:ControlsHelper.HeaderFontWeight="Bold"
+                     Metro:ControlsHelper.HeaderFontSize="35"
+                     FontFamily="Calibri"
+                     IsEnabled="{Binding IsDateRegister}">
+                <Metro:MetroAnimatedTabControl>
+                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
+                             Header="RegisterStudyUnit"
+                             FontFamily="Verdana">
+                        <local:RegisterStudyUnitView></local:RegisterStudyUnitView>
+
+
+                    </TabItem>
+                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
+                             Header="Schedule"
+                             FontFamily="Verdana">
+                        <local:ScheduleView></local:ScheduleView>
+
+
+                    </TabItem>
+                </Metro:MetroAnimatedTabControl>
+
+            </TabItem>
+
             <TabItem Header="Mark " 
                      Metro:ControlsHelper.HeaderFontWeight="Bold"
                      Metro:ControlsHelper.HeaderFontSize="35"
@@ -50,46 +82,7 @@
                 </Metro:MetroAnimatedTabControl>
 
             </TabItem>
-            <TabItem Header="Register " DataContext="{Binding IsDateRegister}"
-                     Metro:ControlsHelper.HeaderFontWeight="Bold"
-                     Metro:ControlsHelper.HeaderFontSize="35"
-                     FontFamily="Calibri"
-                   IsEnabled="{Binding IsDateRegister}"
-                     >
-                <Metro:MetroAnimatedTabControl>
-                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
-                             Header="RegisterStudyUnit"
-                             FontFamily="Verdana">
-                        <local:RegisterStudyUnitView></local:RegisterStudyUnitView>
 
-
-                    </TabItem>
-                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
-                             Header="Schedule"
-                             FontFamily="Verdana">
-                        <local:ScheduleView></local:ScheduleView>
-
-
-                    </TabItem>
-                </Metro:MetroAnimatedTabControl>
-
-            </TabItem>
-            <TabItem Header="Profile"
-                     Metro:ControlsHelper.HeaderFontWeight="Bold"
-                     Metro:ControlsHelper.HeaderFontSize="35"
-                     FontFamily="Calibri">
-                <Metro:MetroAnimatedTabControl>
-                    <TabItem Metro:ControlsHelper.HeaderFontSize="25" 
-                             Header="Profile"
-                             FontFamily="Verdana">
-                        <local:ProfileView></local:ProfileView>
-
-
-                    </TabItem>
-                    
-                </Metro:MetroAnimatedTabControl>
-
-            </TabItem>
 
         </Metro:MetroAnimatedSingleRowTabControl>
 

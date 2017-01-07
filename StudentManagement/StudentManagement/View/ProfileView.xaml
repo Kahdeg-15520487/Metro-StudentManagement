@@ -14,7 +14,7 @@
         </ViewModel:ProfileViewModel>
     </UserControl.Resources>
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
-        <GroupBox Header="Personal" DataContext="{StaticResource ProfileViewModel}">
+        <GroupBox Header="Profile" DataContext="{StaticResource ProfileViewModel}">
             <Grid>
                 <Grid.Background>
                     <ImageBrush 
@@ -56,13 +56,13 @@
                                             <RowDefinition Height="*"></RowDefinition>
                                             <RowDefinition Height="*"></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="10" Width="125" Text="Full Name"></TextBlock>
+                                        <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="10" Width="125" FontSize="16" Text="Full Name"></TextBlock>
                                         <TextBox IsReadOnly="True" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  TextAlignment="Center" Text="{Binding StudentInfo[0].StudentName}"  Width="250" Height="35"/>
 
-                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="2" Margin="10" Width="125" Text="Student ID"></TextBlock>
+                                        <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="2" Margin="10" Width="125" Text="Student ID"></TextBlock>
                                         <TextBox IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="2" TextAlignment="Center" Text="{Binding StudentInfo[0].StudentID}"  Width="250" Height="35"></TextBox>
 
-                                        <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="3"   Margin="10" Width="125" Text="Date of birth"></TextBlock>
+                                        <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="3"   Margin="10" Width="125" Text="Date of birth"></TextBlock>
                                         <DatePicker VerticalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="3"  SelectedDate="{Binding StudentInfo[0].DateOfBirth}"  Width="250" Height="35">
                                             <DatePicker.Resources>
                                                 <Style TargetType="DatePickerTextBox">
@@ -80,7 +80,7 @@
                                 <TextBlock Height="25"></TextBlock>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock  Margin="10" Width="125" Text="Class"></TextBlock>
+                                    <TextBlock FontSize="16" Margin="10" Width="125" Text="Class"></TextBlock>
                                     <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].ClassName}"  Width="250"></TextBox>
                                     <Metro:ToggleSwitch VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0"  OnLabel="Male"
                                                         OffLabel="Female"                                                        
@@ -96,27 +96,27 @@
                                 <TextBlock Height="25"></TextBlock>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock  Margin="10" Width="125" Text="Academic year"></TextBlock>
+                                    <TextBlock FontSize="16" Margin="10" Width="125" Text="Academic year"></TextBlock>
                                     <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].AcademicYear}"  Width="470" ></TextBox>
                                 </StackPanel>
 
                                 <TextBlock Height="25"></TextBlock>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock  Margin="10" Width="125" Text="Faculty"></TextBlock>
+                                    <TextBlock FontSize="16" Margin="10" Width="125" Text="Faculty"></TextBlock>
                                     <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].FacultyName}" Width="470"></TextBox>
                                 </StackPanel>
 
                                 <TextBlock Height="25"></TextBlock>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock  Margin="10" Width="125" Text="Deparment"></TextBlock>
+                                    <TextBlock FontSize="16" Margin="10" Width="125" Text="Deparment"></TextBlock>
                                     <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].DepartmentName}"  Width="470"></TextBox>
                                 </StackPanel>
 
                                 <TextBlock Height="25"></TextBlock>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock  Margin="10" Width="125" Text="School"></TextBlock>
+                                    <TextBlock FontSize="16" Margin="10" Width="125" Text="School"></TextBlock>
                                     <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].SchoolName}"  Width="470"></TextBox>
                                 </StackPanel>
 
@@ -156,19 +156,19 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="120" Text="Present Address"></TextBlock>
+                            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="150" Text="Present Address"></TextBlock>
                             <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding CurrentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
 
 
-                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="120" Text="Permanent Address"></TextBlock>
+                            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="150" Text="Permanent Address"></TextBlock>
                             <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding PermanentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
-                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="120" Text="Mobile"></TextBlock>
+                            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="150" Text="Mobile"></TextBlock>
                             <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"  Width="300" Text="{Binding Mobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
-                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"  Width="120" Text="Email"></TextBlock>
+                            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"  Width="150" Text="Email"></TextBlock>
                             <TextBox IsReadOnly="True" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"  Width="300" Text="{Binding StudentInfo[0].Email}" Height="30"></TextBox>
 
                         </Grid>
@@ -190,15 +190,15 @@
                             </Grid.RowDefinitions>
 
 
-                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="150" Text="Representative's Name"></TextBlock>
+                            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="180" Text="Representative's Name"></TextBlock>
                             <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding ParentName,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
 
 
-                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="150" Text="Representative's Mobile"></TextBlock>
+                            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="180" Text="Representative's Mobile"></TextBlock>
                             <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding ParentMobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
-                            <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="150" Text="Representative's Gender"></TextBlock>
+                            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="180" Text="Representative's Gender"></TextBlock>
                             <Metro:ToggleSwitch Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"  OnLabel="Male"
                                                 Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                                                         OffLabel="Female"
