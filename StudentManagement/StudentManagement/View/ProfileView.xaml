@@ -115,7 +115,8 @@
                                     <TextBox Name="txtClassName" TextAlignment="Center" Text="{Binding ClassName, Mode=OneWay}"  Width="250"
                                              VerticalContentAlignment="Center"
                                              HorizontalContentAlignment="Center"
-                                             Style="{DynamicResource MetroButtonTextBox}">
+                                             Style="{DynamicResource MetroButtonTextBox}"
+                                             Metro:TextBoxHelper.ButtonCommand="{Binding OpenProfileDetail}">
 
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="LostFocus">

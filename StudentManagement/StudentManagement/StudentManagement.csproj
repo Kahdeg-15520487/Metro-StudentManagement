@@ -136,6 +136,9 @@
     <Compile Include="GetActivityGroup_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetClassDetail_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetDetailActivity_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -229,6 +232,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ParameterConverter.cs" />
     <Compile Include="ViewModel\PasswordHelper.cs" />
+    <Compile Include="ViewModel\ProfileDetailViewModel.cs" />
     <Compile Include="ViewModel\ProfileViewModel.cs" />
     <Compile Include="ViewModel\RegisterStudyUnitViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -254,6 +258,9 @@
     </Compile>
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileDetailView.xaml.cs">
+      <DependentUpon>ProfileDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
@@ -305,6 +312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfileDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

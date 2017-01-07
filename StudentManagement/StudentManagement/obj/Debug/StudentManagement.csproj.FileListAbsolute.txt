@@ -99,3 +99,5 @@ C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\Stu
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileView.g.cs
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileView.baml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\Resources\Styles\ToggleSwitchStyle.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.baml

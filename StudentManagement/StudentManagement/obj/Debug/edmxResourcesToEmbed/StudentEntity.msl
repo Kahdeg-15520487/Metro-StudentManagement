@@ -468,9 +468,24 @@
           <ScalarProperty Name="ParentPhone" ColumnName="ParentPhone" />
           <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
           <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateStudentProfile" FunctionName="StudentDBModel.Store.UpdateStudentProfile" />
+    <FunctionImportMapping FunctionImportName="GetClassDetail" FunctionName="StudentDBModel.Store.GetClassDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetClassDetail_Result">
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="HeadTeacher" ColumnName="HeadTeacher" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="Membership" ColumnName="Membership" />
+          <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using StudentManagement.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,6 +39,8 @@ namespace StudentManagement.ViewModel
         }
 
         #region Some Stuffs
+
+        public static string ClassID;
         private string studentName = string.Empty;
 
         public string StudentName
@@ -321,10 +324,28 @@ namespace StudentManagement.ViewModel
                 warningAudio.SpeakAsync("Save failed..");
         }
 
+        public ICommand OpenProfileDetail { get; set; }
+
+        private void OnOpenProfileDetail(object obj)
+        {
+            MetroWindow detailWindow = new MetroWindow();
+            detailWindow.Width = 650;
+            detailWindow.Height = 350;
+            detailWindow.Title = "This is DetailWindow";
+            detailWindow.Content = new ProfileDetailView();
+            detailWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            var ViewModel = new ProfileDetailViewModel();
+            detailWindow.DataContext = ViewModel;
+            detailWindow.Owner = Application.Current.MainWindow;
+            detailWindow.Show();
+        }
+
+
 
 
         private void GetDataFromServer()
         {
+            ClassID = StudentInfo[0].ClassID;
             StudentName = StudentInfo[0].StudentName;
             StudentID = StudentInfo[0].StudentID;
             ClassName = StudentInfo[0].ClassName;
@@ -345,6 +366,7 @@ namespace StudentManagement.ViewModel
             GetDataFromServer();
             SaveChangesCommand = new RelayCommand<object>((p) => true, OnSaveChangesCommand);
             TextReviveWhenLostFocus = new RelayCommand<object>((p) => true, OnTextReviveWhenLostFocus);
+            OpenProfileDetail = new RelayCommand<object>((p) => true, OnOpenProfileDetail);
         }
         public ProfileViewModel()
         {
