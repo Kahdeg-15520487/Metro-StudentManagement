@@ -29,6 +29,10 @@
                 <ResourceDictionary>
                     <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
                 </ResourceDictionary>
+
+                <ResourceDictionary Source="Resources/Styles/ToggleSwitchStyle.xaml">
+                    
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

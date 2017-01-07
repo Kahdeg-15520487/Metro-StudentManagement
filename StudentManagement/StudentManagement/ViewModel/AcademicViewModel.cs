@@ -42,10 +42,16 @@ namespace StudentManagement.ViewModel
         {
             DetailCommand = new RelayCommand<DataGrid>((p) => true, (p) =>
             {
-
-                GetAcademicByID_Result data = (GetAcademicByID_Result)p.SelectedItem;
-                selectedSubjectID = data.DisciplineID;
-                SubjectDetail = new ObservableCollection<GetDetailDisciplineByID_Result>(ST.GetDetailDisciplineByID(selectedSubjectID).ToList());
+                try
+                {
+                    GetAcademicByID_Result data = (GetAcademicByID_Result)p.SelectedItem;
+                    selectedSubjectID = data.DisciplineID;
+                    SubjectDetail = new ObservableCollection<GetDetailDisciplineByID_Result>(ST.GetDetailDisciplineByID(selectedSubjectID).ToList());
+                }
+                catch
+                {
+                    return;
+                }
 
             });
         }
@@ -74,16 +80,43 @@ namespace StudentManagement.ViewModel
             {
                 if (_AcademicList != value)
                 {
-                    _AcademicList = value; OnPropertyChanged("AcademicList");
+                    _AcademicList = value;
+                    OnPropertyChanged("AcademicList");
                 }
             }
         }
 
+
         #endregion
+
+        private double averageSum = 0f;
+
+
+        public double AverageSum
+        {
+            get
+            {
+                return averageSum;
+            }
+
+            set
+            {
+                if (value == averageSum)
+                    return;
+                averageSum = value;
+                OnPropertyChanged("AverageSum");
+            }
+        }
+
+        private void calAvarageSum()
+        {
+
+        }
 
         public AcademicViewModel()
         {
             InitDetailCommand();
+       
         }
     }
 }
