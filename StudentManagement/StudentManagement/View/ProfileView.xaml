@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:StudentManagement.View"
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -16,6 +17,9 @@
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <GroupBox Header="Profile" DataContext="{StaticResource ProfileViewModel}">
             <Grid>
+                <Grid.Resources>
+                    <ViewModel:ParameterConverter x:Key="ParaConverter"></ViewModel:ParameterConverter>
+                </Grid.Resources>
                 <Grid.Background>
                     <ImageBrush 
                         ImageSource="/Resources/Backgrounds/MainBackground.png">
@@ -57,13 +61,40 @@
                                             <RowDefinition Height="*"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="10" Width="125" FontSize="16" Text="Full Name"></TextBlock>
-                                        <TextBox IsReadOnly="True" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  TextAlignment="Center" Text="{Binding StudentInfo[0].StudentName}"  Width="250" Height="35"/>
+                                        <TextBox Name="txtName" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  TextAlignment="Center" Text="{Binding StudentName, Mode=OneWay}"  Width="250" Height="35">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="LostFocus">
+                                                    <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                                        <i:InvokeCommandAction.CommandParameter>
+                                                            <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                                <Binding Path="StudentName"/>
+                                                                <Binding ElementName="txtName"/>
+                                                            </MultiBinding>
+                                                        </i:InvokeCommandAction.CommandParameter>
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </TextBox>
 
                                         <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="2" Margin="10" Width="125" Text="Student ID"></TextBlock>
-                                        <TextBox IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="2" TextAlignment="Center" Text="{Binding StudentInfo[0].StudentID}"  Width="250" Height="35"></TextBox>
+                                        <TextBox Name="txtStudentID" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="2" TextAlignment="Center" Text="{Binding StudentID, Mode=OneWay}"  Width="250" Height="35">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="LostFocus">
+                                                    <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                                        <i:InvokeCommandAction.CommandParameter>
+                                                            <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                                <Binding Path="StudentID"/>
+                                                                <Binding ElementName="txtStudentID"/>
+                                                            </MultiBinding>
+                                                        </i:InvokeCommandAction.CommandParameter>
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </TextBox>
 
                                         <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="3"   Margin="10" Width="125" Text="Date of birth"></TextBlock>
-                                        <DatePicker VerticalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="3"  SelectedDate="{Binding StudentInfo[0].DateOfBirth}"  Width="250" Height="35">
+                                        <DatePicker VerticalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="1" Grid.Row="3"  SelectedDate="{Binding StudentInfo[0].DateOfBirth, Mode=OneWay}"  Width="250" Height="35">
+
                                             <DatePicker.Resources>
                                                 <Style TargetType="DatePickerTextBox">
                                                     <Setter Property="IsReadOnly" Value="True"></Setter>
@@ -81,7 +112,31 @@
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="16" Margin="10" Width="125" Text="Class"></TextBlock>
-                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].ClassName}"  Width="250"></TextBox>
+                                    <TextBox Name="txtClassName" TextAlignment="Center" Text="{Binding ClassName, Mode=OneWay}"  Width="250"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             Style="{DynamicResource MetroButtonTextBox}">
+
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="LostFocus">
+                                                <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding Path="ClassName"/>
+                                                            <Binding ElementName="txtClassName"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+
+                                        <Metro:TextBoxHelper.ButtonContent>
+                                            <Image Source="/Resources/Icons/Info_icon.png"></Image>
+
+                                        </Metro:TextBoxHelper.ButtonContent>
+
+
+                                    </TextBox>
                                     <Metro:ToggleSwitch VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0"  OnLabel="Male"
                                                         OffLabel="Female"                                                        
                                                         Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
@@ -89,7 +144,7 @@
                                                         OffSwitchBrush="{DynamicResource AccentColorBrush}"
                                                         OnSwitchBrush="{DynamicResource AccentColorBrush}"
                                                         Metro:ToggleButtonHelper.ContentDirection="LeftToRight">
-                                                        
+
                                     </Metro:ToggleSwitch>
                                 </StackPanel>
 
@@ -97,37 +152,104 @@
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="16" Margin="10" Width="125" Text="Academic year"></TextBlock>
-                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].AcademicYear}"  Width="470" ></TextBox>
+                                    <TextBox Name="txtAcademicYear" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" Text="{Binding AcademicYear, Mode=OneWay}"  Width="470" >
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="LostFocus">
+                                                <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding Path="AcademicYear"/>
+                                                            <Binding ElementName="txtAcademicYear"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
                                 </StackPanel>
 
                                 <TextBlock Height="25"></TextBlock>
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="16" Margin="10" Width="125" Text="Faculty"></TextBlock>
-                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].FacultyName}" Width="470"></TextBox>
+                                    <TextBox Name="txtFacultyName" TextAlignment="Center" Text="{Binding FacultyName, Mode=OneWay}" Width="470"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             Style="{DynamicResource MetroButtonTextBox}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="LostFocus">
+                                                <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding Path="FacultyName"/>
+                                                            <Binding ElementName="txtFacultyName"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Metro:TextBoxHelper.ButtonContent>
+                                            <Image Source="/Resources/Icons/Info_icon.png"></Image>
+                                        </Metro:TextBoxHelper.ButtonContent>
+
+                                    </TextBox>
                                 </StackPanel>
 
                                 <TextBlock Height="25"></TextBlock>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Margin="10" Width="125" Text="Deparment"></TextBlock>
-                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].DepartmentName}"  Width="470"></TextBox>
-                                </StackPanel>
+                                    <TextBlock FontSize="16" Margin="10" Width="125" Text="Department"></TextBlock>
+                                    <TextBox Name="txtDepartmentName" TextAlignment="Center" Text="{Binding DepartmentName}"  Width="470"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             Style="{DynamicResource MetroButtonTextBox}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="LostFocus">
+                                                <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding Path="DepartmentName"/>
+                                                            <Binding ElementName="txtDepartmentName"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Metro:TextBoxHelper.ButtonContent>
+                                            <Image Source="/Resources/Icons/Info_icon.png"></Image>
+                                        </Metro:TextBoxHelper.ButtonContent>
 
+                                    </TextBox>
+                                </StackPanel>
+                                
                                 <TextBlock Height="25"></TextBlock>
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="16" Margin="10" Width="125" Text="School"></TextBlock>
-                                    <TextBox IsReadOnly="True" TextAlignment="Center" Text="{Binding StudentInfo[0].SchoolName}"  Width="470"></TextBox>
+                                    <TextBox Name="txtSchoolName" TextAlignment="Center" Text="{Binding SchoolName, Mode=OneWay}"  Width="470"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             Style="{DynamicResource MetroButtonTextBox}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="LostFocus">
+                                                <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding Path="SchoolName"/>
+                                                            <Binding ElementName="txtSchoolName"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Metro:TextBoxHelper.ButtonContent>
+                                            <Image Source="/Resources/Icons/Info_icon.png"></Image>
+                                        </Metro:TextBoxHelper.ButtonContent>
+
+                                    </TextBox>
                                 </StackPanel>
 
                                 <TextBlock Height="50"></TextBlock>
 
-                                <Button Metro:ButtonHelper.PreserveTextCase="True"
-                                        Style="{DynamicResource SquareButtonStyle}"
-                                        HorizontalAlignment="Right" Height="30" Width="125" Content="Save changes"
-                                        Command="{Binding SaveChangesCommand}">
-                                    
-                                </Button>
                             </StackPanel>
 
                         </Grid>
@@ -157,19 +279,45 @@
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="150" Text="Present Address"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding CurrentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
+                            <TextBox TextAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding CurrentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
 
 
                             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="150" Text="Permanent Address"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding PermanentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" 
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding PermanentAddress,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
                             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="150" Text="Mobile"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"  Width="300" Text="{Binding Mobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" 
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"  Width="300" Text="{Binding Mobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
                             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"  Width="150" Text="Email"></TextBlock>
-                            <TextBox IsReadOnly="True" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"  Width="300" Text="{Binding StudentInfo[0].Email}" Height="30"></TextBox>
+                            <TextBox 
+                                     Name="txtEmail"
+                                     IsReadOnly="True" 
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"  Width="300" Text="{Binding Email, Mode=OneWay}" Height="30">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
+                                            <i:InvokeCommandAction.CommandParameter>
+                                                <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                    <Binding Path="Email"/>
+                                                    <Binding ElementName="txtEmail"/>
+                                                </MultiBinding>
+                                            </i:InvokeCommandAction.CommandParameter>
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
 
                         </Grid>
 
@@ -191,11 +339,18 @@
 
 
                             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"  Width="180" Text="Representative's Name"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding ParentName,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" 
+                                     VerticalAlignment="Center" 
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center"
+                                     Grid.Column="2" Grid.Row="1"  Width="300" Text="{Binding ParentName,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Height="30"></TextBox>
 
 
                             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"  Width="180" Text="Representative's Mobile"></TextBlock>
-                            <TextBox TextAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding ParentMobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
+                            <TextBox TextAlignment="Center" VerticalAlignment="Center" 
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center"
+                                     Grid.Column="2" Grid.Row="2"  Width="300" Text="{Binding ParentMobile,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  Height="30"></TextBox>
 
 
                             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"  Width="180" Text="Representative's Gender"></TextBlock>
