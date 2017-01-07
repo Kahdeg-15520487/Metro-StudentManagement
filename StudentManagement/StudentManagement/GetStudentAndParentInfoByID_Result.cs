@@ -31,5 +31,9 @@ namespace StudentManagement
         public string ParentPhone { get; set; }
         public string SchoolName { get; set; }
         public string DepartmentName { get; set; }
+        public string ClassID { get; set; }
+        public string FacultyID { get; set; }
+        public string DepartmentID { get; set; }
+        public string SchoolID { get; set; }
     }
 }

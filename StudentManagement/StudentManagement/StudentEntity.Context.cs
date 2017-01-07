@@ -219,5 +219,14 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStudentProfile", studentIDParameter, parentNameParameter, parentMobileParameter, parentGenderParameter, presentAddressParameter, permanentAddressParameter, mobileParameter, genderParameter);
         }
+    
+        public virtual ObjectResult<GetClassDetail_Result> GetClassDetail(string classID)
+        {
+            var classIDParameter = classID != null ?
+                new ObjectParameter("ClassID", classID) :
+                new ObjectParameter("ClassID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetClassDetail_Result>("GetClassDetail", classIDParameter);
+        }
     }
 }

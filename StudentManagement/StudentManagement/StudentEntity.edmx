@@ -630,6 +630,9 @@
         <Function Name="GetActivityGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetClassDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClassID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetDetailActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Activitie" Type="nvarchar" Mode="In" />
         </Function>
@@ -1652,6 +1655,9 @@
             <Parameter Name="Mobile" Mode="In" Type="String" />
             <Parameter Name="Gender" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="GetClassDetail" ReturnType="Collection(StudentDBModel.GetClassDetail_Result)">
+          <Parameter Name="ClassID" Mode="In" Type="String" />
+          </FunctionImport>
         
          
          
@@ -1777,6 +1783,17 @@
           <Property Type="String" Name="ParentPhone" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="SchoolName" Nullable="true" MaxLength="300" />
           <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="ClassID" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="FacultyID" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="DepartmentID" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="SchoolID" Nullable="false" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="GetClassDetail_Result">
+          <Property Type="String" Name="ClassID" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="HeadTeacher" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ClassName" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="Membership" Nullable="true" />
+          <Property Type="String" Name="Introduction" Nullable="true" MaxLength="300" />
         </ComplexType>
        
       </Schema>
@@ -2254,10 +2271,25 @@
                 <ScalarProperty Name="ParentPhone" ColumnName="ParentPhone" />
                 <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateStudentProfile" FunctionName="StudentDBModel.Store.UpdateStudentProfile" />
+          <FunctionImportMapping FunctionImportName="GetClassDetail" FunctionName="StudentDBModel.Store.GetClassDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetClassDetail_Result">
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="HeadTeacher" ColumnName="HeadTeacher" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Membership" ColumnName="Membership" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
          
          
          
