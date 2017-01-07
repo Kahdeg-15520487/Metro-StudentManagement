@@ -8,6 +8,7 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace StudentManagement.ViewModel
@@ -35,6 +36,125 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("StudentInfo");
             }
         }
+
+        #region Some Stuffs
+        private string studentName = string.Empty;
+
+        public string StudentName
+        {
+            get
+            {
+                return studentName;
+            }
+
+            set
+            {
+                studentName = value;
+            }
+        }
+
+        private string studentID = string.Empty;
+        public string StudentID
+        {
+            get
+            {
+                return studentID;
+            }
+
+            set
+            {
+                studentID = value;
+            }
+        }
+
+
+
+        private string className = string.Empty;
+
+        public string ClassName
+        {
+            get
+            {
+                return className;
+            }
+
+            set
+            {
+                className = value;
+            }
+        }
+        private string facultyName = string.Empty;
+        public string FacultyName
+        {
+            get
+            {
+                return facultyName;
+            }
+
+            set
+            {
+                facultyName = value;
+            }
+        }
+
+        private string departmentName = string.Empty;
+        public string DepartmentName
+        {
+            get
+            {
+                return departmentName;
+            }
+
+            set
+            {
+                departmentName = value;
+            }
+        }
+
+
+        private string schoolName = string.Empty;
+        public string SchoolName
+        {
+            get
+            {
+                return schoolName;
+            }
+
+            set
+            {
+                schoolName = value;
+            }
+        }
+
+        private string email = string.Empty;
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+
+            set
+            {
+                email = value;
+            }
+        }
+
+
+        private string academicYear = string.Empty;
+        public string AcademicYear
+        {
+            get
+            {
+                return academicYear;
+            }
+
+            set
+            {
+                academicYear = value;
+            }
+        }
+
         private string parentName = string.Empty;
 
         public string ParentName
@@ -108,6 +228,20 @@ namespace StudentManagement.ViewModel
                 mobile = value;
                 OnPropertyChanged("Mobile");
             }
+        }
+
+        #endregion
+
+        public ICommand TextReviveWhenLostFocus { get; set; }
+
+        private void OnTextReviveWhenLostFocus(object parameters)
+        {
+            var values = (object[])parameters;
+            var currentText = values[0].ToString();
+            TextBox currentTextBox = values[1] as TextBox;
+            Clipboard.SetText(currentText);
+            currentTextBox.Clear();
+            currentTextBox.Paste();
         }
         private bool canSave = true;
         public bool CanSave
@@ -187,8 +321,18 @@ namespace StudentManagement.ViewModel
                 warningAudio.SpeakAsync("Save failed..");
         }
 
+
+
         private void GetDataFromServer()
         {
+            StudentName = StudentInfo[0].StudentName;
+            StudentID = StudentInfo[0].StudentID;
+            ClassName = StudentInfo[0].ClassName;
+            FacultyName = StudentInfo[0].FacultyName;
+            DepartmentName = StudentInfo[0].DepartmentName;
+            SchoolName = StudentInfo[0].SchoolName;
+            Email = StudentInfo[0].Email;
+            AcademicYear = StudentInfo[0].AcademicYear.ToString();
             CurrentAddress = StudentInfo[0].CurrentAddress;
             ParentMobile = StudentInfo[0].ParentPhone;
             ParentName = StudentInfo[0].ParentName;
@@ -200,6 +344,7 @@ namespace StudentManagement.ViewModel
         {
             GetDataFromServer();
             SaveChangesCommand = new RelayCommand<object>((p) => true, OnSaveChangesCommand);
+            TextReviveWhenLostFocus = new RelayCommand<object>((p) => true, OnTextReviveWhenLostFocus);
         }
         public ProfileViewModel()
         {

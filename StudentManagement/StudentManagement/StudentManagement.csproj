@@ -227,6 +227,7 @@
     <Compile Include="ViewModel\IntroWindowViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ParameterConverter.cs" />
     <Compile Include="ViewModel\PasswordHelper.cs" />
     <Compile Include="ViewModel\ProfileViewModel.cs" />
     <Compile Include="ViewModel\RegisterStudyUnitViewModel.cs" />
@@ -361,6 +362,7 @@
     <Resource Include="Resources\Icons\App_icon.png" />
     <Resource Include="Resources\Backgrounds\MainBackground.png" />
     <Resource Include="Resources\Icons\download.png" />
+    <Resource Include="Resources\Icons\Info_icon.png" />
     <Content Include="StudentEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>StudentEntity.edmx</DependentUpon>
