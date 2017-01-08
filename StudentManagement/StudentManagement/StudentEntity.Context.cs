@@ -228,5 +228,32 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetClassDetail_Result>("GetClassDetail", classIDParameter);
         }
+    
+        public virtual ObjectResult<GetDeparmentDetail_Result> GetDeparmentDetail(string departmentID)
+        {
+            var departmentIDParameter = departmentID != null ?
+                new ObjectParameter("DepartmentID", departmentID) :
+                new ObjectParameter("DepartmentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDeparmentDetail_Result>("GetDeparmentDetail", departmentIDParameter);
+        }
+    
+        public virtual ObjectResult<GetFacultyDetail_Result> GetFacultyDetail(string facultyID)
+        {
+            var facultyIDParameter = facultyID != null ?
+                new ObjectParameter("FacultyID", facultyID) :
+                new ObjectParameter("FacultyID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetFacultyDetail_Result>("GetFacultyDetail", facultyIDParameter);
+        }
+    
+        public virtual ObjectResult<GetSchooltDetail_Result> GetSchooltDetail(string schoolID)
+        {
+            var schoolIDParameter = schoolID != null ?
+                new ObjectParameter("SchoolID", schoolID) :
+                new ObjectParameter("SchoolID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSchooltDetail_Result>("GetSchooltDetail", schoolIDParameter);
+        }
     }
 }

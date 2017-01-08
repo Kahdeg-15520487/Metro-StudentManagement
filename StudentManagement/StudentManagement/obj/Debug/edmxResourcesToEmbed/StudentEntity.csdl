@@ -850,6 +850,15 @@
     <FunctionImport Name="GetClassDetail" ReturnType="Collection(StudentDBModel.GetClassDetail_Result)">
       <Parameter Name="ClassID" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetDeparmentDetail" ReturnType="Collection(StudentDBModel.GetDeparmentDetail_Result)">
+      <Parameter Name="DepartmentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFacultyDetail" ReturnType="Collection(StudentDBModel.GetFacultyDetail_Result)">
+      <Parameter Name="FacultyID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSchooltDetail" ReturnType="Collection(StudentDBModel.GetSchooltDetail_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -981,6 +990,29 @@
     <Property Type="String" Name="HeadTeacher" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="ClassName" Nullable="true" MaxLength="300" />
     <Property Type="Int32" Name="Membership" Nullable="true" />
+    <Property Type="String" Name="Introduction" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="GetDeparmentDetail_Result">
+    <Property Type="String" Name="DepartmentID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="DepartmentHeader" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="SchoolID" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Credits" Nullable="true" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="GetFacultyDetail_Result">
+    <Property Type="String" Name="FacultyID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="FacultyName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SchoolID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Note" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="FacultyHeader" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="GetSchooltDetail_Result">
+    <Property Type="String" Name="SchoolID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="SchoolName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SchoolHeader" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Office" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PhoneNum" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="Introduction" Nullable="true" MaxLength="300" />
   </ComplexType>
 </Schema>

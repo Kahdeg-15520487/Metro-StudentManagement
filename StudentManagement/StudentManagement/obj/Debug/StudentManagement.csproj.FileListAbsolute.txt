@@ -99,5 +99,11 @@ C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\Stu
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileView.g.cs
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileView.baml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\Resources\Styles\ToggleSwitchStyle.baml
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.g.cs
-C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ClassDetailView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ClassDetailView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DepartmentDetailView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\FacultyDetailView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\SchoolDetailView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\DepartmentDetailView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\FacultyDetailView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\SchoolDetailView.baml
