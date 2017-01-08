@@ -18,6 +18,7 @@ namespace StudentManagement.ViewModel
     {
         StudentDBEntities ST = new StudentDBEntities();
         SpeechSynthesizer warningAudio = new SpeechSynthesizer();
+        private MetroWindow detailWindow = null;
         private ObservableCollection<GetStudentAndParentInfoByID_Result> _StudentInfo;
 
         public ObservableCollection<GetStudentAndParentInfoByID_Result> StudentInfo
@@ -41,6 +42,9 @@ namespace StudentManagement.ViewModel
         #region Some Stuffs
 
         public static string ClassID;
+        public static string FacultyID;
+        public static string DepartmentID;
+        public static string SchoolID;
         private string studentName = string.Empty;
 
         public string StudentName
@@ -324,20 +328,68 @@ namespace StudentManagement.ViewModel
                 warningAudio.SpeakAsync("Save failed..");
         }
 
-        public ICommand OpenProfileDetail { get; set; }
+        public ICommand OpenClassDetail { get; set; }
+        public ICommand OpenFacultyDetail { get; set; }
+        public ICommand OpenDepartmentDetail { get; set; }
+        public ICommand OpenSchoolDetail { get; set; }
 
-        private void OnOpenProfileDetail(object obj)
+
+        private void createDetailWindow()
         {
-            MetroWindow detailWindow = new MetroWindow();
-            detailWindow.Width = 650;
-            detailWindow.Height = 350;
-            detailWindow.Title = "This is DetailWindow";
-            detailWindow.Content = new ProfileDetailView();
+
             detailWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             var ViewModel = new ProfileDetailViewModel();
             detailWindow.DataContext = ViewModel;
             detailWindow.Owner = Application.Current.MainWindow;
+        }
+
+        private void initDetailWindow()
+        {
+            detailWindow = new MetroWindow { Width = 650, Height = 350 };
+            detailWindow.Closed += new System.EventHandler(DetailWindow_Closed);
+            createDetailWindow();
             detailWindow.Show();
+        }
+
+        private void OnOpenClassDetail(object obj)
+        {
+            if (detailWindow == null)
+            {
+                initDetailWindow();
+            }
+            detailWindow.Title = "Class Detail";
+            detailWindow.Content = new ClassDetailView();
+            detailWindow.Focus();
+        }
+        private void OnOpenFacultyDetail(object obj)
+        {
+            if (detailWindow == null)
+            {
+                initDetailWindow();
+            }
+            detailWindow.Title = "Faculty Detail";
+            detailWindow.Content = new FacultyDetailView();
+            detailWindow.Focus();
+        }
+        private void OnOpenDepartmentDetail(object obj)
+        {
+            if (detailWindow == null)
+            {
+                initDetailWindow();
+            }
+            detailWindow.Title = "Department Detail";
+            detailWindow.Content = new DepartmentDetailView();
+            detailWindow.Focus();
+        }
+        private void OnOpenSchoolDetail(object obj)
+        {
+            if (detailWindow == null)
+            {
+                initDetailWindow();
+            }
+            detailWindow.Title = "School Detail";
+            detailWindow.Content = new SchoolDetailView();
+            detailWindow.Focus();
         }
 
 
@@ -346,6 +398,9 @@ namespace StudentManagement.ViewModel
         private void GetDataFromServer()
         {
             ClassID = StudentInfo[0].ClassID;
+            FacultyID = StudentInfo[0].FacultyID;
+            DepartmentID = StudentInfo[0].DepartmentID;
+            SchoolID = StudentInfo[0].SchoolID;
             StudentName = StudentInfo[0].StudentName;
             StudentID = StudentInfo[0].StudentID;
             ClassName = StudentInfo[0].ClassName;
@@ -366,11 +421,20 @@ namespace StudentManagement.ViewModel
             GetDataFromServer();
             SaveChangesCommand = new RelayCommand<object>((p) => true, OnSaveChangesCommand);
             TextReviveWhenLostFocus = new RelayCommand<object>((p) => true, OnTextReviveWhenLostFocus);
-            OpenProfileDetail = new RelayCommand<object>((p) => true, OnOpenProfileDetail);
+            OpenClassDetail = new RelayCommand<object>((p) => true, OnOpenClassDetail);
+            OpenFacultyDetail = new RelayCommand<object>((p) => true, OnOpenFacultyDetail);
+            OpenDepartmentDetail = new RelayCommand<object>((p) => true, OnOpenDepartmentDetail);
+            OpenSchoolDetail = new RelayCommand<object>((p) => true, OnOpenSchoolDetail);
         }
         public ProfileViewModel()
         {
             InitProfile();
+
+        }
+
+        private void DetailWindow_Closed(object sender, EventArgs e)
+        {
+            detailWindow = null;
         }
     }
 }

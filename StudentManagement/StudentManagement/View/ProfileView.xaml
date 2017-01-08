@@ -116,7 +116,7 @@
                                              VerticalContentAlignment="Center"
                                              HorizontalContentAlignment="Center"
                                              Style="{DynamicResource MetroButtonTextBox}"
-                                             Metro:TextBoxHelper.ButtonCommand="{Binding OpenProfileDetail}">
+                                             Metro:TextBoxHelper.ButtonCommand="{Binding OpenClassDetail}">
 
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="LostFocus">
@@ -176,7 +176,8 @@
                                     <TextBox Name="txtFacultyName" TextAlignment="Center" Text="{Binding FacultyName, Mode=OneWay}" Width="470"
                                              VerticalContentAlignment="Center"
                                              HorizontalContentAlignment="Center"
-                                             Style="{DynamicResource MetroButtonTextBox}">
+                                             Style="{DynamicResource MetroButtonTextBox}"
+                                             Metro:TextBoxHelper.ButtonCommand="{Binding OpenFacultyDetail}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="LostFocus">
                                                 <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
@@ -202,7 +203,8 @@
                                     <TextBox Name="txtDepartmentName" TextAlignment="Center" Text="{Binding DepartmentName}"  Width="470"
                                              VerticalContentAlignment="Center"
                                              HorizontalContentAlignment="Center"
-                                             Style="{DynamicResource MetroButtonTextBox}">
+                                             Style="{DynamicResource MetroButtonTextBox}"
+                                             Metro:TextBoxHelper.ButtonCommand="{Binding OpenDepartmentDetail}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="LostFocus">
                                                 <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">
@@ -229,7 +231,8 @@
                                     <TextBox Name="txtSchoolName" TextAlignment="Center" Text="{Binding SchoolName, Mode=OneWay}"  Width="470"
                                              VerticalContentAlignment="Center"
                                              HorizontalContentAlignment="Center"
-                                             Style="{DynamicResource MetroButtonTextBox}">
+                                             Style="{DynamicResource MetroButtonTextBox}"
+                                             Metro:TextBoxHelper.ButtonCommand="{Binding OpenSchoolDetail}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="LostFocus">
                                                 <i:InvokeCommandAction Command="{Binding TextReviveWhenLostFocus}">

@@ -139,6 +139,9 @@
     <Compile Include="GetClassDetail_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetDeparmentDetail_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetDetailActivity_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -146,6 +149,12 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetDiplomaProject_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetFacultyDetail_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetSchooltDetail_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetStudentAndParentInfoByID_Result.cs">
@@ -250,8 +259,14 @@
     <Compile Include="View\BehaviorView.xaml.cs">
       <DependentUpon>BehaviorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DepartmentDetailView.xaml.cs">
+      <DependentUpon>DepartmentDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DiplomaProjectView.xaml.cs">
       <DependentUpon>DiplomaProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FacultyDetailView.xaml.cs">
+      <DependentUpon>FacultyDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\IntroWindowView.xaml.cs">
       <DependentUpon>IntroWindowView.xaml</DependentUpon>
@@ -259,8 +274,8 @@
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProfileDetailView.xaml.cs">
-      <DependentUpon>ProfileDetailView.xaml</DependentUpon>
+    <Compile Include="View\ClassDetailView.xaml.cs">
+      <DependentUpon>ClassDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
@@ -270,6 +285,9 @@
     </Compile>
     <Compile Include="View\ScheduleView.xaml.cs">
       <DependentUpon>ScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SchoolDetailView.xaml.cs">
+      <DependentUpon>SchoolDetailView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -303,7 +321,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DepartmentDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DiplomaProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FacultyDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -315,7 +341,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProfileDetailView.xaml">
+    <Page Include="View\ClassDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SchoolDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
