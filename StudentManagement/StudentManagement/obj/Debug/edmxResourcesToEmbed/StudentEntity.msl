@@ -164,7 +164,6 @@
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
           <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
-          <ScalarProperty Name="isRegistered" ColumnName="isRegistered" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -484,6 +483,15 @@
           <ScalarProperty Name="ClassName" ColumnName="ClassName" />
           <ScalarProperty Name="Membership" ColumnName="Membership" />
           <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetListDisciplineForThisUser" FunctionName="StudentDBModel.Store.GetListDisciplineForThisUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetListDisciplineForThisUser_Result">
+          <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="DisciplineStatus" ColumnName="DisciplineStatus" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

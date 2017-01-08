@@ -148,6 +148,9 @@
     <Compile Include="GetDiplomaProject_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetListDisciplineForThisUser_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetStudentAndParentInfoByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
