@@ -155,6 +155,7 @@
     <Property Name="StudentID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="SemesterID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="isRegistered" Type="bit" />
   </EntityType>
   <EntityType Name="ScholarCondition">
     <Key>
@@ -635,9 +636,6 @@
   </Function>
   <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetStudentAndParentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />

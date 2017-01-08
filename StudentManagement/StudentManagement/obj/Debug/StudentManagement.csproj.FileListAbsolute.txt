@@ -46,6 +46,8 @@ C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.g.cs
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\RegisterStudyUnitView.baml
 C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ScheduleView.baml
+C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.g.cs
+C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PersonalView.baml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\MainWindow.g.cs
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AcademicView.g.cs
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AccountSettingsView.g.cs
@@ -99,8 +101,3 @@ C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\Stu
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\Resources\Styles\ToggleSwitchStyle.baml
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.g.cs
 C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.baml
-C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.g.cs
-C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileView.g.cs
-C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\Resources\Styles\ToggleSwitchStyle.baml
-C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileDetailView.baml
-C:\Users\vu khac hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\ProfileView.baml

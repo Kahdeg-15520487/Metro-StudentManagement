@@ -160,6 +160,7 @@
           <Property Name="StudentID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="SemesterID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="isRegistered" Type="bit" />
         </EntityType>
         <EntityType Name="ScholarCondition">
           <Key>
@@ -640,9 +641,6 @@
         </Function>
         <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetStudentAndParentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
@@ -1660,9 +1658,6 @@
           <FunctionImport Name="GetClassDetail" ReturnType="Collection(StudentDBModel.GetClassDetail_Result)">
           <Parameter Name="ClassID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetListDisciplineForThisUser" ReturnType="Collection(StudentDBModel.GetListDisciplineForThisUser_Result)">
-            <Parameter Name="ThisUser" Mode="In" Type="String" />
-          </FunctionImport>
         
          
          
@@ -1799,11 +1794,6 @@
           <Property Type="String" Name="ClassName" Nullable="true" MaxLength="300" />
           <Property Type="Int32" Name="Membership" Nullable="true" />
           <Property Type="String" Name="Introduction" Nullable="true" MaxLength="300" />
-        </ComplexType>
-        <ComplexType Name="GetListDisciplineForThisUser_Result">
-          <Property Type="String" Name="SemesterName" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
-          <Property Type="Boolean" Name="DisciplineStatus" Nullable="true" />
         </ComplexType>
        
       </Schema>
@@ -1975,6 +1965,7 @@
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
                 <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="isRegistered" ColumnName="isRegistered" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2296,15 +2287,6 @@
                 <ScalarProperty Name="ClassName" ColumnName="ClassName" />
                 <ScalarProperty Name="Membership" ColumnName="Membership" />
                 <ScalarProperty Name="Introduction" ColumnName="Introduction" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetListDisciplineForThisUser" FunctionName="StudentDBModel.Store.GetListDisciplineForThisUser">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="StudentDBModel.GetListDisciplineForThisUser_Result">
-                <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
-                <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
-                <ScalarProperty Name="DisciplineStatus" ColumnName="DisciplineStatus" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

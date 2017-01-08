@@ -45,7 +45,7 @@
                                     <TextBlock Text="Quick Register"></TextBlock>
                                 </Expander.Header>
                                 <StackPanel>
-                                    <Button Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=txtRegister}" Content="Register" FontWeight="Bold" HorizontalAlignment="Left" FontSize="15" FontFamily="Expanded"></Button>
+                                    <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Left" FontSize="15" FontFamily="Expanded"></Button>
 
                                     <TextBox AcceptsReturn="True"
                                              MinWidth="800" 
@@ -53,8 +53,7 @@
                                              MaxHeight="200"  
                                              MinHeight="150" 
                                              TextWrapping="Wrap" 
-                                             Name="txtRegister"
-                                             Text="{Binding ReplaceSpaceToEnter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                             Text="{Binding FuckingTestingString1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     </TextBox>
 
                                 </StackPanel>

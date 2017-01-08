@@ -55,58 +55,50 @@ namespace StudentManagement.ViewModel
         }
 
 
-        private string _ReplaceSpaceToEnter;
-        public string ReplaceSpaceToEnter
+        private string FuckingTestingString;
+        public string FuckingTestingString1
         {
             get
             {
-                return _ReplaceSpaceToEnter;
+                return FuckingTestingString;
             }
 
             set
             {
                 if (value.Contains(' ') == false)
-                    _ReplaceSpaceToEnter = value;
+                    FuckingTestingString = value;
                 else
                 {
-                    _ReplaceSpaceToEnter = value.Replace(' ', '\n');
+                    FuckingTestingString = value.Replace(' ', '\n');
                 }
 
 
 
-                OnPropertyChanged("ReplaceSpaceToEnter");
+                OnPropertyChanged("FuckingTestingString1");
             }
         }
         private string _Info;
 
-       
+        public ICommand RichTextBoxSelectionChangeCommand { get; set; }
+        private void OnRichTextBoxSelectionChangeCommand(object obj)
+        {
+        }
+
+
+
+
         public ICommand RegisterCommand { get; set; }
 
 
 
-        private void OnRegisterCommand(TextBox txt)
+        private void OnRegisterCommand(RichTextBox Rtb)
         {
-            var thisUser = DialogLogginViewModel.Users[0];
-            var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
-            txt.Text = txt.Text.Trim();
-            txt.Text = StandardWord(txt.Text);
-            string[] ListLine = txt.Text.Split('\n', ' ', ',', '-', '+', '|');
-            
+            TextRange textRange = new TextRange(Rtb.Document.ContentStart, Rtb.Document.ContentEnd);
+            textRange.Text = textRange.Text.Trim();
+            textRange.Text = StandardWord(textRange.Text);
+            string[] ListLine = textRange.Text.Split('\n', ' ', ',', '-', '+', '|');
             foreach (string Line in ListLine)
             {
-                int flag = 1;
-                foreach (GetListDisciplineForThisUser_Result Discipline in DisciplineRegistered)
-                {
-                    if (Discipline.DisciplineID == Line && Discipline.DisciplineStatus == false || Discipline.DisciplineID != Line) flag = 1;
-                    else { flag = 0; break; }
-                }
-                if (flag == 1)
-                {
-                    var data = ST.IsDateRegister().ToList()[0];
-                    RegisterStudyUnit Register = new RegisterStudyUnit() { StudentID = thisUser.ID, SemesterID = data.SemesterID, DisciplineID = Line };
-                    ST.RegisterStudyUnit.Add(Register);
-                    ST.SaveChanges();
-                }
 
             }
 
@@ -134,7 +126,7 @@ namespace StudentManagement.ViewModel
 
         void Command()
         {
-            RegisterCommand = new RelayCommand<TextBox>((p) => true, OnRegisterCommand);
+            RichTextBoxSelectionChangeCommand = new RelayCommand<object>((p) => true, OnRichTextBoxSelectionChangeCommand);
         }
 
         public RegisterStudyUnitViewModel()
