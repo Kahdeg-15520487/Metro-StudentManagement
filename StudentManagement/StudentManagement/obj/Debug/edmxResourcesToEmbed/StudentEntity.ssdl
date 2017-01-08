@@ -155,7 +155,6 @@
     <Property Name="StudentID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="SemesterID" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="isRegistered" Type="bit" />
   </EntityType>
   <EntityType Name="ScholarCondition">
     <Key>
@@ -643,6 +642,9 @@
   <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
   </Function>
@@ -658,6 +660,11 @@
   </Function>
   <Function Name="GetUsersDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="InsertRegisterStudyUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Discipline" Type="nvarchar" Mode="In" />
+    <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="UpdateStudentProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

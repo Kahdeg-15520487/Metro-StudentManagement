@@ -255,5 +255,31 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSchooltDetail_Result>("GetSchooltDetail", schoolIDParameter);
         }
+    
+        public virtual ObjectResult<GetListDisciplineForThisUser_Result> GetListDisciplineForThisUser(string thisUser)
+        {
+            var thisUserParameter = thisUser != null ?
+                new ObjectParameter("ThisUser", thisUser) :
+                new ObjectParameter("ThisUser", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetListDisciplineForThisUser_Result>("GetListDisciplineForThisUser", thisUserParameter);
+        }
+    
+        public virtual int InsertRegisterStudyUnit(string studentID, string discipline, string semesterID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            var disciplineParameter = discipline != null ?
+                new ObjectParameter("Discipline", discipline) :
+                new ObjectParameter("Discipline", typeof(string));
+    
+            var semesterIDParameter = semesterID != null ?
+                new ObjectParameter("SemesterID", semesterID) :
+                new ObjectParameter("SemesterID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertRegisterStudyUnit", studentIDParameter, disciplineParameter, semesterIDParameter);
+        }
     }
 }
