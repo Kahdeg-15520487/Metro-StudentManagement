@@ -228,5 +228,14 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetClassDetail_Result>("GetClassDetail", classIDParameter);
         }
+    
+        public virtual ObjectResult<GetListDisciplineForThisUser_Result> GetListDisciplineForThisUser(string thisUser)
+        {
+            var thisUserParameter = thisUser != null ?
+                new ObjectParameter("ThisUser", thisUser) :
+                new ObjectParameter("ThisUser", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetListDisciplineForThisUser_Result>("GetListDisciplineForThisUser", thisUserParameter);
+        }
     }
 }

@@ -850,6 +850,9 @@
     <FunctionImport Name="GetClassDetail" ReturnType="Collection(StudentDBModel.GetClassDetail_Result)">
       <Parameter Name="ClassID" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetListDisciplineForThisUser" ReturnType="Collection(StudentDBModel.GetListDisciplineForThisUser_Result)">
+      <Parameter Name="ThisUser" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -982,5 +985,10 @@
     <Property Type="String" Name="ClassName" Nullable="true" MaxLength="300" />
     <Property Type="Int32" Name="Membership" Nullable="true" />
     <Property Type="String" Name="Introduction" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="GetListDisciplineForThisUser_Result">
+    <Property Type="String" Name="SemesterName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
+    <Property Type="Boolean" Name="DisciplineStatus" Nullable="true" />
   </ComplexType>
 </Schema>
