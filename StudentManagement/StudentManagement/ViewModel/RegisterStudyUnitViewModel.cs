@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,50 +56,65 @@ namespace StudentManagement.ViewModel
         }
 
 
-        private string FuckingTestingString;
-        public string FuckingTestingString1
+        private string _ReplaceSpaceToEnter;
+        public string ReplaceSpaceToEnter
         {
             get
             {
-                return FuckingTestingString;
+                return _ReplaceSpaceToEnter;
             }
 
             set
             {
                 if (value.Contains(' ') == false)
-                    FuckingTestingString = value;
+                    _ReplaceSpaceToEnter = value;
                 else
                 {
-                    FuckingTestingString = value.Replace(' ', '\n');
+                    _ReplaceSpaceToEnter = value.Replace(' ', '\n');
                 }
 
 
 
-                OnPropertyChanged("FuckingTestingString1");
+                OnPropertyChanged("ReplaceSpaceToEnter");
             }
         }
         private string _Info;
 
-        public ICommand RichTextBoxSelectionChangeCommand { get; set; }
-        private void OnRichTextBoxSelectionChangeCommand(object obj)
-        {
-        }
-
-
-
 
         public ICommand RegisterCommand { get; set; }
 
+       
 
-
-        private void OnRegisterCommand(RichTextBox Rtb)
+        private void OnRegisterCommand(object parameters)
         {
-            TextRange textRange = new TextRange(Rtb.Document.ContentStart, Rtb.Document.ContentEnd);
-            textRange.Text = textRange.Text.Trim();
-            textRange.Text = StandardWord(textRange.Text);
-            string[] ListLine = textRange.Text.Split('\n', ' ', ',', '-', '+', '|');
+            
+            var values = (object[])parameters;         
+            TextBox txt = values[0] as TextBox;
+            var thisUser = DialogLogginViewModel.Users[0];
+            var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
+            txt.Text = txt.Text.Trim();
+            txt.Text = StandardWord(txt.Text);
+            string[] ListLine = txt.Text.Split('\n', ' ', ',', '-', '+', '|');
+           
             foreach (string Line in ListLine)
             {
+                int flag = 1;
+
+                foreach (GetListDisciplineForThisUser_Result Discipline in DisciplineRegistered)
+                {
+                    if (Discipline.DisciplineID == Line && Discipline.DisciplineStatus == false || Discipline.DisciplineID != Line) flag = 1;
+                    else { flag = 0; break; }
+                }
+                if (flag == 1 && Line != " " && Line != "\n" && Line != null)
+                {
+                    try
+                    {
+                        var data = ST.IsDateRegister().ToList()[0];
+                        ST.InsertRegisterStudyUnit(thisUser.ID, Line, data.SemesterID);
+                        ST.SaveChanges();
+                    }
+                    catch { }
+                }
 
             }
 
@@ -126,7 +142,7 @@ namespace StudentManagement.ViewModel
 
         void Command()
         {
-            RichTextBoxSelectionChangeCommand = new RelayCommand<object>((p) => true, OnRichTextBoxSelectionChangeCommand);
+            RegisterCommand = new RelayCommand<object>((p) => true, OnRegisterCommand);
         }
 
         public RegisterStudyUnitViewModel()
