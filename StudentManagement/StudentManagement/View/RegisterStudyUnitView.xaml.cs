@@ -23,6 +23,10 @@ namespace StudentManagement.View
         public RegisterStudyUnitView()
         {
             InitializeComponent();
+            TextBlock a = new TextBlock();
+            a.Foreground = new SolidColorBrush(Colors.Green);
+            a.FontSize = 14; a.Text = "vu khac hoi";
+            grbError.Children.Add(a);
         }
 
       
