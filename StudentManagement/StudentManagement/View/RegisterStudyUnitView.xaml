@@ -34,7 +34,7 @@
                         </GroupBox.Header>
                         <StackPanel>
                             <TextBlock Text="{Binding Info}" Padding="20" FontSize="15" FontWeight="Black" LineHeight="28" ></TextBlock>
-                            <StackPanel Name="grbError"></StackPanel>
+                            <StackPanel Name="StpError"></StackPanel>
                             <Expander>
                                 <Expander.Header>
                                     <TextBlock Text="Registered"></TextBlock>
@@ -58,27 +58,27 @@
                                             HorizontalAlignment="Left" 
                                             FontSize="15" 
                                             FontFamily="Expanded">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="Click">
-                                                <i:InvokeCommandAction Command="{Binding RegisterCommand}">
-                                                    <i:InvokeCommandAction.CommandParameter>
-                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
-                                                            <Binding ElementName="txtRegister"/>
-                                                            <Binding ElementName="grbError"/>
-                                                        </MultiBinding>
-                                                    </i:InvokeCommandAction.CommandParameter>
-                                                </i:InvokeCommandAction>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </Button>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction Command="{Binding RegisterCommand}">
+                                                        <i:InvokeCommandAction.CommandParameter>
+                                                            <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                                <Binding ElementName="txtRegister"/>
+                                                                <Binding ElementName="StpError"/>
+                                                            </MultiBinding>
+                                                        </i:InvokeCommandAction.CommandParameter>
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
 
-                                    <TextBox AcceptsReturn="True"
+                                        <TextBox AcceptsReturn="True"
                                              MinWidth="800" 
                                              FontSize="16"  
                                              MaxHeight="200"  
                                              MinHeight="150" 
                                              TextWrapping="Wrap" 
-                                             Name="txtRegister"
+                                             Name="txtRegister"  Style="{DynamicResource MetroButtonTextBox}"
                                              Text="{Binding ReplaceSpaceToEnter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     </TextBox>
 

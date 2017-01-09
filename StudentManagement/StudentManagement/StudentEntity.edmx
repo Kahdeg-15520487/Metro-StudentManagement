@@ -1000,7 +1000,7 @@
           <Property Name="StudentID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DisciplineID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SemesterID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="isRegistered" Type="Boolean" />
+         
           <NavigationProperty Name="Discipline" Relationship="Self.Fk_DisciplineID" FromRole="RegisterStudyUnit" ToRole="Discipline" />
           <NavigationProperty Name="Semester" Relationship="Self.Fk_SemesterID" FromRole="RegisterStudyUnit" ToRole="Semester" />
           <NavigationProperty Name="Student" Relationship="Self.Fk_StudentID_RegisterStudyUnit" FromRole="RegisterStudyUnit" ToRole="Student" />

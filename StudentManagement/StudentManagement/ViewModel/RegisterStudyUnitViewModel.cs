@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace StudentManagement.ViewModel
 {
@@ -83,39 +84,61 @@ namespace StudentManagement.ViewModel
 
         public ICommand RegisterCommand { get; set; }
 
-       
+
 
         private void OnRegisterCommand(object parameters)
         {
-            
-            var values = (object[])parameters;         
-            TextBox txt = values[0] as TextBox;
+
+            var values = (object[])parameters;
+            TextBox txtwrap = values[0] as TextBox;
+            StackPanel Stp = values[1] as StackPanel;
             var thisUser = DialogLogginViewModel.Users[0];
             var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
-            txt.Text = txt.Text.Trim();
-            txt.Text = StandardWord(txt.Text);
-            string[] ListLine = txt.Text.Split('\n', ' ', ',', '-', '+', '|');
+            string deleteEnter = txtwrap.Text.Replace('\n', ' ');
+
+            deleteEnter = StandardWord(deleteEnter);
+
+            string[] ListLine = deleteEnter.Split(' ', ',', '-', '+', '|');
            
             foreach (string Line in ListLine)
             {
+                TextBlock Announcement = new TextBlock();
+                Announcement.FontSize = 14;
                 int flag = 1;
 
                 foreach (GetListDisciplineForThisUser_Result Discipline in DisciplineRegistered)
                 {
-                    if (Discipline.DisciplineID == Line && Discipline.DisciplineStatus == false || Discipline.DisciplineID != Line) flag = 1;
-                    else { flag = 0; break; }
+                    MessageBox.Show(Discipline.DisciplineID);
+                    if (Discipline.DisciplineID != Line.Trim()) flag = 1;
+                    else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == false) flag = 1;
+                    else if (Discipline.DisciplineID == Line.Trim())
+                    {
+                        flag = 0;
+                        Announcement.Foreground = new SolidColorBrush(Colors.Red);
+                        Announcement.Text = Line + " Discipline had registered";
+                        break;
+                    }
                 }
                 if (flag == 1 && Line != " " && Line != "\n" && Line != null)
                 {
+
                     try
                     {
                         var data = ST.IsDateRegister().ToList()[0];
                         ST.InsertRegisterStudyUnit(thisUser.ID, Line, data.SemesterID);
                         ST.SaveChanges();
+                        Announcement.Foreground = new SolidColorBrush(Colors.Green);
+                        Announcement.Text = Line + " successfully";
                     }
-                    catch { }
-                }
+                    catch
+                    {
+                        Announcement.Foreground = new SolidColorBrush(Colors.Red);
+                        Announcement.Text = Line + "   Discipline not open or does not exist . Please check back...";
+                    }
 
+                }
+                if (Announcement != null || Announcement.Text != " ")
+                    Stp.Children.Add(Announcement);
             }
 
 
