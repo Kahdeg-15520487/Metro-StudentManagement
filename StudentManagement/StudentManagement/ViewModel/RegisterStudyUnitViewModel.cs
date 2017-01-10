@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Speech.Synthesis;
@@ -86,7 +87,49 @@ namespace StudentManagement.ViewModel
 
         public ICommand RegisterCommand { get; set; }
 
+        private ObservableCollection<GetInfoRegistered_Result> _ListRegistered;
+        public ObservableCollection<GetInfoRegistered_Result> ListRegistered
+        {
+            get
+            {
+                var thisUser = DialogLogginViewModel.Users[0];
+                if (_ListRegistered == null)
+                {
+                    _ListRegistered = new ObservableCollection<GetInfoRegistered_Result>(ST.GetInfoRegistered(thisUser.ID).ToList());
+                }
+                return _ListRegistered;
+            }
 
+            set
+            {
+                if (_ListRegistered != value)
+                {
+                    _ListRegistered = value; OnPropertyChanged("ListRegistered");
+                }
+            }
+        }
+
+        private ObservableCollection<GetInfoDiscipline_Result> _ListDiscipline;
+        public ObservableCollection<GetInfoDiscipline_Result> ListDiscipline
+        {
+            get
+            {
+                
+                if (_ListDiscipline == null)
+                {
+                    _ListDiscipline = new ObservableCollection<GetInfoDiscipline_Result>(ST.GetInfoDiscipline().ToList());
+                }
+                return _ListDiscipline;
+            }
+
+            set
+            {
+                if (_ListDiscipline != value)
+                {
+                    _ListDiscipline = value; OnPropertyChanged("ListDiscipline");
+                }
+            }
+        }
 
         private void OnRegisterCommand(object parameters)
         {
@@ -97,9 +140,7 @@ namespace StudentManagement.ViewModel
             var thisUser = DialogLogginViewModel.Users[0];
             var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
             string deleteEnter = txtwrap.Text.Replace('\n', ' ');
-
             deleteEnter = StandardWord(deleteEnter);
-
             string[] ListLine = deleteEnter.Split(' ', ',', '-', '+', '|');
             string speak=string.Empty;
             foreach (string Line in ListLine)
@@ -110,21 +151,18 @@ namespace StudentManagement.ViewModel
 
                 foreach (GetListDisciplineForThisUser_Result Discipline in DisciplineRegistered)
                 {
-
                     if (Discipline.DisciplineID != Line.Trim()) flag = 1;
                     else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == true)
                     {
                         flag = 0;
                         Announcement.Foreground = new SolidColorBrush(Colors.Red);
-                        Announcement.Text = Line + " Discipline had registered";
-                       
+                        Announcement.Text = Line + " Discipline had registered";             
                         break;
                     }
                     else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == false) flag = 1;
                 }
                 if (flag == 1 && Line != " " && Line != "\n" && Line != null)
                 {
-
                     try
                     {
                         var data = ST.IsDateRegister().ToList()[0];
@@ -138,18 +176,15 @@ namespace StudentManagement.ViewModel
                         Announcement.Foreground = new SolidColorBrush(Colors.Red);
                         Announcement.Text = Line + "   Discipline not open or does not exist. Please check back...";
                     }
-
                 }
                 speak += Announcement.Text + "...";
                 warningAudio.SpeakAsync(speak);
                 if (Announcement != null || Announcement.Text != " ")
                     Stp.Children.Add(Announcement);
             }
-
-
         }
 
-
+      
 
 
 
@@ -167,6 +202,9 @@ namespace StudentManagement.ViewModel
             return data;
         }
 
+
+
+    
 
         void Command()
         {

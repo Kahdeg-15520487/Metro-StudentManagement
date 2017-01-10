@@ -82,7 +82,7 @@
                     
                 </StackPanel>
                 <GroupBox Margin="0" Name="grbAcademic" Header="Mark" Grid.Row="1" Grid.Column="1" DataContext="{StaticResource key1}">
-                    <DataGrid Name="dtgAcademic"
+                    <DataGrid IsReadOnly="True" Name="dtgAcademic"
                     Style="{DynamicResource AzureDataGrid}"
                     ItemsSource="{Binding AcademicList}" AutoGenerateColumns="False" Width="765">
                         <DataGrid.Columns>

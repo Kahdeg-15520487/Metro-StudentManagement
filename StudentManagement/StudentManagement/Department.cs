@@ -14,6 +14,12 @@ namespace StudentManagement
     
     public partial class Department
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Department()
+        {
+            this.Discipline = new HashSet<Discipline>();
+        }
+    
         public string DepartmentID { get; set; }
         public string Detail { get; set; }
         public string DepartmentHeader { get; set; }
@@ -22,5 +28,7 @@ namespace StudentManagement
         public string DepartmentName { get; set; }
     
         public virtual School School { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discipline> Discipline { get; set; }
     }
 }

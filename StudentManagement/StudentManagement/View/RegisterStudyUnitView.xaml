@@ -39,7 +39,31 @@
                                 <Expander.Header>
                                     <TextBlock Text="Registered"></TextBlock>
                                 </Expander.Header>
-                                <DataGrid Height="300"></DataGrid>
+                                <DataGrid CanUserAddRows="false" AutoGenerateColumns="False"    MaxHeight="300" ItemsSource="{Binding ListRegistered}">
+                                    <DataGrid.Columns>
+                                        <DataGridCheckBoxColumn Header="Check"></DataGridCheckBoxColumn>
+                                        <DataGridTextColumn Width="100" Header="Discipline" IsReadOnly="True" Binding="{Binding DisciplineID}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="250" Header="Department Name" IsReadOnly="True" Binding="{Binding DepartmentName}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="100" Header="Study date" IsReadOnly="True" Binding="{Binding StudyDate}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Period" IsReadOnly="True" Binding="{Binding Period}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Credits" IsReadOnly="True" Binding="{Binding Credits}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="250" Header="Teacher Name" IsReadOnly="True" Binding="{Binding Name}"></DataGridTextColumn>
+                                        <DataGridTemplateColumn Width="200" Header="Start day">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker SelectedDate="{Binding StartDay}" IsEnabled="False"></DatePicker>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn  Width="210" Header="Finish Day">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker SelectedDate="{Binding FinishDay}" IsEnabled="False"></DatePicker>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Expander>
 
                             <Expander>
@@ -97,7 +121,31 @@
                                 <Expander.Header>
                                     <TextBlock Text="List Class Register"></TextBlock>
                                 </Expander.Header>
-                                <DataGrid Height="500" MaxHeight="500"></DataGrid>
+                                <DataGrid CanUserAddRows="false" AutoGenerateColumns="False"    MaxHeight="700" ItemsSource="{Binding ListDiscipline}">
+                                    <DataGrid.Columns>
+                                        <DataGridCheckBoxColumn Header="Check"></DataGridCheckBoxColumn>
+                                        <DataGridTextColumn Width="100" Header="Discipline" IsReadOnly="True" Binding="{Binding DisciplineID}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="250" Header="Department Name" IsReadOnly="True" Binding="{Binding DepartmentName}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="100" Header="Study date" IsReadOnly="True" Binding="{Binding StudyDate}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Period" IsReadOnly="True" Binding="{Binding Period}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Credits" IsReadOnly="True" Binding="{Binding Credits}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="250" Header="Teacher Name" IsReadOnly="True" Binding="{Binding Name}"></DataGridTextColumn>
+                                        <DataGridTemplateColumn Width="200" Header="Start day">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker SelectedDate="{Binding StartDay}" IsEnabled="False"></DatePicker>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn  Width="210" Header="Finish Day">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker SelectedDate="{Binding FinishDay}" IsEnabled="False"></DatePicker>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Expander>
                             <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Right" Margin="50,15,30,70" VerticalAlignment="Top" FontSize="15" FontStretch="Expanded"></Button>
 
