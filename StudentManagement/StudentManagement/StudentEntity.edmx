@@ -1684,7 +1684,7 @@
           <Parameter Name="SchoolID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetListDisciplineForThisUser" ReturnType="Collection(StudentDBModel.GetListDisciplineForThisUser_Result)">
-            <Parameter Name="ThisUser" Mode="In" Type="String" />
+          <Parameter Name="ThisUser" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertRegisterStudyUnit">
             <Parameter Name="StudentID" Mode="In" Type="String" />
