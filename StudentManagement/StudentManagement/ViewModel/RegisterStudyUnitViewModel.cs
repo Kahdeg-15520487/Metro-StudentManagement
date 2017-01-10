@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +17,7 @@ namespace StudentManagement.ViewModel
     {
 
         StudentDBEntities ST = new StudentDBEntities();
+        SpeechSynthesizer warningAudio = new SpeechSynthesizer();
         private string _Header;
 
         public string Header
@@ -99,7 +101,7 @@ namespace StudentManagement.ViewModel
             deleteEnter = StandardWord(deleteEnter);
 
             string[] ListLine = deleteEnter.Split(' ', ',', '-', '+', '|');
-           
+            string speak=string.Empty;
             foreach (string Line in ListLine)
             {
                 TextBlock Announcement = new TextBlock();
@@ -108,16 +110,17 @@ namespace StudentManagement.ViewModel
 
                 foreach (GetListDisciplineForThisUser_Result Discipline in DisciplineRegistered)
                 {
-                    MessageBox.Show(Discipline.DisciplineID);
+
                     if (Discipline.DisciplineID != Line.Trim()) flag = 1;
-                    else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == false) flag = 1;
-                    else if (Discipline.DisciplineID == Line.Trim())
+                    else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == true)
                     {
                         flag = 0;
                         Announcement.Foreground = new SolidColorBrush(Colors.Red);
                         Announcement.Text = Line + " Discipline had registered";
+                       
                         break;
                     }
+                    else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == false) flag = 1;
                 }
                 if (flag == 1 && Line != " " && Line != "\n" && Line != null)
                 {
@@ -133,10 +136,12 @@ namespace StudentManagement.ViewModel
                     catch
                     {
                         Announcement.Foreground = new SolidColorBrush(Colors.Red);
-                        Announcement.Text = Line + "   Discipline not open or does not exist . Please check back...";
+                        Announcement.Text = Line + "   Discipline not open or does not exist. Please check back...";
                     }
 
                 }
+                speak += Announcement.Text + "...";
+                warningAudio.SpeakAsync(speak);
                 if (Announcement != null || Announcement.Text != " ")
                     Stp.Children.Add(Announcement);
             }
