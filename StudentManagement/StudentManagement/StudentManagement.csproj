@@ -154,6 +154,12 @@
     <Compile Include="GetFacultyDetail_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetInfoDiscipline_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetInfoRegistered_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetListDisciplineForThisUser_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
