@@ -17,7 +17,6 @@ namespace StudentManagement
         public string StudentID { get; set; }
         public string DisciplineID { get; set; }
         public string SemesterID { get; set; }
-        public Nullable<bool> isRegistered { get; set; }
     
         public virtual Discipline Discipline { get; set; }
         public virtual Semester Semester { get; set; }

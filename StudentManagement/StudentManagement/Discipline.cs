@@ -37,5 +37,6 @@ namespace StudentManagement
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegisterStudyUnit> RegisterStudyUnit { get; set; }
         public virtual Teacher Teacher { get; set; }
+        public virtual Department Department { get; set; }
     }
 }
