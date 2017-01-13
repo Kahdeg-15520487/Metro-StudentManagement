@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace StudentManagement.View
 {
     /// <summary>
-    /// Interaction logic for PersonalView.xaml
+    /// Interaction logic for FacultyDetailView.xaml
     /// </summary>
-    public partial class PersonalView : UserControl
+    public partial class FacultyDetailView : UserControl
     {
-        public PersonalView()
+        public FacultyDetailView()
         {
             InitializeComponent();
         }

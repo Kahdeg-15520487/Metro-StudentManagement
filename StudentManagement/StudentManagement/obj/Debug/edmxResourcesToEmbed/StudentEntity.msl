@@ -164,7 +164,6 @@
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
           <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
-          <ScalarProperty Name="isRegistered" ColumnName="isRegistered" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -447,5 +446,90 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentAndParentInfoByID" FunctionName="StudentDBModel.Store.GetStudentAndParentInfoByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetStudentAndParentInfoByID_Result">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+          <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ImageToByte" ColumnName="ImageToByte" />
+          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+          <ScalarProperty Name="ParentsGender" ColumnName="ParentsGender" />
+          <ScalarProperty Name="ParentPhone" ColumnName="ParentPhone" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateStudentProfile" FunctionName="StudentDBModel.Store.UpdateStudentProfile" />
+    <FunctionImportMapping FunctionImportName="GetClassDetail" FunctionName="StudentDBModel.Store.GetClassDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetClassDetail_Result">
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="HeadTeacher" ColumnName="HeadTeacher" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="Membership" ColumnName="Membership" />
+          <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDeparmentDetail" FunctionName="StudentDBModel.Store.GetDeparmentDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetDeparmentDetail_Result">
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="DepartmentHeader" ColumnName="DepartmentHeader" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFacultyDetail" FunctionName="StudentDBModel.Store.GetFacultyDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetFacultyDetail_Result">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="FacultyHeader" ColumnName="FacultyHeader" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSchooltDetail" FunctionName="StudentDBModel.Store.GetSchooltDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetSchooltDetail_Result">
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="SchoolHeader" ColumnName="SchoolHeader" />
+          <ScalarProperty Name="Office" ColumnName="Office" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetListDisciplineForThisUser" FunctionName="StudentDBModel.Store.GetListDisciplineForThisUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetListDisciplineForThisUser_Result">
+          <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="DisciplineStatus" ColumnName="DisciplineStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertRegisterStudyUnit" FunctionName="StudentDBModel.Store.InsertRegisterStudyUnit" />
   </EntityContainerMapping>
 </Mapping>

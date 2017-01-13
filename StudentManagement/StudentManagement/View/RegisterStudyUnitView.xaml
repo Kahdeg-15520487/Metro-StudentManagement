@@ -13,6 +13,7 @@
         <ViewModel:RegisterStudyUnitViewModel x:Key="Key_RegisterStudyUnit">
 
         </ViewModel:RegisterStudyUnitViewModel>
+        
     </UserControl.Resources>
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -33,6 +34,7 @@
                         </GroupBox.Header>
                         <StackPanel>
                             <TextBlock Text="{Binding Info}" Padding="20" FontSize="15" FontWeight="Black" LineHeight="28" ></TextBlock>
+                            <StackPanel Name="grbError"></StackPanel>
                             <Expander>
                                 <Expander.Header>
                                     <TextBlock Text="Registered"></TextBlock>
@@ -44,25 +46,46 @@
                                 <Expander.Header>
                                     <TextBlock Text="Quick Register"></TextBlock>
                                 </Expander.Header>
-                                <StackPanel>
-                                    <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Left" FontSize="15" FontFamily="Expanded"></Button>
-                                    <RichTextBox Name="Rtb"
-                                                 MinWidth="800" 
-                                                 FontSize="16"  
-                                                 MaxHeight="200" 
-                                                 MinHeight="150" Block.LineHeight="14"
-                                                 IsDocumentEnabled="True">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <ViewModel:ParameterConverter x:Key="ParaConverter"></ViewModel:ParameterConverter>
+                                    </Grid.Resources>
+                                
+                                <StackPanel >
+                                    <Button 
+                                            Content="Register" 
+                                            FontWeight="Bold" 
+                                            HorizontalAlignment="Left" 
+                                            FontSize="15" 
+                                            FontFamily="Expanded">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding RegisterCommand}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding ElementName="txtRegister"/>
+                                                            <Binding ElementName="grbError"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
 
-                                        <FlowDocument>
-                                            <Paragraph>
-                                                <TextBox Text="{Binding FuckingTestingString1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                 
-                                                </TextBox>
-                                            </Paragraph>
-                                        </FlowDocument>
-                                    </RichTextBox>
+                                    <TextBox AcceptsReturn="True"
+                                             MinWidth="800" 
+                                             FontSize="16"  
+                                             MaxHeight="200"  
+                                             MinHeight="150" 
+                                             TextWrapping="Wrap" 
+                                             Name="txtRegister"
+                                             Text="{Binding ReplaceSpaceToEnter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    </TextBox>
+
                                 </StackPanel>
+                                </Grid>
                             </Expander>
+                                
                             <Expander>
                                 <Expander.Header>
                                     <TextBlock Text="Sort For..."></TextBlock>

@@ -155,7 +155,6 @@
     <Property Name="StudentID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="SemesterID" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="isRegistered" Type="bit" />
   </EntityType>
   <EntityType Name="ScholarCondition">
     <Key>
@@ -625,6 +624,12 @@
   <Function Name="GetActivityGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetClassDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClassID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetDeparmentDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DepartmentID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetDetailActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Activitie" Type="nvarchar" Mode="In" />
   </Function>
@@ -633,6 +638,18 @@
   </Function>
   <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentAndParentInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetStudentsInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
@@ -644,7 +661,22 @@
   <Function Name="GetUsersDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="InsertRegisterStudyUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Discipline" Type="nvarchar" Mode="In" />
+    <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UpdateStudentProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ParentName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ParentMobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="ParentGender" Type="bit" Mode="In" />
+    <Parameter Name="PresentAddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="PermanentAddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gender" Type="bit" Mode="In" />
+  </Function>
   <EntityContainer Name="StudentDBModelStoreContainer">
     <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
