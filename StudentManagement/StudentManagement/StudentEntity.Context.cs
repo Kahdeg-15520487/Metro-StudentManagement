@@ -281,5 +281,19 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertRegisterStudyUnit", studentIDParameter, disciplineParameter, semesterIDParameter);
         }
+    
+        public virtual ObjectResult<GetInfoRegistered_Result> GetInfoRegistered(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoRegistered_Result>("GetInfoRegistered", studentIDParameter);
+        }
+    
+        public virtual ObjectResult<GetInfoDiscipline_Result> GetInfoDiscipline()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoDiscipline_Result>("GetInfoDiscipline");
+        }
     }
 }

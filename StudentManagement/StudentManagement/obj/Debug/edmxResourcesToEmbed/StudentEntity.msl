@@ -531,5 +531,32 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="InsertRegisterStudyUnit" FunctionName="StudentDBModel.Store.InsertRegisterStudyUnit" />
+    <FunctionImportMapping FunctionImportName="GetInfoRegistered" FunctionName="StudentDBModel.Store.GetInfoRegistered">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetInfoRegistered_Result">
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetInfoDiscipline" FunctionName="StudentDBModel.Store.GetInfoDiscipline">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetInfoDiscipline_Result">
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
