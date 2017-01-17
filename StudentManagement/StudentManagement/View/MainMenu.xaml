@@ -22,6 +22,17 @@
 
         <Metro:MetroAnimatedSingleRowTabControl  DataContext="{StaticResource MainMenuViewModel}"
             Metro:TabControlHelper.IsUnderlined="True">
+
+            <TabItem Header="Anouncements"
+                     Metro:ControlsHelper.HeaderFontWeight="Bold"
+                     Metro:ControlsHelper.HeaderFontSize="35"
+                     FontFamily="Calibri">
+                <Metro:MetroAnimatedTabControl>
+                    <local:AnouncementView></local:AnouncementView>
+                </Metro:MetroAnimatedTabControl>
+            </TabItem>
+            
+            
             <TabItem Header="Profile"
                      Metro:ControlsHelper.HeaderFontWeight="Bold"
                      Metro:ControlsHelper.HeaderFontSize="35"
@@ -30,6 +41,8 @@
                     <local:ProfileView></local:ProfileView>
                 </Metro:MetroAnimatedTabControl>
             </TabItem>
+
+       
 
             <TabItem Header="Register " DataContext="{Binding IsDateRegister}"
                      Metro:ControlsHelper.HeaderFontWeight="Bold"

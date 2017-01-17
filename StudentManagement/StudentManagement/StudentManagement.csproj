@@ -127,6 +127,12 @@
     <Compile Include="Faculty.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeneralAnouncement.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get10NewestAnouncements_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetAcademicByID_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -134,6 +140,9 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetActivityGroup_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetAllGeneralAnouncements_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetClassDetail_Result.cs">
@@ -170,6 +179,9 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetStudentsInfoByID_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetUniversityInfo_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUsersDetail_Result.cs">
@@ -242,6 +254,7 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcademicViewModel.cs" />
+    <Compile Include="ViewModel\AnouncementViewModel.cs" />
     <Compile Include="ViewModel\BehaviorViewModel.cs" />
     <Compile Include="ViewModel\DialogLogginViewModel.cs" />
     <Compile Include="ViewModel\DiplomaProjectView.cs" />
@@ -254,6 +267,7 @@
     <Compile Include="ViewModel\ProfileViewModel.cs" />
     <Compile Include="ViewModel\RegisterStudyUnitViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\UniversityInfoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AcademicView.xaml.cs">
@@ -264,6 +278,9 @@
     </Compile>
     <Compile Include="View\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AnouncementView.xaml.cs">
+      <DependentUpon>AnouncementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BehaviorView.xaml.cs">
       <DependentUpon>BehaviorView.xaml</DependentUpon>
@@ -298,6 +315,9 @@
     <Compile Include="View\SchoolDetailView.xaml.cs">
       <DependentUpon>SchoolDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UniversityInfoView.xaml.cs">
+      <DependentUpon>UniversityInfoView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -323,6 +343,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AnouncementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -370,6 +394,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UniversityInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -413,6 +441,9 @@
     <Resource Include="Resources\Backgrounds\MainBackground.png" />
     <Resource Include="Resources\Icons\download.png" />
     <Resource Include="Resources\Icons\Info_icon.png" />
+    <None Include="Resources\Videos\UniversityIntro.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="StudentEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>StudentEntity.edmx</DependentUpon>

@@ -60,6 +60,9 @@
         <AssociationConnector Association="StudentDBModel.Fk_TeacherUser" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.FK_Discipline_Department_" />
       </Diagram>
+      <Diagram DiagramId="666cffd9b8584b82bdb4db316675bc14" Name="Diagram2" >
+        <EntityTypeShape EntityType="StudentDBModel.GeneralAnouncement" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -24,6 +24,7 @@ namespace StudentManagement
         public int AnouncementID { get; set; }
         public Nullable<System.DateTime> DateAnouncement { get; set; }
         public string Detail { get; set; }
+        public string Summary { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Discipline> Discipline { get; set; }

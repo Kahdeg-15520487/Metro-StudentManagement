@@ -53,6 +53,7 @@ namespace StudentManagement
         public virtual DbSet<TeacherUser> TeacherUser { get; set; }
         public virtual DbSet<UserImage> UserImage { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<GeneralAnouncement> GeneralAnouncement { get; set; }
     
         public virtual ObjectResult<GetAcademicByID_Result> GetAcademicByID(string studentID)
         {
@@ -294,6 +295,21 @@ namespace StudentManagement
         public virtual ObjectResult<GetInfoDiscipline_Result> GetInfoDiscipline()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoDiscipline_Result>("GetInfoDiscipline");
+        }
+    
+        public virtual ObjectResult<GetUniversityInfo_Result> GetUniversityInfo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUniversityInfo_Result>("GetUniversityInfo");
+        }
+    
+        public virtual ObjectResult<Get10NewestAnouncements_Result> Get10NewestAnouncements()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get10NewestAnouncements_Result>("Get10NewestAnouncements");
+        }
+    
+        public virtual ObjectResult<GetAllGeneralAnouncements_Result> GetAllGeneralAnouncements()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllGeneralAnouncements_Result>("GetAllGeneralAnouncements");
         }
     }
 }

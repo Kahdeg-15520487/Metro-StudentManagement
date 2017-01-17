@@ -26,6 +26,7 @@
     <EntitySetMapping Name="Anouncement">
       <EntityTypeMapping TypeName="StudentDBModel.Anouncement">
         <MappingFragment StoreEntitySet="Anouncement">
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
           <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
           <ScalarProperty Name="AnouncementID" ColumnName="AnouncementID" />
           <ScalarProperty Name="DateAnouncement" ColumnName="DateAnouncement" />
@@ -555,6 +556,46 @@
           <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
           <ScalarProperty Name="StartDay" ColumnName="StartDay" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUniversityInfo" FunctionName="StudentDBModel.Store.GetUniversityInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetUniversityInfo_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UniversityAddress" ColumnName="UniversityAddress" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="GeneralAnouncement">
+      <EntityTypeMapping TypeName="StudentDBModel.GeneralAnouncement">
+        <MappingFragment StoreEntitySet="GeneralAnouncement">
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get10NewestAnouncements" FunctionName="StudentDBModel.Store.Get10NewestAnouncements">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.Get10NewestAnouncements_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAllGeneralAnouncements" FunctionName="StudentDBModel.Store.GetAllGeneralAnouncements">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetAllGeneralAnouncements_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -33,6 +33,7 @@
     <Property Name="DateAnouncement" Type="DateTime" Precision="0" />
     <Property Name="Detail" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Discipline" Relationship="Self.Fk_AnouncementID" FromRole="Anouncement" ToRole="Discipline" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="BehaviorMark">
     <Key>
@@ -876,6 +877,10 @@
       <Parameter Name="StudentID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="GetInfoDiscipline" ReturnType="Collection(StudentDBModel.GetInfoDiscipline_Result)" />
+    <FunctionImport Name="GetUniversityInfo" ReturnType="Collection(StudentDBModel.GetUniversityInfo_Result)" />
+    <EntitySet Name="GeneralAnouncement" EntityType="StudentDBModel.GeneralAnouncement" />
+    <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
+    <FunctionImport Name="GetAllGeneralAnouncements" ReturnType="Collection(StudentDBModel.GetAllGeneralAnouncements_Result)" />
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -1068,5 +1073,32 @@
     <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
     <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
     <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
+  </ComplexType>
+  <ComplexType Name="GetUniversityInfo_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="UniversityAddress" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="PhoneNum" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="GeneralAnouncement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfAnoun" Type="DateTime" Precision="0" />
+    <Property Name="Detail" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="Get10NewestAnouncements_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+  </ComplexType>
+  <ComplexType Name="GetAllGeneralAnouncements_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
   </ComplexType>
 </Schema>
