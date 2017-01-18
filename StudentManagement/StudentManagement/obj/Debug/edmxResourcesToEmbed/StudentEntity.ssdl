@@ -29,6 +29,7 @@
     <Property Name="AnouncementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DateAnouncement" Type="smalldatetime" />
     <Property Name="Detail" Type="nvarchar" MaxLength="300" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="BehaviorMark">
     <Key>
@@ -120,6 +121,15 @@
     <Property Name="SchoolID" Type="nvarchar" MaxLength="10" />
     <Property Name="Note" Type="nvarchar" MaxLength="300" />
     <Property Name="FacultyHeader" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="GeneralAnouncement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
+    <Property Name="DateOfAnoun" Type="smalldatetime" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="3000" />
   </EntityType>
   <EntityType Name="Parents">
     <Key>
@@ -265,6 +275,14 @@
     <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Roll" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTDB.MDF.dbo.UniversityInfo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="UniversityInfo">
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
   <EntityType Name="UserImage">
     <Key>
       <PropertyRef Name="ID" />
@@ -627,6 +645,7 @@
     <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="Get10NewestAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
@@ -636,6 +655,7 @@
   <Function Name="GetActivityGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetAllGeneralAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetClassDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClassID" Type="nvarchar" Mode="In" />
   </Function>
@@ -670,6 +690,7 @@
   <Function Name="GetStudentsInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetUniversityInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
     <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
@@ -705,6 +726,7 @@
     <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GeneralAnouncement" EntityType="Self.GeneralAnouncement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parents" EntityType="Self.Parents" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PlusFee" EntityType="Self.PlusFee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Policy" EntityType="Self.Policy" Schema="dbo" store:Type="Tables" />
