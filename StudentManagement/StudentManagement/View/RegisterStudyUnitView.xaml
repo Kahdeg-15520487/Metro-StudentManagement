@@ -13,7 +13,7 @@
         <ViewModel:RegisterStudyUnitViewModel x:Key="Key_RegisterStudyUnit">
 
         </ViewModel:RegisterStudyUnitViewModel>
-        
+
     </UserControl.Resources>
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -39,31 +39,35 @@
                                 <Expander.Header>
                                     <TextBlock Text="Registered"></TextBlock>
                                 </Expander.Header>
-                                <DataGrid CanUserAddRows="false" AutoGenerateColumns="False"    MaxHeight="300" ItemsSource="{Binding ListRegistered}">
-                                    <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="Check"></DataGridCheckBoxColumn>
-                                        <DataGridTextColumn Width="100" Header="Discipline" IsReadOnly="True" Binding="{Binding DisciplineID}"></DataGridTextColumn>
-                                        <DataGridTextColumn Width="250" Header="Department Name" IsReadOnly="True" Binding="{Binding DepartmentName}"></DataGridTextColumn>
-                                        <DataGridTextColumn Width="100" Header="Study date" IsReadOnly="True" Binding="{Binding StudyDate}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Period" IsReadOnly="True" Binding="{Binding Period}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Credits" IsReadOnly="True" Binding="{Binding Credits}"></DataGridTextColumn>
-                                        <DataGridTextColumn Width="250" Header="Teacher Name" IsReadOnly="True" Binding="{Binding Name}"></DataGridTextColumn>
-                                        <DataGridTemplateColumn Width="200" Header="Start day">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <DatePicker SelectedDate="{Binding StartDay}" IsEnabled="False"></DatePicker>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                        <DataGridTemplateColumn  Width="210" Header="Finish Day">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <DatePicker SelectedDate="{Binding FinishDay}" IsEnabled="False"></DatePicker>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                <StackPanel>
+                                    <DataGrid  Name="DtgRegistered" CanUserAddRows="false" AutoGenerateColumns="False"    MaxHeight="300" ItemsSource="{Binding ListRegistered}">
+                                        <DataGrid.Columns>
+                                            <DataGridCheckBoxColumn Header="Check" Binding="{Binding check, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></DataGridCheckBoxColumn>
+                                            <DataGridTextColumn Width="150" Header="Discipline" IsReadOnly="True" Binding="{Binding DisciplineID}"></DataGridTextColumn>
+                                            <DataGridTextColumn Width="200" Header="Department Name" IsReadOnly="True" Binding="{Binding DepartmentName}"></DataGridTextColumn>
+                                            <DataGridTextColumn Width="100" Header="Study date" IsReadOnly="True" Binding="{Binding StudyDate}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Period" IsReadOnly="True" Binding="{Binding Period}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Credits" IsReadOnly="True" Binding="{Binding Credits}"></DataGridTextColumn>
+                                            <DataGridTextColumn Width="250" Header="Teacher Name" IsReadOnly="True" Binding="{Binding Name}"></DataGridTextColumn>
+                                            <DataGridTemplateColumn Width="200" Header="Start day">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <DatePicker SelectedDate="{Binding StartDay}" IsEnabled="False"></DatePicker>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn  Width="210" Header="Finish Day">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <DatePicker SelectedDate="{Binding FinishDay}" IsEnabled="False"></DatePicker>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Button Content="Delete" VerticalAlignment="Top" HorizontalAlignment="Left"
+                                            Command="{Binding DeleteRegistered}" CommandParameter="{Binding ElementName=DtgRegistered}"></Button>
+                                </StackPanel>
                             </Expander>
 
                             <Expander>
@@ -74,9 +78,9 @@
                                     <Grid.Resources>
                                         <ViewModel:ParameterConverter x:Key="ParaConverter"></ViewModel:ParameterConverter>
                                     </Grid.Resources>
-                                
-                                <StackPanel >
-                                    <Button 
+
+                                    <StackPanel >
+                                        <Button 
                                             Content="Register" 
                                             FontWeight="Bold" 
                                             HorizontalAlignment="Left" 
@@ -104,12 +108,12 @@
                                              TextWrapping="Wrap" 
                                              Name="txtRegister"  Style="{DynamicResource MetroButtonTextBox}"
                                              Text="{Binding ReplaceSpaceToEnter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </TextBox>
+                                        </TextBox>
 
-                                </StackPanel>
+                                    </StackPanel>
                                 </Grid>
                             </Expander>
-                                
+
                             <Expander>
                                 <Expander.Header>
                                     <TextBlock Text="Sort For..."></TextBlock>
@@ -121,11 +125,11 @@
                                 <Expander.Header>
                                     <TextBlock Text="List Class Register"></TextBlock>
                                 </Expander.Header>
-                                <DataGrid CanUserAddRows="false" AutoGenerateColumns="False"    MaxHeight="700" ItemsSource="{Binding ListDiscipline}">
+                                <DataGrid Name="DtgListDiscipline" CanUserAddRows="false" AutoGenerateColumns="False"    MaxHeight="700" ItemsSource="{Binding ListDiscipline}">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="Check"></DataGridCheckBoxColumn>
-                                        <DataGridTextColumn Width="100" Header="Discipline" IsReadOnly="True" Binding="{Binding DisciplineID}"></DataGridTextColumn>
-                                        <DataGridTextColumn Width="250" Header="Department Name" IsReadOnly="True" Binding="{Binding DepartmentName}"></DataGridTextColumn>
+                                        <DataGridCheckBoxColumn Header="Check" Binding="{Binding check , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>
+                                        <DataGridTextColumn Width="150" Header="Discipline" IsReadOnly="True" Binding="{Binding DisciplineID}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="200" Header="Department Name" IsReadOnly="True" Binding="{Binding DepartmentName}"></DataGridTextColumn>
                                         <DataGridTextColumn Width="100" Header="Study date" IsReadOnly="True" Binding="{Binding StudyDate}"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Period" IsReadOnly="True" Binding="{Binding Period}"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Credits" IsReadOnly="True" Binding="{Binding Credits}"></DataGridTextColumn>
@@ -147,8 +151,26 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Expander>
-                            <Button Content="Register" FontWeight="Bold" HorizontalAlignment="Right" Margin="50,15,30,70" VerticalAlignment="Top" FontSize="15" FontStretch="Expanded"></Button>
-
+                            
+                            <!--<Button 
+                                            Content="Register" 
+                                            FontWeight="Bold" 
+                                            
+                                            FontSize="15"  Margin="50,15,30,70" HorizontalAlignment="Right"  VerticalAlignment="Top"
+                                            FontFamily="Expanded">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding InsertRegisterFromListDisciplineCommand}">
+                                            <i:InvokeCommandAction.CommandParameter>
+                                                <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                    <Binding ElementName="DtgListDiscipline"/>
+                                                    <Binding ElementName="StpError"/>
+                                                </MultiBinding>
+                                            </i:InvokeCommandAction.CommandParameter>
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>-->
                         </StackPanel>
                     </GroupBox>
 

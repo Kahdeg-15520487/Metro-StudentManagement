@@ -311,5 +311,18 @@ namespace StudentManagement
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllGeneralAnouncements_Result>("GetAllGeneralAnouncements");
         }
+    
+        public virtual int DeleteRegisterStudyUnit(string studentID, string disciplineID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            var disciplineIDParameter = disciplineID != null ?
+                new ObjectParameter("DisciplineID", disciplineID) :
+                new ObjectParameter("DisciplineID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteRegisterStudyUnit", studentIDParameter, disciplineIDParameter);
+        }
     }
 }

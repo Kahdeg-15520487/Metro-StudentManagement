@@ -881,6 +881,10 @@
     <EntitySet Name="GeneralAnouncement" EntityType="StudentDBModel.GeneralAnouncement" />
     <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
     <FunctionImport Name="GetAllGeneralAnouncements" ReturnType="Collection(StudentDBModel.GetAllGeneralAnouncements_Result)" />
+    <FunctionImport Name="DeleteRegisterStudyUnit">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+      <Parameter Name="DisciplineID" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />

@@ -13,6 +13,7 @@ namespace StudentManagement
     
     public partial class GetInfoDiscipline_Result
     {
+        public bool check { get; set; }
         public string DisciplineID { get; set; }
         public string DepartmentName { get; set; }
         public Nullable<int> Credits { get; set; }
