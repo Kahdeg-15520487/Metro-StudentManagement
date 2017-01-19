@@ -682,6 +682,11 @@
         <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetScheduleForDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+          <Parameter Name="period" Type="int" Mode="In" />
+          <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
         </Function>
@@ -1748,6 +1753,11 @@
             <Parameter Name="StudentID" Mode="In" Type="String" />
             <Parameter Name="DisciplineID" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetScheduleForDetail" ReturnType="Collection(StudentDBModel.GetScheduleForDetail_Result)">
+            <Parameter Name="StudentID" Mode="In" Type="String" />
+            <Parameter Name="period" Mode="In" Type="Int32" />
+            <Parameter Name="StudyDate" Mode="In" Type="String" />
+          </FunctionImport>
         
          
          
@@ -1971,6 +1981,13 @@
           <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
           <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
           <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+        </ComplexType>
+        <ComplexType Name="GetScheduleForDetail_Result">
+          <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="302" />
+          <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="DepartmentID" Nullable="true" MaxLength="10" />
         </ComplexType>
        
       </Schema>
@@ -2580,6 +2597,17 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="DeleteRegisterStudyUnit" FunctionName="StudentDBModel.Store.DeleteRegisterStudyUnit" />
+          <FunctionImportMapping FunctionImportName="GetScheduleForDetail" FunctionName="StudentDBModel.Store.GetScheduleForDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetScheduleForDetail_Result">
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+                <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
          
          
          
