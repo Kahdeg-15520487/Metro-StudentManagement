@@ -679,6 +679,9 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
         <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetGeneralAnouncementDetailBySummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Summary" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetInfoDiscipline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetInfoRegistered" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
@@ -1748,6 +1751,9 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
           <EntitySet Name="GeneralAnouncement" EntityType="StudentDBModel.GeneralAnouncement" />
           <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
           <FunctionImport Name="GetAllGeneralAnouncements" ReturnType="Collection(StudentDBModel.GetAllGeneralAnouncements_Result)" />
+          <FunctionImport Name="GetGeneralAnouncementDetailBySummary" ReturnType="Collection(StudentDBModel.GetGeneralAnouncementDetailBySummary_Result)">
+            <Parameter Name="Summary" Mode="In" Type="String" />
+          </FunctionImport>
         
          
          
@@ -1967,6 +1973,12 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
           <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
         </ComplexType>
         <ComplexType Name="GetAllGeneralAnouncements_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+        </ComplexType>
+        <ComplexType Name="GetGeneralAnouncementDetailBySummary_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
           <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
@@ -2572,6 +2584,16 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
           <FunctionImportMapping FunctionImportName="GetAllGeneralAnouncements" FunctionName="StudentDBModel.Store.GetAllGeneralAnouncements">
             <ResultMapping>
               <ComplexTypeMapping TypeName="StudentDBModel.GetAllGeneralAnouncements_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetGeneralAnouncementDetailBySummary" FunctionName="StudentDBModel.Store.GetGeneralAnouncementDetailBySummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetGeneralAnouncementDetailBySummary_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
                 <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />

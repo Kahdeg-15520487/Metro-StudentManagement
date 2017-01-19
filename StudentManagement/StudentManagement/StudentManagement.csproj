@@ -163,6 +163,9 @@
     <Compile Include="GetFacultyDetail_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetGeneralAnouncementDetailBySummary_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetInfoDiscipline_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -279,8 +282,14 @@
     <Compile Include="View\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AnouncementDetailView.xaml.cs">
+      <DependentUpon>AnouncementDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AnouncementView.xaml.cs">
       <DependentUpon>AnouncementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainAnouncementView.xaml.cs">
+      <DependentUpon>MainAnouncementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BehaviorView.xaml.cs">
       <DependentUpon>BehaviorView.xaml</DependentUpon>
@@ -346,7 +355,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AnouncementDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AnouncementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainAnouncementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

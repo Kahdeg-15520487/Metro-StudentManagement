@@ -311,5 +311,14 @@ namespace StudentManagement
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllGeneralAnouncements_Result>("GetAllGeneralAnouncements");
         }
+    
+        public virtual ObjectResult<GetGeneralAnouncementDetailBySummary_Result> GetGeneralAnouncementDetailBySummary(string summary)
+        {
+            var summaryParameter = summary != null ?
+                new ObjectParameter("Summary", summary) :
+                new ObjectParameter("Summary", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetGeneralAnouncementDetailBySummary_Result>("GetGeneralAnouncementDetailBySummary", summaryParameter);
+        }
     }
 }

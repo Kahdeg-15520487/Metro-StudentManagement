@@ -11,107 +11,87 @@
         <ViewModel:AnouncementViewModel x:Key="AnouncementViewModel"></ViewModel:AnouncementViewModel>
     </UserControl.Resources>
     <Grid>
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Resources/Backgrounds/MainBackground.png">
-            </ImageBrush>
-        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="0.2*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        <GroupBox Header="General Anouncement" Grid.Row="0" DataContext="{StaticResource AnouncementViewModel}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
 
-        <Grid Grid.Column="1">
-            <local:UniversityInfoView>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.01*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            </local:UniversityInfoView>
-        </Grid>
-
-        <Grid Grid.Column="2" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <GroupBox Header="General Anouncement" Grid.Row="0" DataContext="{StaticResource AnouncementViewModel}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.01*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[0].Summary}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName= Row01txt}">
+                        <TextBlock  Name="Row01txt" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[0].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[1].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[2].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[3].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[4].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="5" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="5" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[5].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="6" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="6" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[6].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="7" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="7" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[7].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="8" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="8" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[8].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
-                    <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None">
                         <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[9].Summary}"></TextBlock>
                     </Hyperlink>
@@ -119,23 +99,24 @@
 
 
 
-                    <TextBlock Grid.Column="1" Grid.Row="10" HorizontalAlignment="Right" >
+                <TextBlock Grid.Column="1" Grid.Row="10" HorizontalAlignment="Right" >
                     <Hyperlink TextDecorations="None">
                         <TextBlock Text="More.."></TextBlock>
                     </Hyperlink>
                 </TextBlock>
-                </Grid>
-            </GroupBox>
+            </Grid>
+        </GroupBox>
 
-            <GroupBox Header="Subject Anouncement" Grid.Row="1">
+        <GroupBox Header="Subject Anouncement" Grid.Row="1">
+            <Grid>
+             
                 <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Hyperlink TextDecorations="None">
                         <TextBlock Text="More.."></TextBlock>
                     </Hyperlink>
                 </TextBlock>
-            </GroupBox>
+            </Grid>
+        </GroupBox>
 
-        </Grid>
     </Grid>
-
 </UserControl>

@@ -674,6 +674,9 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
   <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetGeneralAnouncementDetailBySummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Summary" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetInfoDiscipline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetInfoRegistered" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
