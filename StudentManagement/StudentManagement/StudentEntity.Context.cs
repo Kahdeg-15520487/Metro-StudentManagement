@@ -311,5 +311,35 @@ namespace StudentManagement
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllGeneralAnouncements_Result>("GetAllGeneralAnouncements");
         }
+    
+        public virtual int DeleteRegisterStudyUnit(string studentID, string disciplineID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            var disciplineIDParameter = disciplineID != null ?
+                new ObjectParameter("DisciplineID", disciplineID) :
+                new ObjectParameter("DisciplineID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteRegisterStudyUnit", studentIDParameter, disciplineIDParameter);
+        }
+    
+        public virtual ObjectResult<GetScheduleForDetail_Result> GetScheduleForDetail(string studentID, Nullable<int> period, string studyDate)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            var periodParameter = period.HasValue ?
+                new ObjectParameter("period", period) :
+                new ObjectParameter("period", typeof(int));
+    
+            var studyDateParameter = studyDate != null ?
+                new ObjectParameter("StudyDate", studyDate) :
+                new ObjectParameter("StudyDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail_Result>("GetScheduleForDetail", studentIDParameter, periodParameter, studyDateParameter);
+        }
     }
 }

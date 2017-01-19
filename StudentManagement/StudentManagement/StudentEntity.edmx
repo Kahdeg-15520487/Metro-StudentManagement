@@ -280,14 +280,6 @@
           <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Roll" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTDB.MDF.dbo.UniversityInfo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="UniversityInfo">
-          <Property Name="Name" Type="nvarchar" MaxLength="500" />
-          <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
-          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="UserImage">
           <Key>
             <PropertyRef Name="ID" />
@@ -650,6 +642,10 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
           <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
           <Parameter Name="ID" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="DeleteRegisterStudyUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+          <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Get10NewestAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
@@ -685,6 +681,11 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
         </Function>
         <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetScheduleForDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+          <Parameter Name="period" Type="int" Mode="In" />
+          <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
@@ -1748,6 +1749,15 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
           <EntitySet Name="GeneralAnouncement" EntityType="StudentDBModel.GeneralAnouncement" />
           <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
           <FunctionImport Name="GetAllGeneralAnouncements" ReturnType="Collection(StudentDBModel.GetAllGeneralAnouncements_Result)" />
+          <FunctionImport Name="DeleteRegisterStudyUnit">
+            <Parameter Name="StudentID" Mode="In" Type="String" />
+            <Parameter Name="DisciplineID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetScheduleForDetail" ReturnType="Collection(StudentDBModel.GetScheduleForDetail_Result)">
+            <Parameter Name="StudentID" Mode="In" Type="String" />
+            <Parameter Name="period" Mode="In" Type="Int32" />
+            <Parameter Name="StudyDate" Mode="In" Type="String" />
+          </FunctionImport>
         
          
          
@@ -1971,6 +1981,13 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
           <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
           <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
           <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+        </ComplexType>
+        <ComplexType Name="GetScheduleForDetail_Result">
+          <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="302" />
+          <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="DepartmentID" Nullable="true" MaxLength="10" />
         </ComplexType>
        
       </Schema>
@@ -2576,6 +2593,18 @@ warning 6013: The table/view 'C:\USERS\PIS KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMA
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
                 <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
                 <ScalarProperty Name="Detail" ColumnName="Detail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DeleteRegisterStudyUnit" FunctionName="StudentDBModel.Store.DeleteRegisterStudyUnit" />
+          <FunctionImportMapping FunctionImportName="GetScheduleForDetail" FunctionName="StudentDBModel.Store.GetScheduleForDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetScheduleForDetail_Result">
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+                <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

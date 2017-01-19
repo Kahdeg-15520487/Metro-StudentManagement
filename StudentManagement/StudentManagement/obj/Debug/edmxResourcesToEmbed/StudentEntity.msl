@@ -599,5 +599,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteRegisterStudyUnit" FunctionName="StudentDBModel.Store.DeleteRegisterStudyUnit" />
   </EntityContainerMapping>
 </Mapping>

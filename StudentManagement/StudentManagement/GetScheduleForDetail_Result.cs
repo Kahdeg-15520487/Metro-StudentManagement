@@ -11,16 +11,12 @@ namespace StudentManagement
 {
     using System;
     
-    public partial class GetInfoDiscipline_Result
+    public partial class GetScheduleForDetail_Result
     {
-        public bool check { get; set; }
-        public string DisciplineID { get; set; }
-        public string DepartmentName { get; set; }
-        public Nullable<int> Credits { get; set; }
-        public string StudyDate { get; set; }
-        public Nullable<int> Period { get; set; }
-        public Nullable<System.DateTime> FinishDay { get; set; }
+        public string TeacherName { get; set; }
         public Nullable<System.DateTime> StartDay { get; set; }
-        public string Name { get; set; }
+        public Nullable<System.DateTime> FinishDay { get; set; }
+        public string DepartmentName { get; set; }
+        public string DepartmentID { get; set; }
     }
 }

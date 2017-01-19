@@ -109,12 +109,13 @@ namespace StudentManagement.ViewModel
             }
         }
 
+
         private ObservableCollection<GetInfoDiscipline_Result> _ListDiscipline;
         public ObservableCollection<GetInfoDiscipline_Result> ListDiscipline
         {
             get
             {
-                
+
                 if (_ListDiscipline == null)
                 {
                     _ListDiscipline = new ObservableCollection<GetInfoDiscipline_Result>(ST.GetInfoDiscipline().ToList());
@@ -131,50 +132,46 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        private void OnRegisterCommand(object parameters)
+        void InsertAndFindingError(string[] ListLine,StackPanel Stp)
         {
-
-            var values = (object[])parameters;
-            TextBox txtwrap = values[0] as TextBox;
-            StackPanel Stp = values[1] as StackPanel;
             var thisUser = DialogLogginViewModel.Users[0];
             var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
-            string deleteEnter = txtwrap.Text.Replace('\n', ' ');
-            deleteEnter = StandardWord(deleteEnter);
-            string[] ListLine = deleteEnter.Split(' ', ',', '-', '+', '|');
-            string speak=string.Empty;
+            string speak = string.Empty;
             foreach (string Line in ListLine)
             {
                 TextBlock Announcement = new TextBlock();
                 Announcement.FontSize = 14;
-                int flag = 1;
-
+                int CheckDiscipline = 1;
+                string ID = Line.Substring(0, 5);
+                var data = ST.IsDateRegister().ToList()[0];
                 foreach (GetListDisciplineForThisUser_Result Discipline in DisciplineRegistered)
                 {
-                    if (Discipline.DisciplineID != Line.Trim()) flag = 1;
-                    else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == true)
+
+
+                    if (Discipline.DisciplineID != ID) CheckDiscipline = 1;
+                    else if (Discipline.DisciplineID == ID.Trim() && Discipline.DisciplineStatus == true)
                     {
-                        flag = 0;
+                        CheckDiscipline = 0;
                         Announcement.Foreground = new SolidColorBrush(Colors.Red);
-                        Announcement.Text = Line + " Discipline had registered";             
+                        Announcement.Text = ID + " Discipline had registered";
                         break;
                     }
-                    else if (Discipline.DisciplineID == Line.Trim() && Discipline.DisciplineStatus == false) flag = 1;
+                    else if (Discipline.DisciplineID == ID.Trim() && Discipline.DisciplineStatus == false) CheckDiscipline = 1;
                 }
-                if (flag == 1 && Line != " " && Line != "\n" && Line != null)
+                if (CheckDiscipline == 1 && ID != " " && ID != "\n" && ID != null)
                 {
                     try
                     {
-                        var data = ST.IsDateRegister().ToList()[0];
-                        ST.InsertRegisterStudyUnit(thisUser.ID, Line, data.SemesterID);
+                        
+                        ST.InsertRegisterStudyUnit(thisUser.ID, ID, data.SemesterID);
                         ST.SaveChanges();
                         Announcement.Foreground = new SolidColorBrush(Colors.Green);
-                        Announcement.Text = Line + " successfully";
+                        Announcement.Text = ID + " Successfully";
                     }
                     catch
                     {
                         Announcement.Foreground = new SolidColorBrush(Colors.Red);
-                        Announcement.Text = Line + "   Discipline not open or does not exist. Please check back...";
+                        Announcement.Text = ID + " Discipline not open or does not exist. Please check back...";
                     }
                 }
                 speak += Announcement.Text + "...";
@@ -183,8 +180,23 @@ namespace StudentManagement.ViewModel
                     Stp.Children.Add(Announcement);
             }
         }
+        private void OnRegisterCommand(object parameters)
+        {
 
-      
+            var values = (object[])parameters;
+            TextBox txtwrap = values[0] as TextBox;
+            StackPanel Stp = values[1] as StackPanel;
+            var thisUser = DialogLogginViewModel.Users[0];
+
+            txtwrap.Text = StandardWord(txtwrap.Text);
+            string[] ListLine = txtwrap.Text.Split(' ', ',', '-', '+', '\n');
+            InsertAndFindingError(ListLine, Stp);
+           
+           
+            ListRegistered = new ObservableCollection<GetInfoRegistered_Result>(ST.GetInfoRegistered(thisUser.ID).ToList());
+        }
+
+
 
 
 
@@ -203,12 +215,82 @@ namespace StudentManagement.ViewModel
         }
 
 
+        public ICommand DeleteRegistered { get; set; }
 
-    
+        private void OnDeleteRegistered(DataGrid Dtg)
+        {
+            var thisUser = DialogLogginViewModel.Users[0];
+            foreach (GetInfoRegistered_Result DisciplineChecked in Dtg.Items)
+            {
+                if (DisciplineChecked.check == true)
+                    ST.DeleteRegisterStudyUnit(thisUser.ID, DisciplineChecked.DisciplineID);
+            }
+
+            ListRegistered = new ObservableCollection<GetInfoRegistered_Result>(ST.GetInfoRegistered(thisUser.ID).ToList());
+
+
+        }
+
+        public ICommand InsertRegisterFromListDisciplineCommand { get; set; }
+        private void OnInsertRegisterFromListDisciplineCommand(object Parameters)
+        {
+            var values = (object[])Parameters;
+            DataGrid Dtg = values[0] as DataGrid;
+            StackPanel Stp = values[1] as StackPanel;
+            var data = ST.IsDateRegister().ToList()[0];
+            var thisUser = DialogLogginViewModel.Users[0];  
+            var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
+            string speak = string.Empty;
+            foreach (GetInfoDiscipline_Result DisciplineChecked in Dtg.Items)
+            {
+                TextBlock Announcement = new TextBlock();
+                Announcement.FontSize = 14;
+                int CheckDiscipline = 1;
+
+                if (DisciplineChecked.check == true)
+                {
+                    foreach (GetListDisciplineForThisUser_Result Discipline in DisciplineRegistered)
+                    {
+                        if (Discipline.DisciplineID != DisciplineChecked.DisciplineID.ToString()) CheckDiscipline = 1;
+                        else if (Discipline.DisciplineID == DisciplineChecked.DisciplineID.ToString().Trim() && Discipline.DisciplineStatus == true)
+                        {
+                            CheckDiscipline = 0;
+                            Announcement.Foreground = new SolidColorBrush(Colors.Red);
+                            Announcement.Text = DisciplineChecked.DisciplineID.ToString() + " Discipline had registered";
+                            break;
+                        }
+                        else if (Discipline.DisciplineID == DisciplineChecked.DisciplineID.ToString().Trim() && Discipline.DisciplineStatus == false) CheckDiscipline = 1;
+                    }
+                    if (CheckDiscipline == 1 && DisciplineChecked.DisciplineID.ToString() != " " && DisciplineChecked.DisciplineID.ToString() != "\n" && DisciplineChecked.DisciplineID.ToString() != null)
+                    {
+                        try
+                        {
+
+                            ST.InsertRegisterStudyUnit(thisUser.ID, DisciplineChecked.DisciplineID.ToString(), data.SemesterID);
+                            ST.SaveChanges();
+                            Announcement.Foreground = new SolidColorBrush(Colors.Green);
+                            Announcement.Text = DisciplineChecked.DisciplineID.ToString() + " Successfully";
+                        }
+                        catch
+                        {
+                            Announcement.Foreground = new SolidColorBrush(Colors.Red);
+                            Announcement.Text = DisciplineChecked.DisciplineID.ToString() + " Discipline not open or does not exist. Please check back...";
+                        }
+                    }
+                    speak += Announcement.Text + "...";
+                    warningAudio.SpeakAsync(speak);
+                    if (Announcement != null || Announcement.Text != " ")
+                        Stp.Children.Add(Announcement);
+                }
+            }
+            ListRegistered = new ObservableCollection<GetInfoRegistered_Result>(ST.GetInfoRegistered(thisUser.ID).ToList());
+        }
 
         void Command()
         {
             RegisterCommand = new RelayCommand<object>((p) => true, OnRegisterCommand);
+            DeleteRegistered = new RelayCommand<DataGrid>((p) => true, OnDeleteRegistered);
+            InsertRegisterFromListDisciplineCommand = new RelayCommand<object>((p) => true, OnInsertRegisterFromListDisciplineCommand);
         }
 
         public RegisterStudyUnitViewModel()
