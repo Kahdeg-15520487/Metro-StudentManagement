@@ -22,7 +22,7 @@ namespace StudentManagement.View
     {
         public AcademicView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
     }
 }

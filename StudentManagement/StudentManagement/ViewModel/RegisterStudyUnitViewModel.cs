@@ -288,9 +288,76 @@ namespace StudentManagement.ViewModel
 
         void Command()
         {
+            SortByTeacherAndDepartment = new RelayCommand<object>((p) => true, OnSortByTeacherAndDepartment);
             RegisterCommand = new RelayCommand<object>((p) => true, OnRegisterCommand);
             DeleteRegistered = new RelayCommand<DataGrid>((p) => true, OnDeleteRegistered);
             InsertRegisterFromListDisciplineCommand = new RelayCommand<object>((p) => true, OnInsertRegisterFromListDisciplineCommand);
+        }
+
+
+        private ObservableCollection<String> _GetTeacherDiscipline;
+        public ObservableCollection<String> GetTeacherDiscipline
+        {
+            get
+            {
+
+                if (_GetTeacherDiscipline == null)
+                {
+                    _GetTeacherDiscipline = new ObservableCollection<String>(ST.GetTeacherRegister().ToList());
+                    _GetTeacherDiscipline.Insert(0, "All");
+                }
+                return _GetTeacherDiscipline;
+            }
+            set
+            {
+                if (_GetTeacherDiscipline != value)
+                {
+                    _GetTeacherDiscipline = value; OnPropertyChanged("GetTeacherDiscipline");
+                }
+            }
+        }
+
+        private ObservableCollection<String> _GetDepartmentDiscipline;
+        public ObservableCollection<String> GetDepartmentDiscipline
+        {
+            get
+            {
+
+                if (_GetDepartmentDiscipline == null)
+                {
+                    _GetDepartmentDiscipline = new ObservableCollection<String>(ST.GetDepartmentRegister().ToList());
+                    _GetDepartmentDiscipline.Insert(0, "All");
+                }
+                return _GetDepartmentDiscipline;
+            }
+            set
+            {
+                if (_GetDepartmentDiscipline != value)
+                {
+                    _GetDepartmentDiscipline = value; OnPropertyChanged("GetDepartmentDiscipline");
+                }
+            }
+        }
+
+        public  ICommand SortByTeacherAndDepartment { get; set; }
+        private void OnSortByTeacherAndDepartment( object Parameters)
+        {
+            var values = (object[])Parameters;
+            ComboBox Teacher = values[0] as ComboBox;
+            ComboBox Department = values[1] as ComboBox;
+            try
+            {
+                ObservableCollection<GetInfoDiscipline_Result> a = new ObservableCollection<GetInfoDiscipline_Result>();
+
+                ObservableCollection<SortDisciplinebyTeacherAndDepartment_Result> ab = new ObservableCollection<SortDisciplinebyTeacherAndDepartment_Result>(ST.SortDisciplinebyTeacherAndDepartment(Teacher.SelectedItem.ToString(), Department.SelectedItem.ToString()).ToList());
+                foreach (SortDisciplinebyTeacherAndDepartment_Result k in ab)
+                {
+                    a.Add(k as GetInfoDiscipline_Result);
+                }
+                ListDiscipline = new ObservableCollection<GetInfoDiscipline_Result>(a);
+            }
+            catch { }
+           
         }
 
         public RegisterStudyUnitViewModel()

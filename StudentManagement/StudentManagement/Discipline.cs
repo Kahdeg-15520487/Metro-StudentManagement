@@ -29,6 +29,7 @@ namespace StudentManagement
         public string TeacherID { get; set; }
         public Nullable<int> Period { get; set; }
         public Nullable<int> AnouncementID { get; set; }
+        public string Room { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicMark> AcademicMark { get; set; }

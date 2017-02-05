@@ -23,9 +23,7 @@
                 ImageSource="/Resources/Backgrounds/MainBackground.png">
                     </ImageBrush>
                 </Grid.Background>
-                <StackPanel>
 
-                </StackPanel>
 
                 <StackPanel >
                     <GroupBox DataContext="{StaticResource Key_RegisterStudyUnit}">
@@ -114,11 +112,61 @@
                                 </Grid>
                             </Expander>
 
-                            <Expander>
+                            <Expander >
+                                <Expander.Resources>
+                                    <ViewModel:ParameterConverter x:Key="ParaConverter"></ViewModel:ParameterConverter>
+                                </Expander.Resources>
                                 <Expander.Header>
                                     <TextBlock Text="Sort For..."></TextBlock>
                                 </Expander.Header>
-                                <ComboBox Height="50"></ComboBox>
+                                <StackPanel Orientation="Horizontal" >
+                                    <ComboBox ItemsSource="{Binding GetDepartmentDiscipline}"
+                                            Margin="20,20,30,20"
+                                            BorderBrush="Green"
+                                            BorderThickness="2"
+                                            FontSize="15" 
+                                              SelectedIndex="0"
+                                              Name="a"
+                                            FontWeight="ExtraLight"
+                                            Metro:TextBoxHelper.Watermark="Choose Department">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SortByTeacherAndDepartment}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding ElementName="b"/>
+                                                            <Binding ElementName="a"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                    <ComboBox ItemsSource="{Binding GetTeacherDiscipline }"
+                                            Margin="20,20,30,20"
+                                            BorderBrush="Green"
+                                            BorderThickness="2"
+                                            FontSize="15"
+                                              SelectedIndex="0"
+                                              Name="b"
+                                            FontWeight="ExtraLight"
+                                            Metro:TextBoxHelper.Watermark="Choose Teacher">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SortByTeacherAndDepartment}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ParaConverter}">
+                                                            <Binding ElementName="b"/>
+                                                            <Binding ElementName="a"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                   
+                                  
+                                </StackPanel>
                             </Expander>
 
                             <Expander>

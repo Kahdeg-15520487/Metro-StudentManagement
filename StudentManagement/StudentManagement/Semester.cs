@@ -28,6 +28,7 @@ namespace StudentManagement
         public string Note { get; set; }
         public Nullable<System.DateTime> DateRegister { get; set; }
         public Nullable<bool> IsDateRegister { get; set; }
+        public string YearSemester { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegisterStudyUnit> RegisterStudyUnit { get; set; }

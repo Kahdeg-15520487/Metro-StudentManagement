@@ -283,20 +283,6 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertRegisterStudyUnit", studentIDParameter, disciplineParameter, semesterIDParameter);
         }
     
-        public virtual ObjectResult<GetInfoRegistered_Result> GetInfoRegistered(string studentID)
-        {
-            var studentIDParameter = studentID != null ?
-                new ObjectParameter("StudentID", studentID) :
-                new ObjectParameter("StudentID", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoRegistered_Result>("GetInfoRegistered", studentIDParameter);
-        }
-    
-        public virtual ObjectResult<GetInfoDiscipline_Result> GetInfoDiscipline()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoDiscipline_Result>("GetInfoDiscipline");
-        }
-    
         public virtual ObjectResult<GetUniversityInfo_Result> GetUniversityInfo()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUniversityInfo_Result>("GetUniversityInfo");
@@ -325,21 +311,93 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteRegisterStudyUnit", studentIDParameter, disciplineIDParameter);
         }
     
-        public virtual ObjectResult<GetScheduleForDetail_Result> GetScheduleForDetail(string studentID, Nullable<int> period, string studyDate)
+        public virtual ObjectResult<GetScheduleForDetail_Result> GetScheduleForDetail(string studentID, string semester, string studyDate)
         {
             var studentIDParameter = studentID != null ?
                 new ObjectParameter("StudentID", studentID) :
                 new ObjectParameter("StudentID", typeof(string));
     
-            var periodParameter = period.HasValue ?
-                new ObjectParameter("period", period) :
-                new ObjectParameter("period", typeof(int));
+            var semesterParameter = semester != null ?
+                new ObjectParameter("Semester", semester) :
+                new ObjectParameter("Semester", typeof(string));
     
             var studyDateParameter = studyDate != null ?
                 new ObjectParameter("StudyDate", studyDate) :
                 new ObjectParameter("StudyDate", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail_Result>("GetScheduleForDetail", studentIDParameter, periodParameter, studyDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail_Result>("GetScheduleForDetail", studentIDParameter, semesterParameter, studyDateParameter);
+        }
+    
+        public virtual int UpdateStarDay(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStarDay", studentIDParameter);
+        }
+    
+        public virtual ObjectResult<GetScheduleForDetail1_Result> GetScheduleForDetail1(string studentID, string semester, string studyDate)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            var semesterParameter = semester != null ?
+                new ObjectParameter("Semester", semester) :
+                new ObjectParameter("Semester", typeof(string));
+    
+            var studyDateParameter = studyDate != null ?
+                new ObjectParameter("StudyDate", studyDate) :
+                new ObjectParameter("StudyDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail1_Result>("GetScheduleForDetail1", studentIDParameter, semesterParameter, studyDateParameter);
+        }
+    
+        public virtual ObjectResult<GetInfoDiscipline_Result> GetInfoDiscipline()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoDiscipline_Result>("GetInfoDiscipline");
+        }
+    
+        public virtual ObjectResult<GetInfoRegistered_Result> GetInfoRegistered(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoRegistered_Result>("GetInfoRegistered", studentIDParameter);
+        }
+    
+        public virtual ObjectResult<GetInfoRegistered1_Result> GetInfoRegistered1(string studentID)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInfoRegistered1_Result>("GetInfoRegistered1", studentIDParameter);
+        }
+    
+        public virtual ObjectResult<string> GetTeacherRegister()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetTeacherRegister");
+        }
+    
+        public virtual ObjectResult<string> GetDepartmentRegister()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetDepartmentRegister");
+        }
+    
+        public virtual ObjectResult<SortDisciplinebyTeacherAndDepartment_Result> SortDisciplinebyTeacherAndDepartment(string teacherName, string departmentName)
+        {
+            var teacherNameParameter = teacherName != null ?
+                new ObjectParameter("TeacherName", teacherName) :
+                new ObjectParameter("TeacherName", typeof(string));
+    
+            var departmentNameParameter = departmentName != null ?
+                new ObjectParameter("DepartmentName", departmentName) :
+                new ObjectParameter("DepartmentName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SortDisciplinebyTeacherAndDepartment_Result>("SortDisciplinebyTeacherAndDepartment", teacherNameParameter, departmentNameParameter);
         }
     }
 }

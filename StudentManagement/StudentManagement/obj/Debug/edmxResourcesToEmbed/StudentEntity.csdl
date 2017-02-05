@@ -119,6 +119,7 @@
     <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_DisciplineID" FromRole="Discipline" ToRole="RegisterStudyUnit" />
     <NavigationProperty Name="Teacher" Relationship="Self.Fk_TeacherID_teacher" FromRole="Discipline" ToRole="Teacher" />
     <NavigationProperty Name="Department" Relationship="StudentDBModel.FK_Discipline_Department_" FromRole="Discipline" ToRole="Department" />
+    <Property Name="Room" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Exam">
     <Key>
@@ -233,6 +234,7 @@
     <NavigationProperty Name="StudyFee" Relationship="Self.Fk_SemesterID_Study" FromRole="Semester" ToRole="StudyFee" />
     <Property Name="DateRegister" Type="DateTime" Precision="0" />
     <Property Name="IsDateRegister" Type="Boolean" />
+    <Property Name="YearSemester" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -873,10 +875,6 @@
       <End Role="Department" EntitySet="Department" />
       <End Role="Discipline" EntitySet="Discipline" />
     </AssociationSet>
-    <FunctionImport Name="GetInfoRegistered" ReturnType="Collection(StudentDBModel.GetInfoRegistered_Result)">
-      <Parameter Name="StudentID" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="GetInfoDiscipline" ReturnType="Collection(StudentDBModel.GetInfoDiscipline_Result)" />
     <FunctionImport Name="GetUniversityInfo" ReturnType="Collection(StudentDBModel.GetUniversityInfo_Result)" />
     <EntitySet Name="GeneralAnouncement" EntityType="StudentDBModel.GeneralAnouncement" />
     <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
@@ -884,6 +882,32 @@
     <FunctionImport Name="DeleteRegisterStudyUnit">
       <Parameter Name="StudentID" Mode="In" Type="String" />
       <Parameter Name="DisciplineID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetScheduleForDetail" ReturnType="Collection(StudentDBModel.GetScheduleForDetail_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+      <Parameter Name="Semester" Mode="In" Type="String" />
+      <Parameter Name="StudyDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateStarDay">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetScheduleForDetail1" ReturnType="Collection(StudentDBModel.GetScheduleForDetail1_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+      <Parameter Name="Semester" Mode="In" Type="String" />
+      <Parameter Name="StudyDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetInfoDiscipline" ReturnType="Collection(StudentDBModel.GetInfoDiscipline_Result)" />
+    <FunctionImport Name="GetInfoRegistered" ReturnType="Collection(StudentDBModel.GetInfoRegistered_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetInfoRegistered1" ReturnType="Collection(StudentDBModel.GetInfoRegistered1_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTeacherRegister" ReturnType="Collection(String)" />
+    <FunctionImport Name="GetDepartmentRegister" ReturnType="Collection(String)" />
+    <FunctionImport Name="SortDisciplinebyTeacherAndDepartment" ReturnType="Collection(StudentDBModel.SortDisciplinebyTeacherAndDepartment_Result)">
+      <Parameter Name="TeacherName" Mode="In" Type="String" />
+      <Parameter Name="DepartmentName" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
@@ -1058,26 +1082,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="GetInfoRegistered_Result">
-    <Property Type="String" Name="DisciplineID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
-    <Property Type="Int32" Name="Credits" Nullable="true" />
-    <Property Type="String" Name="StudyDate" Nullable="true" MaxLength="20" />
-    <Property Type="Int32" Name="Period" Nullable="true" />
-    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
-    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
-    <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
-  </ComplexType>
-  <ComplexType Name="GetInfoDiscipline_Result">
-    <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
-    <Property Type="Int32" Name="Credits" Nullable="true" />
-    <Property Type="String" Name="StudyDate" Nullable="true" MaxLength="20" />
-    <Property Type="Int32" Name="Period" Nullable="true" />
-    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
-    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
-    <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
-  </ComplexType>
   <ComplexType Name="GetUniversityInfo_Result">
     <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="UniversityAddress" Nullable="true" MaxLength="1000" />
@@ -1104,5 +1108,68 @@
     <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
     <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
     <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+  </ComplexType>
+  <ComplexType Name="GetScheduleForDetail_Result">
+    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="302" />
+    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="DepartmentID" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Period" Nullable="false" />
+    <Property Type="Int32" Name="Credits" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetScheduleForDetail1_Result">
+    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="302" />
+    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="DepartmentID" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Period" Nullable="true" />
+    <Property Type="Int32" Name="Credits" Nullable="true" />
+    <Property Type="String" Name="Room" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="GetInfoDiscipline_Result">
+    <Property Type="Boolean" Name="check" Nullable="true" />
+    <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="Credits" Nullable="true" />
+    <Property Type="String" Name="StudyDate" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Period" Nullable="true" />
+    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
+  </ComplexType>
+  <ComplexType Name="GetInfoRegistered_Result">
+    <Property Type="Boolean" Name="check" Nullable="true" />
+    <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="Credits" Nullable="true" />
+    <Property Type="String" Name="StudyDate" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Period" Nullable="true" />
+    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
+  </ComplexType>
+  <ComplexType Name="GetInfoRegistered1_Result">
+    <Property Type="Boolean" Name="Column1" Nullable="true" />
+    <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="Credits" Nullable="true" />
+    <Property Type="String" Name="StudyDate" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Period" Nullable="true" />
+    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
+  </ComplexType>
+  <ComplexType Name="SortDisciplinebyTeacherAndDepartment_Result">
+    <Property Type="Boolean" Name="check" Nullable="true" />
+    <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="Credits" Nullable="true" />
+    <Property Type="String" Name="StudyDate" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Period" Nullable="true" />
+    <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
   </ComplexType>
 </Schema>

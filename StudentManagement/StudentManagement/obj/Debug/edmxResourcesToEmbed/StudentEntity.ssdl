@@ -101,6 +101,7 @@
     <Property Name="TeacherID" Type="nvarchar" MaxLength="10" />
     <Property Name="Period" Type="int" />
     <Property Name="AnouncementID" Type="int" />
+    <Property Name="Room" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Exam">
     <Key>
@@ -207,6 +208,7 @@
     <Property Name="Note" Type="nvarchar" MaxLength="300" />
     <Property Name="DateRegister" Type="smalldatetime" />
     <Property Name="IsDateRegister" Type="bit" />
+    <Property Name="YearSemester" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -658,6 +660,7 @@
   <Function Name="GetDeparmentDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DepartmentID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetDepartmentRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetDetailActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Activitie" Type="nvarchar" Mode="In" />
   </Function>
@@ -674,8 +677,21 @@
   <Function Name="GetInfoRegistered" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetInfoRegistered1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetScheduleForDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Semester" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetScheduleForDetail1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Semester" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
@@ -686,6 +702,7 @@
   <Function Name="GetStudentsInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetTeacherRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetUniversityInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
@@ -700,6 +717,13 @@
     <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SortDisciplinebyTeacherAndDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TeacherName" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateStarDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UpdateStudentProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
     <Parameter Name="ParentName" Type="nvarchar" Mode="In" />
