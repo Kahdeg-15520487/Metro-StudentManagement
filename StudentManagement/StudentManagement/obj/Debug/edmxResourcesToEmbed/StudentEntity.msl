@@ -98,6 +98,7 @@
     <EntitySetMapping Name="Discipline">
       <EntityTypeMapping TypeName="StudentDBModel.Discipline">
         <MappingFragment StoreEntitySet="Discipline">
+          <ScalarProperty Name="Room" ColumnName="Room" />
           <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="StartDay" ColumnName="StartDay" />
@@ -204,6 +205,7 @@
     <EntitySetMapping Name="Semester">
       <EntityTypeMapping TypeName="StudentDBModel.Semester">
         <MappingFragment StoreEntitySet="Semester">
+          <ScalarProperty Name="YearSemester" ColumnName="YearSemester" />
           <ScalarProperty Name="IsDateRegister" ColumnName="IsDateRegister" />
           <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
           <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
@@ -532,33 +534,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="InsertRegisterStudyUnit" FunctionName="StudentDBModel.Store.InsertRegisterStudyUnit" />
-    <FunctionImportMapping FunctionImportName="GetInfoRegistered" FunctionName="StudentDBModel.Store.GetInfoRegistered">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetInfoRegistered_Result">
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="Credits" ColumnName="Credits" />
-          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
-          <ScalarProperty Name="Period" ColumnName="Period" />
-          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
-          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetInfoDiscipline" FunctionName="StudentDBModel.Store.GetInfoDiscipline">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetInfoDiscipline_Result">
-          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="Credits" ColumnName="Credits" />
-          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
-          <ScalarProperty Name="Period" ColumnName="Period" />
-          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
-          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetUniversityInfo" FunctionName="StudentDBModel.Store.GetUniversityInfo">
       <ResultMapping>
         <ComplexTypeMapping TypeName="StudentDBModel.GetUniversityInfo_Result">
@@ -600,5 +575,93 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="DeleteRegisterStudyUnit" FunctionName="StudentDBModel.Store.DeleteRegisterStudyUnit" />
+    <FunctionImportMapping FunctionImportName="GetScheduleForDetail" FunctionName="StudentDBModel.Store.GetScheduleForDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetScheduleForDetail_Result">
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateStarDay" FunctionName="StudentDBModel.Store.UpdateStarDay" />
+    <FunctionImportMapping FunctionImportName="GetScheduleForDetail1" FunctionName="StudentDBModel.Store.GetScheduleForDetail1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetScheduleForDetail1_Result">
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="Room" ColumnName="Room" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetInfoDiscipline" FunctionName="StudentDBModel.Store.GetInfoDiscipline">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetInfoDiscipline_Result">
+          <ScalarProperty Name="check" ColumnName="check" />
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetInfoRegistered" FunctionName="StudentDBModel.Store.GetInfoRegistered">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetInfoRegistered_Result">
+          <ScalarProperty Name="check" ColumnName="check" />
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetInfoRegistered1" FunctionName="StudentDBModel.Store.GetInfoRegistered1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetInfoRegistered1_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTeacherRegister" FunctionName="StudentDBModel.Store.GetTeacherRegister" />
+    <FunctionImportMapping FunctionImportName="GetDepartmentRegister" FunctionName="StudentDBModel.Store.GetDepartmentRegister" />
+    <FunctionImportMapping FunctionImportName="SortDisciplinebyTeacherAndDepartment" FunctionName="StudentDBModel.Store.SortDisciplinebyTeacherAndDepartment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.SortDisciplinebyTeacherAndDepartment_Result">
+          <ScalarProperty Name="check" ColumnName="check" />
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

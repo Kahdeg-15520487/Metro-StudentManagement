@@ -18,5 +18,7 @@ namespace StudentManagement
         public Nullable<System.DateTime> FinishDay { get; set; }
         public string DepartmentName { get; set; }
         public string DepartmentID { get; set; }
+        public int Period { get; set; }
+        public int Credits { get; set; }
     }
 }
