@@ -61,7 +61,9 @@ namespace StudentManagement.ViewModel
             }
             else
             {
+         
                 Users =new ObservableCollection<GetUser_Result>(St.GetUser(result.Username, result.Password).ToList());
+                St.UpdateStarDay(Users[0].ID);
                 if (Users.Count() != 0 && isLoggedIn == false)
                 {
                     isLoggedIn = true;

@@ -8,11 +8,12 @@
              xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
+             
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <ViewModel:AcademicViewModel x:Key="key1">
+        <ViewModel:ScheduleViewModel x:Key="key1">
 
-        </ViewModel:AcademicViewModel>
+        </ViewModel:ScheduleViewModel>
     </UserControl.Resources>
     <Grid>
         <Grid Margin="0,-35,0,0">
@@ -22,19 +23,365 @@
                 </ImageBrush>
 
             </Grid.Background>
-            <GroupBox Margin="30" Header="{Binding }">
-                <DataGrid>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Lesson"></DataGridTextColumn>
-                        <DataGridTemplateColumn Header=" Mondat">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="0">
+                <ComboBox Margin="30,30,0,0"
+                          BorderBrush="Green"
+                          BorderThickness="2"
+                          Metro:TextBoxHelper.Watermark="Choose Module">
+                    <ComboBoxItem Content="Module 1">
+
+                    </ComboBoxItem>
+                    <ComboBoxItem Content="Module 2">
+
+                    </ComboBoxItem>
+                    <ComboBoxItem Content="Summer Module">
+
+                    </ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox
+                          Margin="20,30,30,0"
+                          BorderBrush="Green"
+                          BorderThickness="2"
+                          Metro:TextBoxHelper.Watermark="Choose Year">
+                    <ComboBoxItem Content="Year 1">
+
+                    </ComboBoxItem>
+                    <ComboBoxItem Content="Year 2">
+
+                    </ComboBoxItem>
+                    <ComboBoxItem Content="Year 3">
+
+                    </ComboBoxItem>
+
+                    <ComboBoxItem Content="Year 4">
+
+                    </ComboBoxItem>
+                </ComboBox>
+
+
+            </StackPanel>
+            <GroupBox DataContext="{StaticResource key1}" Margin="30,-5,30,20"  Header="{Binding }" Grid.Row="1">
+                <Grid >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                   
+
+                    <Grid Background="White" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"  FontWeight="Bold"  TextWrapping="Wrap"> Lesson/    Day</TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="Lesson 1   07h15-8h00" TextWrapping="Wrap"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 2 08h5-08h50</TextBlock>
+                        </Border>
+                        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 3 08h55-09h40</TextBlock>
+                        </Border>
+                        <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 4 09h55-10h40</TextBlock>
+                        </Border>
+                        <Border Grid.Row="5" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 5 10h45-11h30</TextBlock>
+                        </Border>
+                        <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 6 13h00-13h45</TextBlock>
+                        </Border>
+                        <Border Grid.Row="7" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 7 13h50-14h35</TextBlock>
+                        </Border>
+                        <Border Grid.Row="8" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 8 14h50-15h35</TextBlock>
+                        </Border>
+                        <Border Grid.Row="9" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 9 15h40-16h25</TextBlock>
+                        </Border>
+                        <Border Grid.Row="10" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"  TextWrapping="Wrap"> Lesson 10 16h30-17h15</TextBlock>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Monday"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Black">
+                            <DataGrid VerticalScrollBarVisibility="Hidden"  HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Monday}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid  Width="193"   Height="{Binding Credits}">
+
+                                                    <Border   BorderBrush="Black" BorderThickness="2">
+                                                        <Grid   >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DepartmentID}"></TextBlock>
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="{Binding DepartmentName}"></TextBlock>
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Text="{Binding TeacherName}"></TextBlock>
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="{Binding Room}"></TextBlock>
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding StartDay}"></TextBlock>
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="{Binding FinishDay}"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Tuesday"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Black">
+                            <DataGrid VerticalScrollBarVisibility="Hidden"  HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Tuesday}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid  Width="193"   Height="{Binding Credits}">
+
+                                                    <Border   BorderBrush="Black" BorderThickness="2">
+                                                        <Grid   >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DepartmentID}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="{Binding DepartmentName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Text="{Binding TeacherName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="{Binding Room}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding StartDay}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="{Binding FinishDay}"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Wednesday"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Black">
+                            <DataGrid VerticalScrollBarVisibility="Hidden"  HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Wednesday}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid  Width="193"   Height="{Binding Credits}">
+
+                                                    <Border   BorderBrush="Black" BorderThickness="2">
+                                                        <Grid   >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DepartmentID}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="{Binding DepartmentName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Text="{Binding TeacherName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="{Binding Room}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding StartDay}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="{Binding FinishDay}"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Thursday"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Black">
+                            <DataGrid VerticalScrollBarVisibility="Hidden"  HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Thursday}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid  Width="193"   Height="{Binding Credits}">
+
+                                                    <Border   BorderBrush="Black" BorderThickness="2">
+                                                        <Grid   >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DepartmentID}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="{Binding DepartmentName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Text="{Binding TeacherName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="{Binding Room}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding StartDay}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="{Binding FinishDay}"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Friday"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Black">
+                            <DataGrid VerticalScrollBarVisibility="Hidden"  HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Friday}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid  Width="193"   Height="{Binding Credits}">
+
+                                                    <Border   BorderBrush="Black" BorderThickness="2">
+                                                        <Grid   >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DepartmentID}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="{Binding DepartmentName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Text="{Binding TeacherName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="{Binding Room}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding StartDay}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="{Binding FinishDay}"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Saturday"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Black">
+                            <DataGrid VerticalScrollBarVisibility="Hidden"  HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Saturday}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid  Width="193"   Height="{Binding Credits}">
+
+                                                    <Border   BorderBrush="Black" BorderThickness="2">
+                                                        <Grid   >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DepartmentID}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="{Binding DepartmentName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Text="{Binding TeacherName}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="{Binding Room}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding StartDay}"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="{Binding FinishDay}"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                </Grid>
+                
             </GroupBox>
         </Grid>
 

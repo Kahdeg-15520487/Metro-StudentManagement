@@ -13,7 +13,7 @@ namespace StudentManagement
     
     public partial class GetInfoRegistered_Result
     {
-        public bool check { get; set; }
+        public Nullable<bool> check { get; set; }
         public string DisciplineID { get; set; }
         public string DepartmentName { get; set; }
         public Nullable<int> Credits { get; set; }
