@@ -188,3 +188,7 @@ C:\Users\vu khac hoi\Desktop\Metro-StudentManagement\StudentManagement\StudentMa
 C:\Users\vu khac hoi\Desktop\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.g.resources
 C:\Users\vu khac hoi\Desktop\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.Properties.Resources.resources
 C:\Users\vu khac hoi\Desktop\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\StudentManagement.csproj.GenerateResource.Cache
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MainAnouncementView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MainAnouncementView.baml
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AnouncementDetailView.g.cs
+C:\Users\PiS Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\AnouncementDetailView.baml
