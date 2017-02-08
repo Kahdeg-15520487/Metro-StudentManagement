@@ -28,7 +28,7 @@
                      Metro:ControlsHelper.HeaderFontSize="35"
                      FontFamily="Calibri">
                 <Metro:MetroAnimatedTabControl>
-                    <local:AnouncementView></local:AnouncementView>
+                    <local:MainAnouncementView></local:MainAnouncementView>
                 </Metro:MetroAnimatedTabControl>
             </TabItem>
             

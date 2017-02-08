@@ -8,10 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ViewModel:AnouncementViewModel x:Key="AnouncementViewModel"></ViewModel:AnouncementViewModel>
-        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <ViewModel:MainAnouncementViewModel x:Key="MainAnouncementViewModel"></ViewModel:MainAnouncementViewModel>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
     </UserControl.Resources>
-    <Grid DataContext="{StaticResource AnouncementViewModel}">
+    <Grid>
         <Grid.Background>
             <ImageBrush 
                 ImageSource="/Resources/Backgrounds/MainBackground.png">
@@ -19,10 +19,10 @@
         </Grid.Background>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+            <ColumnDefinition Width="0.07*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+            <ColumnDefinition Width="0.07*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1">
@@ -31,10 +31,18 @@
             </local:UniversityInfoView>
         </Grid>
 
-        <Grid Grid.Column="2">
-            <local:AnouncementView Visibility="{Binding IsAnouncementOpen, Converter={StaticResource BoolToVis}}"></local:AnouncementView>
-            <local:AnouncementDetailView Visibility="{Binding IsAnouncementDetailOpen, Converter={StaticResource BoolToVis}}"></local:AnouncementDetailView>
+        <Grid Grid.Column="2" DataContext="{StaticResource MainAnouncementViewModel}">
+            <Grid Visibility="{Binding IsAnouncementOpen, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}">
+                <local:AnouncementView></local:AnouncementView>
+            </Grid>
+            <Grid Visibility="{Binding IsDetailAnouncementOpen, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}">
+                <local:AnouncementDetailView></local:AnouncementDetailView>
+            </Grid>
+           
         </Grid>
+     
+
+
     </Grid>
 
 </UserControl>

@@ -271,6 +271,7 @@
     <Compile Include="ViewModel\DialogLogginViewModel.cs" />
     <Compile Include="ViewModel\DiplomaProjectView.cs" />
     <Compile Include="ViewModel\IntroWindowViewModel.cs" />
+    <Compile Include="ViewModel\MainAnouncementViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ParameterConverter.cs" />
@@ -292,6 +293,9 @@
     <Compile Include="View\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AnouncementDetailView.xaml.cs">
+      <DependentUpon>AnouncementDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AnouncementView.xaml.cs">
       <DependentUpon>AnouncementView.xaml</DependentUpon>
     </Compile>
@@ -309,6 +313,9 @@
     </Compile>
     <Compile Include="View\IntroWindowView.xaml.cs">
       <DependentUpon>IntroWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainAnouncementView.xaml.cs">
+      <DependentUpon>MainAnouncementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -359,6 +366,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AnouncementDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AnouncementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -380,6 +391,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\IntroWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainAnouncementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

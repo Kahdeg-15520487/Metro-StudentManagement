@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,15 +15,14 @@ using System.Windows.Shapes;
 
 namespace StudentManagement.View
 {
-
+    /// <summary>
+    /// Interaction logic for MainAnouncementView.xaml
+    /// </summary>
     public partial class MainAnouncementView : UserControl
     {
-      
         public MainAnouncementView()
         {
-            InitializeComponent();        
+            InitializeComponent();
         }
-
-    
     }
 }
