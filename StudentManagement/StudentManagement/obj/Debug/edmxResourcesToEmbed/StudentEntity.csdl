@@ -910,6 +910,7 @@
       <Parameter Name="DepartmentName" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="GetDateRegisterUnit" ReturnType="Collection(StudentDBModel.GetDateRegisterUnit_Result)" />
+    <FunctionImport Name="TimeCloseRegisterUnit" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />

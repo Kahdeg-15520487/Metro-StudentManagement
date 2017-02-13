@@ -224,7 +224,7 @@
                                     </i:Interaction.Triggers>
                                 </Button>
                             </Grid>
-                            <StackPanel  Visibility="{Binding IsOpenTimeRegisterUnit, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"  Panel.ZIndex="10" HorizontalAlignment="Center"
+                            <StackPanel  Visibility="{Binding IsCloseTimeRegister, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"  Panel.ZIndex="10" HorizontalAlignment="Center"
                                                    VerticalAlignment="Center" Orientation="Horizontal" DataContext="{StaticResource Key_RegisterStudyUnit}">
                                 <Metro:TransitioningContentControl 
                                                  

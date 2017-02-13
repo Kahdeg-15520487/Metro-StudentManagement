@@ -137,7 +137,7 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        private static bool _CloseTimeRegisterUnit;
+        private static bool _CloseTimeRegisterUnit=true;
         private bool _IsOpenRegisterUnit = false;
         private bool _IsOpenTimeRegisterUnit = true;
         public MainMenuViewModel()
@@ -231,9 +231,9 @@ namespace StudentManagement.ViewModel
 
         public void  TimerUpdate_Tick(object sender, EventArgs e)
         {
-            if (_CloseTimeRegisterUnit == true)
+            if (_CloseTimeRegisterUnit == false)
             {
-                IsOpenTimeRegisterUnit = _CloseTimeRegisterUnit;
+                IsOpenRegisterUnit = _CloseTimeRegisterUnit;
                 _UpdateTime.Stop();
             }
         }

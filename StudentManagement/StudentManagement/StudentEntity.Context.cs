@@ -404,5 +404,10 @@ namespace StudentManagement
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDateRegisterUnit_Result>("GetDateRegisterUnit");
         }
+    
+        public virtual ObjectResult<Nullable<int>> TimeCloseRegisterUnit()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("TimeCloseRegisterUnit");
+        }
     }
 }

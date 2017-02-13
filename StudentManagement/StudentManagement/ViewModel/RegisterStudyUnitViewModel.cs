@@ -136,7 +136,7 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        void InsertAndFindingError(string[] ListLine,StackPanel Stp)
+        void InsertAndFindingError(string[] ListLine, StackPanel Stp)
         {
             var thisUser = DialogLogginViewModel.Users[0];
             var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
@@ -166,7 +166,7 @@ namespace StudentManagement.ViewModel
                 {
                     try
                     {
-                        
+
                         ST.InsertRegisterStudyUnit(thisUser.ID, ID, data.SemesterID);
                         ST.SaveChanges();
                         Announcement.Foreground = new SolidColorBrush(Colors.Green);
@@ -195,8 +195,8 @@ namespace StudentManagement.ViewModel
             txtwrap.Text = StandardWord(txtwrap.Text);
             string[] ListLine = txtwrap.Text.Split(' ', ',', '-', '+', '\n');
             InsertAndFindingError(ListLine, Stp);
-           
-           
+
+
             ListRegistered = new ObservableCollection<GetInfoRegistered_Result>(ST.GetInfoRegistered(thisUser.ID).ToList());
         }
 
@@ -242,7 +242,7 @@ namespace StudentManagement.ViewModel
             DataGrid Dtg = values[0] as DataGrid;
             StackPanel Stp = values[1] as StackPanel;
             var data = ST.IsDateRegister().ToList()[0];
-            var thisUser = DialogLogginViewModel.Users[0];  
+            var thisUser = DialogLogginViewModel.Users[0];
             var DisciplineRegistered = ST.GetListDisciplineForThisUser(thisUser.ID).ToList();
             string speak = string.Empty;
             foreach (GetInfoDiscipline_Result DisciplineChecked in Dtg.Items)
@@ -343,8 +343,8 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        public  ICommand SortByTeacherAndDepartment { get; set; }
-        private void OnSortByTeacherAndDepartment( object Parameters)
+        public ICommand SortByTeacherAndDepartment { get; set; }
+        private void OnSortByTeacherAndDepartment(object Parameters)
         {
             var values = (object[])Parameters;
             ComboBox Teacher = values[0] as ComboBox;
@@ -356,12 +356,12 @@ namespace StudentManagement.ViewModel
                 ObservableCollection<SortDisciplinebyTeacherAndDepartment_Result> ab = new ObservableCollection<SortDisciplinebyTeacherAndDepartment_Result>(ST.SortDisciplinebyTeacherAndDepartment(Teacher.SelectedItem.ToString(), Department.SelectedItem.ToString()).ToList());
                 foreach (SortDisciplinebyTeacherAndDepartment_Result k in ab)
                 {
-                 //   a.Add(k as GetInfoDiscipline_Result);
+                    //   a.Add(k as GetInfoDiscipline_Result);
                 }
                 ListDiscipline = new ObservableCollection<GetInfoDiscipline_Result>(a);
             }
             catch { }
-           
+
         }
 
         private string _RegisterCloseHour = "00";
@@ -450,44 +450,65 @@ namespace StudentManagement.ViewModel
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-
-            if (_second == 00)
+            if (_hour >= 0 && _minute >= 0 && _second >= 0)
             {
-                if (_minute != 0)
-                {
-                    _second = 59;
-                    _minute = _minute - 1;
-                }
-            }
 
-            if (_minute == 00)
-            {
-                if (_hour != 0)
+
+                if (_second == 00)
                 {
-                    _minute = 59;
-                    _hour = _hour - 1;
+                    if (_minute != 0)
+                    {
+                        _second = 59;
+                        _minute = _minute - 1;
+                    }
                 }
 
-            }
+                if (_minute == 00)
+                {
+                    if (_hour != 0)
+                    {
+                        _minute = 59;
+                        _hour = _hour - 1;
+                    }
 
-            UpdateTime();
-            if (_second != 0)
-                _second--;
-            if (_hour == 0 && _minute == 0 && _second == 0)
-            {
-                _timer.Stop();
-               
+                }
+
+                UpdateTime();
+                if (_second != 0)
+                {
+                    _second--;
+                }
+                if (_hour == 0 && _minute == 0 && _second == 0)
+                {
+                    _timer.Stop();
+                    MainMenuViewModel.CloseTimeRegisterUnit = false;
+                    IsCloseTimeRegister = false;
+                }
             }
+            else
+            {
+                _hour = 0;_second = 0;_minute = 0;
+            }
+            
         }
 
 
         public RegisterStudyUnitViewModel()
         {
             Command();
-            
 
-            
+            try
+            {
+                int Time= ST.TimeCloseRegisterUnit().ToList()[0].Value;
 
+                //_hour =Time/(3600*24) ;
+                _hour = Time / 3600;
+                _minute = (Time%3600)/60;
+                _second = Time-(_hour*3600+_minute*60);
+            }
+            catch { }
+
+           
             _timer = new DispatcherTimer(DispatcherPriority.Normal);
             _timer.Interval = TimeSpan.FromSeconds(1);
 
@@ -495,5 +516,20 @@ namespace StudentManagement.ViewModel
             _timer.Start();
 
         }
+        private bool _IsCloseTimeRegister=true;
+        public bool IsCloseTimeRegister
+        {
+            get
+            {
+                return _IsCloseTimeRegister;
+            }
+
+            set
+            {
+                _IsCloseTimeRegister = value;
+                OnPropertyChanged("IsCloseTimeRegister");
+            }
+        }
+
     }
 }

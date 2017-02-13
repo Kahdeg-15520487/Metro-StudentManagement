@@ -727,6 +727,7 @@
           <Parameter Name="TeacherName" Type="nvarchar" Mode="In" />
           <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="TimeCloseRegisterUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="UpdateStarDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
@@ -1801,6 +1802,7 @@
             <Parameter Name="DepartmentName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDateRegisterUnit" ReturnType="Collection(StudentDBModel.GetDateRegisterUnit_Result)" />
+          <FunctionImport Name="TimeCloseRegisterUnit" ReturnType="Collection(Int32)" />
           
         
         
@@ -2762,6 +2764,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TimeCloseRegisterUnit" FunctionName="StudentDBModel.Store.TimeCloseRegisterUnit" />
         
          
          
