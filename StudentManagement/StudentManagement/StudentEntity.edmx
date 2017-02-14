@@ -662,6 +662,7 @@
         <Function Name="GetClassDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClassID" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetDateRegisterUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDeparmentDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DepartmentID" Type="nvarchar" Mode="In" />
         </Function>
@@ -726,6 +727,7 @@
           <Parameter Name="TeacherName" Type="nvarchar" Mode="In" />
           <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="TimeCloseRegisterUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="UpdateStarDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
@@ -1799,6 +1801,8 @@
             <Parameter Name="TeacherName" Mode="In" Type="String" />
             <Parameter Name="DepartmentName" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetDateRegisterUnit" ReturnType="Collection(StudentDBModel.GetDateRegisterUnit_Result)" />
+          <FunctionImport Name="TimeCloseRegisterUnit" ReturnType="Collection(Int32)" />
           
         
         
@@ -2070,6 +2074,11 @@
           <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
           <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
+        </ComplexType>
+        <ComplexType Name="GetDateRegisterUnit_Result">
+          <Property Type="Int32" Name="Hour" Nullable="true" />
+          <Property Type="Int32" Name="Minute" Nullable="true" />
+          <Property Type="Int32" Name="Second" Nullable="true" />
         </ComplexType>
        
       
@@ -2746,6 +2755,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDateRegisterUnit" FunctionName="StudentDBModel.Store.GetDateRegisterUnit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetDateRegisterUnit_Result">
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
+                <ScalarProperty Name="Second" ColumnName="Second" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TimeCloseRegisterUnit" FunctionName="StudentDBModel.Store.TimeCloseRegisterUnit" />
         
          
          

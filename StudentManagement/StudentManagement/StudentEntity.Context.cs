@@ -399,5 +399,15 @@ namespace StudentManagement
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SortDisciplinebyTeacherAndDepartment_Result>("SortDisciplinebyTeacherAndDepartment", teacherNameParameter, departmentNameParameter);
         }
+    
+        public virtual ObjectResult<GetDateRegisterUnit_Result> GetDateRegisterUnit()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDateRegisterUnit_Result>("GetDateRegisterUnit");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> TimeCloseRegisterUnit()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("TimeCloseRegisterUnit");
+        }
     }
 }
