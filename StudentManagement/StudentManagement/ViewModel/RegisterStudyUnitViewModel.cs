@@ -20,11 +20,12 @@ namespace StudentManagement.ViewModel
 
         StudentDBEntities ST = new StudentDBEntities();
         SpeechSynthesizer warningAudio = new SpeechSynthesizer();
-        private int _second = 10;
-        private int _minute = 10;
-        private int _hour = 10;
+        private int _second = 0;
+        private int _minute = 0;
+        private int _hour = 0;
         private string _Header;
         private readonly DispatcherTimer _timer;
+        #region Header
         public string Header
         {
 
@@ -42,7 +43,8 @@ namespace StudentManagement.ViewModel
                 _Header = value; OnPropertyChanged("Header");
             }
         }
-
+        #endregion
+        #region Information for Student
         public string Info
         {
             get
@@ -62,7 +64,20 @@ namespace StudentManagement.ViewModel
             }
 
         }
-
+        #endregion
+        #region handle string
+        private string StandardWord(string data)
+        {
+            if (data.Length > 0)
+            {
+                while (data.IndexOf("  ") > 0)
+                {
+                    data = data.Replace("  ", " ");
+                    data = data.Trim();
+                }
+            }
+            return data;
+        }
 
         private string _ReplaceSpaceToEnter;
         public string ReplaceSpaceToEnter
@@ -88,9 +103,8 @@ namespace StudentManagement.ViewModel
         }
         private string _Info;
 
-
-        public ICommand RegisterCommand { get; set; }
-
+        #endregion
+        #region ListRegistered
         private ObservableCollection<GetInfoRegistered_Result> _ListRegistered;
         public ObservableCollection<GetInfoRegistered_Result> ListRegistered
         {
@@ -112,8 +126,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
-
+        #endregion
+        #region ListDiscipline
         private ObservableCollection<GetInfoDiscipline_Result> _ListDiscipline;
         public ObservableCollection<GetInfoDiscipline_Result> ListDiscipline
         {
@@ -135,7 +149,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
+        #endregion
+        #region InsertAndFindingError show in stackpanel
         void InsertAndFindingError(string[] ListLine, StackPanel Stp)
         {
             var thisUser = DialogLogginViewModel.Users[0];
@@ -184,6 +199,9 @@ namespace StudentManagement.ViewModel
                     Stp.Children.Add(Announcement);
             }
         }
+        #endregion
+        #region OnRegisterCommand When have char Enter
+        public ICommand RegisterCommand { get; set; }
         private void OnRegisterCommand(object parameters)
         {
 
@@ -200,23 +218,8 @@ namespace StudentManagement.ViewModel
             ListRegistered = new ObservableCollection<GetInfoRegistered_Result>(ST.GetInfoRegistered(thisUser.ID).ToList());
         }
 
-
-
-
-
-
-        private string StandardWord(string data)
-        {
-            if (data.Length > 0)
-            {
-                while (data.IndexOf("  ") > 0)
-                {
-                    data = data.Replace("  ", " ");
-                    data = data.Trim();
-                }
-            }
-            return data;
-        }
+        #endregion
+        #region DeleteRegistered
 
 
         public ICommand DeleteRegistered { get; set; }
@@ -234,7 +237,8 @@ namespace StudentManagement.ViewModel
 
 
         }
-
+        #endregion
+        #region InsertRegisterFromListDisciplineCommand
         public ICommand InsertRegisterFromListDisciplineCommand { get; set; }
         private void OnInsertRegisterFromListDisciplineCommand(object Parameters)
         {
@@ -289,7 +293,8 @@ namespace StudentManagement.ViewModel
             }
             ListRegistered = new ObservableCollection<GetInfoRegistered_Result>(ST.GetInfoRegistered(thisUser.ID).ToList());
         }
-
+        #endregion
+        #region Initial command
         void Command()
         {
             SortByTeacherAndDepartment = new RelayCommand<object>((p) => true, OnSortByTeacherAndDepartment);
@@ -297,8 +302,8 @@ namespace StudentManagement.ViewModel
             DeleteRegistered = new RelayCommand<DataGrid>((p) => true, OnDeleteRegistered);
             InsertRegisterFromListDisciplineCommand = new RelayCommand<object>((p) => true, OnInsertRegisterFromListDisciplineCommand);
         }
-
-
+        #endregion
+        #region GetTeacherDiscipline
         private ObservableCollection<String> _GetTeacherDiscipline;
         public ObservableCollection<String> GetTeacherDiscipline
         {
@@ -320,7 +325,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
+        #endregion
+        #region GetDepartmentDiscipline
         private ObservableCollection<String> _GetDepartmentDiscipline;
         public ObservableCollection<String> GetDepartmentDiscipline
         {
@@ -342,7 +348,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
+        #endregion
+        #region SortByTeacherAndDepartment command
         public ICommand SortByTeacherAndDepartment { get; set; }
         private void OnSortByTeacherAndDepartment(object Parameters)
         {
@@ -363,7 +370,8 @@ namespace StudentManagement.ViewModel
             catch { }
 
         }
-
+        #endregion
+        #region Time close register unit tab
         private string _RegisterCloseHour = "00";
 
         public string RegisterCloseHour
@@ -472,18 +480,18 @@ namespace StudentManagement.ViewModel
                     }
 
                 }
-
-                UpdateTime();
-                if (_second != 0)
-                {
-                    _second--;
-                }
                 if (_hour == 0 && _minute == 0 && _second == 0)
                 {
                     _timer.Stop();
                     MainMenuViewModel.CloseTimeRegisterUnit = false;
                     IsCloseTimeRegister = false;
                 }
+                UpdateTime();
+                if (_second != 0)
+                {
+                    _second--;
+                }
+               
             }
             else
             {
@@ -530,6 +538,6 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("IsCloseTimeRegister");
             }
         }
-
+        #endregion
     }
 }

@@ -13,125 +13,121 @@
         <Viewmodel:BehaviorViewModel x:Key="key1"></Viewmodel:BehaviorViewModel>
     </UserControl.Resources>
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
-    <Grid>
-        <Grid Margin="5">
-            <Grid.Background>
-                <ImageBrush 
+        <Grid>
+            <Grid Margin="5">
+                <Grid.Background>
+                    <ImageBrush 
                 ImageSource="/Resources/Backgrounds/MainBackground.png">
-                </ImageBrush>
+                    </ImageBrush>
 
-            </Grid.Background>
-        </Grid>
-        
+                </Grid.Background>
+            </Grid>
+
             <Grid>
-      
-            <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="0.15*"></RowDefinition>
-        </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <ComboBox Margin="20"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="0.15*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <ComboBox Margin="20"
                           BorderBrush="Green"
                           BorderThickness="2"
                           Metro:TextBoxHelper.Watermark="Choose Module">
-                <ComboBoxItem Content="Module 1">
+                        <ComboBoxItem Content="Module 1">
 
-                </ComboBoxItem>
-                <ComboBoxItem Content="Module 2">
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Module 2">
 
-                </ComboBoxItem>
-            </ComboBox>
+                        </ComboBoxItem>
+                    </ComboBox>
 
-            <ComboBox Margin="20"
+                    <ComboBox Margin="20"
                           BorderBrush="Green"
                           BorderThickness="2"
                           Metro:TextBoxHelper.Watermark="Choose Year">
-                <ComboBoxItem Content="Year 1">
+                        <ComboBoxItem Content="Year 1">
 
-                </ComboBoxItem>
-                <ComboBoxItem Content="Year 2">
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Year 2">
 
-                </ComboBoxItem>
-                <ComboBoxItem Content="Year 3">
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Year 3">
 
-                </ComboBoxItem>
+                        </ComboBoxItem>
 
-                <ComboBoxItem Content="Year 4">
+                        <ComboBoxItem Content="Year 4">
 
-                </ComboBoxItem>
-            </ComboBox>
+                        </ComboBoxItem>
+                    </ComboBox>
 
-        </StackPanel>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
 
-            </Grid.ColumnDefinitions>
-            <Expander DataContext="{StaticResource key1}" Header="Activity Group " Grid.Column="0" IsExpanded="True">
-                <ListBox Name="LsvGroup"  ItemsSource="{Binding ActiveGroup }" DisplayMemberPath="GroupName" >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding ActivitiesCommand }" CommandParameter="{Binding ElementName=LsvGroup}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ListBox>
-            </Expander>
-            <Expander DataContext="{StaticResource key1}" Header="Activities" Grid.Column="1" IsExpanded="True">
-                <ListBox SelectedIndex="0"  DisplayMemberPath="ActivityName" Name="LsvActivities"  ItemsSource="{Binding Activities  }" >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding DetailCommand }" CommandParameter="{Binding ElementName=LsvActivities}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ListBox>
-            </Expander>
+                    </Grid.ColumnDefinitions>
+                    <Expander DataContext="{StaticResource key1}" Header="Activity Group " Grid.Column="0" IsExpanded="True">
+                        <ListBox Name="LsvGroup"  ItemsSource="{Binding ActiveGroup }" DisplayMemberPath="GroupName" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ActivitiesCommand }" CommandParameter="{Binding ElementName=LsvGroup}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                    </Expander>
+                    <Expander DataContext="{StaticResource key1}" Header="Activities" Grid.Column="1" IsExpanded="True">
+                        <ListBox SelectedIndex="0"  DisplayMemberPath="ActivityName" Name="LsvActivities"  ItemsSource="{Binding Activities  }" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding DetailCommand }" CommandParameter="{Binding ElementName=LsvActivities}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                    </Expander>
                     <Expander DataContext="{StaticResource key1}" Header="Activity Detail " Grid.Column="2" IsExpanded="True">
                         <ListBox ItemsSource="{Binding DetailActivity}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding ActivityName}" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" TextAlignment="Center" FontFamily="Consolas" FontWeight="Bold" ></TextBlock>
-                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                            <TextBlock FontSize="15" Text="Organization   :  " FontFamily="consolas" Padding="10,30,1,0"></TextBlock>
-                                            <TextBlock FontSize="15" Text="{Binding Organization}" FontFamily="consolas" Padding="10,30,1,0"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                            <StackPanel HorizontalAlignment="Center">
-                                                <TextBlock HorizontalAlignment="Right" FontSize="15" Text="Max Participation   |" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding MaxParticipation}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel HorizontalAlignment="Center">
-                                                <TextBlock HorizontalAlignment="Left" FontSize="15" Text="  Registered Participation" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding RegisteredParticipation}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                            <StackPanel HorizontalAlignment="Center">
-                                                <TextBlock HorizontalAlignment="Right" FontSize="15" Text=" Start Day   |" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding StartDay}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel HorizontalAlignment="Center">
-                                                <TextBlock HorizontalAlignment="Left" FontSize="15" Text="  FinishDay              " FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding FinishDay}" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0"  Text="{Binding ActivityName}" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" TextAlignment="Center" FontFamily="Consolas" FontWeight="Bold" ></TextBlock>
+                                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="15" Text="{Binding Organization}" FontFamily="consolas" Padding="10,30,1,0"></TextBlock>
+
+                                        <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding MaxParticipation}" Grid.Row="2" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+
+                                        <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding RegisteredParticipation}" Grid.Row="3" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+
+
+                                        <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding StartDay}" Grid.Row="4" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+
+                                        <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{Binding FinishDay}" Grid.Row="5" FontFamily="consolas" Padding="10,10,1,0"></TextBlock>
+
+
+                                    </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
 
                     </Expander>
                 </Grid >
-        <StackPanel  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Label  Content="Summary"></Label>
-            <Label Name="lblSum" Content="This Sum"></Label>
-        </StackPanel>
+                <StackPanel  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Label  Content="Summary"></Label>
+                    <Label Name="lblSum" Content="This Sum"></Label>
+                </StackPanel>
             </Grid>
-        
-    </Grid>
-        </ScrollViewer>
+
+        </Grid>
+    </ScrollViewer>
 </UserControl>
