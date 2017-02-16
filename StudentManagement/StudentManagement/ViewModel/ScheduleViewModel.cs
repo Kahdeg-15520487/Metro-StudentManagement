@@ -14,6 +14,7 @@ namespace StudentManagement.ViewModel
         StudentDBEntities ST = new StudentDBEntities();
         SpeechSynthesizer warningAudio = new SpeechSynthesizer();
         int[] Period = { 1, 2, 3, 4 };
+        #region Monday
         private ObservableCollection<GetScheduleForDetail1_Result> _Monday;
 
         public ObservableCollection<GetScheduleForDetail1_Result> Monday
@@ -38,6 +39,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
+        #endregion
+        #region Tuesday
         private ObservableCollection<GetScheduleForDetail1_Result> _Tuesday;
 
         public ObservableCollection<GetScheduleForDetail1_Result> Tuesday
@@ -62,7 +65,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
+        #endregion
+        #region Wednesday
         private ObservableCollection<GetScheduleForDetail1_Result> _Wednesday;
 
         public ObservableCollection<GetScheduleForDetail1_Result> Wednesday
@@ -87,7 +91,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
+        #endregion
+        #region Ads emptys
         void AddEmpty(ObservableCollection<GetScheduleForDetail1_Result> Day)
         {
             foreach (int Child in Period)
@@ -120,6 +125,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
+        #endregion
+        #region Thursday
         private ObservableCollection<GetScheduleForDetail1_Result> _Thursday;
 
         public ObservableCollection<GetScheduleForDetail1_Result> Thursday
@@ -144,6 +151,8 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
+        #endregion
+        #region Friday
         private ObservableCollection<GetScheduleForDetail1_Result> _Friday;
 
         public ObservableCollection<GetScheduleForDetail1_Result> Friday
@@ -169,6 +178,8 @@ namespace StudentManagement.ViewModel
             }
         }
 
+        #endregion
+        #region Saturday
 
         private ObservableCollection<GetScheduleForDetail1_Result> _Saturday;
 
@@ -194,7 +205,7 @@ namespace StudentManagement.ViewModel
                 }
             }
         }
-
+        #endregion
 
     }
 }
