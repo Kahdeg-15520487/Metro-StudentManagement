@@ -909,6 +909,8 @@
       <Parameter Name="TeacherName" Mode="In" Type="String" />
       <Parameter Name="DepartmentName" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetDateRegisterUnit" ReturnType="Collection(StudentDBModel.GetDateRegisterUnit_Result)" />
+    <FunctionImport Name="TimeCloseRegisterUnit" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -1171,5 +1173,10 @@
     <Property Type="DateTime" Name="FinishDay" Nullable="true" Precision="16" />
     <Property Type="DateTime" Name="StartDay" Nullable="true" Precision="16" />
     <Property Type="String" Name="Name" Nullable="true" MaxLength="302" />
+  </ComplexType>
+  <ComplexType Name="GetDateRegisterUnit_Result">
+    <Property Type="Int32" Name="Hour" Nullable="true" />
+    <Property Type="Int32" Name="Minute" Nullable="true" />
+    <Property Type="Int32" Name="Second" Nullable="true" />
   </ComplexType>
 </Schema>
