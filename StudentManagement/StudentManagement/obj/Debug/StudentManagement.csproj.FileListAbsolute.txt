@@ -269,3 +269,8 @@ C:\Users\Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\Student
 C:\Users\Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PageNavigationView.baml
 C:\Users\Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MoreAnouncementView.g.cs
 C:\Users\Kael\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MoreAnouncementView.baml
+C:\Users\Vu Khac Hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MoreAnouncementView.g.cs
+C:\Users\Vu Khac Hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PageNavigationView.g.cs
+C:\Users\Vu Khac Hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\Resources\Styles\FadeOut.baml
+C:\Users\Vu Khac Hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\MoreAnouncementView.baml
+C:\Users\Vu Khac Hoi\Documents\GitHub\Metro-StudentManagement\StudentManagement\StudentManagement\obj\Debug\View\PageNavigationView.baml
