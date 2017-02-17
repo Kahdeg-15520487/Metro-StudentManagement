@@ -282,6 +282,14 @@
           <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Roll" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTDB.MDF.dbo.UniversityInfo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="UniversityInfo">
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="UserImage">
           <Key>
             <PropertyRef Name="ID" />
@@ -678,6 +686,9 @@
         </Function>
         <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetGeneralAnoucementDetailByTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="title" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetInfoDiscipline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetInfoRegistered" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1803,6 +1814,9 @@
           </FunctionImport>
           <FunctionImport Name="GetDateRegisterUnit" ReturnType="Collection(StudentDBModel.GetDateRegisterUnit_Result)" />
           <FunctionImport Name="TimeCloseRegisterUnit" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="GetGeneralAnoucementDetailByTitle" ReturnType="Collection(StudentDBModel.GetGeneralAnoucementDetailByTitle_Result)">
+            <Parameter Name="title" Mode="In" Type="String" />
+          </FunctionImport>
           
         
         
@@ -2079,6 +2093,12 @@
           <Property Type="Int32" Name="Hour" Nullable="true" />
           <Property Type="Int32" Name="Minute" Nullable="true" />
           <Property Type="Int32" Name="Second" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetGeneralAnoucementDetailByTitle_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
         </ComplexType>
        
       
@@ -2765,6 +2785,16 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TimeCloseRegisterUnit" FunctionName="StudentDBModel.Store.TimeCloseRegisterUnit" />
+          <FunctionImportMapping FunctionImportName="GetGeneralAnoucementDetailByTitle" FunctionName="StudentDBModel.Store.GetGeneralAnoucementDetailByTitle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetGeneralAnoucementDetailByTitle_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         
          
          

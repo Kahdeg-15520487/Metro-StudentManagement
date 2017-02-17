@@ -409,5 +409,14 @@ namespace StudentManagement
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("TimeCloseRegisterUnit");
         }
+    
+        public virtual ObjectResult<GetGeneralAnoucementDetailByTitle_Result> GetGeneralAnoucementDetailByTitle(string title)
+        {
+            var titleParameter = title != null ?
+                new ObjectParameter("title", title) :
+                new ObjectParameter("title", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetGeneralAnoucementDetailByTitle_Result>("GetGeneralAnoucementDetailByTitle", titleParameter);
+        }
     }
 }

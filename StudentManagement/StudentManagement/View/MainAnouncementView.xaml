@@ -32,15 +32,15 @@
         </Grid>
 
         <Grid Grid.Column="2" DataContext="{StaticResource MainAnouncementViewModel}">
-            <Grid Visibility="{Binding IsAnouncementOpen, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}">
-                <local:AnouncementView></local:AnouncementView>
-            </Grid>
-            <Grid Visibility="{Binding IsDetailAnouncementOpen, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}">
-                <local:AnouncementDetailView></local:AnouncementDetailView>
-            </Grid>
-           
+
+            <local:AnouncementView Style="{StaticResource animatedList}" Visibility="{Binding IsAnouncementOpen, Converter={StaticResource BoolToVis}}"></local:AnouncementView>
+
+
+            <local:AnouncementDetailView Style="{StaticResource animatedList}" Visibility="{Binding IsDetailAnouncementOpen, Converter={StaticResource BoolToVis}}"></local:AnouncementDetailView>
+
+
         </Grid>
-     
+
 
 
     </Grid>

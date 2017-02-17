@@ -673,5 +673,15 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="TimeCloseRegisterUnit" FunctionName="StudentDBModel.Store.TimeCloseRegisterUnit" />
+    <FunctionImportMapping FunctionImportName="GetGeneralAnoucementDetailByTitle" FunctionName="StudentDBModel.Store.GetGeneralAnoucementDetailByTitle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetGeneralAnoucementDetailByTitle_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

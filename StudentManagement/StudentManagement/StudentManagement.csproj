@@ -166,6 +166,9 @@
     <Compile Include="GetFacultyDetail_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetGeneralAnoucementDetailByTitle_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetInfoDiscipline_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -269,6 +272,7 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcademicViewModel.cs" />
+    <Compile Include="ViewModel\AnouncementDetailViewModel.cs" />
     <Compile Include="ViewModel\AnouncementViewModel.cs" />
     <Compile Include="ViewModel\BehaviorViewModel.cs" />
     <Compile Include="ViewModel\DialogLogginViewModel.cs" />
@@ -277,6 +281,7 @@
     <Compile Include="ViewModel\MainAnouncementViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Messager.cs" />
     <Compile Include="ViewModel\ParameterConverter.cs" />
     <Compile Include="ViewModel\PasswordHelper.cs" />
     <Compile Include="ViewModel\ProfileDetailViewModel.cs" />
@@ -353,6 +358,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Styles\FadeOut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\ToggleSwitchStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
