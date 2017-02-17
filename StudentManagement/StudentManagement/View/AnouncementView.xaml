@@ -41,7 +41,7 @@
                     <Hyperlink TextDecorations="None"  
                                Command="{Binding AnouncementClicked}"
                                CommandParameter="{Binding ElementName=Anoucement01}">
-                        <TextBlock Name="Anoucement01" TextWrapping="Wrap" FontSize="15" Text="Click me!"></TextBlock>
+                        <TextBlock Name="Anoucement01" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[0].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 

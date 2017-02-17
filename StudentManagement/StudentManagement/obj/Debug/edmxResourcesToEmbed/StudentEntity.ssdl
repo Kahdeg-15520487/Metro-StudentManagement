@@ -277,6 +277,14 @@
     <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Roll" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTDB.MDF.dbo.UniversityInfo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="UniversityInfo">
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
   <EntityType Name="UserImage">
     <Key>
       <PropertyRef Name="ID" />
@@ -673,6 +681,9 @@
   </Function>
   <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGeneralAnoucementDetailByTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetInfoDiscipline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetInfoRegistered" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

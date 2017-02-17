@@ -7,7 +7,23 @@
              xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Button Content="This is Detail View"></Button>   
-    </Grid>
+    <UserControl.Resources>
+        <ViewModel:AnouncementDetailViewModel x:Key="AnouncementDetailViewModel"></ViewModel:AnouncementDetailViewModel>
+    </UserControl.Resources>
+    <StackPanel DataContext="{StaticResource AnouncementDetailViewModel}">
+        <TextBlock TextWrapping="Wrap" Grid.Row="0" Foreground="Red" FontSize="25" Text="{Binding GeneralAnouncementDetail[0].Summary}"></TextBlock>
+        <TextBlock Width="20"></TextBlock>
+        <TextBlock Grid.Row="1" FontSize="12" Text="{Binding GeneralAnouncementDetail[0].DateOfAnoun}"></TextBlock>
+        <TextBlock Width="20"></TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="2" FontSize="15" Text="{Binding GeneralAnouncementDetail[0].Detail}"></TextBlock>
+        <TextBlock Width="20"></TextBlock>
+        <TextBlock VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None" Command="{Binding PreviousCommand}">
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                        <TextBlock FontSize="25" Text="`" FontFamily="Wingdings 3"></TextBlock>
+                        <TextBlock Text="Back" FontSize="25"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+       
+    </StackPanel>
 </UserControl>

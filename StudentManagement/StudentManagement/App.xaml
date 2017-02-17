@@ -33,6 +33,9 @@
                 <ResourceDictionary Source="Resources/Styles/ToggleSwitchStyle.xaml">
                     
                 </ResourceDictionary>
+                <ResourceDictionary Source="Resources/Styles/FadeOut.xaml">
+
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

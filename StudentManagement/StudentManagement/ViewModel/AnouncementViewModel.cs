@@ -50,15 +50,14 @@ namespace StudentManagement.ViewModel
         private ICommand _AnouncementClicked;
         private void OnAnouncementClicked(TextBlock currentAnouncement)
         {
-            string currentText = currentAnouncement.Text;
-            IsAnouncementOpen = false;
-            IsDetailAnouncementOpen = true;
+            Messager.AnouncementBroadCast(false, true);
+            Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
         }
         
 
         public AnouncementViewModel()
         {
-            
+           
         }
     }
 }

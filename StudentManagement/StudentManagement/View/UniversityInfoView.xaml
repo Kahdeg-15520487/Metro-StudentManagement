@@ -15,11 +15,7 @@
     </UserControl.Resources>
     <GroupBox Header="University Info" DataContext="{StaticResource UniversityViewModel}" >
         <Grid>
-            <Grid.Background>
-                <ImageBrush 
-                ImageSource="/Resources/Backgrounds/MainBackground.png">
-                </ImageBrush>
-            </Grid.Background>
+          
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>

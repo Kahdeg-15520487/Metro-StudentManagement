@@ -911,6 +911,9 @@
     </FunctionImport>
     <FunctionImport Name="GetDateRegisterUnit" ReturnType="Collection(StudentDBModel.GetDateRegisterUnit_Result)" />
     <FunctionImport Name="TimeCloseRegisterUnit" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="GetGeneralAnoucementDetailByTitle" ReturnType="Collection(StudentDBModel.GetGeneralAnoucementDetailByTitle_Result)">
+      <Parameter Name="title" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAcademicByID_Result">
     <Property Type="String" Name="DisciplineID" Nullable="false" MaxLength="10" />
@@ -1178,5 +1181,11 @@
     <Property Type="Int32" Name="Hour" Nullable="true" />
     <Property Type="Int32" Name="Minute" Nullable="true" />
     <Property Type="Int32" Name="Second" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGeneralAnoucementDetailByTitle_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
   </ComplexType>
 </Schema>
