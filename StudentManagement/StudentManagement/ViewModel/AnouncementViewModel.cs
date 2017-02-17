@@ -45,12 +45,29 @@ namespace StudentManagement.ViewModel
 
          
         }
-     
+
+        public ICommand MoreAnouncementClicked
+        {
+            get
+            {
+                if (_MoreAnouncementClicked==null)
+                {
+                    _MoreAnouncementClicked = new RelayCommand<object>((p) => true, OnMoreAnouncementClicked);
+                }
+                return _MoreAnouncementClicked;
+            }
+        }
+        private void OnMoreAnouncementClicked(object obj)
+        {
+            Messager.AnouncementMessageTransmitted(false, false, true);
+        }
 
         private ICommand _AnouncementClicked;
+
+        private ICommand _MoreAnouncementClicked;
         private void OnAnouncementClicked(TextBlock currentAnouncement)
         {
-            Messager.AnouncementBroadCast(false, true);
+            Messager.AnouncementBroadCast(false, true, false);
             Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
         }
         
