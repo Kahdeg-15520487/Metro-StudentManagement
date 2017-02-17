@@ -331,6 +331,12 @@
     <Compile Include="View\ClassDetailView.xaml.cs">
       <DependentUpon>ClassDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MoreAnouncementView.xaml.cs">
+      <DependentUpon>MoreAnouncementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageNavigationView.xaml.cs">
+      <DependentUpon>PageNavigationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
@@ -415,6 +421,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClassDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MoreAnouncementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageNavigationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

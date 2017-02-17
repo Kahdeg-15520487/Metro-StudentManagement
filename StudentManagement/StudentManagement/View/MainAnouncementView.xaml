@@ -38,7 +38,7 @@
 
             <local:AnouncementDetailView Style="{StaticResource animatedList}" Visibility="{Binding IsDetailAnouncementOpen, Converter={StaticResource BoolToVis}}"></local:AnouncementDetailView>
 
-
+            <local:MoreAnouncementView Style="{StaticResource animatedList}" Visibility="{Binding IsMoreAnouncementOpen, Converter={StaticResource BoolToVis}}"></local:MoreAnouncementView>
         </Grid>
 
 

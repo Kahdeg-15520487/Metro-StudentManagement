@@ -43,16 +43,36 @@ namespace StudentManagement.ViewModel
             }
         }
 
+        private bool isMoreAnouncementOpen = false;
+
+
+
+        public bool IsMoreAnouncementOpen
+        {
+            get
+            {
+                return isMoreAnouncementOpen;
+            }
+
+            set
+            {
+                isMoreAnouncementOpen = value;
+                OnPropertyChanged("IsMoreAnouncementOpen");
+            }
+        }
+
+
 
         public MainAnouncementViewModel()
         {
             Messager.AnouncementMessageTransmitted += OnMessageReceived;
         }
 
-        private void OnMessageReceived(bool para1, bool para2)
+        private void OnMessageReceived(bool para1, bool para2, bool para3)
         {
             IsAnouncementOpen = para1;
             IsDetailAnouncementOpen = para2;
+            IsMoreAnouncementOpen = para3;
         }
     }
 }

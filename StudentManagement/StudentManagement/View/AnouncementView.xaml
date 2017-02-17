@@ -46,8 +46,10 @@
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[1].Summary}"></TextBlock>
+                    <Hyperlink TextDecorations="None"  
+                               Command="{Binding AnouncementClicked}"
+                               CommandParameter="{Binding ElementName=Anoucement02}">
+                        <TextBlock Name="Anoucement02" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[1].Summary}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
@@ -99,7 +101,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Grid.Column="1" Grid.Row="10" HorizontalAlignment="Right" >
-                    <Hyperlink TextDecorations="None">
+                    <Hyperlink TextDecorations="None" Command="{Binding MoreAnouncementClicked}">
                         <TextBlock Text="More.."></TextBlock>
                     </Hyperlink>
                 </TextBlock>

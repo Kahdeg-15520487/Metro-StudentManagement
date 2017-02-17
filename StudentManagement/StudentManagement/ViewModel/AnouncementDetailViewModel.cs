@@ -65,7 +65,7 @@ namespace StudentManagement.ViewModel
 
         private void OnPreviousCommand(object obj)
         {
-            Messager.AnouncementBroadCast(true, false);
+            Messager.AnouncementBroadCast(true, false,false);
         }
 
         private void OnMessageReceived(string Title)

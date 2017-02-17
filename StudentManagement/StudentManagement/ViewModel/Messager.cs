@@ -8,10 +8,10 @@ namespace StudentManagement.ViewModel
 {
     public static class Messager
     {
-        public static void AnouncementBroadCast(bool value1, bool value2)
+        public static void AnouncementBroadCast(bool value1, bool value2, bool value3)
         {
             if (AnouncementMessageTransmitted != null)
-                AnouncementMessageTransmitted(value1, value2);
+                AnouncementMessageTransmitted(value1, value2, value3);
         }
         public static void AnouncementDetailBroadCast(string value)
         {
@@ -19,7 +19,7 @@ namespace StudentManagement.ViewModel
                 AnouncementDetailMessageTransmitted(value);
         }
 
-        public static Action<bool, bool> AnouncementMessageTransmitted;
+        public static Action<bool, bool, bool> AnouncementMessageTransmitted;
         public static Action<string> AnouncementDetailMessageTransmitted;
     }
 }
