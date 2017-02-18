@@ -60,12 +60,12 @@ namespace StudentManagement.ViewModel
         public AnouncementDetailViewModel()
         {
             Messager.AnouncementDetailMessageTransmitted += OnMessageReceived;
-   
+
         }
 
         private void OnPreviousCommand(object obj)
         {
-            Messager.AnouncementBroadCast(true, false,false);
+            Messager.AnouncementBroadCast(true, false, false);
         }
 
         private void OnMessageReceived(string Title)

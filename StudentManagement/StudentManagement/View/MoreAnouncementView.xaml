@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ViewModel:MoreAnouncementViewModel x:Key="MoreAnouncementViewModel"></ViewModel:MoreAnouncementViewModel>
-    </UserControl.Resources> 
+    </UserControl.Resources>
     <Grid DataContext="{StaticResource MoreAnouncementViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"></RowDefinition>
@@ -23,57 +23,57 @@
         <TextBlock Grid.Row="0" Text="General Anouncements" FontSize="25" Foreground="Red"></TextBlock>
         <StackPanel Grid.Row="1">
             <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[0].Title}"></TextBlock>
+                    <Hyperlink Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement01}" TextDecorations="None">
+                        <TextBlock Name="Anouncement01" TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[0].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
             <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[0].DateOfAnoun}"></TextBlock>
             <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[0].Summary}"></TextBlock>
-        
+
         </StackPanel>
 
         <StackPanel Grid.Row="2">
             <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[1].Title}"></TextBlock>
+                    <Hyperlink Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement02}" TextDecorations="None">
+                        <TextBlock Name="Anouncement02" TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[1].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
             <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[1].DateOfAnoun}"></TextBlock>
             <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[1].Summary}"></TextBlock>
-         
+
         </StackPanel>
 
         <StackPanel Grid.Row="3">
             <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[2].Title}"></TextBlock>
+                    <Hyperlink Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement03}" TextDecorations="None">
+                        <TextBlock TextWrapping="Wrap" FontSize="20" Name="Anouncement03" Text="{Binding CurrentPageAnouncement[2].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
-            <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[2].DateOfAnoun}"></TextBlock>
+            <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[2].DateOfAnoun}" ></TextBlock>
             <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[2].Summary}"></TextBlock>
-        
+
         </StackPanel>
 
         <StackPanel Grid.Row="4">
             <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[3].Title}"></TextBlock>
+                    <Hyperlink Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement04}" TextDecorations="None">
+                        <TextBlock Name="Anouncement04" TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[3].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
             <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[3].DateOfAnoun}"></TextBlock>
             <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[3].Summary}"></TextBlock>
-           
+
         </StackPanel>
 
         <StackPanel Grid.Row="5">
             <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[4].Title}"></TextBlock>
+                    <Hyperlink Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement05}" TextDecorations="None">
+                        <TextBlock Name="Anouncement05" TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[4].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
             <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[4].DateOfAnoun}"></TextBlock>
             <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[4].Summary}"></TextBlock>
-            
+
         </StackPanel>
 
         <local:PageNavigationView Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"></local:PageNavigationView>

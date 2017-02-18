@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace StudentManagement.ViewModel
 {
-    public class AnouncementViewModel:MainAnouncementViewModel
+    public class AnouncementViewModel : MainAnouncementViewModel
     {
         StudentDBEntities ST = new StudentDBEntities();
         private ObservableCollection<Get10NewestAnouncements_Result> _TopTenNewestAnouncement;
@@ -35,21 +35,21 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                if (_AnouncementClicked==null)
+                if (_AnouncementClicked == null)
                 {
                     _AnouncementClicked = new RelayCommand<TextBlock>((p) => true, OnAnouncementClicked);
                 }
                 return _AnouncementClicked;
             }
 
-         
+
         }
 
         public ICommand MoreAnouncementClicked
         {
             get
             {
-                if (_MoreAnouncementClicked==null)
+                if (_MoreAnouncementClicked == null)
                 {
                     _MoreAnouncementClicked = new RelayCommand<object>((p) => true, OnMoreAnouncementClicked);
                 }
@@ -71,13 +71,13 @@ namespace StudentManagement.ViewModel
             Messager.AnouncementBroadCast(false, true, false);
             Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
         }
-        
+
 
         public AnouncementViewModel()
         {
-           
+
         }
 
-       
+
     }
 }
