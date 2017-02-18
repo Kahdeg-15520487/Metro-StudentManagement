@@ -4,11 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentManagement.View"
+             xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ViewModel:PageNavigationViewModel x:Key="PageNavigationViewModel"></ViewModel:PageNavigationViewModel>
+    </UserControl.Resources>
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <Button Background="Red" Width="100" Height="50" Style="{DynamicResource MetroCircleButtonStyle}" Content="First"></Button>
+        <StackPanel Orientation="Horizontal" DataContext="{StaticResource PageNavigationViewModel}">
+            <Button Command="{Binding FirstPageCommand}" BorderBrush="Black" BorderThickness="1" Width="50" Height="35" Style="{DynamicResource MetroCircleButtonStyle}" Content="9" FontFamily="Webdings"></Button>
+            <Button Command="{Binding PreviousPageCommand}" BorderBrush="Black" BorderThickness="1" Width="50" Height="35" Style="{DynamicResource MetroCircleButtonStyle}" Content="7" FontFamily="Webdings"></Button>
+            <Button Command="{Binding NextPageCommand}"  BorderBrush="Black" BorderThickness="1" Width="50" Height="35" Style="{DynamicResource MetroCircleButtonStyle}" Content="8" FontFamily="Webdings"></Button>
+            <Button Command="{Binding LastPageCommand}" BorderBrush="Black" BorderThickness="1" Width="50" Height="35" Style="{DynamicResource MetroCircleButtonStyle}" Content=":" FontFamily="Webdings"></Button>
+            <TextBox Text="{Binding CurrentPageNumber}" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5,0,0,0" Width="50" Height="25"></TextBox>
+            <TextBlock TextAlignment="Justify" Text="Of" VerticalAlignment="Center" HorizontalAlignment="Center"   Margin="5,5,0,0" Width="25" FontSize="15" Height="25"></TextBlock>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  Margin="0,5,0,0" Width="25" Height="25" FontSize="15" Text="{Binding LargestPageNumber}"></TextBlock>
+            <Button Command="{Binding GoToPageCommand}" BorderBrush="Black" BorderThickness="1" Width="50" Height="35" Style="{DynamicResource MetroCircleButtonStyle}" Content="Go"></Button>
         </StackPanel>   
     </Grid>
 </UserControl>

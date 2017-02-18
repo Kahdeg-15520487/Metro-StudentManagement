@@ -14,8 +14,9 @@ namespace StudentManagement
     public partial class Get10NewestAnouncements_Result
     {
         public int ID { get; set; }
-        public string Summary { get; set; }
+        public string Title { get; set; }
         public Nullable<System.DateTime> DateOfAnoun { get; set; }
         public string Detail { get; set; }
+        public string Summary { get; set; }
     }
 }

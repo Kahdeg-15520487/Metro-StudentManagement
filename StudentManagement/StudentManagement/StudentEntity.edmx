@@ -133,9 +133,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" />
           <Property Name="DateOfAnoun" Type="smalldatetime" />
           <Property Name="Detail" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Parents">
           <Key>
@@ -282,14 +283,6 @@
           <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Roll" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTDB.MDF.dbo.UniversityInfo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="UniversityInfo">
-          <Property Name="Name" Type="nvarchar" MaxLength="500" />
-          <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
-          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="UserImage">
           <Key>
             <PropertyRef Name="ID" />
@@ -652,6 +645,7 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
           <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
           <Parameter Name="ID" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="CountGeneralAnouncement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="DeleteRegisterStudyUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
           <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
@@ -734,6 +728,10 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
           <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectGeneralAnouncementInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="int" Mode="In" />
+          <Parameter Name="end" Type="int" Mode="In" />
+        </Function>
         <Function Name="SortDisciplinebyTeacherAndDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TeacherName" Type="nvarchar" Mode="In" />
           <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
@@ -1780,7 +1778,7 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
           
           <FunctionImport Name="GetUniversityInfo" ReturnType="Collection(StudentDBModel.GetUniversityInfo_Result)" />
           <EntitySet Name="GeneralAnouncement" EntityType="StudentDBModel.GeneralAnouncement" />
-          <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
+          
           <FunctionImport Name="GetAllGeneralAnouncements" ReturnType="Collection(StudentDBModel.GetAllGeneralAnouncements_Result)" />
           <FunctionImport Name="DeleteRegisterStudyUnit">
             <Parameter Name="StudentID" Mode="In" Type="String" />
@@ -1814,10 +1812,17 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
           </FunctionImport>
           <FunctionImport Name="GetDateRegisterUnit" ReturnType="Collection(StudentDBModel.GetDateRegisterUnit_Result)" />
           <FunctionImport Name="TimeCloseRegisterUnit" ReturnType="Collection(Int32)" />
+          
+          <FunctionImport Name="CountGeneralAnouncement" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SelectGeneralAnouncementInRange" ReturnType="Collection(StudentDBModel.SelectGeneralAnouncementInRange_Result)">
+            <Parameter Name="start" Mode="In" Type="Int32" />
+            <Parameter Name="end" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
           <FunctionImport Name="GetGeneralAnoucementDetailByTitle" ReturnType="Collection(StudentDBModel.GetGeneralAnoucementDetailByTitle_Result)">
             <Parameter Name="title" Mode="In" Type="String" />
           </FunctionImport>
-          
+         
         
         
          
@@ -2012,13 +2017,9 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
           <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="DateOfAnoun" Type="DateTime" Precision="0" />
           <Property Name="Detail" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="Get10NewestAnouncements_Result">
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
-          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
-          <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
-        </ComplexType>
+  
         <ComplexType Name="GetAllGeneralAnouncements_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
@@ -2094,13 +2095,30 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
           <Property Type="Int32" Name="Minute" Nullable="true" />
           <Property Type="Int32" Name="Second" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="GetGeneralAnoucementDetailByTitle_Result">
+       
+        <ComplexType Name="SelectGeneralAnouncementInRange_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
           <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
           <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
         </ComplexType>
-       
+        <ComplexType Name="Get10NewestAnouncements_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="GetGeneralAnoucementDetailByTitle_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        
       
        
       </Schema>
@@ -2659,6 +2677,7 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
           <EntitySetMapping Name="GeneralAnouncement">
             <EntityTypeMapping TypeName="StudentDBModel.GeneralAnouncement">
               <MappingFragment StoreEntitySet="GeneralAnouncement">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Detail" ColumnName="Detail" />
                 <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
@@ -2666,16 +2685,6 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Get10NewestAnouncements" FunctionName="StudentDBModel.Store.Get10NewestAnouncements">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="StudentDBModel.Get10NewestAnouncements_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
-                <ScalarProperty Name="Detail" ColumnName="Detail" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAllGeneralAnouncements" FunctionName="StudentDBModel.Store.GetAllGeneralAnouncements">
             <ResultMapping>
               <ComplexTypeMapping TypeName="StudentDBModel.GetAllGeneralAnouncements_Result">
@@ -2785,16 +2794,44 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TimeCloseRegisterUnit" FunctionName="StudentDBModel.Store.TimeCloseRegisterUnit" />
+         
+          <FunctionImportMapping FunctionImportName="CountGeneralAnouncement" FunctionName="StudentDBModel.Store.CountGeneralAnouncement" />
+          <FunctionImportMapping FunctionImportName="SelectGeneralAnouncementInRange" FunctionName="StudentDBModel.Store.SelectGeneralAnouncementInRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.SelectGeneralAnouncementInRange_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="RowNum" ColumnName="RowNum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get10NewestAnouncements" FunctionName="StudentDBModel.Store.Get10NewestAnouncements">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.Get10NewestAnouncements_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetGeneralAnoucementDetailByTitle" FunctionName="StudentDBModel.Store.GetGeneralAnoucementDetailByTitle">
             <ResultMapping>
               <ComplexTypeMapping TypeName="StudentDBModel.GetGeneralAnoucementDetailByTitle_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
                 <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+       
+          
         
          
          

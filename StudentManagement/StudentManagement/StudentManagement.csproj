@@ -229,6 +229,9 @@
     <Compile Include="School.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SelectGeneralAnouncementInRange_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Semester.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -282,6 +285,8 @@
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Messager.cs" />
+    <Compile Include="ViewModel\MoreAnouncementViewModel.cs" />
+    <Compile Include="ViewModel\PageNavigationViewModel.cs" />
     <Compile Include="ViewModel\ParameterConverter.cs" />
     <Compile Include="ViewModel\PasswordHelper.cs" />
     <Compile Include="ViewModel\ProfileDetailViewModel.cs" />

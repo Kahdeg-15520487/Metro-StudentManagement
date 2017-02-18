@@ -13,7 +13,6 @@ namespace StudentManagement.ViewModel
     {
         StudentDBEntities ST = new StudentDBEntities();
         private ObservableCollection<Get10NewestAnouncements_Result> _TopTenNewestAnouncement;
-
         public ObservableCollection<Get10NewestAnouncements_Result> TopTenNewestAnouncement
         {
             get
@@ -57,6 +56,8 @@ namespace StudentManagement.ViewModel
                 return _MoreAnouncementClicked;
             }
         }
+
+
         private void OnMoreAnouncementClicked(object obj)
         {
             Messager.AnouncementMessageTransmitted(false, false, true);
@@ -76,5 +77,7 @@ namespace StudentManagement.ViewModel
         {
            
         }
+
+       
     }
 }

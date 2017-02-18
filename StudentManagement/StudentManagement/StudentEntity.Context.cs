@@ -288,11 +288,6 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUniversityInfo_Result>("GetUniversityInfo");
         }
     
-        public virtual ObjectResult<Get10NewestAnouncements_Result> Get10NewestAnouncements()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get10NewestAnouncements_Result>("Get10NewestAnouncements");
-        }
-    
         public virtual ObjectResult<GetAllGeneralAnouncements_Result> GetAllGeneralAnouncements()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllGeneralAnouncements_Result>("GetAllGeneralAnouncements");
@@ -408,6 +403,29 @@ namespace StudentManagement
         public virtual ObjectResult<Nullable<int>> TimeCloseRegisterUnit()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("TimeCloseRegisterUnit");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> CountGeneralAnouncement()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CountGeneralAnouncement");
+        }
+    
+        public virtual ObjectResult<SelectGeneralAnouncementInRange_Result> SelectGeneralAnouncementInRange(Nullable<int> start, Nullable<int> end)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(int));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectGeneralAnouncementInRange_Result>("SelectGeneralAnouncementInRange", startParameter, endParameter);
+        }
+    
+        public virtual ObjectResult<Get10NewestAnouncements_Result> Get10NewestAnouncements()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get10NewestAnouncements_Result>("Get10NewestAnouncements");
         }
     
         public virtual ObjectResult<GetGeneralAnoucementDetailByTitle_Result> GetGeneralAnoucementDetailByTitle(string title)

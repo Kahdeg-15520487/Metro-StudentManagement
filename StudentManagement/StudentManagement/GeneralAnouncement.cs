@@ -18,5 +18,6 @@ namespace StudentManagement
         public string Summary { get; set; }
         public Nullable<System.DateTime> DateOfAnoun { get; set; }
         public string Detail { get; set; }
+        public string Title { get; set; }
     }
 }
