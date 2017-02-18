@@ -18,8 +18,14 @@ namespace StudentManagement.ViewModel
             if (AnouncementDetailMessageTransmitted != null)
                 AnouncementDetailMessageTransmitted(value);
         }
+        public static void CurrentPageBroadCast(string value)
+        {
+            if (CurrnentPageMessageTransmitted != null)
+                CurrnentPageMessageTransmitted(value);
+        }
 
         public static Action<bool, bool, bool> AnouncementMessageTransmitted;
         public static Action<string> AnouncementDetailMessageTransmitted;
+        public static Action<string> CurrnentPageMessageTransmitted;
     }
 }

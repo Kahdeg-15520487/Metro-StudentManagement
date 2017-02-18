@@ -4,9 +4,78 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentManagement.View"
+             xmlns:ViewModel="clr-namespace:StudentManagement.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <local:PageNavigationView HorizontalAlignment="Center" VerticalAlignment="Bottom"></local:PageNavigationView>
+    <UserControl.Resources>
+        <ViewModel:MoreAnouncementViewModel x:Key="MoreAnouncementViewModel"></ViewModel:MoreAnouncementViewModel>
+    </UserControl.Resources> 
+    <Grid DataContext="{StaticResource MoreAnouncementViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="General Anouncements" FontSize="25" Foreground="Red"></TextBlock>
+        <StackPanel Grid.Row="1">
+            <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None">
+                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[0].Title}"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[0].DateOfAnoun}"></TextBlock>
+            <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[0].Summary}"></TextBlock>
+        
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None">
+                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[1].Title}"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[1].DateOfAnoun}"></TextBlock>
+            <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[1].Summary}"></TextBlock>
+         
+        </StackPanel>
+
+        <StackPanel Grid.Row="3">
+            <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None">
+                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[2].Title}"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[2].DateOfAnoun}"></TextBlock>
+            <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[2].Summary}"></TextBlock>
+        
+        </StackPanel>
+
+        <StackPanel Grid.Row="4">
+            <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None">
+                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[3].Title}"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[3].DateOfAnoun}"></TextBlock>
+            <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[3].Summary}"></TextBlock>
+           
+        </StackPanel>
+
+        <StackPanel Grid.Row="5">
+            <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None">
+                        <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding CurrentPageAnouncement[4].Title}"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            <TextBlock FontSize="10" Text="{Binding CurrentPageAnouncement[4].DateOfAnoun}"></TextBlock>
+            <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding CurrentPageAnouncement[4].Summary}"></TextBlock>
+            
+        </StackPanel>
+
+        <local:PageNavigationView Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"></local:PageNavigationView>
     </Grid>
 </UserControl>

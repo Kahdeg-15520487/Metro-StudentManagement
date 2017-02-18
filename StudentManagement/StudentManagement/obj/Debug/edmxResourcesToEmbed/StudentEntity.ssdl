@@ -128,9 +128,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Title" Type="nvarchar" MaxLength="1000" />
     <Property Name="DateOfAnoun" Type="smalldatetime" />
     <Property Name="Detail" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="Parents">
     <Key>
@@ -277,14 +278,6 @@
     <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Roll" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTMANAGEMENT\STUDENTDB.MDF.dbo.UniversityInfo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="UniversityInfo">
-          <Property Name="Name" Type="nvarchar" MaxLength="500" />
-          <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
-          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
   <EntityType Name="UserImage">
     <Key>
       <PropertyRef Name="ID" />
@@ -647,6 +640,7 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
     <Parameter Name="newPasswork" Type="nvarchar" Mode="In" />
     <Parameter Name="ID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="CountGeneralAnouncement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="DeleteRegisterStudyUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
     <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
@@ -729,6 +723,10 @@ warning 6013: The table/view 'C:\USERS\KAEL\DOCUMENTS\GITHUB\METRO-STUDENTMANAGE
     <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectGeneralAnouncementInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="int" Mode="In" />
+    <Parameter Name="end" Type="int" Mode="In" />
+  </Function>
   <Function Name="SortDisciplinebyTeacherAndDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TeacherName" Type="nvarchar" Mode="In" />
     <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
