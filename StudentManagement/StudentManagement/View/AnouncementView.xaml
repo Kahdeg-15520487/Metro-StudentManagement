@@ -54,50 +54,50 @@
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[2].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement03}">
+                        <TextBlock Name="Anouncement03" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[2].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[3].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement04}">
+                        <TextBlock Name="Anouncement04" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[3].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[4].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement05}">
+                        <TextBlock Name="Anouncement05" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[4].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="5" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[5].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement06}">
+                        <TextBlock Name="Anouncement06" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[5].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="6" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[6].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement07}">
+                        <TextBlock Name="Anouncement07" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[6].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="7" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[7].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement08}">
+                        <TextBlock Name="Anouncement08" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[7].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="8" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[8].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement09}">
+                        <TextBlock Name="Anouncement09" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[8].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
-                    <Hyperlink TextDecorations="None">
-                        <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[9].Title}"></TextBlock>
+                    <Hyperlink TextDecorations="None" Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement10}">
+                        <TextBlock Name="Anouncement10"  TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestAnouncement[9].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Grid.Column="1" Grid.Row="10" HorizontalAlignment="Right" >

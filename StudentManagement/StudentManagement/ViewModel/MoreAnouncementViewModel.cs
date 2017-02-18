@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModel
 {
@@ -35,7 +37,7 @@ namespace StudentManagement.ViewModel
             get
             {
                 if (_CurrentPageAnouncement == null)
-                    _CurrentPageAnouncement = new ObservableCollection<SelectGeneralAnouncementInRange_Result>(ST.SelectGeneralAnouncementInRange(currentPage,currentPage+4));
+                    _CurrentPageAnouncement = new ObservableCollection<SelectGeneralAnouncementInRange_Result>(ST.SelectGeneralAnouncementInRange(currentPage, currentPage + 4));
                 return _CurrentPageAnouncement;
             }
 
@@ -48,6 +50,28 @@ namespace StudentManagement.ViewModel
             }
         }
 
+        private ICommand _AnouncementClicked;
+
+        private ICommand _MoreAnouncementClicked;
+        private void OnAnouncementClicked(TextBlock currentAnouncement)
+        {
+            Messager.AnouncementBroadCast(false, true, false);
+            Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
+        }
+
+        public ICommand AnouncementClicked
+        {
+            get
+            {
+                if (_AnouncementClicked == null)
+                {
+                    _AnouncementClicked = new RelayCommand<TextBlock>((p) => true, OnAnouncementClicked);
+                }
+                return _AnouncementClicked;
+            }
+
+
+        }
         public MoreAnouncementViewModel()
         {
             Messager.CurrnentPageMessageTransmitted += OnChangePageAnouncement;

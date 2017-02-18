@@ -24,6 +24,6 @@
                         <TextBlock Text="Back" FontSize="25"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
-       
+
     </StackPanel>
 </UserControl>
