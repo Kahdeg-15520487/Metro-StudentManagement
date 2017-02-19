@@ -52,7 +52,7 @@ namespace StudentManagement.ViewModel
 
         private ICommand _AnouncementClicked;
 
-        private ICommand _MoreAnouncementClicked;
+   
         private void OnAnouncementClicked(TextBlock currentAnouncement)
         {
             Messager.AnouncementBroadCast(false, true, false);
