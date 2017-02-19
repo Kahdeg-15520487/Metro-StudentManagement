@@ -62,6 +62,7 @@ namespace StudentManagement.ViewModel
             Messager.AnouncementDetailMessageTransmitted += OnMessageReceived;
 
         }
+          
 
         private void OnPreviousCommand(object obj)
         {
