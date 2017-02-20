@@ -21,16 +21,6 @@
     <Property Name="GroupName" Type="nvarchar" MaxLength="300" />
     <Property Name="Goal" Type="nvarchar" MaxLength="10" />
   </EntityType>
-  <EntityType Name="Anouncement">
-    <Key>
-      <PropertyRef Name="AnouncementID" />
-    </Key>
-    <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" />
-    <Property Name="AnouncementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DateAnouncement" Type="smalldatetime" />
-    <Property Name="Detail" Type="nvarchar" MaxLength="300" />
-    <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
-  </EntityType>
   <EntityType Name="BehaviorMark">
     <Key>
       <PropertyRef Name="StudentID" />
@@ -102,6 +92,18 @@
     <Property Name="Period" Type="int" />
     <Property Name="AnouncementID" Type="int" />
     <Property Name="Room" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="DisciplineAnouncement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+    <Property Name="DateOfAnoun" Type="smalldatetime" />
+    <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" />
+    <Property Name="StartTime" Type="nvarchar" MaxLength="10" />
+    <Property Name="FinishTime" Type="nvarchar" MaxLength="10" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="3000" />
   </EntityType>
   <EntityType Name="Exam">
     <Key>
@@ -278,6 +280,16 @@
     <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Roll" Type="int" />
   </EntityType>
+  <EntityType Name="UniversityInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <EntityType Name="UserImage">
     <Key>
       <PropertyRef Name="ID" />
@@ -307,15 +319,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Fk_AnouncementID">
-    <End Role="Anouncement" Type="Self.Anouncement" Multiplicity="0..1" />
-    <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
+  <Association Name="FK_ADisciplineID">
+    <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
+    <End Role="DisciplineAnouncement" Type="Self.DisciplineAnouncement" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Anouncement">
-        <PropertyRef Name="AnouncementID" />
+      <Principal Role="Discipline">
+        <PropertyRef Name="DisciplineID" />
       </Principal>
-      <Dependent Role="Discipline">
-        <PropertyRef Name="AnouncementID" />
+      <Dependent Role="DisciplineAnouncement">
+        <PropertyRef Name="DisciplineID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -645,7 +657,8 @@
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
     <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="Get10NewestAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get10NewestDisciplineAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get10NewestGeneralAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
   </Function>
@@ -672,6 +685,9 @@
   </Function>
   <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetDisciplineAnoucementDetailByTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
@@ -723,6 +739,15 @@
     <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectAnouncementTypeInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="int" Mode="In" />
+    <Parameter Name="end" Type="int" Mode="In" />
+    <Parameter Name="type" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SelectDisciplineAnouncementInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="int" Mode="In" />
+    <Parameter Name="end" Type="int" Mode="In" />
+  </Function>
   <Function Name="SelectGeneralAnouncementInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="int" Mode="In" />
     <Parameter Name="end" Type="int" Mode="In" />
@@ -748,13 +773,13 @@
   <EntityContainer Name="StudentDBModelStoreContainer">
     <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Anouncement" EntityType="Self.Anouncement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BehaviorMark" EntityType="Self.BehaviorMark" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Candre" EntityType="Self.Candre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DiplomaProject" EntityType="Self.DiplomaProject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DisciplineAnouncement" EntityType="Self.DisciplineAnouncement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GeneralAnouncement" EntityType="Self.GeneralAnouncement" Schema="dbo" store:Type="Tables" />
@@ -771,15 +796,16 @@
     <EntitySet Name="StudyFee" EntityType="Self.StudyFee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeacherUser" EntityType="Self.TeacherUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UniversityInfo" EntityType="Self.UniversityInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="Fk_ActivityGroupID" Association="Self.Fk_ActivityGroupID">
       <End Role="ActivityGroup" EntitySet="ActivityGroup" />
       <End Role="BehaviorMark" EntitySet="BehaviorMark" />
     </AssociationSet>
-    <AssociationSet Name="Fk_AnouncementID" Association="Self.Fk_AnouncementID">
-      <End Role="Anouncement" EntitySet="Anouncement" />
+    <AssociationSet Name="FK_ADisciplineID" Association="Self.FK_ADisciplineID">
       <End Role="Discipline" EntitySet="Discipline" />
+      <End Role="DisciplineAnouncement" EntitySet="DisciplineAnouncement" />
     </AssociationSet>
     <AssociationSet Name="Fk_CandreID" Association="Self.Fk_CandreID">
       <End Role="Candre" EntitySet="Candre" />

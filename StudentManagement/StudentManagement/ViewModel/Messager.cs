@@ -36,10 +36,24 @@ namespace StudentManagement.ViewModel
                 CurrentTabTransmitted(value);
         }
 
+        public static void TypeOfAnouncementBroadCast(string value)
+        {
+            if (TypeOfAnouncementTransmitted != null)
+                TypeOfAnouncementTransmitted(value);
+        }
+
+        public static void TypeOfMoreAnouncementBroadCast(string value)
+        {
+            if (TypeOfMoreAnouncementTransmitted != null)
+                TypeOfMoreAnouncementTransmitted(value);
+        }
+
         public static Action<bool, bool, bool> AnouncementMessageTransmitted;
         public static Action<string> AnouncementDetailMessageTransmitted;
         public static Action<string> CurrentPageTransmitted;
         public static Action<bool, bool, bool, string> PreviousTabTransmitted;
         public static Action<string> CurrentTabTransmitted;
+        public static Action<string> TypeOfAnouncementTransmitted;
+        public static Action<string> TypeOfMoreAnouncementTransmitted;
     }
 }
