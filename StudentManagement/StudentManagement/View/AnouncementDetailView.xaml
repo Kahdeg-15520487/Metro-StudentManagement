@@ -9,15 +9,17 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ViewModel:AnouncementDetailViewModel x:Key="AnouncementDetailViewModel"></ViewModel:AnouncementDetailViewModel>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
     </UserControl.Resources>
-    <StackPanel DataContext="{StaticResource AnouncementDetailViewModel}">
-        <TextBlock TextWrapping="Wrap" Grid.Row="0" Foreground="Red" FontSize="25" Text="{Binding GeneralAnouncementDetail[0].Title}"></TextBlock>
-        <TextBlock Width="20"></TextBlock>
-        <TextBlock Grid.Row="1" FontSize="12" Text="{Binding GeneralAnouncementDetail[0].DateOfAnoun}"></TextBlock>
-        <TextBlock Width="20"></TextBlock>
-        <TextBlock TextWrapping="Wrap" Grid.Row="2" FontSize="15" Text="{Binding GeneralAnouncementDetail[0].Detail}"></TextBlock>
-        <TextBlock Width="20"></TextBlock>
-        <TextBlock VerticalAlignment="Center">
+    <Grid>
+        <StackPanel DataContext="{StaticResource AnouncementDetailViewModel}" Visibility="{Binding IsGeneralAnouncementDetailOpen, Converter={StaticResource BoolToVis}}">
+            <TextBlock TextWrapping="Wrap" Grid.Row="0" Foreground="Red" FontSize="25" Text="{Binding GeneralAnouncementDetail[0].Title}"></TextBlock>
+            <TextBlock Width="20"></TextBlock>
+            <TextBlock Grid.Row="1" FontSize="12" Text="{Binding GeneralAnouncementDetail[0].DateOfAnoun}"></TextBlock>
+            <TextBlock Width="20"></TextBlock>
+            <TextBlock TextWrapping="Wrap" Grid.Row="2" FontSize="15" Text="{Binding GeneralAnouncementDetail[0].Detail}"></TextBlock>
+            <TextBlock Width="20"></TextBlock>
+            <TextBlock VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None" Command="{Binding PreviousCommand}">
                         <StackPanel Orientation="Horizontal"></StackPanel>
                         <TextBlock FontSize="25" Text="`" FontFamily="Wingdings 3"></TextBlock>
@@ -25,5 +27,60 @@
                     </Hyperlink>
                 </TextBlock>
 
-    </StackPanel>
+        </StackPanel>
+
+        <StackPanel DataContext="{StaticResource AnouncementDetailViewModel}" Visibility="{Binding IsDisciplineAnouncementDetailOpen, Converter={StaticResource BoolToVis}}">
+            <TextBlock TextWrapping="Wrap" Grid.Row="0" Foreground="Red" FontSize="25" Text="{Binding DisciplineAnouncementDetail[0].Title}"></TextBlock>
+
+
+            <StackPanel Orientation="Horizontal"></StackPanel>
+            <TextBlock Width="20"></TextBlock>
+            <TextBlock Grid.Row="1" FontSize="12" Text="{Binding DisciplineAnouncementDetail[0].DateOfAnoun}"></TextBlock>
+            <TextBlock Width="20"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="15" Text="Teacher :"></TextBlock>
+                <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].TeacherName}"></TextBlock>
+            </StackPanel>
+            <TextBlock Width="10"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="15" Text="Department :"></TextBlock>
+                <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].DeparmentName}"></TextBlock>
+            </StackPanel>
+            <TextBlock Width="10"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="15" Text="Discipline :"></TextBlock>
+                <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].TeacherName}"></TextBlock>
+            </StackPanel>
+            <TextBlock Width="10"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="15" Text="Room :"></TextBlock>
+                <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].Room}"></TextBlock>
+            </StackPanel>
+
+            <TextBlock Width="10"></TextBlock>
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontSize="15" Text="Time :"></TextBlock>
+                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                    <TextBlock FontSize="15" Text="Start Time : "></TextBlock>
+                    <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].StartTime}"></TextBlock>
+                </StackPanel>
+                <TextBlock Width="5"></TextBlock>
+                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                    <TextBlock FontSize="15" Text="Finish Time : "></TextBlock>
+                    <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].FinishTime}"></TextBlock>
+                </StackPanel>
+
+
+            </StackPanel>
+            
+            <TextBlock Width="10"></TextBlock>
+            <TextBlock VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None" Command="{Binding PreviousCommand}">
+                        <TextBlock FontSize="25" Text="`" FontFamily="Wingdings 3"></TextBlock>
+                        <TextBlock Text="Back" FontSize="25"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+
+        </StackPanel>
+    </Grid>
 </UserControl>

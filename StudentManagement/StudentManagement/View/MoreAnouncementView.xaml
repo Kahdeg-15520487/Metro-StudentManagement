@@ -20,7 +20,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="General Anouncements" FontSize="25" Foreground="Red"></TextBlock>
+        <TextBlock Grid.Row="0" Text="{Binding AnouncementTitle}" FontSize="25" Foreground="Red"></TextBlock>
         <StackPanel Grid.Row="1">
             <TextBlock Grid.Column="1" Grid.Row="9" VerticalAlignment="Center">
                     <Hyperlink Command="{Binding AnouncementClicked}" CommandParameter="{Binding ElementName=Anouncement01}" TextDecorations="None">

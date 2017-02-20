@@ -4,10 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="075a5cdcbeed44f39a401a145607841e" Name="Diagram1">
+      <Diagram DiagramId="075a5cdcbeed44f39a401a145607841e" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="StudentDBModel.AcademicMark" Width="1.5" PointX="10.25" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.ActivityGroup" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentDBModel.Anouncement" Width="1.5" PointX="5.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.BehaviorMark" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.Candre" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="StudentDBModel.Class" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
@@ -34,7 +33,6 @@
         <AssociationConnector Association="StudentDBModel.Fk_Discipline" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_StudentID" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_ActivityGroupID" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentDBModel.Fk_AnouncementID" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.fk_StudentID_BehaviorMark" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_CandreID" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_ClassID" ManuallyRouted="false" />
@@ -59,6 +57,11 @@
         <AssociationConnector Association="StudentDBModel.Fk_StudentUser" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.Fk_TeacherUser" ManuallyRouted="false" />
         <AssociationConnector Association="StudentDBModel.FK_Discipline_Department_" />
+        <EntityTypeShape EntityType="StudentDBModel.Anouncement" Width="1.5" PointX="5.375" PointY="3.875" />
+        <AssociationConnector Association="StudentDBModel.Fk_AnouncementID" />
+        <EntityTypeShape EntityType="StudentDBModel.DisciplineAnouncement" Width="1.5" PointX="9.625" PointY="4.375" />
+        <AssociationConnector Association="StudentDBModel.FK_ADisciplineID" />
+        <EntityTypeShape EntityType="StudentDBModel.UniversityInfo" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
       <Diagram DiagramId="666cffd9b8584b82bdb4db316675bc14" Name="Diagram2" >
         <EntityTypeShape EntityType="StudentDBModel.GeneralAnouncement" Width="1.5" PointX="0.75" PointY="0.75" />

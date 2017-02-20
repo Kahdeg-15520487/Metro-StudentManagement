@@ -100,9 +100,6 @@
     <Compile Include="ActivityGroup.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Anouncement.cs">
-      <DependentUpon>StudentEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="BehaviorMark.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -121,6 +118,9 @@
     <Compile Include="Discipline.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DisciplineAnouncement.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Exam.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -131,6 +131,12 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Get10NewestAnouncements_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get10NewestDisciplineAnouncements_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get10NewestGeneralAnouncements_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetAcademicByID_Result.cs">
@@ -161,6 +167,9 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetDiplomaProject_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetDisciplineAnoucementDetailByTitle_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetFacultyDetail_Result.cs">
@@ -229,6 +238,12 @@
     <Compile Include="School.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SelectAnouncementTypeInRange_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDisciplineAnouncementInRange_Result.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SelectGeneralAnouncementInRange_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
@@ -266,6 +281,9 @@
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="TeacherUser.cs">
+      <DependentUpon>StudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniversityInfo.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="UserImage.cs">
