@@ -10,6 +10,7 @@ namespace StudentManagement.ViewModel
 {
     public class AnouncementDetailViewModel : AnouncementViewModel
     {
+        private string previousTab;
         private ObservableCollection<GetGeneralAnoucementDetailByTitle_Result> _GeneralAnouncementDetail;
         StudentDBEntities ST = new StudentDBEntities();
         private string anouncementTitle;
@@ -60,13 +61,17 @@ namespace StudentManagement.ViewModel
         public AnouncementDetailViewModel()
         {
             Messager.AnouncementDetailMessageTransmitted += OnMessageReceived;
-
+            Messager.CurrentTabTransmitted += OnPreviousTabReceived;
         }
-          
+
+        private void OnPreviousTabReceived(string arg4)
+        {
+            previousTab = arg4;
+        }
 
         private void OnPreviousCommand(object obj)
         {
-            Messager.AnouncementBroadCast(true, false, false);
+            Messager.PreviousTabTransmitted(true, false, false,previousTab);
         }
 
         private void OnMessageReceived(string Title)

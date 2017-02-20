@@ -146,7 +146,7 @@ namespace StudentManagement.ViewModel
                 if (Convert.ToInt32(currentTextBox.Text) >= 1 && Convert.ToInt32(currentTextBox.Text) <= Convert.ToInt32(LargestPageNumber))
                 {
                     CurrentPageNumber = currentTextBox.Text;
-                    Messager.CurrnentPageMessageTransmitted(CurrentPageNumber);
+                    Messager.CurrentPageTransmitted(CurrentPageNumber);
                 }
             }
             catch { }

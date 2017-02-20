@@ -70,6 +70,7 @@ namespace StudentManagement.ViewModel
         {
             Messager.AnouncementBroadCast(false, true, false);
             Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
+            Messager.CurrentTabBroadCast("Anouncement");
         }
 
 
