@@ -714,7 +714,8 @@
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
           <Parameter Name="Semester" Type="nvarchar" Mode="In" />
           <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
-          <Parameter Name="ScaleScreen" Type="float" Mode="In" />
+          <Parameter Name="Height" Type="float" Mode="In" />
+          <Parameter Name="Width" Type="float" Mode="In" />
         </Function>
         <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
@@ -1836,8 +1837,10 @@
             <Parameter Name="StudentID" Mode="In" Type="String" />
             <Parameter Name="Semester" Mode="In" Type="String" />
             <Parameter Name="StudyDate" Mode="In" Type="String" />
-            <Parameter Name="ScaleScreen" Mode="In" Type="Double" />
+            <Parameter Name="Height" Mode="In" Type="Double" />
+            <Parameter Name="Width" Mode="In" Type="Double" />
           </FunctionImport>
+        
           
          
         
@@ -2202,7 +2205,9 @@
           <Property Type="Int32" Name="Period" Nullable="true" />
           <Property Type="Double" Name="Credits" Nullable="true" />
           <Property Type="String" Name="Room" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="Width" Nullable="true" />
         </ComplexType>
+      
       
       
        
@@ -2964,9 +2969,11 @@
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="Credits" ColumnName="Credits" />
                 <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+         
          
        
           

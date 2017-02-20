@@ -709,7 +709,8 @@
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
     <Parameter Name="Semester" Type="nvarchar" Mode="In" />
     <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
-    <Parameter Name="ScaleScreen" Type="float" Mode="In" />
+    <Parameter Name="Height" Type="float" Mode="In" />
+    <Parameter Name="Width" Type="float" Mode="In" />
   </Function>
   <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />

@@ -21,5 +21,6 @@ namespace StudentManagement
         public Nullable<int> Period { get; set; }
         public Nullable<double> Credits { get; set; }
         public string Room { get; set; }
+        public Nullable<double> Width { get; set; }
     }
 }

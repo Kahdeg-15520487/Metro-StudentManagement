@@ -170,7 +170,7 @@ namespace StudentManagement.ViewModel
         #endregion
 
         private double _Height;
-
+        private double _Width=193;
         public ICommand GetHeightALesson { get; set; }
 
         public double Height
@@ -186,17 +186,33 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("Height");
             }
         }
+
+        public double Width
+        {
+            get
+            {
+                return _Width;
+            }
+
+            set
+            {
+                _Width = value;
+                OnPropertyChanged("Width");
+            }
+        }
+
         private void OnGetHeightALesson(Grid Grd)
         {
             var data = ST.IsDateRegister().ToList()[0];
             var thisUser = DialogLogginViewModel.Users[0];
             Height = Math.Round(Grd.ActualHeight / 11-1, 0);
-            Monday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Monday", Height));
-            Tuesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Tuesday", Height));
-            Wednesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Wednesday", Height));
-            Thursday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Thursday", Height));
-            Friday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Friday", Height));
-            Saturday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Saturday", Height));
+            Width = Math.Round(Grd.ActualWidth / 6.5, 0);
+            Monday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Monday", Height,Width));
+            Tuesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Tuesday", Height, Width));
+            Wednesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Wednesday", Height, Width));
+            Thursday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Thursday", Height, Width));
+            Friday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Friday", Height, Width));
+            Saturday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Saturday", Height, Width));
             AddEmpty(Monday);
             AddEmpty(Tuesday);
             AddEmpty(Wednesday);

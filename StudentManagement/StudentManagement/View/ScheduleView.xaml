@@ -137,18 +137,19 @@
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="10*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
+                        <Border Name="s" Grid.Row="0" BorderThickness="2" BorderBrush="Black">
                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Monday"></TextBlock>
                         </Border>
-                        <Border  Grid.Row="1" BorderThickness="2" BorderBrush="Black">
-                            <DataGrid VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Monday}">
+                        <Border  HorizontalAlignment="Stretch"  Grid.Row="1" BorderThickness="2" BorderBrush="Black">
+                            <DataGrid VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding Monday}">
+                                
                                 <DataGrid.Columns>
                                     <DataGridTemplateColumn >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Grid  Width="193"   Height="{Binding Credits}">
+                                                <Grid  Width="{ Binding Width }"    Height="{Binding Credits}">
 
-                                                    <Border   BorderBrush="Black" BorderThickness="2">
+                                                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    BorderBrush="Black" BorderThickness="2">
                                                         <Grid   >
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="*"></RowDefinition>
@@ -188,7 +189,7 @@
                                     <DataGridTemplateColumn >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Grid  Width="193"   Height="{Binding Credits}">
+                                                <Grid  Width="{ Binding Width }"   Height="{Binding Credits}">
 
                                                     <Border   BorderBrush="Black" BorderThickness="2">
                                                         <Grid   >
@@ -230,7 +231,7 @@
                                     <DataGridTemplateColumn >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Grid  Width="193"   Height="{Binding Credits}">
+                                                <Grid  Width="{ Binding Width }"   Height="{Binding Credits}">
 
                                                     <Border   BorderBrush="Black" BorderThickness="2">
                                                         <Grid   >
@@ -272,7 +273,7 @@
                                     <DataGridTemplateColumn >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Grid  Width="193"   Height="{Binding Credits}">
+                                                <Grid  Width="{ Binding Width }"   Height="{Binding Credits}">
                                                     <Border   BorderBrush="Black" BorderThickness="2">
                                                         <Grid   >
                                                             <Grid.RowDefinitions>
@@ -313,7 +314,7 @@
                                     <DataGridTemplateColumn >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Grid  Width="193"   Height="{Binding Credits}">
+                                                <Grid  Width="{ Binding Width }"    Height="{Binding Credits}">
 
                                                     <Border   BorderBrush="Black" BorderThickness="2">
                                                         <Grid   >
@@ -355,7 +356,7 @@
                                     <DataGridTemplateColumn >
                                         <DataGridTemplateColumn.CellTemplate >
                                             <DataTemplate >
-                                                <Grid  Background="Transparent"  Width="193"   Height="{Binding Credits}">
+                                                <Grid  Background="Transparent"  Width="{ Binding Width }"   Height="{Binding Credits}">
 
                                                     <Border   BorderBrush="Black" BorderThickness="2">
                                                         <Grid Background="Transparent"  >
