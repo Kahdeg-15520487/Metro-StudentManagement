@@ -59,6 +59,16 @@ namespace StudentManagement.ViewModel
         private void OnAnouncementClicked(TextBlock currentAnouncement)
         {
             Messager.AnouncementBroadCast(false, true, false);
+            if (currentTypeMoreAnouncement == "General")
+            {
+                Messager.TypeOfAnouncementBroadCast("GeneralAnouncement");
+            }
+            else
+                Messager.AnouncementBroadCast(false, true, false);
+            if (currentTypeMoreAnouncement == "Discipline")
+            {
+                Messager.TypeOfAnouncementBroadCast("DisciplinelAnouncement");
+            }
             Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
             Messager.CurrentTabTransmitted("MoreAnouncement");
         }

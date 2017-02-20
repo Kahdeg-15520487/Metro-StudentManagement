@@ -184,7 +184,7 @@
                 <TextBlock Grid.Column="1" Grid.Row="7" VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None" Command="{Binding DisciplineAnouncementClicked}" 
                                CommandParameter="{Binding ElementName=Anouncement17}">
-                        <TextBlock Name="Anouncement1" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestDisciplineAnouncement[7].Title}"></TextBlock>
+                        <TextBlock Name="Anouncement17" TextWrapping="Wrap" FontSize="15" Text="{Binding TopTenNewestDisciplineAnouncement[7].Title}"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
