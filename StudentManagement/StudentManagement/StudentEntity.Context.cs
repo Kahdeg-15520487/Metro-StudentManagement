@@ -453,7 +453,7 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAnouncementTypeInRange_Result>("SelectAnouncementTypeInRange", startParameter, endParameter, typeParameter);
         }
     
-        public virtual ObjectResult<GetScheduleForDetail1_Result> GetScheduleForDetail1(string studentID, string semester, string studyDate, Nullable<double> scaleScreen)
+        public virtual ObjectResult<GetScheduleForDetail1_Result> GetScheduleForDetail1(string studentID, string semester, string studyDate, Nullable<double> height, Nullable<double> width)
         {
             var studentIDParameter = studentID != null ?
                 new ObjectParameter("StudentID", studentID) :
@@ -467,11 +467,15 @@ namespace StudentManagement
                 new ObjectParameter("StudyDate", studyDate) :
                 new ObjectParameter("StudyDate", typeof(string));
     
-            var scaleScreenParameter = scaleScreen.HasValue ?
-                new ObjectParameter("ScaleScreen", scaleScreen) :
-                new ObjectParameter("ScaleScreen", typeof(double));
+            var heightParameter = height.HasValue ?
+                new ObjectParameter("Height", height) :
+                new ObjectParameter("Height", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail1_Result>("GetScheduleForDetail1", studentIDParameter, semesterParameter, studyDateParameter, scaleScreenParameter);
+            var widthParameter = width.HasValue ?
+                new ObjectParameter("Width", width) :
+                new ObjectParameter("Width", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail1_Result>("GetScheduleForDetail1", studentIDParameter, semesterParameter, studyDateParameter, heightParameter, widthParameter);
         }
     }
 }
