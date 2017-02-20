@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -6,11 +7,14 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModel
 {
     class ScheduleViewModel : ViewModelBase
     {
+        int i = 0;
         StudentDBEntities ST = new StudentDBEntities();
         SpeechSynthesizer warningAudio = new SpeechSynthesizer();
         int[] Period = { 1, 2, 3, 4 };
@@ -21,14 +25,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                var data = ST.IsDateRegister().ToList()[0];
-                var thisUser = DialogLogginViewModel.Users[0];
 
-                if (_Monday == null)
-                {
-                    _Monday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Monday"));
-                    AddEmpty(_Monday);
-                }
                 return _Monday;
             }
             set
@@ -47,14 +44,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                var data = ST.IsDateRegister().ToList()[0];
-                var thisUser = DialogLogginViewModel.Users[0];
 
-                if (_Tuesday == null)
-                {
-                    _Tuesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Tuesday"));
-                    AddEmpty(_Tuesday);
-                }
                 return _Tuesday;
             }
             set
@@ -73,14 +63,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                var data = ST.IsDateRegister().ToList()[0];
-                var thisUser = DialogLogginViewModel.Users[0];
 
-                if (_Wednesday == null)
-                {
-                    _Wednesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Wednesday"));
-                    AddEmpty(_Wednesday);
-                }
                 return _Wednesday;
             }
             set
@@ -119,7 +102,7 @@ namespace StudentManagement.ViewModel
                     }
                     if (Credits != 0)
                     {
-                        GetScheduleForDetail1_Result IconEmpty = new GetScheduleForDetail1_Result() { Period = Child - 1, Credits = (5 * 43 - Credits) };
+                        GetScheduleForDetail1_Result IconEmpty = new GetScheduleForDetail1_Result() { Period = Child - 1, Credits = (5 * Height - Credits) };
                         Day.Insert(int.Parse(IconEmpty.Period.ToString()), IconEmpty);
                     }
                 }
@@ -133,14 +116,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                var data = ST.IsDateRegister().ToList()[0];
-                var thisUser = DialogLogginViewModel.Users[0];
 
-                if (_Thursday == null)
-                {
-                    _Thursday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Thursday"));
-                    AddEmpty(_Thursday);
-                }
                 return _Thursday;
             }
             set
@@ -159,14 +135,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                var data = ST.IsDateRegister().ToList()[0];
-                var thisUser = DialogLogginViewModel.Users[0];
 
-                if (_Friday == null)
-                {
-                    _Friday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Friday"));
-                    AddEmpty(_Friday);
-                }
                 return _Friday;
             }
             set
@@ -187,14 +156,7 @@ namespace StudentManagement.ViewModel
         {
             get
             {
-                var data = ST.IsDateRegister().ToList()[0];
-                var thisUser = DialogLogginViewModel.Users[0];
 
-                if (_Saturday == null)
-                {
-                    _Saturday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Saturday"));
-                    AddEmpty(_Saturday);
-                }
                 return _Saturday;
             }
             set
@@ -206,6 +168,54 @@ namespace StudentManagement.ViewModel
             }
         }
         #endregion
+
+        private double _Height;
+
+        public ICommand GetHeightALesson { get; set; }
+
+        public double Height
+        {
+            get
+            {
+                return _Height;
+            }
+
+            set
+            {
+                _Height = value;
+                OnPropertyChanged("Height");
+            }
+        }
+        private void OnGetHeightALesson(Grid Grd)
+        {
+            var data = ST.IsDateRegister().ToList()[0];
+            var thisUser = DialogLogginViewModel.Users[0];
+            Height = Math.Round(Grd.ActualHeight / 11-1, 0);
+            Monday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Monday", Height));
+            Tuesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Tuesday", Height));
+            Wednesday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Wednesday", Height));
+            Thursday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Thursday", Height));
+            Friday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Friday", Height));
+            Saturday = new ObservableCollection<GetScheduleForDetail1_Result>(ST.GetScheduleForDetail1(thisUser.ID, data.SemesterName, "Saturday", Height));
+            AddEmpty(Monday);
+            AddEmpty(Tuesday);
+            AddEmpty(Wednesday);
+            AddEmpty(Thursday);
+            AddEmpty(Friday);
+            AddEmpty(Saturday);
+        }
+
+
+
+        public ScheduleViewModel()
+        {
+            GetHeightALesson = new RelayCommand<Grid>((p) => true, OnGetHeightALesson);
+
+
+
+        }
+
+
 
     }
 }
