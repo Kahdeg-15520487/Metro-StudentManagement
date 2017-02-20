@@ -29,7 +29,6 @@ namespace StudentManagement
     
         public virtual DbSet<AcademicMark> AcademicMark { get; set; }
         public virtual DbSet<ActivityGroup> ActivityGroup { get; set; }
-        public virtual DbSet<Anouncement> Anouncement { get; set; }
         public virtual DbSet<BehaviorMark> BehaviorMark { get; set; }
         public virtual DbSet<Candre> Candre { get; set; }
         public virtual DbSet<Class> Class { get; set; }
@@ -54,6 +53,8 @@ namespace StudentManagement
         public virtual DbSet<UserImage> UserImage { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<GeneralAnouncement> GeneralAnouncement { get; set; }
+        public virtual DbSet<DisciplineAnouncement> DisciplineAnouncement { get; set; }
+        public virtual DbSet<UniversityInfo> UniversityInfo { get; set; }
     
         public virtual ObjectResult<GetAcademicByID_Result> GetAcademicByID(string studentID)
         {
@@ -435,6 +436,55 @@ namespace StudentManagement
                 new ObjectParameter("title", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetGeneralAnoucementDetailByTitle_Result>("GetGeneralAnoucementDetailByTitle", titleParameter);
+        }
+    
+        public virtual ObjectResult<Get10NewestGeneralAnouncements_Result> Get10NewestGeneralAnouncements()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get10NewestGeneralAnouncements_Result>("Get10NewestGeneralAnouncements");
+        }
+    
+        public virtual ObjectResult<Get10NewestDisciplineAnouncements_Result> Get10NewestDisciplineAnouncements()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get10NewestDisciplineAnouncements_Result>("Get10NewestDisciplineAnouncements");
+        }
+    
+        public virtual ObjectResult<GetDisciplineAnoucementDetailByTitle_Result> GetDisciplineAnoucementDetailByTitle(string title)
+        {
+            var titleParameter = title != null ?
+                new ObjectParameter("title", title) :
+                new ObjectParameter("title", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDisciplineAnoucementDetailByTitle_Result>("GetDisciplineAnoucementDetailByTitle", titleParameter);
+        }
+    
+        public virtual ObjectResult<SelectDisciplineAnouncementInRange_Result> SelectDisciplineAnouncementInRange(Nullable<int> start, Nullable<int> end)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(int));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectDisciplineAnouncementInRange_Result>("SelectDisciplineAnouncementInRange", startParameter, endParameter);
+        }
+    
+        public virtual ObjectResult<SelectAnouncementTypeInRange_Result> SelectAnouncementTypeInRange(Nullable<int> start, Nullable<int> end, string type)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(int));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(int));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAnouncementTypeInRange_Result>("SelectAnouncementTypeInRange", startParameter, endParameter, typeParameter);
         }
     }
 }

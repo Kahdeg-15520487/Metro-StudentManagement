@@ -19,6 +19,7 @@ namespace StudentManagement
         {
             this.AcademicMark = new HashSet<AcademicMark>();
             this.RegisterStudyUnit = new HashSet<RegisterStudyUnit>();
+            this.DisciplineAnouncement = new HashSet<DisciplineAnouncement>();
         }
     
         public string DisciplineID { get; set; }
@@ -33,11 +34,12 @@ namespace StudentManagement
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicMark> AcademicMark { get; set; }
-        public virtual Anouncement Anouncement { get; set; }
         public virtual Exam Exam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegisterStudyUnit> RegisterStudyUnit { get; set; }
         public virtual Teacher Teacher { get; set; }
         public virtual Department Department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DisciplineAnouncement> DisciplineAnouncement { get; set; }
     }
 }

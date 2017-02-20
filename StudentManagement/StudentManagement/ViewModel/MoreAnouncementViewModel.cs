@@ -12,8 +12,9 @@ namespace StudentManagement.ViewModel
     public class MoreAnouncementViewModel : ViewModelBase
     {
         StudentDBEntities ST = new StudentDBEntities();
+        private string currentTypeMoreAnouncement;
         private int currentPage = 1;
-
+        private string anouncementTitle;
 
         public int CurrentPage
         {
@@ -30,14 +31,16 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        private ObservableCollection<SelectGeneralAnouncementInRange_Result> _CurrentPageAnouncement;
+      
 
-        public ObservableCollection<SelectGeneralAnouncementInRange_Result> CurrentPageAnouncement
+        private ObservableCollection<SelectAnouncementTypeInRange_Result> _CurrentPageAnouncement;
+
+        public ObservableCollection<SelectAnouncementTypeInRange_Result> CurrentPageAnouncement
         {
             get
             {
                 if (_CurrentPageAnouncement == null)
-                    _CurrentPageAnouncement = new ObservableCollection<SelectGeneralAnouncementInRange_Result>(ST.SelectGeneralAnouncementInRange(currentPage, currentPage + 4));
+                    _CurrentPageAnouncement = new ObservableCollection<SelectAnouncementTypeInRange_Result>();
                 return _CurrentPageAnouncement;
             }
 
@@ -73,15 +76,39 @@ namespace StudentManagement.ViewModel
 
 
         }
+
+        public string AnouncementTitle
+        {
+            get
+            {
+                return anouncementTitle;
+            }
+
+            set
+            {
+                if (anouncementTitle!=value)
+                anouncementTitle = value;
+                OnPropertyChanged("AnouncementTitle");
+            }
+        }
+
         public MoreAnouncementViewModel()
         {
             Messager.CurrentPageTransmitted += OnChangePageAnouncement;
+            Messager.TypeOfMoreAnouncementTransmitted += OnTypeOfMoreAnouncementReceived;
+        }
+
+        private void OnTypeOfMoreAnouncementReceived(string type)
+        {
+            currentTypeMoreAnouncement = type;
+            AnouncementTitle = type + " Anouncements";
+            CurrentPageAnouncement = new ObservableCollection<SelectAnouncementTypeInRange_Result>(ST.SelectAnouncementTypeInRange(currentPage, currentPage + 4, currentTypeMoreAnouncement));
         }
 
         private void OnChangePageAnouncement(string obj)
         {
             CurrentPage = Convert.ToInt32(obj);
-            CurrentPageAnouncement = new ObservableCollection<SelectGeneralAnouncementInRange_Result>(ST.SelectGeneralAnouncementInRange(currentPage, currentPage + 4));
+            CurrentPageAnouncement = new ObservableCollection<SelectAnouncementTypeInRange_Result>(ST.SelectAnouncementTypeInRange(currentPage, currentPage + 4,currentTypeMoreAnouncement));
         }
     }
 }

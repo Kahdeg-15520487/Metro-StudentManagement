@@ -12,66 +12,130 @@ namespace StudentManagement.ViewModel
     public class AnouncementViewModel : MainAnouncementViewModel
     {
         StudentDBEntities ST = new StudentDBEntities();
-        private ObservableCollection<Get10NewestAnouncements_Result> _TopTenNewestAnouncement;
-        public ObservableCollection<Get10NewestAnouncements_Result> TopTenNewestAnouncement
+        private ObservableCollection<Get10NewestGeneralAnouncements_Result> _TopTenNewestGeneralAnouncement;
+        public ObservableCollection<Get10NewestGeneralAnouncements_Result> TopTenNewestGeneralAnouncement
         {
             get
             {
-                if (_TopTenNewestAnouncement == null)
-                    _TopTenNewestAnouncement = new ObservableCollection<Get10NewestAnouncements_Result>(ST.Get10NewestAnouncements());
-                return _TopTenNewestAnouncement;
+                if (_TopTenNewestGeneralAnouncement == null)
+                    _TopTenNewestGeneralAnouncement = new ObservableCollection<Get10NewestGeneralAnouncements_Result>(ST.Get10NewestGeneralAnouncements());
+                return _TopTenNewestGeneralAnouncement;
             }
 
             set
             {
-                if (value == _TopTenNewestAnouncement)
+                if (value == _TopTenNewestGeneralAnouncement)
                     return;
-                _TopTenNewestAnouncement = value;
-                OnPropertyChanged("TopTenNewestAnouncement");
+                _TopTenNewestGeneralAnouncement = value;
+                OnPropertyChanged("TopTenNewestGeneralAnouncement");
             }
         }
 
-        public ICommand AnouncementClicked
+        private ObservableCollection<Get10NewestDisciplineAnouncements_Result> _TopTenNewestDisciplineAnouncement;
+        public ObservableCollection<Get10NewestDisciplineAnouncements_Result> TopTenNewestDisciplineAnouncement
         {
             get
             {
-                if (_AnouncementClicked == null)
-                {
-                    _AnouncementClicked = new RelayCommand<TextBlock>((p) => true, OnAnouncementClicked);
-                }
-                return _AnouncementClicked;
+                if (_TopTenNewestDisciplineAnouncement == null)
+                    _TopTenNewestDisciplineAnouncement = new ObservableCollection<Get10NewestDisciplineAnouncements_Result>(ST.Get10NewestDisciplineAnouncements());
+                return _TopTenNewestDisciplineAnouncement;
             }
 
-
+            set
+            {
+                if (value == _TopTenNewestDisciplineAnouncement)
+                    return;
+                _TopTenNewestDisciplineAnouncement = value;
+                OnPropertyChanged("TopTenNewestDisciplineAnouncement");
+            }
         }
 
-        public ICommand MoreAnouncementClicked
+
+        private ICommand _MoreGeneralAnouncementClicked;
+
+        public ICommand MoreGeneralAnouncementClicked
         {
             get
             {
-                if (_MoreAnouncementClicked == null)
+                if (_MoreGeneralAnouncementClicked == null)
                 {
-                    _MoreAnouncementClicked = new RelayCommand<object>((p) => true, OnMoreAnouncementClicked);
+                    _MoreGeneralAnouncementClicked = new RelayCommand<object>((p) => true, OnMoreGeneralAnouncementClicked);
                 }
-                return _MoreAnouncementClicked;
+                return _MoreGeneralAnouncementClicked;
             }
         }
 
 
-        private void OnMoreAnouncementClicked(object obj)
+        private void OnMoreGeneralAnouncementClicked(object obj)
         {
+            Messager.TypeOfMoreAnouncementBroadCast("General");
             Messager.AnouncementMessageTransmitted(false, false, true);
         }
 
-        private ICommand _AnouncementClicked;
+        private ICommand _MoreDisciplineAnouncementClicked;
 
-        private ICommand _MoreAnouncementClicked;
-        private void OnAnouncementClicked(TextBlock currentAnouncement)
+        public ICommand MoreDisciplineAnouncementClicked
+        {
+            get
+            {
+                if (_MoreDisciplineAnouncementClicked == null)
+                {
+                    _MoreDisciplineAnouncementClicked = new RelayCommand<object>((p) => true, OnMoreDisciplineAnouncementClicked);
+                }
+                return _MoreDisciplineAnouncementClicked;
+            }
+        }
+
+
+        private void OnMoreDisciplineAnouncementClicked(object obj)
+        {
+            Messager.TypeOfMoreAnouncementBroadCast("Discipline");
+            Messager.AnouncementMessageTransmitted(false, false, true);
+        }
+
+
+        private ICommand _GeneralAnouncementClicked;
+        public ICommand GeneralAnouncementClicked
+        {
+            get
+            {
+                if (_GeneralAnouncementClicked == null)
+                {
+                    _GeneralAnouncementClicked = new RelayCommand<TextBlock>((p) => true, OnGeneralAnouncementClicked);
+                }
+                return _GeneralAnouncementClicked;
+            }
+        }
+        private void OnGeneralAnouncementClicked(TextBlock currentAnouncement)
         {
             Messager.AnouncementBroadCast(false, true, false);
+            Messager.TypeOfAnouncementBroadCast("GeneralAnouncement");
             Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
             Messager.CurrentTabBroadCast("Anouncement");
         }
+
+
+        private ICommand _DisciplineAnouncementClicked;
+        public ICommand DisciplineAnouncementClicked
+        {
+            get
+            {
+                if (_DisciplineAnouncementClicked == null)
+                {
+                    _DisciplineAnouncementClicked = new RelayCommand<TextBlock>((p) => true, OnDisciplineAnouncementClicked);
+                }
+                return _DisciplineAnouncementClicked;
+            }
+        }
+        private void OnDisciplineAnouncementClicked(TextBlock currentAnouncement)
+        {
+            Messager.AnouncementBroadCast(false, true, false);
+            Messager.TypeOfAnouncementBroadCast("DisciplineAnouncement");
+            Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
+            Messager.CurrentTabBroadCast("Anouncement");
+        }
+
+  
 
 
         public AnouncementViewModel()

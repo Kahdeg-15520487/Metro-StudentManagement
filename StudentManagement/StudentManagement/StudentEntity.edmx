@@ -26,16 +26,6 @@
           <Property Name="GroupName" Type="nvarchar" MaxLength="300" />
           <Property Name="Goal" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Anouncement">
-          <Key>
-            <PropertyRef Name="AnouncementID" />
-          </Key>
-          <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" />
-          <Property Name="AnouncementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DateAnouncement" Type="smalldatetime" />
-          <Property Name="Detail" Type="nvarchar" MaxLength="300" />
-          <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
-        </EntityType>
         <EntityType Name="BehaviorMark">
           <Key>
             <PropertyRef Name="StudentID" />
@@ -107,6 +97,18 @@
           <Property Name="Period" Type="int" />
           <Property Name="AnouncementID" Type="int" />
           <Property Name="Room" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DisciplineAnouncement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DateOfAnoun" Type="smalldatetime" />
+          <Property Name="DisciplineID" Type="nvarchar" MaxLength="10" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="10" />
+          <Property Name="FinishTime" Type="nvarchar" MaxLength="10" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="3000" />
         </EntityType>
         <EntityType Name="Exam">
           <Key>
@@ -283,6 +285,16 @@
           <Property Name="TeacherID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Roll" Type="int" />
         </EntityType>
+        <EntityType Name="UniversityInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="UniversityAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserImage">
           <Key>
             <PropertyRef Name="ID" />
@@ -312,15 +324,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Fk_AnouncementID">
-          <End Role="Anouncement" Type="Self.Anouncement" Multiplicity="0..1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
+        <Association Name="FK_ADisciplineID">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
+          <End Role="DisciplineAnouncement" Type="Self.DisciplineAnouncement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Anouncement">
-              <PropertyRef Name="AnouncementID" />
+            <Principal Role="Discipline">
+              <PropertyRef Name="DisciplineID" />
             </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="AnouncementID" />
+            <Dependent Role="DisciplineAnouncement">
+              <PropertyRef Name="DisciplineID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -650,7 +662,8 @@
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
           <Parameter Name="DisciplineID" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="Get10NewestAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Get10NewestDisciplineAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Get10NewestGeneralAnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAcademicByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
         </Function>
@@ -677,6 +690,9 @@
         </Function>
         <Function Name="GetDiplomaProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudenID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetDisciplineAnoucementDetailByTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="title" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetFacultyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FacultyID" Type="nvarchar" Mode="In" />
@@ -728,6 +744,15 @@
           <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="IsDateRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectAnouncementTypeInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="int" Mode="In" />
+          <Parameter Name="end" Type="int" Mode="In" />
+          <Parameter Name="type" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SelectDisciplineAnouncementInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="int" Mode="In" />
+          <Parameter Name="end" Type="int" Mode="In" />
+        </Function>
         <Function Name="SelectGeneralAnouncementInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="int" Mode="In" />
           <Parameter Name="end" Type="int" Mode="In" />
@@ -753,13 +778,13 @@
         <EntityContainer Name="StudentDBModelStoreContainer">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Anouncement" EntityType="Self.Anouncement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BehaviorMark" EntityType="Self.BehaviorMark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Candre" EntityType="Self.Candre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiplomaProject" EntityType="Self.DiplomaProject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DisciplineAnouncement" EntityType="Self.DisciplineAnouncement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralAnouncement" EntityType="Self.GeneralAnouncement" Schema="dbo" store:Type="Tables" />
@@ -776,15 +801,16 @@
           <EntitySet Name="StudyFee" EntityType="Self.StudyFee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeacherUser" EntityType="Self.TeacherUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniversityInfo" EntityType="Self.UniversityInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="Fk_ActivityGroupID" Association="Self.Fk_ActivityGroupID">
             <End Role="ActivityGroup" EntitySet="ActivityGroup" />
             <End Role="BehaviorMark" EntitySet="BehaviorMark" />
           </AssociationSet>
-          <AssociationSet Name="Fk_AnouncementID" Association="Self.Fk_AnouncementID">
-            <End Role="Anouncement" EntitySet="Anouncement" />
+          <AssociationSet Name="FK_ADisciplineID" Association="Self.FK_ADisciplineID">
             <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="DisciplineAnouncement" EntitySet="DisciplineAnouncement" />
           </AssociationSet>
           <AssociationSet Name="Fk_CandreID" Association="Self.Fk_CandreID">
             <End Role="Candre" EntitySet="Candre" />
@@ -919,17 +945,6 @@
           <Property Name="Goal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BehaviorMark" Relationship="Self.Fk_ActivityGroupID" FromRole="ActivityGroup" ToRole="BehaviorMark" />
         </EntityType>
-        <EntityType Name="Anouncement">
-          <Key>
-            <PropertyRef Name="AnouncementID" />
-          </Key>
-          <Property Name="DisciplineID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="AnouncementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DateAnouncement" Type="DateTime" Precision="0" />
-          <Property Name="Detail" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Discipline" Relationship="Self.Fk_AnouncementID" FromRole="Anouncement" ToRole="Discipline" />
-          <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="BehaviorMark">
           <Key>
             <PropertyRef Name="StudentID" />
@@ -1009,12 +1024,13 @@
           <Property Name="Period" Type="Int32" />
           <Property Name="AnouncementID" Type="Int32" />
           <NavigationProperty Name="AcademicMark" Relationship="Self.Fk_Discipline" FromRole="Discipline" ToRole="AcademicMark" />
-          <NavigationProperty Name="Anouncement" Relationship="Self.Fk_AnouncementID" FromRole="Discipline" ToRole="Anouncement" />
           <NavigationProperty Name="Exam" Relationship="Self.Fk_Discipline_Exam" FromRole="Discipline" ToRole="Exam" />
           <NavigationProperty Name="RegisterStudyUnit" Relationship="Self.Fk_DisciplineID" FromRole="Discipline" ToRole="RegisterStudyUnit" />
           <NavigationProperty Name="Teacher" Relationship="Self.Fk_TeacherID_teacher" FromRole="Discipline" ToRole="Teacher" />
           <NavigationProperty Name="Department" Relationship="StudentDBModel.FK_Discipline_Department_" FromRole="Discipline" ToRole="Department" />
           <Property Name="Room" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+       
+          <NavigationProperty Name="DisciplineAnouncement" Relationship="StudentDBModel.FK_ADisciplineID" FromRole="Discipline" ToRole="DisciplineAnouncement" />
         </EntityType>
         <EntityType Name="Exam">
           <Key>
@@ -1270,18 +1286,6 @@
             </Principal>
             <Dependent Role="BehaviorMark">
               <PropertyRef Name="ActivityGroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Fk_AnouncementID">
-          <End Role="Anouncement" Type="Self.Anouncement" Multiplicity="0..1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Anouncement">
-              <PropertyRef Name="AnouncementID" />
-            </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="AnouncementID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1564,7 +1568,6 @@
         <EntityContainer Name="StudentDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AcademicMark" EntityType="Self.AcademicMark" />
           <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" />
-          <EntitySet Name="Anouncement" EntityType="Self.Anouncement" />
           <EntitySet Name="BehaviorMark" EntityType="Self.BehaviorMark" />
           <EntitySet Name="Candre" EntityType="Self.Candre" />
           <EntitySet Name="Class" EntityType="Self.Class" />
@@ -1599,10 +1602,6 @@
           <AssociationSet Name="Fk_ActivityGroupID" Association="Self.Fk_ActivityGroupID">
             <End Role="ActivityGroup" EntitySet="ActivityGroup" />
             <End Role="BehaviorMark" EntitySet="BehaviorMark" />
-          </AssociationSet>
-          <AssociationSet Name="Fk_AnouncementID" Association="Self.Fk_AnouncementID">
-            <End Role="Anouncement" EntitySet="Anouncement" />
-            <End Role="Discipline" EntitySet="Discipline" />
           </AssociationSet>
           <AssociationSet Name="fk_StudentID_BehaviorMark" Association="Self.fk_StudentID_BehaviorMark">
             <End Role="Student" EntitySet="Student" />
@@ -1820,8 +1819,32 @@
           </FunctionImport>
           <FunctionImport Name="Get10NewestAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestAnouncements_Result)" />
           <FunctionImport Name="GetGeneralAnoucementDetailByTitle" ReturnType="Collection(StudentDBModel.GetGeneralAnoucementDetailByTitle_Result)">
-            <Parameter Name="title" Mode="In" Type="String" />
+          <Parameter Name="title" Mode="In" Type="String" />
           </FunctionImport>
+
+          
+          <EntitySet Name="DisciplineAnouncement" EntityType="StudentDBModel.DisciplineAnouncement" />
+          <AssociationSet Name="FK_ADisciplineID" Association="StudentDBModel.FK_ADisciplineID">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="DisciplineAnouncement" EntitySet="DisciplineAnouncement" />
+          </AssociationSet>
+          <EntitySet Name="UniversityInfo" EntityType="StudentDBModel.UniversityInfo" />
+       
+          <FunctionImport Name="Get10NewestGeneralAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestGeneralAnouncements_Result)" />
+          <FunctionImport Name="Get10NewestDisciplineAnouncements" ReturnType="Collection(StudentDBModel.Get10NewestDisciplineAnouncements_Result)" />
+          <FunctionImport Name="GetDisciplineAnoucementDetailByTitle" ReturnType="Collection(StudentDBModel.GetDisciplineAnoucementDetailByTitle_Result)">
+          <Parameter Name="title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectDisciplineAnouncementInRange" ReturnType="Collection(StudentDBModel.SelectDisciplineAnouncementInRange_Result)">
+            <Parameter Name="start" Mode="In" Type="Int32" />
+            <Parameter Name="end" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelectAnouncementTypeInRange" ReturnType="Collection(StudentDBModel.SelectAnouncementTypeInRange_Result)">
+            <Parameter Name="start" Mode="In" Type="Int32" />
+            <Parameter Name="end" Mode="In" Type="Int32" />
+            <Parameter Name="type" Mode="In" Type="String" />
+          </FunctionImport>
+          
          
         
         
@@ -2118,7 +2141,83 @@
           <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
           <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
         </ComplexType>
+     
         
+        <EntityType Name="DisciplineAnouncement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfAnoun" Type="DateTime" Precision="0" />
+          <Property Name="DisciplineID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Discipline" Relationship="StudentDBModel.FK_ADisciplineID" FromRole="DisciplineAnouncement" ToRole="Discipline" />
+          <Property Name="StartTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FinishTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ADisciplineID">
+          <End Type="StudentDBModel.Discipline" Role="Discipline" Multiplicity="0..1" />
+          <End Type="StudentDBModel.DisciplineAnouncement" Role="DisciplineAnouncement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="DisciplineID" />
+            </Principal>
+            <Dependent Role="DisciplineAnouncement">
+              <PropertyRef Name="DisciplineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UniversityInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UniversityAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+     
+        <ComplexType Name="Get10NewestGeneralAnouncements_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Detail" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="Get10NewestDisciplineAnouncements_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="DisciplineID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="StartTime" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FinishTime" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetDisciplineAnoucementDetailByTitle_Result">
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="DisciplineID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="StartTime" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FinishTime" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Room" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="SelectDisciplineAnouncementInRange_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DateOfAnoun" Nullable="true" Precision="16" />
+          <Property Type="String" Name="DisciplineID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="StartTime" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FinishTime" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SelectAnouncementTypeInRange_Result">
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Summary" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+      
       
        
       </Schema>
@@ -2146,17 +2245,6 @@
                 <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="Goal" ColumnName="Goal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Anouncement">
-            <EntityTypeMapping TypeName="StudentDBModel.Anouncement">
-              <MappingFragment StoreEntitySet="Anouncement">
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
-                <ScalarProperty Name="AnouncementID" ColumnName="AnouncementID" />
-                <ScalarProperty Name="DateAnouncement" ColumnName="DateAnouncement" />
-                <ScalarProperty Name="Detail" ColumnName="Detail" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2808,17 +2896,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Get10NewestAnouncements" FunctionName="StudentDBModel.Store.Get10NewestAnouncements">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="StudentDBModel.Get10NewestAnouncements_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
-                <ScalarProperty Name="Detail" ColumnName="Detail" />
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetGeneralAnoucementDetailByTitle" FunctionName="StudentDBModel.Store.GetGeneralAnoucementDetailByTitle">
             <ResultMapping>
               <ComplexTypeMapping TypeName="StudentDBModel.GetGeneralAnoucementDetailByTitle_Result">
@@ -2830,6 +2907,90 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="DisciplineAnouncement">
+            <EntityTypeMapping TypeName="StudentDBModel.DisciplineAnouncement">
+              <MappingFragment StoreEntitySet="DisciplineAnouncement">
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniversityInfo">
+            <EntityTypeMapping TypeName="StudentDBModel.UniversityInfo">
+              <MappingFragment StoreEntitySet="UniversityInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="UniversityAddress" ColumnName="UniversityAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+      
+          <FunctionImportMapping FunctionImportName="Get10NewestGeneralAnouncements" FunctionName="StudentDBModel.Store.Get10NewestGeneralAnouncements">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.Get10NewestGeneralAnouncements_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get10NewestDisciplineAnouncements" FunctionName="StudentDBModel.Store.Get10NewestDisciplineAnouncements">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.Get10NewestDisciplineAnouncements_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDisciplineAnoucementDetailByTitle" FunctionName="StudentDBModel.Store.GetDisciplineAnoucementDetailByTitle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.GetDisciplineAnoucementDetailByTitle_Result">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectDisciplineAnouncementInRange" FunctionName="StudentDBModel.Store.SelectDisciplineAnouncementInRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.SelectDisciplineAnouncementInRange_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateOfAnoun" ColumnName="DateOfAnoun" />
+                <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="RowNum" ColumnName="RowNum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectAnouncementTypeInRange" FunctionName="StudentDBModel.Store.SelectAnouncementTypeInRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentDBModel.SelectAnouncementTypeInRange_Result">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+         
        
           
         
