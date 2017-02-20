@@ -483,7 +483,7 @@ namespace StudentManagement.ViewModel
                 if (_hour == 0 && _minute == 0 && _second == 0)
                 {
                     _timer.Stop();
-                    MainMenuViewModel.CloseTimeRegisterUnit = false;
+                    UpdateCloseTimeRegister.BroadCast(false);
                     IsCloseTimeRegister = false;
                 }
                 UpdateTime();
@@ -491,13 +491,13 @@ namespace StudentManagement.ViewModel
                 {
                     _second--;
                 }
-               
+
             }
             else
             {
-                _hour = 0;_second = 0;_minute = 0;
+                _hour = 0; _second = 0; _minute = 0;
             }
-            
+
         }
 
 
@@ -507,16 +507,16 @@ namespace StudentManagement.ViewModel
 
             try
             {
-                int Time= ST.TimeCloseRegisterUnit().ToList()[0].Value;
+                int Time = ST.TimeCloseRegisterUnit().ToList()[0].Value;
 
                 //_hour =Time/(3600*24) ;
                 _hour = Time / 3600;
-                _minute = (Time%3600)/60;
-                _second = Time-(_hour*3600+_minute*60);
+                _minute = (Time % 3600) / 60;
+                _second = Time - (_hour * 3600 + _minute * 60);
             }
             catch { }
 
-           
+
             _timer = new DispatcherTimer(DispatcherPriority.Normal);
             _timer.Interval = TimeSpan.FromSeconds(1);
 
@@ -524,7 +524,7 @@ namespace StudentManagement.ViewModel
             _timer.Start();
 
         }
-        private bool _IsCloseTimeRegister=true;
+        private bool _IsCloseTimeRegister = true;
         public bool IsCloseTimeRegister
         {
             get
