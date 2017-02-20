@@ -15,7 +15,7 @@ namespace StudentManagement.ViewModel
     {
         StudentDBEntities ST = new StudentDBEntities();
         private readonly DispatcherTimer _timer;
-        private readonly DispatcherTimer _UpdateTime;
+
 
 
         private int _second = 0;
@@ -32,6 +32,7 @@ namespace StudentManagement.ViewModel
                 if (_IsDateRegister == null)
                 {
                     _IsDateRegister = new ObservableCollection<IsDateRegister_Result>(ST.IsDateRegister().ToList());
+                    CheckDateRegister = bool.Parse(ST.IsDateRegister().ToList()[0].IsDateRegister.ToString());
                 }
                 return _IsDateRegister;
             }
@@ -42,6 +43,8 @@ namespace StudentManagement.ViewModel
                 OnPropertyChanged("IsDateRegister");
             }
         }
+
+        private bool _CheckDateRegister;
         private string _RegisterOpenHour = "00";
 
         public string RegisterOpenHour
@@ -96,7 +99,7 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        public  bool IsOpenRegisterUnit
+        public bool IsOpenRegisterUnit
         {
             get
             {
@@ -124,24 +127,12 @@ namespace StudentManagement.ViewModel
             }
         }
 
-        public static bool CloseTimeRegisterUnit
-        {
-            get
-            {
-                return _CloseTimeRegisterUnit;
-            }
 
-            set
-            {
-                _CloseTimeRegisterUnit = value;              
-            }
-        }
-
-        private static bool _CloseTimeRegisterUnit=true;
         private bool _IsOpenRegisterUnit = false;
         private bool _IsOpenTimeRegisterUnit = true;
         public MainMenuViewModel()
         {
+            CheckDateRegister = bool.Parse(ST.IsDateRegister().ToList()[0].IsDateRegister.ToString());
             try
             {
                 _hour = Int32.Parse(ST.GetDateRegisterUnit().ToList()[0].Hour.ToString());
@@ -154,15 +145,13 @@ namespace StudentManagement.ViewModel
 
             _timer.Tick += Timer_Tick;
             _timer.Start();
-            _UpdateTime = new DispatcherTimer(DispatcherPriority.Normal);
-            _UpdateTime.Interval = TimeSpan.FromSeconds(1);
-            _UpdateTime.Tick += TimerUpdate_Tick;
-            _UpdateTime.Start();
+            //event close register
+            UpdateCloseTimeRegister.OnMessageTransmitted += OnCloseTimeRegisterUnit;
 
 
         }
-   
-      
+
+
         private void UpdateTime()
         {
             if (_second < 10)
@@ -194,7 +183,7 @@ namespace StudentManagement.ViewModel
 
 
         }
-        
+
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -215,27 +204,45 @@ namespace StudentManagement.ViewModel
                     _minute = 59;
                     _hour = _hour - 1;
                 }
-               
+
             }
 
             UpdateTime();
-            if(_second!=0)
-            _second--;
+            if (_second != 0)
+                _second--;
             if (_hour == 0 && _minute == 0 && _second == 0)
             {
                 _timer.Stop();
                 IsOpenRegisterUnit = true;
-                IsOpenTimeRegisterUnit = false;              
+                IsOpenTimeRegisterUnit = false;
             }
         }
 
-        public void  TimerUpdate_Tick(object sender, EventArgs e)
+
+
+        public bool CheckDateRegister
         {
-            if (_CloseTimeRegisterUnit == false)
+            get
             {
-                IsOpenRegisterUnit = _CloseTimeRegisterUnit;
-                _UpdateTime.Stop();
+
+                return _CheckDateRegister;
             }
+
+            set
+            {
+                _CheckDateRegister = value;
+                OnPropertyChanged("CheckDateRegister");
+            }
+        }
+
+
+
+        private void OnCloseTimeRegisterUnit(bool Message)
+        {
+
+            CheckDateRegister = Message;
+
+
         }
 
     }
