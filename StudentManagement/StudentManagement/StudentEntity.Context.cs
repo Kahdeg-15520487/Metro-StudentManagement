@@ -307,23 +307,6 @@ namespace StudentManagement
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteRegisterStudyUnit", studentIDParameter, disciplineIDParameter);
         }
     
-        public virtual ObjectResult<GetScheduleForDetail_Result> GetScheduleForDetail(string studentID, string semester, string studyDate)
-        {
-            var studentIDParameter = studentID != null ?
-                new ObjectParameter("StudentID", studentID) :
-                new ObjectParameter("StudentID", typeof(string));
-    
-            var semesterParameter = semester != null ?
-                new ObjectParameter("Semester", semester) :
-                new ObjectParameter("Semester", typeof(string));
-    
-            var studyDateParameter = studyDate != null ?
-                new ObjectParameter("StudyDate", studyDate) :
-                new ObjectParameter("StudyDate", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail_Result>("GetScheduleForDetail", studentIDParameter, semesterParameter, studyDateParameter);
-        }
-    
         public virtual int UpdateStarDay(string studentID)
         {
             var studentIDParameter = studentID != null ?
@@ -331,23 +314,6 @@ namespace StudentManagement
                 new ObjectParameter("StudentID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStarDay", studentIDParameter);
-        }
-    
-        public virtual ObjectResult<GetScheduleForDetail1_Result> GetScheduleForDetail1(string studentID, string semester, string studyDate)
-        {
-            var studentIDParameter = studentID != null ?
-                new ObjectParameter("StudentID", studentID) :
-                new ObjectParameter("StudentID", typeof(string));
-    
-            var semesterParameter = semester != null ?
-                new ObjectParameter("Semester", semester) :
-                new ObjectParameter("Semester", typeof(string));
-    
-            var studyDateParameter = studyDate != null ?
-                new ObjectParameter("StudyDate", studyDate) :
-                new ObjectParameter("StudyDate", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail1_Result>("GetScheduleForDetail1", studentIDParameter, semesterParameter, studyDateParameter);
         }
     
         public virtual ObjectResult<GetInfoDiscipline_Result> GetInfoDiscipline()
@@ -485,6 +451,27 @@ namespace StudentManagement
                 new ObjectParameter("type", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAnouncementTypeInRange_Result>("SelectAnouncementTypeInRange", startParameter, endParameter, typeParameter);
+        }
+    
+        public virtual ObjectResult<GetScheduleForDetail1_Result> GetScheduleForDetail1(string studentID, string semester, string studyDate, Nullable<double> scaleScreen)
+        {
+            var studentIDParameter = studentID != null ?
+                new ObjectParameter("StudentID", studentID) :
+                new ObjectParameter("StudentID", typeof(string));
+    
+            var semesterParameter = semester != null ?
+                new ObjectParameter("Semester", semester) :
+                new ObjectParameter("Semester", typeof(string));
+    
+            var studyDateParameter = studyDate != null ?
+                new ObjectParameter("StudyDate", studyDate) :
+                new ObjectParameter("StudyDate", typeof(string));
+    
+            var scaleScreenParameter = scaleScreen.HasValue ?
+                new ObjectParameter("ScaleScreen", scaleScreen) :
+                new ObjectParameter("ScaleScreen", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetScheduleForDetail1_Result>("GetScheduleForDetail1", studentIDParameter, semesterParameter, studyDateParameter, scaleScreenParameter);
         }
     }
 }

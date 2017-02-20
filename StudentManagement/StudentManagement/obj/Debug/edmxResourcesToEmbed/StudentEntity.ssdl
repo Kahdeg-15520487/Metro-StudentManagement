@@ -705,15 +705,11 @@
   <Function Name="GetListDisciplineForThisUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ThisUser" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="GetScheduleForDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
-    <Parameter Name="Semester" Type="nvarchar" Mode="In" />
-    <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
-  </Function>
   <Function Name="GetScheduleForDetail1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
     <Parameter Name="Semester" Type="nvarchar" Mode="In" />
     <Parameter Name="StudyDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="ScaleScreen" Type="float" Mode="In" />
   </Function>
   <Function Name="GetSchooltDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />

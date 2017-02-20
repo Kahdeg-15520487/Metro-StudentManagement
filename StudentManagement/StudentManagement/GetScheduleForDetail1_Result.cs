@@ -19,7 +19,7 @@ namespace StudentManagement
         public string DepartmentName { get; set; }
         public string DepartmentID { get; set; }
         public Nullable<int> Period { get; set; }
-        public Nullable<int> Credits { get; set; }
+        public Nullable<double> Credits { get; set; }
         public string Room { get; set; }
     }
 }

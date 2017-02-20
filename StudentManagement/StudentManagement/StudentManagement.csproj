@@ -193,9 +193,6 @@
     <Compile Include="GetScheduleForDetail1_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetScheduleForDetail_Result.cs">
-      <DependentUpon>StudentEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="GetSchooltDetail_Result.cs">
       <DependentUpon>StudentEntity.tt</DependentUpon>
     </Compile>
