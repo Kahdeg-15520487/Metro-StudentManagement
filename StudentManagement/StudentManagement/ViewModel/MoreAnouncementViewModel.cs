@@ -57,6 +57,7 @@ namespace StudentManagement.ViewModel
         {
             Messager.AnouncementBroadCast(false, true, false);
             Messager.AnouncementDetailBroadCast(currentAnouncement.Text);
+            Messager.CurrentTabTransmitted("MoreAnouncement");
         }
 
         public ICommand AnouncementClicked
@@ -74,7 +75,7 @@ namespace StudentManagement.ViewModel
         }
         public MoreAnouncementViewModel()
         {
-            Messager.CurrnentPageMessageTransmitted += OnChangePageAnouncement;
+            Messager.CurrentPageTransmitted += OnChangePageAnouncement;
         }
 
         private void OnChangePageAnouncement(string obj)

@@ -66,6 +66,24 @@ namespace StudentManagement.ViewModel
         public MainAnouncementViewModel()
         {
             Messager.AnouncementMessageTransmitted += OnMessageReceived;
+            Messager.PreviousTabTransmitted += OnPreviousTabTransmitted;
+        }
+
+        private void OnPreviousTabTransmitted(bool isAnouncementOpen, bool isDetailAnouncementOpen, bool isMoreAnouncementOpen, string previousTab)
+        {
+            if (previousTab == "Anouncement")
+            {
+                IsAnouncementOpen = isAnouncementOpen;
+                IsDetailAnouncementOpen = isDetailAnouncementOpen;
+                IsMoreAnouncementOpen = isMoreAnouncementOpen;
+            }
+            else
+                if (previousTab=="MoreAnouncement")
+            {
+                IsAnouncementOpen = !isAnouncementOpen;
+                IsDetailAnouncementOpen = isDetailAnouncementOpen;
+                IsMoreAnouncementOpen = !isMoreAnouncementOpen;
+            }
         }
 
         private void OnMessageReceived(bool para1, bool para2, bool para3)

@@ -8,10 +8,10 @@ namespace StudentManagement.ViewModel
 {
     public static class Messager
     {
-        public static void AnouncementBroadCast(bool value1, bool value2, bool value3)
+        public static void AnouncementBroadCast(bool isAnouncementOpen, bool isDetailAnouncementOpen, bool isMoreAnouncementOpen)
         {
             if (AnouncementMessageTransmitted != null)
-                AnouncementMessageTransmitted(value1, value2, value3);
+                AnouncementMessageTransmitted(isAnouncementOpen, isDetailAnouncementOpen, isMoreAnouncementOpen);
         }
         public static void AnouncementDetailBroadCast(string value)
         {
@@ -20,12 +20,26 @@ namespace StudentManagement.ViewModel
         }
         public static void CurrentPageBroadCast(string value)
         {
-            if (CurrnentPageMessageTransmitted != null)
-                CurrnentPageMessageTransmitted(value);
+            if (CurrentPageTransmitted != null)
+                CurrentPageTransmitted(value);
+        }
+
+        public static void PreviousTabBroadCast(bool isAnouncementOpen, bool isDetailAnouncementOpen, bool isMoreAnouncementOpen, string PreviousTab)
+        {
+            if (PreviousTabTransmitted != null)
+                PreviousTabTransmitted(isAnouncementOpen, isDetailAnouncementOpen, isMoreAnouncementOpen, PreviousTab);
+        }
+
+        public static void CurrentTabBroadCast(string value)
+        {
+            if (CurrentTabTransmitted != null)
+                CurrentTabTransmitted(value);
         }
 
         public static Action<bool, bool, bool> AnouncementMessageTransmitted;
         public static Action<string> AnouncementDetailMessageTransmitted;
-        public static Action<string> CurrnentPageMessageTransmitted;
+        public static Action<string> CurrentPageTransmitted;
+        public static Action<bool, bool, bool, string> PreviousTabTransmitted;
+        public static Action<string> CurrentTabTransmitted;
     }
 }
