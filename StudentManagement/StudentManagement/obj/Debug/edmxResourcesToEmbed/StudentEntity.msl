@@ -555,32 +555,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="DeleteRegisterStudyUnit" FunctionName="StudentDBModel.Store.DeleteRegisterStudyUnit" />
-    <FunctionImportMapping FunctionImportName="GetScheduleForDetail" FunctionName="StudentDBModel.Store.GetScheduleForDetail">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetScheduleForDetail_Result">
-          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
-          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
-          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateStarDay" FunctionName="StudentDBModel.Store.UpdateStarDay" />
-    <FunctionImportMapping FunctionImportName="GetScheduleForDetail1" FunctionName="StudentDBModel.Store.GetScheduleForDetail1">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="StudentDBModel.GetScheduleForDetail1_Result">
-          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
-          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
-          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-          <ScalarProperty Name="Period" ColumnName="Period" />
-          <ScalarProperty Name="Credits" ColumnName="Credits" />
-          <ScalarProperty Name="Room" ColumnName="Room" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetInfoDiscipline" FunctionName="StudentDBModel.Store.GetInfoDiscipline">
       <ResultMapping>
         <ComplexTypeMapping TypeName="StudentDBModel.GetInfoDiscipline_Result">
@@ -756,6 +731,20 @@
         <ComplexTypeMapping TypeName="StudentDBModel.SelectAnouncementTypeInRange_Result">
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Summary" ColumnName="Summary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetScheduleForDetail1" FunctionName="StudentDBModel.Store.GetScheduleForDetail1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentDBModel.GetScheduleForDetail1_Result">
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="FinishDay" ColumnName="FinishDay" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="Room" ColumnName="Room" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
