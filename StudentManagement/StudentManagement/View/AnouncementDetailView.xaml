@@ -26,6 +26,14 @@
                         <TextBlock Text="Back" FontSize="25"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
+            <TextBlock Width="20"></TextBlock>
+            <TextBlock VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None" Command="{Binding BackToMenu}">
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                        <TextBlock FontSize="25" Text="9" FontFamily="Webdings"></TextBlock>
+                        <TextBlock Text="Back to Menu" FontSize="25"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
 
         </StackPanel>
 
@@ -38,22 +46,22 @@
             <TextBlock Grid.Row="1" FontSize="12" Text="{Binding DisciplineAnouncementDetail[0].DateOfAnoun}"></TextBlock>
             <TextBlock Width="20"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="15" Text="Teacher :"></TextBlock>
+                <TextBlock FontSize="15" Text="Teacher : "></TextBlock>
                 <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].TeacherName}"></TextBlock>
             </StackPanel>
             <TextBlock Width="10"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="15" Text="Department :"></TextBlock>
+                <TextBlock FontSize="15" Text="Department : "></TextBlock>
                 <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].DeparmentName}"></TextBlock>
             </StackPanel>
             <TextBlock Width="10"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="15" Text="Discipline :"></TextBlock>
-                <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].TeacherName}"></TextBlock>
+                <TextBlock FontSize="15" Text="Discipline : "></TextBlock>
+                <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].DisciplineID}"></TextBlock>
             </StackPanel>
             <TextBlock Width="10"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="15" Text="Room :"></TextBlock>
+                <TextBlock FontSize="15" Text="Room : "></TextBlock>
                 <TextBlock FontSize="15" Text="{Binding DisciplineAnouncementDetail[0].Room}"></TextBlock>
             </StackPanel>
 
@@ -72,12 +80,20 @@
 
 
             </StackPanel>
-            
+
             <TextBlock Width="10"></TextBlock>
             <TextBlock VerticalAlignment="Center">
                     <Hyperlink TextDecorations="None" Command="{Binding PreviousCommand}">
                         <TextBlock FontSize="25" Text="`" FontFamily="Wingdings 3"></TextBlock>
                         <TextBlock Text="Back" FontSize="25"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            <TextBlock Width="10"></TextBlock>
+            <TextBlock VerticalAlignment="Center">
+                    <Hyperlink TextDecorations="None" Command="{Binding BackToMenu}">
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                        <TextBlock FontSize="25" Text="9" FontFamily="Webdings"></TextBlock>
+                        <TextBlock Text="Back to Menu" FontSize="25"></TextBlock>
                     </Hyperlink>
                 </TextBlock>
 
