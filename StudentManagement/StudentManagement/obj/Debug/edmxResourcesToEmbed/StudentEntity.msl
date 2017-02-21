@@ -745,6 +745,7 @@
           <ScalarProperty Name="Period" ColumnName="Period" />
           <ScalarProperty Name="Credits" ColumnName="Credits" />
           <ScalarProperty Name="Room" ColumnName="Room" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
