@@ -112,7 +112,19 @@ namespace StudentManagement.ViewModel
             }
         }
 
-
+        public ICommand BackToMenu
+        {
+            get
+            {
+                if (_BackToMenu == null)
+                    _BackToMenu = new RelayCommand<object>((p) => true, OnBackToMenuCommand);
+                return _BackToMenu;
+            }
+        }
+        private void OnBackToMenuCommand(object obj)
+        {
+            Messager.PreviousTabBroadCast(true, false, false, "Anouncement");
+        }
 
         private ICommand _PreviousCommand;
 
@@ -135,8 +147,10 @@ namespace StudentManagement.ViewModel
 
         private void OnPreviousCommand(object obj)
         {
-            Messager.PreviousTabTransmitted(true, false, false, previousTab);
+            Messager.PreviousTabBroadCast(true, false, false, previousTab);
         }
+
+        private ICommand _BackToMenu;
 
         private void OnMessageReceived(string Title)
         {
@@ -147,7 +161,7 @@ namespace StudentManagement.ViewModel
                 IsGeneralAnouncementDetailOpen = true;
                 IsDisciplineAnouncementDetailOpen = false;
             }
-                
+
             else
                 if (typeOfAnouncement == "DisciplineAnouncement")
             {
